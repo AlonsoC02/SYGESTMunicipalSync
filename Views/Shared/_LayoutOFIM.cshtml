@@ -1,0 +1,447 @@
+﻿@*@using SYGESTMunicipal.Utility*@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>@ViewData["Title"] - OFIM</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script src="~/js/jquery-ui.js"></script>
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link href="~/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/css/flaticon.css" rel="stylesheet" />
+    <link href="~/css/icomoon.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" rel="stylesheet" />
+    <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
+    <link href="~/lib/ej.responsive.css" rel="stylesheet" />
+    <script src="~/js/ej.web.all.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/Paginador.css" rel="stylesheet" />
+
+    <script src="~/js/jquery.timepicker.js"></script>
+    <link href="~/css/jquery.timepicker.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+    <script src="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.css" />
+    <script src="~/js/Datepair.js"></script>
+    <script src="~/js/jquery.datepair.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="container pt-3 pb-2">
+            <div class="container pt-3 pb-2">
+                <div class="row justify-content-between">
+                    <div class="col-md-8 order-md-last">
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <a class="navbar-brand" style="color:#8c552e" asp-area="" asp-controller="Home" asp-action="Index">
+                                    SYGEST<span>Municipal</span>
+                                </a>
+                            </div>
+                            @*<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+                                    <form action="#" class="searchform order-lg-last">
+                                        <div class="form-group d-flex">
+                                            <input type="text" class="form-control pl-3" placeholder="Search">
+                                            <button type="submit" placeholder="" class="form-control search">
+                                                <span class="fa fa-search"></span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>*@
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="social-media">
+                            <p class="mb-0 d-flex">
+                                @* LINKS DE LAS REDES SOCIALES *@
+                                <a href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" class="d-flex align-items-center justify-content-center" target="_blank">
+                                    <span class="fa fa-facebook">
+                                        <i class="sr-only">Facebook</i>
+                                    </span>
+                                </a>
+                                <a href="https://www.instagram.com/explore/locations/256658138352395/municipalidad-hojancha/" class="d-flex align-items-center justify-content-center" target="_blank">
+                                    <span class="fa fa-instagram">
+                                        <i class="sr-only">Instagram</i>
+                                    </span>
+                                </a>
+                                @* FIN LINKS DE LAS REDES SOCIALES *@
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+            <div class="container-fluid" style="padding-right: 25px">
+
+                @* LOGO Muni *@
+                <div class="logo-img">
+                    <a asp-area="OFIM" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/OFIM.png" alt="">
+                    </a>
+                </div>
+                @* FIN LOGO Muni *@
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                        aria-controls="ftco-nav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+
+                <div class="collapse navbar-collapse" id="ftco-nav">
+
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-area="OFIM" asp-controller="Home" asp-action="Index">OFIM</a>
+                        </li>
+                        @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="OFIM" asp-controller="Consulta" asp-action="Index">Registro Atención</a>
+                                </li>
+                            }*@
+                        @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM))
+                        {*@
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Registro <br /> Atención
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="PersonaOFIM" asp-area="OFIM">Registrar Personas</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="TipoConsulta" asp-area="OFIM">Tipo Consulta</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Consulta" asp-area="OFIM">Registrar Consulta</a>
+
+                                    @*<a class="dropdown-item" asp-action="Index"
+                                        asp-controller="Home" asp-area="OFIM">Dar un Seguimiento</a>*@
+
+                                </div>
+                            </li>
+                        @*}
+
+
+
+                        @if (User.IsInRole(SD.RedUser))
+                        {*@
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Red de <br /> Atención
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="PersonaOFIM" asp-area="OFIM">Registrar Personas</a>
+
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Consulta" asp-area="OFIM">Casos Violencia Doméstica</a>
+
+                                </div>
+                            </li>
+                        @*}
+
+                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM) || User.IsInRole(SD.FrontDeskUser) || User.IsInRole(SD.Guest))
+                        {*@
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Actividades
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Eje" asp-area="OFIM">Ejes</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Actividad" asp-area="OFIM">Actividades</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Cupos" asp-area="OFIM">Cupos</a>
+                                </div>
+                            </li>
+                        @*}
+
+                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM) || User.IsInRole(SD.FrontDeskUser) || User.IsInRole(SD.Guest))
+                        {*@
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Talleres
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+
+                                    @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM))
+                                    {*@
+                                        <a class="dropdown-item" asp-action="Index"
+                                           asp-controller="Home" asp-area="OFIM">Registro de Capacitadores</a>
+                                    @*}
+
+                                    @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM))
+                                    {*@
+                                        <a class="dropdown-item" asp-action="Index"
+                                           asp-controller="Home" asp-area="OFIM">Registro de Taller</a>
+
+                                    @*}
+
+                                    @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM) || User.IsInRole(SD.FrontDeskUser) || User.IsInRole(SD.Guest))
+                                    {*@
+
+                                        <a class="dropdown-item" asp-action="Index"
+                                           asp-controller="Home" asp-area="OFIM">Inscripción a Talleres</a>
+                                    @*}*@
+
+                                </div>
+                            </li>
+                        @*}
+
+                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFIM))
+                        {*@
+
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Empresariedad
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Empresa" asp-area="OFIM">Registrar Empresa</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Producto" asp-area="OFIM">Registrar Producto</a>
+
+                                </div>
+                            </li>
+
+                        @*}*@
+                        @*<partial name="_LoginPartial" />*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </header>
+    <div class="show fullscreen">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    @* FOOTER*@
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="logo"><a href="#">SyGest <span>Municipal</span></a></h2>
+                        <p>Servicios al Alcance.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+
+                            <li class="ftco-animate">
+                                <a href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" class="d-flex align-items-center justify-content-center" target="_blank">
+                                    <span class="fa fa-facebook">
+                                        <i class="sr-only">Facebook</i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="ftco-animate">
+                                <a href="https://www.instagram.com/explore/locations/256658138352395/municipalidad-hojancha/" class="d-flex align-items-center justify-content-center" target="_blank">
+                                    <span class="fa fa-instagram">
+                                        <i class="sr-only">Instagram</i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <div class="ftco-footer-widget mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">Servicios</h2>
+                        <ul class="list-unstyled">
+
+                            <li>
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Home" asp-area="OFIM">
+                                    <span class="ion-ios-arrow-forward mr-3">
+                                    </span>Oficina de La Mujer
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Home" asp-area="PATENTES">
+                                    <span class="ion-ios-arrow-forward mr-3">
+                                    </span>Oficina de Patentes
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Home" asp-area="OFGA">
+                                    <span class="ion-ios-arrow-forward mr-3">
+                                    </span>Oficina de Gestión Ambiental
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Información de Contacto</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li>
+
+                                    <i class="icon icon-map-marker"></i>
+                                    <a href="https://www.google.com/maps/place/Municipalidad+de+Hojancha/10.0585518,-85.4189673,18z/data=!4m5!3m4!1s0x8f9fbab7c3d45245:0xb2000651b89c1e5b!8m2!3d10.0587462!4d-85.4178777?hl=es" target="_blank">
+                                        Costado Norte del Parque
+                                    </a>
+                                </li>
+
+                                <li>
+
+                                    <i class="icon icon-phone"> </i>
+                                    <a href="tel:+506 2659 9116">
+                                        2659 9116 Ext: 220
+                                    </a>
+
+                                <li>
+                                    <i class="icon icon-web"></i>
+                                    <a href="http://www.munihojancha.com/" target="_blank">
+                                        munihojancha.com
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <i class="icon icon-envelope"></i>
+                                    <a href="mailto:ofim@munihojancha.com">
+                                        ofim@munihojancha.com
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Horario de Atención</h2>
+                        <div class="opening-hours">
+                            <h4 class="subheading" style="color:#fff;">Abierto los Días:</h4>
+                            <p class="pl-3">
+                                <span>Lunes – Viernes : 7:30 am a 3:30 pm</span>
+
+                            </p>
+                        </div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy; 2020 - Municipalidad de Hojancha -
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        <br />
+                        Todos los derechos reservados by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @* FOOTER *@
+
+
+    <!-- loader -->
+    @*<div id="ftco-loader" class="show fullscreen">
+            <svg class="circular" width="48px" height="48px">
+                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+            </svg>
+        </div>*@
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');</script>
+
+    @* SCRIPT*@
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/js/jquery.timepicker.js"></script>
+    <script src="~/js/jquery.datepair.js"></script>
+    <script src="~/js/Datepair.js"></script>
+    <script src="~/js/Paginador.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

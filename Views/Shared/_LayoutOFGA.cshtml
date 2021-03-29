@@ -1,0 +1,305 @@
+﻿@*@using SYGESTMunicipal.Utility*@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
+    <link href="~/lib/ej.responsive.css" rel="stylesheet" />
+    <script src="~/js/ej.web.all.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous" />
+
+
+    <title>@ViewData["Title"] - OFGA</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/Ambiental/assets/img/logopequeño.png" rel="icon">
+    <link href="~/Ambiental/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Ambiental/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Ambiental/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="~/Ambiental/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Ambiental/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="~/Ambiental/assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="~/Ambiental/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Ambiental/assets/vendor/aos/aos.css" rel="stylesheet">
+
+
+    <link href="~/css/style.css" rel="stylesheet"/>
+    <!-- Template Main CSS File -->
+    <link href="~/Ambiental/assets/css/style.css" rel="stylesheet">
+    <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
+    <link href="~/lib/ej.responsive.css" rel="stylesheet"/>
+    <script src="~/js/ej.web.all.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous" />
+    <!-- =======================================================
+    * Template Name: Serenity - v2.1.0
+    * Template URL: https://bootstrapmade.com/serenity-bootstrap-corporate-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+            <div class="container-fluid" style="padding-right: 25px">
+                @* LOGO  *@
+                <div class="logo-img">
+                    <a asp-area="OFGA" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/LogoGestion.png" alt="">
+                    </a>
+                </div>
+                @* LOGO  *@
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                        aria-controls="ftco-nav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav m-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a>
+                        </li>
+
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                               Servicios
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                <a class="dropdown-item" asp-action="IndexTalks"
+                                   asp-controller="Talks" asp-area="OFGA">Charlas Otras</a>
+
+                                <a class="dropdown-item" asp-action="Create"
+                                   asp-controller="Complaint" asp-area="OFGA">Denuncias</a>
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Información
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                <a class="dropdown-item" asp-action="IndexEduquemonos"
+                                   asp-controller="Home" asp-area="OFGA">Eduquémonos</a>
+
+                                <a class="dropdown-item" asp-action="Contacto"
+                                   asp-controller="Home" asp-area="OFGA">Contacto</a>
+
+                            </div>
+                        </li>
+
+
+                        @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
+                        {*@
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Coordinación
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="PersonOFGA" asp-area="OFGA">Registro Persona</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Complaint" asp-area="OFGA">Denuncias</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Talks" asp-area="OFGA">Charlas</a>
+
+                                </div>
+                            </li>
+
+                        @*}*@
+
+                        @*@if (User.IsInRole(SD.CollManager) || User.IsInRole(SD.AdminOFGA) || User.IsInRole(SD.ManagerUser))
+                        {*@
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Centro de Acopio
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-area="OFGA"
+                                       asp-controller="MaterialType" asp-action="Index">Categoría de Materiales</a>
+
+                                    <a class="dropdown-item" asp-area="OFGA"
+                                       asp-controller="Materials" asp-action="Index">Materiales</a>
+
+                                    <a class="dropdown-item"
+                                       asp-area="OFGA" asp-controller="RecoverableMaterialRecovery" asp-action="Index">Punto de Recuperación</a>
+                                </div>
+
+                            </li>
+                        @*}
+
+                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
+                        {*@
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Recolección de Basura
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+
+                                    <a class="dropdown-item" asp-area="OFGA"
+                                       asp-controller="SolidWaste" asp-action="Index">Residuos Ordinarios</a>
+                                </div>
+                            </li>
+                        @*}*@
+
+                        @*<partial name="_LoginPartial" />*@
+                    </ul>
+                </div>
+            </div>
+        </nav><!-- .nav-menu -->
+    </header><!-- End Header -->
+    <!-- ======= AQUI INGRESA LA INFO DEL INDEX ======= -->
+
+
+    <div class="show fullscreen">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <br />
+    <br />
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-info">
+                        <h3>Municipalidad de Hojancha</h3>
+                        <p>Siempre pensando en la comodidad para usted, ofrece sus servicios en línea y al alcalce de sus manos.</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+
+                        <h4>Servicios</h4>
+                        <ul>
+
+                            <li><a asp-area="PATENTES" asp-controller="Home" asp-action="Index" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Oficina de Patentes</a></li>
+                            <li><a asp-area="OFGA" asp-controller="Home" asp-action="Index" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Oficina de Gestión Ambiental</a></li>
+                            <li><a asp-area="OFIM" asp-controller="Home" asp-action="Index" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Oficina de La Mujer</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h4>Información del contacto</h4>
+                        <p>
+                            <strong>Ubicación: </strong> Costado Norte del Parque<br>
+                            Hojancha, Guanacaste, Costa Rica <br><br>
+                            <strong>Teléfono:</strong> 26599116 Ext.223<br>
+                            <strong>Email:</strong> info@munihojancha.com<br>
+                        </p>
+
+                        <div class="social-links">
+
+                            
+                            <a href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" class="facebook" target="_blank"><i class="icofont-facebook"></i></a>
+                            <a href="https://www.instagram.com/explore/locations/256658138352395/municipalidad-hojancha/" class="instagram" target="_blank"><i class="icofont-instagram"></i></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-newsletter">
+                        <h4>Horario de Atención</h4>
+                        <div class="opening-hours">
+                            <h4>Abierto los Días:</h4>
+                            <p class="ftco-footer-widget mb-4">
+                                <span>Lunes – Viernes: 7:30 am a 3:30 pm</span>
+
+                            </p>
+                        </div>
+                        @RenderBody()
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        @*sdfghjklkjhgfdsa*@
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Municipalidad</span><span> Hojancha</span></strong>. Todo los Derechos Reservados
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/serenity-bootstrap-corporate-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Ambiental/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/Ambiental/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/counterup/counterup.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/Ambiental/assets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/Ambiental/assets/js/main.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("Scripts", required: false);
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*  *@
+
+<div class="hero-wrap js-fullheight" style="background-image: url('images/iglesianubladac.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+            <div class="col-md-6 ftco-animate">
+                <h2 class="subheading" style="color:#8c552e;text-shadow: 1px 2px 3px #fff">Bienvenido a SyGest Municipal</h2>
+                <h1 style="text-shadow: 2px 2px 2px #333">Sistema de Gestión de Servicios Municipales</h1>
+
+                <p class="mb-8" style="color:white;text-shadow: 2px 2px 5px #000">
+                    Gestión de Servicios de Patentes, Oficina de Gestión Ambiental, Oficina de La Mujer...
+                </p>
+
+                <p><a href="#inicio_Servicios" class="btn btn-primary mr-md-4 py-2 px-4">Leer Más<span class="ion-ios-arrow-forward"></span></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+@*  *@
+@* Sección 1 *@
+<section id="inicio_Servicios" class="ftco-section ftco-no-pt bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 py-5 order-md-last">
+                <div class="heading-section ftco-animate">
+                    <p>
+                        @* LOGO Muni *@
+                        <div class="logo-img">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">
+                                <img src="~/images/logopequeño.png" alt="">
+                            </a>
+                        </div>
+                        @* FIN LOGO Muni *@
+                    </p>
+                    <span class="subheading">Servicios</span>
+
+                    <h2 class="mb-4">Servicios Municipales</h2>
+                    <p>SYGEST Municipal es una plataforma en desarrollo, que tiene por objetivo el manejo de los servicios municipales de forma virtual</p>
+
+                </div>
+            </div>
+            <div class="col-lg-9 services-wrap px-4 pt-5">
+                <div class="row pt-md-3">
+                    <div class="col-md-4 d-flex align-items-stretch">
+                        <div class="services text-center">
+                            <div class=" logo-img justify-content-center align-items-center">
+                                <a asp-area="PATENTES" asp-controller="Home" asp-action="Index">
+                                    <img src="~/images/LogoMuni2.png" alt="">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h3>Oficina de Patentes</h3>
+                                <p>
+                                    A este departamento le corresponde la regularización de la actividad económica del Cantón de Hojancha según las
+                                    diferentes Licencias de Funcionamiento y de Impuesto de Patentes conforme la normativa vigente..
+                                </p>
+                            </div>
+                            <a class="btn-custom d-flex align-items-center justify-content-center" asp-area="PATENTES" asp-controller="Home" asp-action="Index"><span class="ion-ios-arrow-round-forward"></span></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-stretch">
+                        <div class="services text-center">
+                            <div class=" logo-img justify-content-center align-items-center">
+                                <a asp-area="OFGA" asp-controller="Home" asp-action="Index">
+                                    <img src="~/images/LogoGestion.png" alt="">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h3>Oficina de Gestión Ambiental</h3>
+                                <p>
+                                    Supervisar el eficiente funcionamiento de los servicios públicos que están relacionados con el ambiente, como lo son,
+                                    la recolección de basura, limpieza de vías, calidad del agua y una adecuada administración del tratamiento de los desechos sólidos...
+                                </p>
+                            </div>
+                            <a class="btn-custom d-flex align-items-center justify-content-center" asp-area="OFGA" asp-controller="Home" asp-action="Index"><span class="ion-ios-arrow-round-forward"></span></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-stretch">
+                        <div class="services text-center">
+                            <div class=" logo-img justify-content-center align-items-center">
+                                <a asp-area="OFIM" asp-controller="Home" asp-action="Index">
+                                    <img src="~/images/OFIM.png" alt="">
+                                </a>
+                            </div>
+                            <div class="text">
+                                <h3>Oficina de La Mujer</h3>
+                                <p>
+                                    Promocionar los derechos de las mujeres, Coordinación interinstitucional y comunitaria para la atención y la promoción
+                                    de derechos Ofrecer una atención especializada individualmente y grupal a las mujeres afectadas por violencia intrafamiliar...
+                                </p>
+                            </div>
+                            <a class="btn-custom d-flex align-items-center justify-content-center" asp-area="OFIM" asp-controller="Home" asp-action="Index"><span class="ion-ios-arrow-round-forward"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*Fin Sección 1 *@
+
+@*Inicio Sección 2 *@
+<section class="ftco-section ftco-no-pt ftco-no-pb ftco-bg-dark-main">
+    <br />
+    <br />
+    <div class="container">
+        <div class="row d-flex">
+
+            <div class="col-md-6 d-flex">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end" style="background-image:url(images/bg_2.jpg);">
+                    <a href="https://www.youtube.com/watch?v=Hv5ooxbPEEU" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
+                        <span class="icon-play"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 pl-md-5">
+                <div class="row justify-content-start py-5">
+                    <div class="col-md-14 heading-section ftco-animate">
+                        <span class="subheading" style="color:#95C93D;">Bienvenido al Sistema de Gestión de Servicios Municipales</span>
+                        <h2 class="mb-4" style="color:white">SyGest Municipal</h2>
+                        <p class="mb-4" style="color:white">Servicios al Alcance de tus Manos</p>
+                        <div class="services-wrap">
+
+                            <a class="services-list" asp-action="Create" asp-controller="PersonPatentes" asp-area="PATENTES">
+                                Solicitud de Patentes
+                                <div class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></div>
+                            </a>
+
+                            <a class="services-list" asp-area="OFIM" asp-controller="Home" asp-action="Index">
+                                Servicios de la Oficina de la Mujer
+                                <div class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></div>
+                            </a>
+
+                            <a class="services-list" asp-area="OFGA" asp-controller="Home" asp-action="IndexEduquemonos">
+                                Eduquémonos sobre Gestión Ambiental
+                                <div class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></div>
+                            </a>
+                            <a class="services-list" asp-area="OFGA" asp-controller="Talks" asp-action="Index">
+                                Charlas de Gestión Ambiental
+                                <div class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></div>
+                            </a>
+                            <a class="services-list" asp-area="OFGA" asp-controller="Home" asp-action="Ecoins">
+                                Todo Sobre Ecoins
+                                <div class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+</section>
+@*Fin Sección 2 *@
+@*Ini Sección 3*@
+<section class="ftco-section testimony-section bg-white">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+                <span class="subheading">Profesionales</span>
+                <h2 class="mb-4">Personal a Servicio del Cantón</h2>
+            </div>
+        </div>
+        <div class="row ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                            <div class="text">
+                                <p class="mb-4">Profesional capacitada para la atención y ayuda contra los casos de violencia de género y la promoción de capacitaciones que ayuden a combatirlo.</p>
+                                <div class="d-flex align-items-center">
+                                    <div class="user-img" style="background-image: url(images/Cindy.jpg)"></div>
+                                    <div class="pl-3">
+                                        <p class="name">Cindy Guevara Cárdenas</p>
+                                        <span class="position">Coordinadora de la Oficina de la Mujer.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                            <div class="text">
+                                <p class="mb-4">Profesional capacitado para permitir que la municipalidad pueda ofrecer sus servicios de forma eficiente, a través de herramientas tecnológicas a favor del cantón.</p>
+                                <div class="d-flex align-items-center">
+                                    <div class="user-img" style="background-image: url(images/Bryan.jpg)"></div>
+                                    <div class="pl-3">
+                                        <p class="name">Bryan Bermúdez González</p>
+                                        <span class="position">Encargado del Área de Tecnología de la Información.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                            <div class="text">
+                                <p class="mb-4">Profesional encargada de la administración y atención en el área de Gestión Ambiental, esto con el fin de matener un cantón más limpio y educado en cuanto al reciclaje y el cuidado de nuestro medio ambiente.</p>
+                                <div class="d-flex align-items-center">
+                                    <div class="user-img" style="background-image: url(images/Andrea.jpg)"></div>
+                                    <div class="pl-3">
+                                        <p class="name">Andrea Leiva Saborío</p>
+                                        <span class="position">Coordinadora de la Oficina de Gestión Ambiental.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                            <div class="text">
+                                <p class="mb-4">Profesional a cargo del Departamento de Patentes, con años de experiencia ofrecidos al cantón de Hojancha y su crecimiento comercial conforme el cumplimiento de la ley de patentes necesaria en nuestro país .</p>
+                                <div class="d-flex align-items-center">
+                                    <div class="user-img" style="background-image: url(images/Luis.jpg)"></div>
+                                    <div class="pl-3">
+                                        <p class="name">Luis Agüero Valverde</p>
+                                        <span class="position">Encargado del Área de Patentes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*Fin Sección 3*@
+
+
