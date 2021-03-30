@@ -30,11 +30,11 @@
     <Folder Include="Areas\Home\Models\" />
     <Folder Include="Areas\OFGA\Controllers\" />
     <Folder Include="Areas\OFGA\Data\" />
-    <Folder Include="Areas\OFGA\Models\" />
     <Folder Include="Areas\OFIM\Controllers\" />
     <Folder Include="Areas\OFIM\Data\" />
     <Folder Include="Areas\PATENTES\Controllers\" />
     <Folder Include="Areas\PATENTES\Data\" />
+    <Folder Include="Areas\PATENTES\Models\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
