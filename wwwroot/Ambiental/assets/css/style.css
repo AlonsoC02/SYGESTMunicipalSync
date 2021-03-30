@@ -14,11 +14,11 @@ body {
 }
 
 a {
-    color: #263192;
+    color: #95C93D;
 }
 
     a:hover {
-        color: #95C93D;
+        color: #263192;
         text-decoration: none;
     }
 
@@ -30,17 +30,17 @@ h1, h2, h3, h4, h5, h6 {
 # Back to top button
 --------------------------------------------------------------*/
 .back-to-top {
-  position: fixed;
-  display: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 3px;
-  right: 15px;
-  bottom: 15px;
-  background: #94c045;
-  color: #fff;
-  transition: display 0.5s ease-in-out;
-  z-index: 99999;
+    position: fixed;
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    right: 15px;
+    bottom: 15px;
+    background: #94c045;
+    color: #263182;
+    transition: display 0.5s ease-in-out;
+    z-index: 99999;
 }
 
 .back-to-top i {
@@ -354,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 75vh;
-  background: url("../img/letrasok.jpg") top center;
+  background: url("../img/Portada.png") top center;
   background-size: cover;
   position: relative;
   margin-bottom: -140px;
@@ -527,7 +527,7 @@ section {
 .about .container {
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
     padding-bottom: 15px;
-    background: rgba(0, 0, 0, 0.4);
+    background: #263182;
 }
 
 .about .count-box {
@@ -541,23 +541,23 @@ section {
   float: left;
 }
 
-.about .count-box span {
-  font-size: 28px;
-  line-height: 24px;
-  display: block;
-  font-weight: 700;
-  color: #646c55;
-  margin-left: 60px;
-}
+    .about .count-box span {
+        font-size: 28px;
+        line-height: 24px;
+        display: block;
+        font-weight: 700;
+        color: #95C93D;
+        margin-left: 60px;
+    }
 
-.about .count-box p {
-  padding: 5px 0 0 0;
-  margin: 0 0 0 60px;
-  font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: #646c55;
-}
+    .about .count-box p {
+        padding: 5px 0 0 0;
+        margin: 0 0 0 60px;
+        font-family: "Raleway", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        color: #bbbfc1;
+    }
 
 .about .count-box a {
   font-weight: 600;
@@ -580,7 +580,7 @@ section {
 .about .content h3 {
   font-weight: 700;
   font-size: 24px;
-  color: #111;
+  color: #95C93D;
 }
 
 .about .content ul {
@@ -785,7 +785,7 @@ section {
 
 .services .description {
   font-size: 14px;
-  margin-left: 40px;
+  margin-left: 60px;
   line-height: 24px;
   margin-bottom: 0;
 }
@@ -1229,11 +1229,11 @@ section {
     .faq .faq-item {
         margin: 20px 0;
         padding: 25px 0;
-        border-bottom: 5px solid #8c552e;
+        border-bottom: 5px solid #263182;
     }
 
         .faq .faq-item i {
-            color: #8c552e;
+            color: #95C93D;
             font-size: 20px;
             float: left;
             line-height: 0;
@@ -2240,7 +2240,9 @@ section {
     background: #263182 !important;
     z-index: 3;
     padding: 0;
+
 }
+
 
 .ftco-navbar-light .navbar-nav > .nav-item.active > a {
     color: #95C93D;
@@ -2277,3 +2279,4 @@ section {
     top: 0;
     left: 0;
 }
+
