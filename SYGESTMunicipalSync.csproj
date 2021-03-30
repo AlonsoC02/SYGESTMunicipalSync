@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Areas\Home\Data\" />
     <Folder Include="Areas\Home\Models\" />
     <Folder Include="Areas\OFGA\Controllers\" />
