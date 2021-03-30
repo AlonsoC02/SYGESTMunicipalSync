@@ -22,7 +22,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public virtual Persona Persona2 { get; set; }
 
         [Display(Name = "Parentesco:")]
-        public int Parentesco2 { get; set; }
+        public int ParentescoId { get; set; }
         public virtual Parentesco Parentesco { get; set; }
 
     }
