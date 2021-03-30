@@ -58,6 +58,28 @@ namespace SYGESTMunicipalSync.Models
                 .HasConstraintName("FK_Eje_Categoria");
             });
 
+            //----------------------------------------------------------------------
+
+            modelBuilder.Entity<Actividad>(entity =>
+            {
+                entity.HasKey(e => e.ActividadId);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CategoriaId)
+                        .HasColumnName("CategoriaId");
+
+                entity.HasOne(d => d.Categoria)
+                    .WithMany(p => p.Actividad)
+                    .HasForeignKey(d => d.EjeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Actividad_Eje");
+            });
+
+
 
 
         }
