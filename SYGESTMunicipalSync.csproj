@@ -35,7 +35,6 @@
     <Folder Include="Areas\OFIM\Data\" />
     <Folder Include="Areas\PATENTES\Controllers\" />
     <Folder Include="Areas\PATENTES\Data\" />
-    <Folder Include="Areas\PATENTES\Models\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
