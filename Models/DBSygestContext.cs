@@ -31,7 +31,7 @@ namespace SYGESTMunicipalSync.Models
         }
 
 
-        //  ACTIVIDADES OFICINA DE LA MUJER
+        // **************************** ACTIVIDADES OFICINA DE LA MUJER************************************************
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -80,13 +80,24 @@ namespace SYGESTMunicipalSync.Models
 
                 entity.HasOne(d => d.Categoria)
                     .WithMany(p => p.Actividad)
+                    .HasForeignKey(d => d.CategoriaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Actividad_Categoria");
+
+                entity.Property(e => e.EjeId)
+                      .HasColumnName("EjeId");
+
+                entity.HasOne(d => d.Eje)
+                    .WithMany(p => p.Actividad)
                     .HasForeignKey(d => d.EjeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Actividad_Eje");
             });
 
 
-            // USUARIOS
+
+
+            // **************************** USUARIOS ************************************************
 
 
             modelBuilder.Entity<TipoUsuario>(entity =>
@@ -200,11 +211,267 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.BotonHabilitado)
                     .HasColumnName("BotonHabilitado");
             });
+            // **************************** PERSONA************************************************
+
+            modelBuilder.Entity<Persona>(entity =>
+            {
+                entity.Property(e => e.CedulaPersona)
+               .IsRequired()
+                .HasMaxLength(100)
+              .IsUnicode(false);
+
+                entity.Property(e => e.Nombre)
+                      .IsRequired()
+                      .HasMaxLength(50)
+                      .IsUnicode(false);
+
+                entity.Property(e => e.Ape1)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ape2)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+
+                entity.Property(e => e.FechaNac)
+                    .HasColumnName("FechaNac")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.Email)
+                   .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TelMovil)
+                .IsRequired();
+                   
+                entity.Property(e => e.TelFijo);
+
+                entity.Property(e => e.Fax);
+
+                entity.Property(e => e.Sexo)
+                    .HasColumnName("Sexo")
+                    .HasColumnType("char");
+
+                entity.Property(e => e.Direccion)
+                     .IsRequired()
+                     .HasMaxLength(200)
+                     .IsUnicode(false);
+
+                entity.Property(e => e.DistritoId)
+                   .HasColumnName("DistritoId");
+
+                entity.HasOne(d => d.Distrito)
+                    .WithMany(p => p.Persona)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Persona_Distrito");
+
+                entity.Property(e => e.CantonId)
+                 .HasColumnName("CantonId");
+
+                entity.HasOne(d => d.Canton)
+                    .WithMany(p => p.Persona)
+                    .HasForeignKey(d => d.CantonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Persona_Canton");
+
+                entity.Property(e => e.ProvinciaId)
+                .HasColumnName("ProvinciaId");
+
+                entity.HasOne(d => d.Provincia)
+                    .WithMany(p => p.Persona)
+                    .HasForeignKey(d => d.ProvinciaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Persona_Provincia");
+
+            });
+
+            // **************************** CONSULTAS************************************************
+
+            modelBuilder.Entity<TipoConsulta>(entity =>
+            {
+                entity.HasKey(e => e.TipoConsultaId);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PersonaId)
+                .HasColumnName("PersonaId");
+
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.TipoConsulta)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TipoConsulta_Persona");
+
+            });
+
+
+
+            modelBuilder.Entity<Consulta>(entity =>
+            {
+                entity.HasKey(e => e.ConsultaId);
+
+                entity.Property(e => e.Motivo)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fecha)
+                   .HasColumnName("Fecha")
+                   .HasColumnType("date");
+
+                entity.Property(e => e.HoraInicio)
+                   .HasColumnName("HoraInicio")
+                   .HasColumnType("date");
+
+                entity.Property(e => e.HoraFin)
+                   .HasColumnName("HoraFin")
+                   .HasColumnType("date");
+
+                entity.Property(e => e.Descripcion)
+                   .IsRequired()
+                   .HasMaxLength(300)
+                   .IsUnicode(false);
+
+                entity.Property(e => e.Respuesta)
+                   .IsRequired()
+                   .HasMaxLength(200)
+                   .IsUnicode(false);
+
+                entity.Property(e => e.Remitir)
+                  .HasColumnName("Remitir")
+                  .HasColumnType("bool");
+
+                entity.Property(e => e.PersonaId)
+                .HasColumnName("PersonaId");
+
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_Persona");
+
+                entity.Property(e => e.TipoConsultaId)
+               .HasColumnName("TipoConsultaId");
+
+                entity.HasOne(d => d.TipoConsulta)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.TipoConsultaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_TipoConsulta");
+
+            });
+
+            modelBuilder.Entity<Seguimiento>(entity =>
+            {
+                entity.HasKey(e => e.SeguimientoId);
+
+                entity.Property(e => e.Respuesta)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PersonaId)
+                .HasColumnName("PersonaId");
+
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.Seguimiento)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Seguimiento_Persona");
+
+                entity.Property(e => e.ConsultaId)
+               .HasColumnName("ConsultaId");
+
+                entity.HasOne(d => d.Consulta)
+                    .WithMany(p => p.Seguimiento)
+                    .HasForeignKey(d => d.ConsultaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Seguimiento_Consulta");
+
+
+            });
+
+            // **************************** DIRECCIÓN ************************************************
+
+
+            modelBuilder.Entity<Provincia>(entity =>
+            {
+                entity.HasKey(e => e.ProvinciaId);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CantonId)
+                .HasColumnName("CantonId");
+
+                entity.HasOne(d => d.Canton)
+                    .WithMany(p => p.Provincia)
+                    .HasForeignKey(d => d.CantonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Provincia_Canton");
+
+                entity.Property(e => e.DistritoId)
+               .HasColumnName("DistritoId");
+
+                entity.HasOne(d => d.Distrito)
+                    .WithMany(p => p.Provincia)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Provincia_Distrito");
+
+
+            });
+
+            modelBuilder.Entity<Canton>(entity =>
+            {
+                entity.HasKey(e => e.CantonId);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                           
+                entity.Property(e => e.DistritoId)
+               .HasColumnName("DistritoId");
+
+                entity.HasOne(d => d.Distrito)
+                    .WithMany(p => p.Canton)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Canton_Distrito");
+
+
+            });
+
+            modelBuilder.Entity<Distrito>(entity =>
+            {
+                entity.HasKey(e => e.DistritoId);
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                            
+            });
+
+            // **************************** SOLICITUD CITAS ************************************************
 
 
 
 
         }
+
+
+
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }

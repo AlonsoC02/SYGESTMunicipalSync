@@ -16,5 +16,11 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public string Nombre { get; set; }
 
         public virtual ICollection<Eje> Eje { get; set; }
+
+        public virtual ICollection<Actividad> Actividad { get; set; }
+        public Categoria()
+        {
+            Actividad = new HashSet<Actividad>();
+        }
     }
 }

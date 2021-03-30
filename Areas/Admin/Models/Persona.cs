@@ -76,12 +76,14 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual ICollection<Familia> Familia { get; set; }
         public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
         public virtual ICollection<TipoConsulta> TipoConsulta { get; set; }
+        public virtual ICollection<Consulta> Consulta { get; set; }
         public virtual ICollection<Seguimiento> Seguimiento { get; set; }
         public Persona()
         {
             Familia = new HashSet<Familia>();
             PersonaOFIM = new HashSet<PersonaOFIM>();
             TipoConsulta = new HashSet<TipoConsulta>();
+            Consulta = new HashSet<Consulta>();
             Seguimiento = new HashSet<Seguimiento>();
         }
     }
