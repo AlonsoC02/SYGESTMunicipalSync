@@ -1,0 +1,229 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+@import url('site.css');
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: black;
+}
+.col {
+    column-count: 2;
+    column-width: 140px;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media (min-width:768px) {
+    .container {
+        width: 750px
+    }
+}
+
+@media (min-width:992px) {
+    .container {
+        width: 970px
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        width: 1170px
+    }
+}
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
+        margin-right: -15px;
+        margin-left: -15px
+    }
+
+@media (min-width:768px) {
+    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
+        margin-right: 0;
+        margin-left: 0
+    }
+}
+
+@media (min-width:768px) {
+    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin-left: -15px
+    }
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 6px
+}
+
+.jumbotron .container {
+    max-width: 100%
+}
+
+@media screen and (min-width:768px) {
+    .jumbotron {
+        padding-top: 48px;
+        padding-bottom: 48px
+    }
+
+    .container .jumbotron, .container-fluid .jumbotron {
+        padding-right: 60px;
+        padding-left: 60px
+    }
+
+    .jumbotron .h1, .jumbotron h1 {
+        font-size: 63px
+    }
+}
+
+
+
+
+
+.contenedorPrincipal {
+    margin-top: 15px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.carousel-item {
+    height: 65vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    background-size: cover;
+    
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.search-background {
+    background-size: cover;
+    background-image: url('file:///C:\Users\block\source\repos\FINAL\SYGESTMunicipal\wwwroot\images\main.jpg');
+}
+
+.backgroundWhite {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.backgroundWhiteBorder {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+
+.backgroundWhiteBorder10Padding {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.menu-filter-list li {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 20px 10px;
+    text-transform: uppercase;
+    background: #f5f5f5;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 13px;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    font-family: "Poppins",sans-serif;
+}
+
+    .menu-filter-list li.is-checke, .menu-filter-list li:hover {
+        background-color: #545b62;
+        color: #fff;
+    }
+
+#hero-principal {
+    width: 100%;
+    height: 75vh;
+    background: url("../Ambiental/assets/img/letrasvideo.jpg") top center;
+    background-size: cover;
+    position: relative;
+    margin-bottom: -140px;
+    z-index: 1;
+}
