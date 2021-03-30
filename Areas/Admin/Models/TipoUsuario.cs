@@ -11,6 +11,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public TipoUsuario()
         {
             Usuario = new HashSet<Usuario>();
+            TipoUsuarioPagina = new HashSet<TipoUsuarioPagina>();
         }
         [Display(Name = "Tipo Usuario Id:")]
         public int TipoUsuarioId { get; set; }
