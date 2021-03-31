@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SYGESTMunicipalSync.Areas.OFGA.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,5 +24,12 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Display(Name = "Tipo de Usuario:")]
         public virtual TipoUsuario TipoUsuario { get; set; }
+
+        public virtual ICollection<Quejas> Quejas { get; set; }
+
+        public Usuario()
+        {
+            Quejas = new HashSet<Quejas>();
+        }
     }
 }
