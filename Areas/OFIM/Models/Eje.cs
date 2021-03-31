@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SYGESTMunicipalSync.Areas.Admin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -18,5 +19,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Categoria Id: ")]
         public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
+        public virtual ICollection<Actividad> Actividad { get; set; }
+        public Eje()
+        {
+            Actividad = new HashSet<Actividad>();
+        }
     }
 }

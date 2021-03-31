@@ -17,7 +17,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public int ActividadId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Actividad")]
-        [DisplayName("Nombre Eje")]
+        [DisplayName("Nombre Actividad")]
         public string Nombre { get; set; }
         [Display(Name = "Descripción")]
         public string Descripcion { get; set; }
@@ -33,6 +33,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Categoria Id: ")]
         public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }
+
+        [Display(Name = "Eje Id: ")]
+        public int EjeId { get; set; }
+        public virtual Eje Eje { get; set; }
 
 
     }
