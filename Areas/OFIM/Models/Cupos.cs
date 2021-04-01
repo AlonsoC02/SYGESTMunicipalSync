@@ -14,5 +14,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Required(ErrorMessage = "Debe digitar cupo maximo")]
         [Display(Name = "CupoMax:")]
         public int CupoMax { get; set; }
+
+        [Display(Name = "Descripción:")]
+        public string Descripcion { get; set; }
+
+        [Display(Name = "Activo:")]
+        public bool Activo { get; set; }
+
+        [Display(Name = "Actividad Id:")]
+        public int ActividadId { get; set; }
+        public virtual Actividad Actividad { get; set; }
     }
 }

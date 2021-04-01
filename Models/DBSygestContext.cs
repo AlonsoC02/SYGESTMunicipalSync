@@ -94,6 +94,32 @@ namespace SYGESTMunicipalSync.Models
                     .HasConstraintName("FK_Actividad_Eje");
             });
 
+            modelBuilder.Entity<Cupos>(entity =>
+            {
+                entity.HasKey(e => e.CuposId);
+
+                entity.Property(e => e.CupoMax);
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ActividadId)
+                        .HasColumnName("ActividadId");
+
+                entity.HasOne(d => d.Actividad)
+                    .WithMany(p => p.Cupos)
+                    .HasForeignKey(d => d.ActividadId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cupos_Actividad");
+            });
+
+
+
+            // -----------------------------------  FALTA INSCRIPCIÓN --------------------------------------------
+
+
 
 
 
