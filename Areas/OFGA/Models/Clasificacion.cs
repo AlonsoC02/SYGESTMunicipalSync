@@ -13,6 +13,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
 
         [Required(ErrorMessage = "Debe digitar el nombre de la clasificacion")]
         [Display(Name = "Nombre:")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
 
         [Display(Name = "Descripcion:")]

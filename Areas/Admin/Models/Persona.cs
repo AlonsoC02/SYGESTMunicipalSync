@@ -1,4 +1,5 @@
 ﻿using SYGESTMunicipalSync.Areas.OFIM.Models;
+using SYGESTMunicipalSync.Areas.PATENTES.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,19 +17,18 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Persona")]
         [Display(Name = "Nombre:")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el primer Apellido de la Persona")]
         [Display(Name = "Apellido:")]
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string Ape1 { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el segundo Apellido de la Persona")]
         [Display(Name = "Apellido:")]
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string Ape2 { get; set; }
-
-        //[Display(Name = "Canton:")]
-        //public int CantonId { get; set; }
-        //public virtual Canton Canton { get; set; }
 
         [Display(Name = "Fecha Nacimiento:")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
@@ -78,13 +78,15 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual ICollection<TipoConsulta> TipoConsulta { get; set; }
         public virtual ICollection<Consulta> Consulta { get; set; }
         public virtual ICollection<Seguimiento> Seguimiento { get; set; }
+        public virtual ICollection<Solicitante> Solicitante { get; set; }
+        public virtual ICollection<Propietario> Propietario { get; set; }
         public Persona()
         {
             Familia = new HashSet<Familia>();
             PersonaOFIM = new HashSet<PersonaOFIM>();
             TipoConsulta = new HashSet<TipoConsulta>();
-            Consulta = new HashSet<Consulta>();
-            Seguimiento = new HashSet<Seguimiento>();
+            Solicitante = new HashSet<Solicitante>();
+            Propietario = new HashSet<Propietario>();
         }
     }
 }

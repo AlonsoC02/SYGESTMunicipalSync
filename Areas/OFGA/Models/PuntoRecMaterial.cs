@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SYGESTMunicipalSync.Areas.Admin.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
         [Display(Name = "Clasificacion:")]
         public int ClasificacionId { get; set; }
         public virtual Clasificacion Clasificacion { get; set; }
+
+        [Display(Name = "Distrito:")]
+        public int DistritoId { get; set; }
+        public virtual Distrito Distrito { get; set; }
 
         [Display(Name = "Lugar:")]
         [Required(ErrorMessage = "Debe digitar el lugar del punto de recuperacion")]

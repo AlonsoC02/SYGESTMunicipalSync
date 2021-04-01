@@ -19,17 +19,26 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
         public int ClasificacionId { get; set; }
         public virtual Clasificacion Clasificacion { get; set; }
 
-        //[Required(ErrorMessage = "Debe digitar el precio")]
-        //[Display(Name = "Precio:")]
-        //public float Precio { get; set; }
+        [Display(Name = "Fecha:")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Fecha { get; set; }
 
-        //[Required(ErrorMessage = "Debe digitar el monto")]
-        //[Display(Name = "Monto:")]
-        //public float Monto { get; set; }
+        [Required(ErrorMessage = "Debe digitar el peso")]
+        [Display(Name = "Peso:")]
+        public float Peso { get; set; }
 
-        //[Required(ErrorMessage = "Debe digitar el total")]
-        //[Display(Name = "Tatal:")]
-        //public float Total { get; set; }
+        [Required(ErrorMessage = "Debe digitar el precio")]
+        [Display(Name = "Precio:")]
+        public double Precio { get; set; }
+
+        [Required(ErrorMessage = "Debe digitar el monto")]
+        [Display(Name = "Monto:")]
+        public double Monto { get; set; }
+
+        [Required(ErrorMessage = "Debe digitar el total")]
+        [Display(Name = "Tatal:")]
+        public double Total { get; set; }
 
 
     }

@@ -14,6 +14,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 
         [Required(ErrorMessage = "Debe digitar el Nombre del Eje")]
         [DisplayName("Nombre Eje")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
 
         [Display(Name = "Categoria Id: ")]

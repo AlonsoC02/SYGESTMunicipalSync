@@ -15,11 +15,12 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Descripcion:")]
         [Required(ErrorMessage = "Debe digitar la descripcion del seguimiento")]
         [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
-        public string Respuesta { get; set; }
+        public string Descripcion { get; set; }
 
 
         [Display(Name = "Persona:")]
-        public int PersonaId { get; set; }
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
+        public string PersonaId { get; set; }
         public virtual Persona Persona { get; set; }
 
         [Display(Name = "Consulta:")]
