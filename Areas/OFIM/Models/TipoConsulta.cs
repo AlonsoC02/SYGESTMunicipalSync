@@ -15,10 +15,12 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 
         [Required(ErrorMessage = "Debe digitar el Nombre del tipo de consulta")]
         [Display(Name = "Nombre:")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
 
         [Display(Name = "Persona:")]
-        public int PersonaId { get; set; }
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
+        public string PersonaId { get; set; }
         public virtual Persona Persona { get; set; }
 
 

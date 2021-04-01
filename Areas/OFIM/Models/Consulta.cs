@@ -14,7 +14,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public int ConsultaId { get; set; }
 
         [Display(Name = "Persona:")]
-        public int PersonaId { get; set; }
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
+        public string PersonaId { get; set; }
         public virtual Persona Persona { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el motivo de la consulta")]

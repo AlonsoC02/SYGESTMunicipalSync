@@ -25,16 +25,13 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\" />
     <Folder Include="Areas\Home\Data\" />
     <Folder Include="Areas\Home\Models\" />
-    <Folder Include="Areas\OFGA\Controllers\" />
     <Folder Include="Areas\OFGA\Data\" />
-    <Folder Include="Areas\OFIM\Controllers\" />
     <Folder Include="Areas\OFIM\Data\" />
+    <Folder Include="Areas\OFIM\Views\Home\" />
     <Folder Include="Areas\PATENTES\Controllers\" />
     <Folder Include="Areas\PATENTES\Data\" />
-    <Folder Include="Areas\PATENTES\Models\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 

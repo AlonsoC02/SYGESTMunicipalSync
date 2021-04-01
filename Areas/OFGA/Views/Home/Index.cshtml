@@ -1,0 +1,269 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container" data-aos="fade-up">
+        <h1>Oficina de Gestión Ambiental</h1>
+        <h2>Municipalidad de Hojancha</h2>
+        @*<a asp-area="Identity" asp-page="/Account/Login" class="btn-get-started scrollto">Inicio de Sesión</a>*@
+        <br />
+    </div>
+</section><!-- End Hero -->
+<br />
+<br />
+<br />
+<main id="main">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light"
+                style="text-align:center;background-color:#95C93D;">
+                Objetivo de la Oficina de Gestión Ambiental
+            </h3>
+        </div>
+    </div>
+    <br />
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row justify-content-end">
+                <div class="col-lg-11">
+                    <div class="row justify-content-end">
+
+                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                            <div class="count-box py-5">
+                                <i class="icofont-simple-smile"></i>
+                                <span data-toggle="counter-up">8000</span>
+                                <p>Número Aproximado de Habitantes de Hojancha</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                            <div class="count-box py-5">
+                                <i class="icofont-document-folder"></i>
+                                <span data-toggle="counter-up">261</span>
+                                <p>Km2, Cuadrados</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                            <div class="count-box pb-5 pt-0 pt-lg-5">
+                                <i class="icofont-clock-time"></i>
+                                <span data-toggle="counter-up">1971</span>
+                                <p>Cantón de Hojancha Desde</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                            <div class="count-box pb-5 pt-0 pt-lg-5">
+                                <i class="icofont-award"></i>
+                                <span data-toggle="counter-up">5</span>
+                                <p>Distritos</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6 video-box align-self-baseline">
+                    <img src="~/Ambiental/assets/img/Mascota_01.png" class="img-fluid" alt="">
+                    <a href="https://www.youtube.com/watch?v=TFddNcRGBAU" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+                </div>
+
+                <div class="col-lg-6 pt-3 pt-lg-0 content text-white">
+                    <h3>Oficina de Gestión Ambiental.</h3>
+                    <p class="font-italic text-white">
+                        Contribuir al desarrollo sostenible del cantón mediante la prestación de servicios ambientales,
+                        educación ambiental,
+                        conservacion y buenas prácticas ambientales.
+                    </p>
+                    <ul>
+                        <li>
+                            <i class="bx bx-check-double text-white"></i> Gestionar de forma eficiente y
+                            adecuada la recolección y disposición final de los residuos sólidos.
+                        </li>
+
+                        <li><i class="bx bx-check-double text-white"></i> Promover la educación ambiental de los habitantes del cantón. </li>
+
+                        <li>
+                            <i class="bx bx-check-double text-white"></i> Ejecutar e iniciar proyectos en conjunto con otras instituciones
+                            en beneficio del cantón.
+                        </li>
+                    </ul>
+                    <p>
+                        Garantizar un ambiente sano y limpio para el bienestar de la población del cantón de Hojancha.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section><!-- End About Section -->
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+        <div class="container" data-aos="fade-in">
+            <div class="form-group row">
+                <div class="col-md-3 text-left">
+                    <a class="logo-img" asp-area="OFGA" asp-controller="Home" asp-action="IndexEduquemonos">
+                        <img src="~/Ambiental/assets/img/MascotaEduquemonos.png" alt=""><br /><h3 class="text-left">Eduquémonos</h3>
+                    </a>
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <a class="logo-img" asp-area="OFGA" asp-controller="Home" asp-action="Index">
+                        <img src="~/Ambiental/assets/img/MascotaCharlas.png" alt=""><br /><h3 class="text-center">Charlas</h3>
+                    </a>
+                </div>
+
+                < <div class="col-md-2 text-right">
+                    <a class="logo-img" asp-area="OFGA" asp-controller="Home" asp-action="Index">
+                        <img src="~/Ambiental/assets/img/MascotaDenuncias.png" alt=""><br /><h3 class="text-right">Denuncias</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Cta Section -->
+    <!-- ======= Services Section ======= -->
+    <a name="Servicios" id="Servicios"></a>
+    <section id="services" class="services  section-bg ">
+        <div class="container">
+
+            <div class="section-title pt-5" data-aos="fade-up">
+                <h2>Nuestros Servicios</h2>
+            </div>
+
+            <!-- ======= Blog Section ======= -->
+            <section id="blog_1" class="blog">
+                <div class="container">
+
+                    <div class="row">
+
+                        <div id="primera" class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                            <article class="entry">
+
+                                <div class="entry-img">
+                                    <img src="~/Ambiental/assets/img/letrasvideo.jpg" alt="" class="img-fluid">
+                                </div>
+
+                                <h2 class="entry-title">
+                                    <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
+                                </h2>
+
+                                <div class="entry-content">
+                                    <p>
+                                        Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta zena prista maraeda talan mas indera.
+                                    </p>
+                                    <div class="read-more">
+                                        <a href="blog-single.html">Read More</a>
+                                    </div>
+                                </div>
+
+                            </article><!-- End blog entry -->
+                        </div>
+
+                        <div id="primera" class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                            <article class="entry">
+
+                                <div class="entry-img">
+                                    <img src="~/Ambiental/assets/img/letrasvideo.jpg" alt="" class="img-fluid">
+                                </div>
+
+                                <h2 class="entry-title">
+                                    <a href="blog-single.html">Nisi magni odit consequatur autem nulla dolorem</a>
+                                </h2>
+
+                                <div class="entry-content">
+                                    <p>
+                                        Ad impedit qui officiis est in non aliquid veniam laborum. Id ipsum qui aut. Sit aliquam et quia molestias laboriosam. Tempora nam odit omnis eum corrupti qui aliquid excepturi molestiae. Facilis et sint quos sed voluptas. Maxime sed tempore enim omnis non alias.
+                                    </p>
+                                    <div class="read-more">
+                                        <a href="blog-single.html">Read More</a>
+                                    </div>
+                                </div>
+
+                            </article><!-- End blog entry -->
+                        </div>
+
+                        <div id="primera" class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                            <article class="entry">
+
+                                <div class="entry-img">
+                                    <img src="~/Ambiental/assets/img/letrasvideo.jpg" alt="" class="img-fluid">
+                                </div>
+
+                                <h2 class="entry-title">
+                                    <a href="blog-single.html">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</a>
+                                </h2>
+
+                                <div class="entry-content">
+                                    <p>
+                                        Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis et. Eum temporibus fugiat voluptate enim tenetur sunt omnis tara kero pakla metaruna nedore stan.
+                                    </p>
+                                    <div class="read-more">
+                                        <a href="blog-single.html">Read More</a>
+                                    </div>
+                                </div>
+
+                            </article><!-- End blog entry -->
+                        </div>
+                    </div>
+                </div>
+            </section><!-- End Blog Section -->
+            <!-- ======= Our Clients Section ======= -->
+            <section id="clients" class="clients">
+                <div class="container">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>LA IMPORTANCIA DE RECICLAR</h2>
+                        <p>El reciclaje permite hacer un aporte significativo en la sociedad al promover la reutilización de materiales, que si no fuera por el reciclaje, se convirtirían en basura común, basura que está tomando nuestro medio ambiente y que comienza a dañar nuestro planeta de forma significativa, por lo que al reciclar, se reduce el volumen de basura que generamos, la contaminación, los criaderos de mosquitos entre otros beneficios.</p>
+                    </div>
+                    <div class="owl-carousel clients-carousel" data-aos="fade-up">
+                        <img src="~/Ambiental/assets/img/Mascota_03.png" alt="">
+                        <img src="~/Ambiental/assets/img/Mascota_01.png" alt="">
+                        <img src="~/Ambiental/assets/img/Mascota_02.png" alt="">
+                        <img src="~/Ambiental/assets/img/Mascota_03.png" alt="">
+                        <img src="~/Ambiental/assets/img/Mascota_04.png" alt="">
+                        <img src="~/Ambiental/assets/img/Mascota_05.png" alt="">
+                        <img src="~/Ambiental/assets/img/Mascota_06.png" alt="">
+                    </div>
+                </div>
+            </section><!-- End Our Clients Section -->
+            @*<div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box">
+                            <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
+                            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box">
+                            <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
+                            <h4 class="title"><a href="">Magni Dolores</a></h4>
+                            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box">
+                            <div class="icon"><i class="las la-globe-americas" style="color: #d6ff22;"></i></div>
+                            <h4 class="title"><a href="">Nemo Enim</a></h4>
+                            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon-box">
+                            <div class="icon"><i class="las la-clock" style="color: #4680ff;"></i></div>
+                            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+                        </div>
+                    </div>
+                </div>*@
+
+        </div>
+    </section><!-- End Services Section -->
+
+</main><!-- End #main -->

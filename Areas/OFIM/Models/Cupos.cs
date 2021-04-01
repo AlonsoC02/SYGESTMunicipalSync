@@ -15,13 +15,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "CupoMax:")]
         public int CupoMax { get; set; }
 
-        [Display(Name = "Descripción:")]
+        [Display(Name = "Descripcion:")]
+        [Required(ErrorMessage = "Debe digitar la descripción del cupo")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         public string Descripcion { get; set; }
 
-        [Display(Name = "Activo:")]
-        public bool Activo { get; set; }
+        [Display(Name = "Activa")]
+        public bool Activa { get; set; }
 
-        [Display(Name = "Actividad Id:")]
+        [Display(Name = "Actividad:")]
         public int ActividadId { get; set; }
         public virtual Actividad Actividad { get; set; }
     }

@@ -14,11 +14,13 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public int FamiliaId { get; set; }
 
         [Display(Name = "Persona 1:")]
-        public int PersonaId1 { get; set; }
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
+        public string PersonaId1 { get; set; }
         public virtual Persona Persona1 { get; set; }
 
         [Display(Name = "Persona 2:")]
-        public int PersonaId2 { get; set; }
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
+        public string PersonaId2 { get; set; }
         public virtual Persona Persona2 { get; set; }
 
         [Display(Name = "Parentesco:")]
