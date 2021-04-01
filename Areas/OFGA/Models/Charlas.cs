@@ -14,12 +14,14 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
 
         [Required(ErrorMessage = "Debe digitar el nombre de la charla")]
         [Display(Name = "Nombre:")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
 
         [Display(Name = "Fecha:")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Fecha { get; set; }
+
 
         [Display(Name = "Descripcion:")]
         [Required(ErrorMessage = "Debe digitar la descripción de la charla")]
@@ -39,7 +41,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
 
         [Display(Name = "Expositor:")]
         [Required(ErrorMessage = "Debe digitar el expositor de la charla")]
-        [StringLength(150, ErrorMessage = "Ha excedido los 150 caracteres")]
+        [StringLength(250, ErrorMessage = "Ha excedido los 250 caracteres")]
         public string Expositor { get; set; }
 
     }

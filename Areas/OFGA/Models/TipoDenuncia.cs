@@ -13,6 +13,14 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
 
         [Required(ErrorMessage = "Debe digitar el nombre del tipo de la denuncia")]
         [Display(Name = "Nombre:")]
+        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string Nombre { get; set; }
+
+        public virtual ICollection<Denuncia> Denuncia { get; set; }
+
+        public TipoDenuncia()
+        {
+            Denuncia = new HashSet<Denuncia>();
+        }
     }
 }

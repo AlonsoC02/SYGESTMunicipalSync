@@ -9,17 +9,19 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 {
     public partial class Actividad
     {
-        //public virtual ICollection<Cupos> Cupos { get; set; }
-        //public Actividad()
-        //{
-        //    Cupos = new HashSet<Cupos>();
-        //}
+        public virtual ICollection<Cupos> Cupos { get; set; }
+        public Actividad()
+        {
+            Cupos = new HashSet<Cupos>();
+        }
         public int ActividadId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Actividad")]
         [DisplayName("Nombre Actividad")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
         [Display(Name = "Descripción")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         public string Descripcion { get; set; }
 
         [DataType(DataType.DateTime)]

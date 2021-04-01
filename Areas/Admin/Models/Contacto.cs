@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using SYGESTMunicipalSync.Areas.OFGA.Models;
+using SYGESTMunicipalSync.Areas.PATENTES.Models;
 
 namespace SYGESTMunicipalSync.Areas.Admin.Models
 {
@@ -19,9 +20,13 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
 
         public virtual ICollection<Quejas> Quejas { get; set; }
+        public virtual ICollection<Solicitante> Solicitante { get; set; }
+        public virtual ICollection<Propietario> Propietario { get; set; }
         public Contacto()
         {
             Quejas = new HashSet<Quejas>();
+            Solicitante = new HashSet<Solicitante>();
+            Propietario = new HashSet<Propietario>();
         }
     }
 }

@@ -25,11 +25,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Display(Name = "Tipo de Usuario:")]
         public virtual TipoUsuario TipoUsuario { get; set; }
 
-        public virtual ICollection<Quejas> Quejas { get; set; }
+        public virtual ICollection<Denuncia> Denuncia { get; set; }
 
         public Usuario()
         {
-            Quejas = new HashSet<Quejas>();
+            Denuncia = new HashSet<Denuncia>();
         }
     }
 }
