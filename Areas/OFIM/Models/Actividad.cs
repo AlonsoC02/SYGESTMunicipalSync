@@ -40,6 +40,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public int EjeId { get; set; }
         public virtual Eje Eje { get; set; }
 
+        public virtual ICollection<Cupos> Cupos { get; set; }
 
     }
 }
