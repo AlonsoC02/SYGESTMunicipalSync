@@ -15,6 +15,7 @@ namespace SYGESTMunicipalSync.Models
         {
         }
 
+        
 
 
         //DB SETS DE LAS CLASES
@@ -75,6 +76,23 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fecha)
+                   .HasColumnName("Fecha")
+                   .HasColumnType("datetime");
+
+                entity.Property(e => e.Imagen)
+                 .HasColumnName("Imagen")
+                 .HasColumnType("byte");        // <------------------------------------------------------
+
+                entity.Property(e => e.Activo)
+                 .HasColumnName("Activo")
+                 .HasColumnType("bool");        // <------------------------------------------------------
+
                 entity.Property(e => e.CategoriaId)
                         .HasColumnName("CategoriaId");
 
@@ -93,6 +111,32 @@ namespace SYGESTMunicipalSync.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Actividad_Eje");
             });
+
+            modelBuilder.Entity<Cupos>(entity =>
+            {
+                entity.HasKey(e => e.CuposId);
+
+                entity.Property(e => e.CupoMax);
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ActividadId)
+                        .HasColumnName("ActividadId");
+
+                entity.HasOne(d => d.Actividad)
+                    .WithMany(p => p.Cupos)
+                    .HasForeignKey(d => d.ActividadId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cupos_Actividad");
+            });
+
+
+
+            // -----------------------------------  FALTA INSCRIPCIÓN --------------------------------------------
+
 
 
 
@@ -210,7 +254,23 @@ namespace SYGESTMunicipalSync.Models
 
                 entity.Property(e => e.BotonHabilitado)
                     .HasColumnName("BotonHabilitado");
+
+
             });
+
+            modelBuilder.Entity<Contacto>(entity =>
+            {
+                entity.HasKey(e => e.ContactoId);
+
+                entity.Property(e => e.MedioNotificacion)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+              
+
+            });
+
             // **************************** PERSONA ************************************************
 
             modelBuilder.Entity<Persona>(entity =>
@@ -372,7 +432,7 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.HasKey(e => e.SeguimientoId);
 
-                entity.Property(e => e.Respuesta)
+                entity.Property(e => e.Descripcion)
                     .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false);
@@ -711,8 +771,9 @@ namespace SYGESTMunicipalSync.Models
 
             });
 
-        }
+            OnModelCreatingPartial(modelBuilder);
 
+        }
 
 
 

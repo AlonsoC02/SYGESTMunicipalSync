@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
+namespace SYGESTMunicipalSync.Areas.Admin.Controllers
 {
-    public class ComplaintController : Controller
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {
