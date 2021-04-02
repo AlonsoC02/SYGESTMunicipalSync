@@ -87,11 +87,11 @@ namespace SYGESTMunicipalSync.Models
 
                 entity.Property(e => e.Imagen)
                  .HasColumnName("Imagen")
-                 .HasColumnType("byte");        // <------------------------------------------------------
+                 .HasColumnType("varbinary(max)");        // <------------------------------------------------------
 
                 entity.Property(e => e.Activo)
                  .HasColumnName("Activo")
-                 .HasColumnType("bool");        // <------------------------------------------------------
+                 .HasColumnType("bit");        // <------------------------------------------------------
 
                 entity.Property(e => e.CategoriaId)
                         .HasColumnName("CategoriaId");
@@ -313,7 +313,7 @@ namespace SYGESTMunicipalSync.Models
 
                 entity.Property(e => e.Sexo)
                     .HasColumnName("Sexo")
-                    .HasColumnType("char");
+                    .HasColumnType("char(1)");
 
                 entity.Property(e => e.Direccion)
                      .IsRequired()
@@ -406,7 +406,7 @@ namespace SYGESTMunicipalSync.Models
 
                 entity.Property(e => e.Remitir)
                   .HasColumnName("Remitir")
-                  .HasColumnType("bool");
+                  .HasColumnType("bit");
 
                 entity.Property(e => e.PersonaId)
                 .HasColumnName("PersonaId");
