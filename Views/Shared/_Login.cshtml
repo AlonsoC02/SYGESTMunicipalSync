@@ -1,4 +1,4 @@
-﻿@using SYGESTMunicipal.Utility
+﻿@*@using SYGESTMunicipal.Utility*@
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,8 +77,8 @@
                                 <i class="fa fa-location-arrow"></i>
                             </a>
                         </li>
-                        @if (User.IsInRole(SD.ManagerUser) || (User.IsInRole(SD.Guest) || (User.IsInRole(SD.AdminOFGA) || (User.IsInRole(SD.AdminOFIM) || (User.IsInRole(SD.AdminOFPA) || (User.IsInRole(SD.CollManager) || (User.IsInRole(SD.FrontDeskUser))))))))
-                        {
+                        @*@if (User.IsInRole(SD.ManagerUser) || (User.IsInRole(SD.Guest) || (User.IsInRole(SD.AdminOFGA) || (User.IsInRole(SD.AdminOFIM) || (User.IsInRole(SD.AdminOFPA) || (User.IsInRole(SD.CollManager) || (User.IsInRole(SD.FrontDeskUser))))))))
+                        {*@
                             <li class="nav-item">
                                 <a class="nav-link" rel="tooltip" id="profile" asp-page="./Index" style="color:white;text-shadow: 2px 2px 5px #000" data-placement="bottom" asp-area="Identity"   data-original-title="Mi Perfil">
                                     <i class="fa fa-user-circle "></i>
@@ -106,7 +106,7 @@
                            
                                
 
-                        }
+                        @*}*@
                     </ul>
                 </div>
 

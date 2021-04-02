@@ -35,5 +35,11 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Models
         public int PersonaId { get; set; }
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public virtual Persona Persona { get; set; }
+
+        public virtual ICollection<Formulario> Formulario { get; set; }
+        public Solicitante()
+        {
+            Formulario = new HashSet<Formulario>();
+        }
     }
 }

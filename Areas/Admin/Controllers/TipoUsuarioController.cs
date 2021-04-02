@@ -12,8 +12,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
     [ServiceFilter(typeof(Seguridad))]
     public class TipoUsuarioController : Controller
     {
+        
         private readonly DBSygestContext _db;
+        
         List<TipoUsuario> listaTipoUsuarios = new List<TipoUsuario>();
+        
         public TipoUsuarioController(DBSygestContext db)
         {
             _db = db;
@@ -45,12 +48,15 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                 ViewBag.ID = ultimoRegistro.TipoUsuarioId + 1;
             }
         }
+
+    //INDEX
         public IActionResult Index()
         {
             listaTipoUsuarios = listarTipoUsuarios();
             return View(listaTipoUsuarios);
         }
 
+    //CREATE
         [HttpGet]
         public IActionResult Create()
         {
@@ -88,51 +94,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        /*JSON VISTA CREATE*/
-
-        /* public string Create(TipoUsuario _TipoUsuario)
-         {
-             string rpta = "";
-             try
-             {
-                 if (!ModelState.IsValid && _TipoUsuario == null)
-                 {
-                     var query = (from state in ModelState.Values
-                                  from error in state.Errors
-                                  select error.ErrorMessage).ToList();
-                     rpta += "<ul class='list-group'>";
-                     foreach (var item in query)
-                     {
-                         rpta += "<li class='list-group-item list-group-item-danger'>";
-                         rpta += item;
-                         rpta += "</li>";
-                     }
-                     rpta += "</ul>";
-                 }
-                 else
-                 {
-                     rpta = "OK";
-                     TipoUsuario tipoUsuario = new TipoUsuario();
-                     tipoUsuario.Nombre = _TipoUsuario.Nombre;
-                     _db.TipoUsuario.Add(tipoUsuario);
-                     _db.SaveChanges();
-                 }
-             }
-             catch (Exception ex)
-             {
-                 rpta = ex.Message;
-             }
-             return rpta;
-             }
-        */
-
-        public IActionResult Details(int id)
-        {
-            TipoUsuario oTipoUsuario = _db.TipoUsuario
-                         .Where(e => e.TipoUsuarioId == id).First();
-            return View(oTipoUsuario);
-        }
-
+        
+        
+    //EDIT
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -171,24 +135,17 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        /*JSON VISTA EDIT*/
-        /*
-        public JsonResult Edit(int? id)
+    
+    //DETAILS
+        public IActionResult Details(int id)
         {
-            TipoUsuario _TipoUsuario = (from t in _db.TipoUsuario
-                                        where t.TipoUsuarioId == id
-                                        select t).DefaultIfEmpty().First();
-            return Json(_TipoUsuario);
+            TipoUsuario oTipoUsuario = _db.TipoUsuario
+                         .Where(e => e.TipoUsuarioId == id).First();
+            return View(oTipoUsuario);
         }
-        public JsonResult Details(int? id)
-        {
-            TipoUsuario _tipousuario = (from t in _db.TipoUsuario
-                                where t.TipoUsuarioId == id
-                                select t).DefaultIfEmpty().Single();
-            return Json(_tipousuario);
-        }
-        */
         [HttpPost]
+
+    //DELETE
         public IActionResult Delete(int? TipoUsuarioId)
         {
             var Error = "";
