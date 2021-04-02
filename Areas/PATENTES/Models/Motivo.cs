@@ -15,5 +15,11 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Models
         [Required(ErrorMessage = "Debe digitar el motivo")]
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
+
+        public virtual ICollection<Formulario> Formulario { get; set; }
+        public Motivo()
+        {
+            Formulario = new HashSet<Formulario>();
+        }
     }
 }

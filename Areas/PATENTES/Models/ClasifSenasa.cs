@@ -15,5 +15,11 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Models
         [Required(ErrorMessage = "Debe digitar el nombre de la clasificacion de Senasa")]
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
+
+        public virtual ICollection<Establecimiento> Establecimiento { get; set; }
+        public ClasifSenasa()
+        {
+            Establecimiento = new HashSet<Establecimiento>();
+        }
     }
 }
