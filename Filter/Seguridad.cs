@@ -30,6 +30,4 @@ namespace SYGESTMunicipalSync.Filter
     }
 }
 
-{
-}
-}
+
