@@ -17,7 +17,7 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Models
         public virtual Contacto Contacoto { get; set; }
 
         [Display(Name = "Persona:")]
-        public int PersonaId { get; set; }
+        public string PersonaId { get; set; }
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public virtual Persona Persona { get; set; }
     }
