@@ -15,6 +15,7 @@ namespace SYGESTMunicipalSync.Models
         {
         }
 
+        
 
 
         //DB SETS DE LAS CLASES
@@ -737,8 +738,9 @@ namespace SYGESTMunicipalSync.Models
 
             });
 
-        }
+            OnModelCreatingPartial(modelBuilder);
 
+        }
 
 
 
