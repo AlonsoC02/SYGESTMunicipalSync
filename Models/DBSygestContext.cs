@@ -81,8 +81,16 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Fecha)
-                   .HasColumnName("fecha")
+                   .HasColumnName("Fecha")
                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Imagen)
+                 .HasColumnName("Imagen")
+                 .HasColumnType("byte");        // <------------------------------------------------------
+
+                entity.Property(e => e.Activo)
+                 .HasColumnName("Activo")
+                 .HasColumnType("bool");        // <------------------------------------------------------
 
                 entity.Property(e => e.CategoriaId)
                         .HasColumnName("CategoriaId");
@@ -419,35 +427,35 @@ namespace SYGESTMunicipalSync.Models
 
             });
 
-            //modelBuilder.Entity<Seguimiento>(entity =>
-            //{
-            //    entity.HasKey(e => e.SeguimientoId);
+            modelBuilder.Entity<Seguimiento>(entity =>
+            {
+                entity.HasKey(e => e.SeguimientoId);
 
                 entity.Property(e => e.Descripcion)
                     .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-            //    entity.Property(e => e.PersonaId)
-            //    .HasColumnName("PersonaId");
+                entity.Property(e => e.PersonaId)
+                .HasColumnName("PersonaId");
 
-            //    entity.HasOne(d => d.Persona)
-            //        .WithMany(p => p.Seguimiento)
-            //        .HasForeignKey(d => d.PersonaId)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK_Seguimiento_Persona");
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.Seguimiento)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Seguimiento_Persona");
 
-            //    entity.Property(e => e.ConsultaId)
-            //   .HasColumnName("ConsultaId");
+                entity.Property(e => e.ConsultaId)
+               .HasColumnName("ConsultaId");
 
-            //    entity.HasOne(d => d.Consulta)
-            //        .WithMany(p => p.Seguimiento)
-            //        .HasForeignKey(d => d.ConsultaId)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK_Seguimiento_Consulta");
+                entity.HasOne(d => d.Consulta)
+                    .WithMany(p => p.Seguimiento)
+                    .HasForeignKey(d => d.ConsultaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Seguimiento_Consulta");
 
 
-            //});
+            });
 
             // **************************** DIRECCIÓN ************************************************
 
