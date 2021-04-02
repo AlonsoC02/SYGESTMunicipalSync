@@ -22,6 +22,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual ICollection<Persona> Persona { get; set; }
         public virtual ICollection<PuntoRecMaterial> PuntoRecMaterial { get; set; }
         public virtual ICollection<Denuncia> Denuncia { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
         public Distrito()
         {
             Canton = new HashSet<Canton>();

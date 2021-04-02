@@ -15,11 +15,24 @@ namespace SYGESTMunicipalSync.Models
         {
         }
 
-        
+
 
 
         //DB SETS DE LAS CLASES
 
+        //--------------------Area Admin-------------------------------
+        public virtual DbSet<Boton> Boton { get; set; }
+        public virtual DbSet<Pagina> Pagina { get; set; }
+        public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public virtual DbSet<TipoUsuarioPagina> TipoUsuarioPagina { get; set; }
+        public virtual DbSet<TipoUsuarioPaginaBoton> TipoUsuarioPaginaBoton { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Canton> Canton { get; set; }
+        public virtual DbSet<Contacto> Contacto { get; set; }
+        public virtual DbSet<Distrito> Distrito { get; set; }
+        public virtual DbSet<Persona> Persona { get; set; }
+        public virtual DbSet<Provincia> Provincia { get; set; }
+        public virtual DbSet<Utilitarios> Utilitarios { get; set; }
         //
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

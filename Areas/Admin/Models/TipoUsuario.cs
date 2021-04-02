@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
     {
         public TipoUsuario()
         {
-            Usuario = new HashSet<Usuario>();
+            RolUsuario = new HashSet<RolUsuario>();
             TipoUsuarioPagina = new HashSet<TipoUsuarioPagina>();
         }
         [Display(Name = "Tipo Usuario Id:")]
@@ -21,7 +22,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         public int BotonHabilitado { get; set; }
         public virtual ICollection<TipoUsuarioPagina> TipoUsuarioPagina { get; set; }
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<RolUsuario> RolUsuario { get; set; }
 
         [Display(Name = "Descripcion:")]
         [StringLength(400, ErrorMessage = "Ha excedido los 400 caracteres")]
