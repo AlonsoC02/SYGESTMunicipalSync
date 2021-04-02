@@ -76,6 +76,15 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fecha)
+                   .HasColumnName("fecha")
+                   .HasColumnType("datetime");
+
                 entity.Property(e => e.CategoriaId)
                         .HasColumnName("CategoriaId");
 
@@ -237,7 +246,23 @@ namespace SYGESTMunicipalSync.Models
 
                 entity.Property(e => e.BotonHabilitado)
                     .HasColumnName("BotonHabilitado");
+
+
             });
+
+            modelBuilder.Entity<Contacto>(entity =>
+            {
+                entity.HasKey(e => e.ContactoId);
+
+                entity.Property(e => e.MedioNotificacion)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+              
+
+            });
+
             // **************************** PERSONA ************************************************
 
             modelBuilder.Entity<Persona>(entity =>
@@ -399,10 +424,10 @@ namespace SYGESTMunicipalSync.Models
             //{
             //    entity.HasKey(e => e.SeguimientoId);
 
-            //    entity.Property(e => e.Respuesta)
-            //        .IsRequired()
-            //        .HasMaxLength(200)
-            //        .IsUnicode(false);
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
             //    entity.Property(e => e.PersonaId)
             //    .HasColumnName("PersonaId");
