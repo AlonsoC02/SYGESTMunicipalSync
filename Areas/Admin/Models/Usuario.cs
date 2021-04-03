@@ -30,7 +30,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Required(ErrorMessage = "Debe digitar la confirmacion de la contraseña")]
         [Display(Name = "Confirmar contraseña:")]
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
-        public string Password2 { get; set; }
+        public string ConfirmarContrasena { get; set; }
 
         [Display(Name = "Persona:")]
         public int PersonaId { get; set; }
