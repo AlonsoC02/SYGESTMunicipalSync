@@ -230,6 +230,30 @@ namespace SYGESTMunicipalSync.Models
                     .HasConstraintName("FK_Usuario_Provincia");
             });
 
+            modelBuilder.Entity<RolUsuario>(entity =>
+            {
+                entity.HasKey(e => e.RolId);
+                               
+                entity.Property(e => e.TipoUsuarioId)
+               .HasColumnName("TipoUsuarioId");
+
+                entity.HasOne(d => d.TipoUsuario)
+                    .WithMany(p => p.RolUsuario)
+                    .HasForeignKey(d => d.TipoUsuarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RolUsuario_TipoUsuario");
+
+                entity.Property(e => e.UsuarioId)
+               .HasColumnName("UsuarioId");
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.RolUsuario)
+                    .HasForeignKey(d => d.UsuarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RolUsuario_Usuario");
+
+            });
+
             modelBuilder.Entity<Login>(entity =>
             {
                 entity.HasKey(e => e.LoginId);
