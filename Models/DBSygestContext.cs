@@ -2,6 +2,7 @@
 using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.OFGA.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models;
+using SYGESTMunicipalSync.Areas.PATENTES.Models;
 
 namespace SYGESTMunicipalSync.Models
 {
@@ -188,7 +189,7 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                    .IsUnicode(false);
 
-                entity.Property(e => e.Password2)
+                entity.Property(e => e.ConfirmarContrasena)
                     .HasMaxLength(50)
                    .IsUnicode(false);
 
@@ -1333,7 +1334,53 @@ namespace SYGESTMunicipalSync.Models
             // ############################ CLASES OFICINA DE PATENTES ############################
 
 
-            // **************************** RESIDUOS ORDINARIOS ************************************************
+            // **************************** DATOS DEL ESTABLECIMIENTO ************************************************
+
+            modelBuilder.Entity<Clase>(entity =>
+            {
+                entity.Property(e => e.CodigoClase)
+               .IsRequired()
+                .HasMaxLength(100)
+              .IsUnicode(false);
+
+                entity.Property(e => e.Descripcion)
+                      .IsRequired()
+                      .HasMaxLength(50)
+                      .IsUnicode(false);
+                     
+                entity.Property(e => e.Riesgo)
+                    .HasColumnName("Sexo")
+                    .HasColumnType("char(1)");
+
+
+                entity.Property(e => e.GrupoId)
+                   .HasColumnName("GrupoId");
+
+                entity.HasOne(d => d.Grupo)
+                    .WithMany(p => p.Clase)
+                    .HasForeignKey(d => d.GrupoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Clase_Grupo");
+
+                entity.Property(e => e.DivisionId)
+                 .HasColumnName("DivisionId");
+
+                entity.HasOne(d => d.Division)
+                    .WithMany(p => p.Clase)
+                    .HasForeignKey(d => d.DivisionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Clase_Division");
+
+                entity.Property(e => e.SeccionId)
+                .HasColumnName("SeccionId");
+
+                entity.HasOne(d => d.Seccion)
+                    .WithMany(p => p.Clase)
+                    .HasForeignKey(d => d.SeccionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Clase_Seccion");
+
+            });
 
 
 
