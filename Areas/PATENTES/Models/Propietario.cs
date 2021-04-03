@@ -13,8 +13,8 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Models
         public int PropietarioId { get; set; }
 
         [Display(Name = "Contacto:")]
-        public int ContacotoId { get; set; }
-        public virtual Contacto Contacoto { get; set; }
+        public int ContactoId { get; set; }
+        public virtual Contacto Contacto { get; set; }
 
         [Display(Name = "Persona:")]
         public string PersonaId { get; set; }

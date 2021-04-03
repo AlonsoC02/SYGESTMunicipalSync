@@ -28,8 +28,8 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Models
         public virtual TipoRepresentante TipoRepresentante { get; set; }
 
         [Display(Name = "Contacto:")]
-        public int ContacotoId { get; set; }
-        public virtual Contacto Contacoto { get; set; }
+        public int ContactoId { get; set; }
+        public virtual Contacto Contacto { get; set; }
 
         [Display(Name = "Persona:")]
         public int PersonaId { get; set; }

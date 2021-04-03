@@ -1340,12 +1340,12 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.Property(e => e.CodigoClase)
                .IsRequired()
-                .HasMaxLength(100)
+                .HasMaxLength(50)
               .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
                       .IsRequired()
-                      .HasMaxLength(50)
+                      .HasMaxLength(200)
                       .IsUnicode(false);
                      
                 entity.Property(e => e.Riesgo)
@@ -1383,7 +1383,354 @@ namespace SYGESTMunicipalSync.Models
             });
 
 
+            modelBuilder.Entity<ClasifSenasa>(entity =>
+            {
+                entity.HasKey(e => e.ClasifSenasaId);
 
+                entity.Property(e => e.Nombre)
+                           .IsRequired()
+                           .HasMaxLength(50)
+                           .IsUnicode(false);
+
+
+            });
+
+            modelBuilder.Entity<Division>(entity =>
+            {
+                entity.Property(e => e.CodigoDivision)
+                            .IsRequired()
+                            .HasMaxLength(50)
+                            .IsUnicode(false);
+
+                entity.Property(e => e.Descripcion)
+                           .IsRequired()
+                           .HasMaxLength(200)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.SeccionId)
+                .HasColumnName("SeccionId");
+
+                entity.HasOne(d => d.Seccion)
+                    .WithMany(p => p.Division)
+                    .HasForeignKey(d => d.SeccionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Division_Seccion");
+
+            });
+
+            modelBuilder.Entity<Establecimiento>(entity =>
+            {
+                entity.HasKey(e => e.EstablecimientoId);
+
+                entity.Property(e => e.NombreComercial)
+                           .IsRequired()
+                           .HasMaxLength(100)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.DescripcionActividad)
+                           .IsRequired()
+                           .HasMaxLength(200)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.ActividadesSecundarias)
+                           .IsRequired()
+                           .HasMaxLength(200)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.Direccion)
+                           .IsRequired()
+                           .HasMaxLength(200)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.NumFinca)
+                           .IsRequired()
+                           .HasMaxLength(50)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.NumPlano)
+                           .IsRequired()
+                           .HasMaxLength(50)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.PaginaWeb)
+                         .IsRequired()
+                         .HasMaxLength(100)
+                         .IsUnicode(false);
+
+                entity.Property(e => e.HoraEntrada)
+              .HasColumnName("HoraEntrada")
+              .HasColumnType("datetime");
+
+                entity.Property(e => e.HoraCierre)
+             .HasColumnName("HoraCierre")
+             .HasColumnType("datetime");
+
+                entity.Property(e => e.Aream2)
+                       .HasColumnName("Aream2")
+                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+
+                entity.Property(e => e.CantHombres);
+
+                entity.Property(e => e.CantMujeres);
+
+                entity.Property(e => e.Calificados);
+
+                entity.Property(e => e.NoCalificados);
+
+                entity.Property(e => e.Solicitante)
+                .HasColumnName("Solicitante")
+                .HasColumnType("bit");
+
+
+                entity.Property(e => e.DistritoId)
+                  .HasColumnName("DistritoId");
+
+                entity.HasOne(d => d.Distrito)
+                    .WithMany(p => p.Establecimiento)
+                    .HasForeignKey(d => d.DistritoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Establecimiento_Distrito");
+
+                entity.Property(e => e.CantonId)
+                .HasColumnName("CantonId");
+
+                entity.HasOne(d => d.Canton)
+                    .WithMany(p => p.Establecimiento)
+                    .HasForeignKey(d => d.CantonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Establecimiento_Canton");
+
+                entity.Property(e => e.ProvinciaId)
+                .HasColumnName("ProvinciaId");
+
+                entity.HasOne(d => d.Provincia)
+                    .WithMany(p => p.Establecimiento)
+                    .HasForeignKey(d => d.ProvinciaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Establecimiento_Provincia");
+
+                entity.Property(e => e.TipoInmuebleId)
+                .HasColumnName("TipoInmuebleId");
+
+                entity.HasOne(d => d.TipoInmueble)
+                    .WithMany(p => p.Establecimiento)
+                    .HasForeignKey(d => d.TipoInmuebleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Establecimiento_TipoInmueble");
+
+                entity.Property(e => e.ClasifSenasaId)
+                .HasColumnName("ClasifSenesaId");
+
+                entity.HasOne(d => d.ClasifSenasa)
+                    .WithMany(p => p.Establecimiento)
+                    .HasForeignKey(d => d.ClasifSenasaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Establecimiento_ClasifSenasa");
+
+                entity.Property(e => e.ClaseId)
+                .HasColumnName("ClaseId");
+
+                entity.HasOne(d => d.Clase)
+                    .WithMany(p => p.Establecimiento)
+                    .HasForeignKey(d => d.ClaseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Establecimiento_Clase");
+            });
+
+            modelBuilder.Entity<Grupo>(entity =>
+            {
+                entity.Property(e => e.CodigoGrupo)
+                            .IsRequired()
+                            .HasMaxLength(50)
+                            .IsUnicode(false);
+
+                entity.Property(e => e.Descripcion)
+                           .IsRequired()
+                           .HasMaxLength(200)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.SeccionId)
+                .HasColumnName("SeccionId");
+
+                entity.HasOne(d => d.Seccion)
+                    .WithMany(p => p.Grupo)
+                    .HasForeignKey(d => d.SeccionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Grupo_Seccion");
+
+                entity.Property(e => e.DivisionId)
+                .HasColumnName("DivisionId");
+
+                entity.HasOne(d => d.Division)
+                    .WithMany(p => p.Grupo)
+                    .HasForeignKey(d => d.DivisionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Grupo_Division");
+
+            });
+
+            modelBuilder.Entity<Seccion>(entity =>
+            {
+                entity.Property(e => e.CodigoSeccion)
+                            .IsRequired()
+                            .HasMaxLength(50)
+                            .IsUnicode(false);
+
+                entity.Property(e => e.Descripcion)
+                           .IsRequired()
+                           .HasMaxLength(200)
+                           .IsUnicode(false);
+
+             
+            });
+
+            modelBuilder.Entity<TipoInmueble>(entity =>
+            {
+                entity.HasKey(e => e.TipoInmuebleId);
+
+                entity.Property(e => e.Nombre)
+                           .IsRequired()
+                           .HasMaxLength(50)
+                           .IsUnicode(false);
+
+
+            });
+
+            // **************************** FORMULARIO ************************************************
+
+
+            modelBuilder.Entity<Formulario>(entity =>
+            {
+                entity.HasKey(e => e.FormularioId);
+
+                entity.Property(e => e.NumTramite);
+
+                entity.Property(e => e.FechaRecibo)
+             .HasColumnName("HoraCierre")
+             .HasColumnType("datetime");
+
+                entity.Property(e => e.MotivoId)
+                  .HasColumnName("MotivoId");
+
+                entity.HasOne(d => d.Motivo)
+                    .WithMany(p => p.Formulario)
+                    .HasForeignKey(d => d.MotivoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Formulario_Motivo");
+
+                entity.Property(e => e.SolicitanteId)
+                 .HasColumnName("SolicitanteId");
+
+                entity.HasOne(d => d.Solicitante)
+                    .WithMany(p => p.Formulario)
+                    .HasForeignKey(d => d.SolicitanteId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Formulario_Solicitante");
+
+                entity.Property(e => e.PropietarioId)
+                 .HasColumnName("PropietarioId");
+
+                entity.HasOne(d => d.Propietario)
+                    .WithMany(p => p.Formulario)
+                    .HasForeignKey(d => d.PropietarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Formulario_Propietario");
+
+                entity.Property(e => e.EstablecimientoId)
+                 .HasColumnName("EstableciientoId");
+
+                entity.HasOne(d => d.Establecimiento)
+                    .WithMany(p => p.Formulario)
+                    .HasForeignKey(d => d.EstablecimientoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Formulario_Establecimiento");
+
+
+            });
+
+            // **************************** DATOS DEL SOLICITANTE ************************************************
+
+            modelBuilder.Entity<Solicitante>(entity =>
+            {
+                entity.HasKey(e => e.SolicitanteId);
+
+                entity.Property(e => e.CedulaJuridica)
+                           .IsRequired()
+                           .HasMaxLength(50)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.NombreRazonSocial)
+                           .IsRequired()
+                           .HasMaxLength(100)
+                           .IsUnicode(false);
+
+                entity.Property(e => e.TipoRepresentanteId)
+                 .HasColumnName("TipoRepresentanteId");
+
+                entity.HasOne(d => d.TipoRepresentante)
+                    .WithMany(p => p.Solicitante)
+                    .HasForeignKey(d => d.TipoRepresentanteId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Solicitante_TipoRepresentante");
+
+                entity.Property(e => e.ContactoId)
+                 .HasColumnName("ContactoId");
+
+                entity.HasOne(d => d.Contacto)
+                    .WithMany(p => p.Solicitante)
+                    .HasForeignKey(d => d.ContactoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Solicitante_Contacto");
+
+                entity.Property(e => e.PersonaId)
+               .HasColumnName("PersonaId");
+
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.Solicitante)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Solicitante_Persona");
+
+
+            });
+
+            modelBuilder.Entity<TipoRepresentante>(entity =>
+            {
+                entity.HasKey(e => e.TipoRepresentanteId);
+
+                entity.Property(e => e.Nombre)
+                           .IsRequired()
+                           .HasMaxLength(50)
+                           .IsUnicode(false);
+
+
+            });
+
+            // **************************** DATOS DEL PROPIETARIO ************************************************
+
+            modelBuilder.Entity<Propietario>(entity =>
+            {
+                entity.HasKey(e => e.PropietarioId);
+
+                entity.Property(e => e.ContactoId)
+                .HasColumnName("ContactoId");
+
+                entity.HasOne(d => d.Contacto)
+                    .WithMany(p => p.Propietario)
+                    .HasForeignKey(d => d.ContactoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Propietario_Contacto");
+
+                entity.Property(e => e.PersonaId)
+               .HasColumnName("PersonaId");
+
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.Propietario)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Propietario_Persona");
+
+            });
 
             OnModelCreatingPartial(modelBuilder);
 

@@ -1,4 +1,5 @@
 ﻿using SYGESTMunicipalSync.Areas.OFGA.Models;
+using SYGESTMunicipalSync.Areas.PATENTES.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual ICollection<PuntoRecMaterial> PuntoRecMaterial { get; set; }
         public virtual ICollection<Denuncia> Denuncia { get; set; }
         public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<Establecimiento> Establecimiento { get; set; }
         public Distrito()
         {
             Canton = new HashSet<Canton>();
