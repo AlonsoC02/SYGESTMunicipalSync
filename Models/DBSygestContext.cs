@@ -1330,7 +1330,12 @@ namespace SYGESTMunicipalSync.Models
             });
 
 
-            // **************************** DENUNCIAS GESTIÓN AMBIENTAL  ************************************************
+            // ############################ CLASES OFICINA DE PATENTES ############################
+
+
+            // **************************** RESIDUOS ORDINARIOS ************************************************
+
+
 
 
             OnModelCreatingPartial(modelBuilder);
