@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
+namespace SYGESTMunicipalSync.Areas.Admin.Models
 {
     public partial class RolUsuario
     {
