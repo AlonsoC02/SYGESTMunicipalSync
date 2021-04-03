@@ -1672,6 +1672,18 @@ namespace SYGESTMunicipalSync.Models
 
             });
 
+            modelBuilder.Entity<Motivo>(entity =>
+            {
+                entity.HasKey(e => e.MotivoId);
+
+                entity.Property(e => e.Nombre)
+                           .IsRequired()
+                           .HasMaxLength(50)
+                           .IsUnicode(false);
+
+
+            });
+
             // **************************** DATOS DEL SOLICITANTE ************************************************
 
             modelBuilder.Entity<Solicitante>(entity =>
