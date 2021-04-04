@@ -13,12 +13,15 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Display(Name = "Tipo Usuario:")]
         public int? TipoUsuarioId { get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
 
         [Display(Name = "Página Id")]
         public int? PaginaId { get; set; }
+        public virtual Pagina Pagina { get; set; }
 
         [Display(Name = "Boton Habilitado")]
         public int? BotonHabilitado { get; set; }
+
 
     }
 }

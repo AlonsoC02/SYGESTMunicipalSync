@@ -28,5 +28,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [StringLength(400, ErrorMessage = "Ha excedido los 400 caracteres")]
         [Required(ErrorMessage = "Debe digitar la descripción de la Especialidad")]
         public string Descripcion { get; set; }
+
+        
     }
 }

@@ -24,5 +24,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string Controlador { get; set; }
 
         public int BotonHabilitado { get; set; }
+        public virtual ICollection<TipoUsuarioPagina> TipoUsuarioPagina { get; set; }
+        public Pagina()
+        {
+            TipoUsuarioPagina = new HashSet<TipoUsuarioPagina>();
+            
+        }
     }
 }
