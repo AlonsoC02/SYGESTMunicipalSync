@@ -24,7 +24,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual ICollection<Provincia> Provincia { get; set; }
         public virtual ICollection<Persona> Persona { get; set; }
         public virtual ICollection<Denuncia> Denuncia { get; set; }
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        
         public virtual ICollection<Establecimiento> Establecimiento { get; set; }
         public Canton()
         {

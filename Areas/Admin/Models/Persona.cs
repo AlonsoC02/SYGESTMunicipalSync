@@ -80,7 +80,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual ICollection<Seguimiento> Seguimiento { get; set; }
         public virtual ICollection<Solicitante> Solicitante { get; set; }
         public virtual ICollection<Propietario> Propietario { get; set; }
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        
         public virtual ICollection<Empresa> Empresa { get; set; }
         public Persona()
         {
