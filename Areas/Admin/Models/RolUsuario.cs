@@ -10,11 +10,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
     {
 
         [Display(Name = "Rol Usuario Id:")]
-        public int RolId { get; set; }
+        public int RolUsuarioId { get; set; }
 
         [Display(Name = "Tipo de Usuario Id:")]
-        
-        public int TipoUsuarioId { get; set; }
+
+        public int RolId { get; set; }
         [Display(Name = "Tipo de Usuario:")]
         public virtual TipoUsuario TipoUsuario { get; set; }
 
@@ -25,3 +25,4 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual Usuario Usuario { get; set; }
     }
 }
+
