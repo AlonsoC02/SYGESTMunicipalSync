@@ -33,7 +33,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string ConfirmarContrasena { get; set; }
 
         [Display(Name = "Persona:")]
-        public int PersonaId { get; set; }
+        public string PersonaId { get; set; }
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public virtual Persona Persona { get; set; }
 
