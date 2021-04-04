@@ -21,29 +21,10 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
         public string ConfirmarContrasena { get; set; }
 
         [Display(Name = "Persona:")]
-        public int PersonaId { get; set; }
+        public string PersonaId { get; set; }
 
         [Display(Name = "Nombre Persona:")]
         public string NombrePersona { get; set; }
-
-        [Display(Name = "Distrito Id:")]
-        public int DistritoId { get; set; }
-
-        [Display(Name = "Distrito:")]
-        public string Distrito { get; set; }
-
-        [Display(Name = "Canton Id:")]
-        public int CantonId { get; set; }
-
-        [Display(Name = "Canton:")]
-        public string Canton { get; set; }
-
-        [Display(Name = "Provincia Id:")]
-        public int ProvinciaId { get; set; }
-
-        [Display(Name = "Provincia:")]
-        public string Provincia { get; set; }
-
         public string msgError { get; set; }
 
         public static implicit operator List<object>(PersonaUsuario v)

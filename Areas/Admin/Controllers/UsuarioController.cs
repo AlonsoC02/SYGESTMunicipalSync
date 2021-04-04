@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel;
 using SYGESTMunicipalSync.Filter;
@@ -22,28 +23,44 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             _db = db;
         }
 
-        //public List<PersonaUsuario> listarUsuarios()
-        //{
-        //    listaUsuario = (from usuario in _db.Usuario
-        //                    join _Persona in _db.Persona
-        //                    on usuario.PersonaId 
-        //                    equals _Persona.CedulaPersona
+        public List<PersonaUsuario> listarUsuarios()
+        {
+            listaUsuario = (from usuario in _db.Usuario
+                            join _Persona in _db.Persona
+                            on usuario.PersonaId
+                            equals _Persona.CedulaPersona
 
-        //                    join _Distrito in _db.Distrito
-        //                    on usuario.DistritoId equals
-        //                    _Distrito.DistritoId
+                            select new PersonaUsuario
+                            {
+                                UsuarioId = usuario.UsuarioId,
+                                NombreUsuario = usuario.NombreUsuario,
+                                Password = usuario.NombreUsuario,
+                                ConfirmarContrasena = usuario.Password,
+                                PersonaId = _Persona.CedulaPersona +
+                                          " " + _Persona.Nombre +
+                                          " " + _Persona.Ape1,
+                                }).ToList();
+            return listaUsuario;
+        }
 
-        //                    select new PersonaUsuario
-        //                    {
-        //                        UsuarioId = usuario.UsuarioId,
-        //                        NombreUsuario = usuario.NombreUsuario,
-        //                        Password = usuario.NombreUsuario,
-        //                        ConfirmarContrasena = usuario.Password,
-        //                        NombrePersona = _Persona.Nombre,
-        //                        Distrito = _Distrito.DistritoId,
-        //                    }).ToList();
-        //    return listaUsuario;
-        //}
+        private void cargarPersona()
+        {
+            List<SelectListItem> listaPersona = new List<SelectListItem>();
+            listaPersona = (from _Persona in _db.Persona
+                            orderby _Persona.CedulaPersona
+                            select new SelectListItem
+                                {
+                                    Text = _Persona.CedulaPersona + ", " 
+                                    + _Persona.Nombre + " - " + _Persona.Ape1
+                                    ,
+                                    Value = _Persona.CedulaPersona.ToString()
+                                }).ToList();
+            ViewBag.ListaPersona = listaPersona;
+        }
+       
+
+
+
 
         public IActionResult Index()
         {
