@@ -20,8 +20,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         public string Descripcion { get; set; }
 
-        [Display(Name = "Activa")]
-        public bool Activa { get; set; }
+        [Display(Name = "Activo")]
+        public bool Activo { get; set; }
 
         [Display(Name = "Actividad:")]
         public int ActividadId { get; set; }

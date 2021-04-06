@@ -1,6 +1,4 @@
-﻿using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel;
-using SYGESTMunicipalSync.Areas.OFGA.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,12 +18,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Display(Name = "Contraseña:")]
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Password { get; set; }
-
-        //[Display(Name = "Tipo de Usuario Id:")]
-        //public int TipoUsuarioId { get; set; }
-
-        //[Display(Name = "Tipo de Usuario:")]
-        //public virtual TipoUsuario TipoUsuario { get; set; }
 
         [Required(ErrorMessage = "Debe digitar la confirmacion de la contraseña")]
         [Display(Name = "Confirmar contraseña:")]

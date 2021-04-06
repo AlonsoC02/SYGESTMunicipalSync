@@ -6,19 +6,28 @@ using System.Threading.Tasks;
 
 namespace SYGESTMunicipalSync.Areas.Admin.Models
 {
-    public partial class TipoUsuarioPagina
+    public partial class TipoUsuarioPag
     {
         [Display(Name = "Tipo Usuario Página Id:")]
-        public int TipoUsuarioPaginaId { get; set; }
+        public int TipoUsuarioPagId { get; set; }
 
         [Display(Name = "Tipo Usuario:")]
         public int? TipoUsuarioId { get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
 
         [Display(Name = "Página Id")]
         public int? PaginaId { get; set; }
+        public virtual Pagina Pagina { get; set; }
 
         [Display(Name = "Boton Habilitado")]
-        public int? BotonHabilitado { get; set; }
+        public bool BotonHabilitado { get; set; }
+
+        public TipoUsuarioPag()
+        {
+            RolUsuario = new HashSet<RolUsuario>();
+            TipoUsuarioPagBoton = new HashSet<TipoUsuarioPagBoton>();
+        }
+
 
     }
 }
