@@ -58,13 +58,20 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             ViewBag.ListaPersona = listaPersona;
         }
        
-
-
-
-
         public IActionResult Index()
         {
+            listaUsuario = listarUsuarios();
+            return View(listaUsuario);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            cargarPersona();
             return View();
         }
+
+
+
     }
 }
