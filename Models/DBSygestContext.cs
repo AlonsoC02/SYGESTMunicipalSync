@@ -26,8 +26,8 @@ namespace SYGESTMunicipalSync.Models
         public virtual DbSet<Boton> Boton { get; set; }
         public virtual DbSet<Pagina> Pagina { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
-        public virtual DbSet<TipoUsuarioPagina> TipoUsuarioPagina { get; set; }
-        public virtual DbSet<TipoUsuarioPaginaBoton> TipoUsuarioPaginaBoton { get; set; }
+        public virtual DbSet<TipoUsuarioPag> TipoUsuarioPag { get; set; }
+        public virtual DbSet<TipoUsuarioPagBoton> TipoUsuarioPagBoton { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Canton> Canton { get; set; }
         public virtual DbSet<Contacto> Contacto { get; set; }
@@ -35,14 +35,17 @@ namespace SYGESTMunicipalSync.Models
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
         public virtual DbSet<Utilitarios> Utilitarios { get; set; }
-        //
+        //-------------------- Area OFGA----------------------------
+        public virtual DbSet<Clasificacion> Clasificacion { get; set; }
+        public virtual DbSet<Materiales> Materiales { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("server=DESKTOP-4KIF3VN\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                //optionsBuilder.UseSqlServer("server=DESKTOP-4KIF3VN\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
             }                              
         }
 
@@ -113,12 +116,12 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.HasKey(e => e.RolId);
                                
-                entity.Property(e => e.TipoUsuarioId)
+                entity.Property(e => e.RolId)
                .HasColumnName("TipoUsuarioId");
 
                 entity.HasOne(d => d.TipoUsuario)
                     .WithMany(p => p.RolUsuario)
-                    .HasForeignKey(d => d.TipoUsuarioId)
+                    .HasForeignKey(d => d.RolId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RolUsuario_TipoUsuario");
 
@@ -230,7 +233,7 @@ namespace SYGESTMunicipalSync.Models
 
             });
 
-            modelBuilder.Entity<TipoUsuarioPaginaBoton>(entity =>
+            modelBuilder.Entity<TipoUsuarioPagBoton>(entity =>
             {
                 entity.Property(e => e.TipoUsuarioPagBotonId)
                     .HasColumnName("TipoUsuarioPagBotonId");

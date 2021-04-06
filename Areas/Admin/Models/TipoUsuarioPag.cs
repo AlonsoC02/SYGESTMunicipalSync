@@ -22,6 +22,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Display(Name = "Boton Habilitado")]
         public bool BotonHabilitado { get; set; }
 
+        public virtual ICollection<RolUsuario> RolUsuario { get; set; }
+        public virtual ICollection<TipoUsuarioPagBoton> TipoUsuarioPagBoton { get; set; }
+
         public TipoUsuarioPag()
         {
             RolUsuario = new HashSet<RolUsuario>();
