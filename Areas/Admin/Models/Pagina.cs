@@ -20,9 +20,20 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Display(Name = "Nombre del contrador")]
         [Required(ErrorMessage = "Debe escribir un nombre de controlador")]
         [MinLength(3, ErrorMessage = "El nombre debe tener una longitud mínima de 3")]
-        [MaxLength(50, ErrorMessage = "El nombre debe tener una longitud máxima de 50")]
+        [MaxLength(100, ErrorMessage = "El nombre debe tener una longitud máxima de 100")]
         public string Controlador { get; set; }
 
-        public bool BotonHabilitado { get; set; }
+        public int BotonHabilitado { get; set; }
+
+        [Display(Name = "Boton:")]
+        public int? BotonId { get; set; }
+        public virtual Boton Boton { get; set; }
+
+        public virtual ICollection<TipoUsuarioPag> TipoUsuarioPag { get; set; }
+        public Pagina()
+        {
+            TipoUsuarioPag = new HashSet<TipoUsuarioPag>();
+
+        }
     }
 }

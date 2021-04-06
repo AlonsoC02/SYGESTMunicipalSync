@@ -1,5 +1,4 @@
-﻿using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public TipoUsuario()
         {
             RolUsuario = new HashSet<RolUsuario>();
-            TipoUsuarioPagina = new HashSet<TipoUsuarioPagina>();
+            TipoUsuarioPag = new HashSet<TipoUsuarioPag>();
         }
         [Display(Name = "Tipo Usuario Id:")]
         public int TipoUsuarioId { get; set; }
@@ -21,12 +20,14 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string Nombre { get; set; }
 
         public bool BotonHabilitado { get; set; }
-        public virtual ICollection<TipoUsuarioPagina> TipoUsuarioPagina { get; set; }
+        public virtual ICollection<TipoUsuarioPag> TipoUsuarioPag { get; set; }
         public virtual ICollection<RolUsuario> RolUsuario { get; set; }
 
         [Display(Name = "Descripcion:")]
-        [StringLength(400, ErrorMessage = "Ha excedido los 400 caracteres")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         [Required(ErrorMessage = "Debe digitar la descripción de la Especialidad")]
         public string Descripcion { get; set; }
+
+
     }
 }

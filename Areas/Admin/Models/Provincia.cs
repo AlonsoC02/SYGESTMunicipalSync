@@ -26,7 +26,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public int DistritoId { get; set; }
         public virtual Distrito Distrito { get; set; }
         public virtual ICollection<Persona> Persona { get; set; }
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        
         public virtual ICollection<Denuncia> Denuncia { get; set; }
         public virtual ICollection<Establecimiento> Establecimiento { get; set; }
         public Provincia()
