@@ -10,6 +10,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public int BotonId { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public int? BotonHabilitado { get; set; }
+        public bool BotonHabilitado { get; set; }
     }
 }

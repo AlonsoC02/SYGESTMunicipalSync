@@ -70,7 +70,8 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.BotonHabilitado)
-                  .HasColumnName("BotonHabilitado");
+                   .HasColumnName("BotonHabilitado")
+                   .HasColumnType("bit");
 
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(200)
@@ -87,10 +88,12 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Password)
+                    .IsRequired()
                     .HasMaxLength(50)
                    .IsUnicode(false);
 
                 entity.Property(e => e.ConfirmarContrasena)
+                    .IsRequired()
                     .HasMaxLength(50)
                    .IsUnicode(false);
 
@@ -103,32 +106,7 @@ namespace SYGESTMunicipalSync.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Usuario_Persona");
 
-                entity.Property(e => e.DistritoId)
-                 .HasColumnName("DistritoId");
-
-                entity.HasOne(d => d.Distrito)
-                    .WithMany(p => p.Usuario)
-                    .HasForeignKey(d => d.DistritoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Usuario_Distrito");
-
-                entity.Property(e => e.CantonId)
-                 .HasColumnName("CantonId");
-
-                entity.HasOne(d => d.Canton)
-                    .WithMany(p => p.Usuario)
-                    .HasForeignKey(d => d.CantonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Usuario_Canton");
-
-                entity.Property(e => e.ProvinciaId)
-                 .HasColumnName("ProvinciaId");
-
-                entity.HasOne(d => d.Provincia)
-                    .WithMany(p => p.Usuario)
-                    .HasForeignKey(d => d.ProvinciaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Usuario_Provincia");
+                
             });
 
             modelBuilder.Entity<RolUsuario>(entity =>
@@ -189,9 +167,10 @@ namespace SYGESTMunicipalSync.Models
                .IsUnicode(false);
 
                 entity.Property(e => e.BotonHabilitado)
-                   .HasColumnName("BotonHabilitado");
+                   .HasColumnName("BotonHabilitado")
+                   .HasColumnType("bit");
 
-                            
+
             });
 
             modelBuilder.Entity<Pagina>(entity =>
@@ -204,48 +183,81 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Accion)
-                .HasMaxLength(100)
-               .IsUnicode(false);
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Controlador)
-               .HasMaxLength(100)
-              .IsUnicode(false);
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.BotonHabilitado)
-                   .HasColumnName("BotonHabilitado");
+                    .IsRequired()
+                    .HasColumnName("BotonHabilitado")
+                    .HasColumnType("bit");
 
             });
 
-            modelBuilder.Entity<TipoUsuarioPagina>(entity =>
+            modelBuilder.Entity<TipoUsuarioPag>(entity =>
             {
-                entity.Property(e => e.TipoUsuarioPaginaId)
-                    .HasColumnName("TipoUsuarioPaginaId");
+                entity.Property(e => e.TipoUsuarioPagId)
+                    .HasColumnName("TipoUsuarioPagId");
+
+              
+               entity.Property(e => e.BotonHabilitado)
+                    .IsRequired()
+                    .HasColumnName("BotonHabilitado")
+                    .HasColumnType("bit");
 
                 entity.Property(e => e.TipoUsuarioId)
-                   .HasColumnName("TipoUsuarioId");
+                      .HasColumnName("TipoUsuarioId");
+
+                entity.HasOne(d => d.TipoUsuario)
+                    .WithMany(p => p.TipoUsuarioPag)
+                    .HasForeignKey(d => d.TipoUsuarioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TipoUsuarioPag_TipoUsuario");
 
                 entity.Property(e => e.PaginaId)
-                  .HasColumnName("PaginaId");
+                      .HasColumnName("PaginaId");
 
-                entity.Property(e => e.BotonHabilitado)
-                    .HasColumnName("BotonHabilitado");
+                entity.HasOne(d => d.Pagina)
+                    .WithMany(p => p.TipoUsuarioPag)
+                    .HasForeignKey(d => d.PaginaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TipoUsuarioPag_Pagina");
 
             });
 
             modelBuilder.Entity<TipoUsuarioPaginaBoton>(entity =>
             {
-                entity.Property(e => e.TipoUsuarioPaginaBotonId)
-                    .HasColumnName("TipoUsuarioPaginaBotonId");
+                entity.Property(e => e.TipoUsuarioPagBotonId)
+                    .HasColumnName("TipoUsuarioPagBotonId");
 
-                entity.Property(e => e.TipoUsuarioPaginaId)
-                   .HasColumnName("TipoUsuarioPaginaId");
-
-                entity.Property(e => e.BotonId)
-                   .HasColumnName("BotonId");
 
                 entity.Property(e => e.BotonHabilitado)
-                    .HasColumnName("BotonHabilitado");
+                   .IsRequired()
+                   .HasColumnName("BotonHabilitado")
+                   .HasColumnType("bit");
 
+                entity.Property(e => e.TipoUsuarioPagId)
+                      .HasColumnName("TipoUsuarioPagId");
+
+                entity.HasOne(d => d.TipoUsuarioPag)
+                    .WithMany(p => p.TipoUsuarioPagBoton)
+                    .HasForeignKey(d => d.TipoUsuarioPagId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TipoUsuarioPagBoton_TipoUsuarioPag");
+
+                entity.Property(e => e.BotonId)
+                      .HasColumnName("BotonId");
+
+                entity.HasOne(d => d.Boton)
+                    .WithMany(p => p.TipoUsuarioPagBoton)
+                    .HasForeignKey(d => d.BotonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TipoUsuarioPagBoton_Boton");
 
             });
 
@@ -288,6 +300,7 @@ namespace SYGESTMunicipalSync.Models
 
 
                 entity.Property(e => e.FechaNac)
+                    .IsRequired()
                     .HasColumnName("FechaNac")
                     .HasColumnType("date");
 
@@ -303,6 +316,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Fax);
 
                 entity.Property(e => e.Sexo)
+                    .IsRequired()
                     .HasColumnName("Sexo")
                     .HasColumnType("char(1)");
 
@@ -525,7 +539,6 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                  .IsRequired()
                   .HasMaxLength(200)
                   .IsUnicode(false);
 
@@ -548,6 +561,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.IngresoPersonaId);
 
                 entity.Property(e => e.IngresoMensual)
+                     .IsRequired()
                      .HasColumnName("IngresoMensual")
                      .HasColumnType("real");   // <------------------ ver si se usa real o money
 
@@ -597,7 +611,6 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                  .IsRequired()
                   .HasMaxLength(200)
                   .IsUnicode(false);
 
@@ -626,7 +639,6 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                  .IsRequired()
                   .HasMaxLength(200)
                   .IsUnicode(false);
 
@@ -644,7 +656,6 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                  .IsRequired()
                   .HasMaxLength(200)
                   .IsUnicode(false);
 
@@ -676,6 +687,7 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Logo)
+                 .IsRequired()
                  .HasColumnName("Imagen")
                  .HasColumnType("varbinary(max)");
 
@@ -685,17 +697,14 @@ namespace SYGESTMunicipalSync.Models
                  .IsUnicode(false);
 
                 entity.Property(e => e.PaginaWeb)
-                 .IsRequired()
                  .HasMaxLength(100)
                  .IsUnicode(false);
 
                 entity.Property(e => e.Email)
-                 .IsRequired()
                  .HasMaxLength(100)
                  .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                  .IsRequired()
                   .HasMaxLength(200)
                   .IsUnicode(false);
 
@@ -809,28 +818,30 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Fecha)
+                   .IsRequired()
                    .HasColumnName("Fecha")
                    .HasColumnType("date");
 
                 entity.Property(e => e.HoraInicio)
+                   .IsRequired()
                    .HasColumnName("HoraInicio")
                    .HasColumnType("date");
 
                 entity.Property(e => e.HoraFin)
+                    .IsRequired()
                    .HasColumnName("HoraFin")
                    .HasColumnType("date");
 
                 entity.Property(e => e.Descripcion)
-                   .IsRequired()
                    .HasMaxLength(300)
                    .IsUnicode(false);
 
                 entity.Property(e => e.Respuesta)
-                   .IsRequired()
                    .HasMaxLength(200)
                    .IsUnicode(false);
 
                 entity.Property(e => e.Remitir)
+                  .IsRequired()
                   .HasColumnName("Remitir")
                   .HasColumnType("bit");
 
@@ -859,7 +870,6 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.SeguimientoId);
 
                 entity.Property(e => e.Descripcion)
-                    .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
@@ -926,11 +936,11 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                    .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Fecha)
+                   .IsRequired()
                    .HasColumnName("Fecha")
                    .HasColumnType("datetime");
 
@@ -968,9 +978,12 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.CupoMax);
 
                 entity.Property(e => e.Descripcion)
-                    .IsRequired()
                     .HasMaxLength(200)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Activo)
+               .HasColumnName("Activo")
+               .HasColumnType("bit");
 
                 entity.Property(e => e.ActividadId)
                         .HasColumnName("ActividadId");
@@ -997,10 +1010,12 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.BasuraId);
 
                 entity.Property(e => e.Fecha)
+                .IsRequired()
                 .HasColumnName("Fecha")
                 .HasColumnType("datetime");
 
                 entity.Property(e => e.Peso)
+                     .IsRequired()
                      .HasColumnName("Peso")
                      .HasColumnType("real");   // <------------------ ver si se usa real o money
 
@@ -1018,6 +1033,7 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Fecha)
+                .IsRequired()
                 .HasColumnName("Fecha")
                 .HasColumnType("datetime");
 
@@ -1058,7 +1074,6 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
                                
                 entity.Property(e => e.Descripcion)
-                  .IsRequired()
                   .HasMaxLength(200)
                   .IsUnicode(false);
             });
@@ -1068,22 +1083,27 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.ImgresoVentaId);
                              
                 entity.Property(e => e.Fecha)
+                .IsRequired()
                 .HasColumnName("Fecha")
                 .HasColumnType("datetime");
 
                 entity.Property(e => e.Peso)
+                        .IsRequired()
                        .HasColumnName("Peso")
                        .HasColumnType("real");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Precio)
+                    .IsRequired()
                     .HasColumnName("Precio")
                     .HasColumnType("real");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Monto)
+                    .IsRequired()
                     .HasColumnName("Monto")
                     .HasColumnType("real");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Total)
+                    .IsRequired()
                     .HasColumnName("Total")
                     .HasColumnType("real");   // <------------------ ver si se usa real o money
 
@@ -1137,10 +1157,12 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.PacasId);
 
                 entity.Property(e => e.Fecha)
+                .IsRequired()
                 .HasColumnName("Fecha")
                 .HasColumnType("datetime");
 
                 entity.Property(e => e.Peso)
+                       .IsRequired()
                        .HasColumnName("Peso")
                        .HasColumnType("real");   // <------------------ ver si se usa real o money
 
@@ -1169,10 +1191,12 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.PuntosRecMaterialId);
 
                 entity.Property(e => e.Fecha)
+                .IsRequired()
                 .HasColumnName("Fecha")
                 .HasColumnType("datetime");
 
                 entity.Property(e => e.Peso)
+                       .IsRequired()
                        .HasColumnName("Peso")
                        .HasColumnType("real");   // <------------------ ver si se usa real o money
 
@@ -1210,10 +1234,12 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.RecuentoId);
 
                 entity.Property(e => e.Fecha)
+                .IsRequired()
                 .HasColumnName("Fecha")
                 .HasColumnType("datetime");
 
                 entity.Property(e => e.PesoGlobal)
+                       .IsRequired()
                        .HasColumnName("PesoGlobal")
                        .HasColumnType("real");   // <------------------ ver si se usa real o money
 
@@ -1245,6 +1271,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.HasKey(e => e.DenunciaId);
 
                 entity.Property(e => e.Fecha)
+                .IsRequired()
                 .HasColumnName("Fecha")
                 .HasColumnType("datetime");
 
@@ -1258,7 +1285,6 @@ namespace SYGESTMunicipalSync.Models
                 .HasColumnType("bit");
 
                 entity.Property(e => e.DependenciaAnterior)
-                   .IsRequired()
                    .HasMaxLength(50)
                    .IsUnicode(false);
 
@@ -1380,11 +1406,11 @@ namespace SYGESTMunicipalSync.Models
               .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                      .IsRequired()
                       .HasMaxLength(200)
                       .IsUnicode(false);
                      
                 entity.Property(e => e.Riesgo)
+                    .IsRequired()
                     .HasColumnName("Sexo")
                     .HasColumnType("char(1)");
 
@@ -1439,7 +1465,6 @@ namespace SYGESTMunicipalSync.Models
                             .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                           .IsRequired()
                            .HasMaxLength(200)
                            .IsUnicode(false);
 
@@ -1464,7 +1489,6 @@ namespace SYGESTMunicipalSync.Models
                            .IsUnicode(false);
 
                 entity.Property(e => e.DescripcionActividad)
-                           .IsRequired()
                            .HasMaxLength(200)
                            .IsUnicode(false);
 
@@ -1489,29 +1513,35 @@ namespace SYGESTMunicipalSync.Models
                            .IsUnicode(false);
 
                 entity.Property(e => e.PaginaWeb)
-                         .IsRequired()
                          .HasMaxLength(100)
                          .IsUnicode(false);
 
                 entity.Property(e => e.HoraEntrada)
+              .IsRequired()
               .HasColumnName("HoraEntrada")
               .HasColumnType("datetime");
 
                 entity.Property(e => e.HoraCierre)
+             .IsRequired()
              .HasColumnName("HoraCierre")
              .HasColumnType("datetime");
 
                 entity.Property(e => e.Aream2)
+                       .IsRequired()
                        .HasColumnName("Aream2")
                        .HasColumnType("real");   // <------------------ ver si se usa real o money
 
-                entity.Property(e => e.CantHombres);
+                entity.Property(e => e.CantHombres)
+                .IsRequired();
 
-                entity.Property(e => e.CantMujeres);
+                entity.Property(e => e.CantMujeres)
+                .IsRequired();
 
-                entity.Property(e => e.Calificados);
+                entity.Property(e => e.Calificados)
+                .IsRequired();
 
-                entity.Property(e => e.NoCalificados);
+                entity.Property(e => e.NoCalificados)
+                .IsRequired();
 
                 entity.Property(e => e.Solicitante)
                 .HasColumnName("Solicitante")
@@ -1581,7 +1611,6 @@ namespace SYGESTMunicipalSync.Models
                             .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                           .IsRequired()
                            .HasMaxLength(200)
                            .IsUnicode(false);
 
@@ -1613,7 +1642,6 @@ namespace SYGESTMunicipalSync.Models
                             .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                           .IsRequired()
                            .HasMaxLength(200)
                            .IsUnicode(false);
 
@@ -1642,6 +1670,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.NumTramite);
 
                 entity.Property(e => e.FechaRecibo)
+             .IsRequired()
              .HasColumnName("HoraCierre")
              .HasColumnType("datetime");
 

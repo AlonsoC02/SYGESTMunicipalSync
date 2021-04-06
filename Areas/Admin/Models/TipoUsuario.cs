@@ -20,7 +20,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Display(Name = "Nombre:")]
         public string Nombre { get; set; }
 
-        public int BotonHabilitado { get; set; }
+        public bool BotonHabilitado { get; set; }
         public virtual ICollection<TipoUsuarioPagina> TipoUsuarioPagina { get; set; }
         public virtual ICollection<RolUsuario> RolUsuario { get; set; }
 
