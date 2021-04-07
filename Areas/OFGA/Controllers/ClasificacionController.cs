@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 {
+    [Area("OFGA")]
     //[ServiceFilter(typeof(Seguridad))]
     public class ClasificacionController : Controller
     {

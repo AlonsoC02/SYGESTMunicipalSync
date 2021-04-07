@@ -34,7 +34,7 @@ namespace SYGESTMunicipalSync.Models
         public virtual DbSet<Distrito> Distrito { get; set; }
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
-        public virtual DbSet<Utilitarios> Utilitarios { get; set; }
+        //public virtual DbSet<Utilitarios> Utilitarios { get; set; }
         //-------------------- Area OFGA----------------------------
         public virtual DbSet<Clasificacion> Clasificacion { get; set; }
         public virtual DbSet<Materiales> Materiales { get; set; }
@@ -281,6 +281,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Persona>(entity =>
             {
+                entity.HasKey(e => e.CedulaPersona);
                 entity.Property(e => e.CedulaPersona)
                .IsRequired()
                 .HasMaxLength(100)
@@ -513,13 +514,13 @@ namespace SYGESTMunicipalSync.Models
                     .HasConstraintName("FK_PersonaOFIM_Padecimiento");
 
                 entity.Property(e => e.DiscapacidadId)
-           .HasColumnName("PersonaId");
+           .HasColumnName("DiscapacidadId");
 
                 entity.HasOne(d => d.Discapacidad)
                     .WithMany(p => p.PersonaOFIM)
                     .HasForeignKey(d => d.DiscapacidadId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_Discapacidad");
+                    .HasConstraintName("FK_PersonaOFIM_Discapacidades");
 
                 entity.Property(e => e.IngresoPersonaId)
            .HasColumnName("IngresoPersonaId");
@@ -534,7 +535,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Discapacidades>(entity =>
             {
-                entity.HasKey(e => e.DiscapacidadesId);
+                entity.HasKey(e => e.DiscapacidadId);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -755,25 +756,16 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.HasKey(e => e.FamiliaId);
 
-
-
                 entity.Property(e => e.PersonaId1)
-                .HasColumnName("PersonaId1");
-
-                entity.HasOne(d => d.Persona1)
-                    .WithMany(p => p.Familia)
-                    .HasForeignKey(d => d.PersonaId1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Familia_Persona1");
+                     .IsRequired()
+                     .HasMaxLength(100)
+                     .IsUnicode(false);
 
                 entity.Property(e => e.PersonaId2)
-              .HasColumnName("PersonaId2");
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.Persona2)
-                 .WithMany(p => p.Familia)
-                 .HasForeignKey(d => d.PersonaId2)
-                 .OnDelete(DeleteBehavior.ClientSetNull)
-                 .HasConstraintName("FK_Familia_Persona2");
 
                 entity.Property(e => e.ParentescoId)
                .HasColumnName("ParentescoId");
@@ -1403,6 +1395,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Clase>(entity =>
             {
+                entity.HasKey(e => e.CodigoClase);
                 entity.Property(e => e.CodigoClase)
                .IsRequired()
                 .HasMaxLength(50)
@@ -1462,6 +1455,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Division>(entity =>
             {
+                entity.HasKey(e => e.CodigoDivision);
                 entity.Property(e => e.CodigoDivision)
                             .IsRequired()
                             .HasMaxLength(50)
@@ -1608,6 +1602,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Grupo>(entity =>
             {
+                entity.HasKey(e => e.CodigoGrupo);
                 entity.Property(e => e.CodigoGrupo)
                             .IsRequired()
                             .HasMaxLength(50)
@@ -1639,6 +1634,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Seccion>(entity =>
             {
+                entity.HasKey(e => e.CodigoSeccion);
                 entity.Property(e => e.CodigoSeccion)
                             .IsRequired()
                             .HasMaxLength(50)
