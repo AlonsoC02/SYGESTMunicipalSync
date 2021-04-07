@@ -35,9 +35,63 @@ namespace SYGESTMunicipalSync.Models
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
         public virtual DbSet<Utilitarios> Utilitarios { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
+        public virtual DbSet<RolUsuario> RolUsuario { get; set; }
+
         //-------------------- Area OFGA----------------------------
+
+        public virtual DbSet<Basura> Basura { get; set; }
+        public virtual DbSet<Charlas> Charlas { get; set; }
         public virtual DbSet<Clasificacion> Clasificacion { get; set; }
+        public virtual DbSet<Denuncia> Denuncia { get; set; }
+        public virtual DbSet<IngresoVenta> IngresoVenta { get; set; }
         public virtual DbSet<Materiales> Materiales { get; set; }
+        public virtual DbSet<Pacas> Pacas { get; set; }
+        public virtual DbSet<PuntoRecMaterial> PuntoRecMaterial { get; set; }
+        public virtual DbSet<Quejas> Quejas { get; set; }
+        public virtual DbSet<Recuento> Recuento { get; set; }
+        public virtual DbSet<TipoActividad> TipoActividad { get; set; }
+        public virtual DbSet<TipoDenuncia> TipoDenuncia { get; set; }
+
+        //-------------------- Area OFIM----------------------------
+
+        public virtual DbSet<Actividad> Actividad { get; set; }
+        public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<CatProductoServicio> CatProductoServicio { get; set; }
+        public virtual DbSet<Consulta> Consulta { get; set; }
+        public virtual DbSet<Cupos> Cupos { get; set; }
+        public virtual DbSet<Discapacidades> Discapacidades { get; set; }
+        public virtual DbSet<Eje> Eje { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<EstadoCivil> EstadoCivil { get; set; }
+        public virtual DbSet<Familia> Familia { get; set; }
+        public virtual DbSet<IngresoPersona> IngresoPersona { get; set; }
+        public virtual DbSet<Nacionalidad> Nacionalidad { get; set; }
+        public virtual DbSet<NivelAcademico> NivelAcademico { get; set; }
+        public virtual DbSet<Ocupacion> Ocupacion { get; set; }
+        public virtual DbSet<Padecimientos> Padecimientos { get; set; }
+        public virtual DbSet<Parentesco> Parentesco { get; set; }
+        public virtual DbSet<PersonaOFIM> PersonaOFIM { get; set; }
+        public virtual DbSet<ProductoServicio> ProductoServicio { get; set; }
+        public virtual DbSet<Seguimiento> Seguimiento { get; set; }
+        public virtual DbSet<Seguro> Seguro { get; set; }
+        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
+
+
+        //-------------------- Area PATENTES----------------------------
+
+        public virtual DbSet<Clase> Clase { get; set; }
+        public virtual DbSet<ClasifSenasa> ClasifSenasa { get; set; }
+        public virtual DbSet<Division> Division { get; set; }
+        public virtual DbSet<Establecimiento> Establecimiento { get; set; }
+        public virtual DbSet<Formulario> Formulario { get; set; }
+        public virtual DbSet<Grupo> Grupo { get; set; }
+        public virtual DbSet<Motivo> Motivo { get; set; }
+        public virtual DbSet<Propietario> Propietario { get; set; }
+        public virtual DbSet<Seccion> Seccion { get; set; }
+        public virtual DbSet<Solicitante> Solicitante { get; set; }
+        public virtual DbSet<TipoInmueble> TipoInmueble { get; set; }
+        public virtual DbSet<TipoRepresentante> TipoRepresentante { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
