@@ -126,10 +126,6 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.BotonHabilitado)
-                   .HasColumnName("BotonHabilitado")
-                   .HasColumnType("bit");
-
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(200)
                    .IsUnicode(false);
