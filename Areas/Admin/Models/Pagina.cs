@@ -23,7 +23,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [MaxLength(100, ErrorMessage = "El nombre debe tener una longitud máxima de 100")]
         public string Controlador { get; set; }
 
-        public int BotonHabilitado { get; set; }
+        public bool BotonHabilitado { get; set; }
 
         [Display(Name = "Boton:")]
         public int? BotonId { get; set; }

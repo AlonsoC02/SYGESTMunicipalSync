@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,11 +17,13 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Persona 1:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string PersonaId1 { get; set; }
+        [NotMapped]
         public virtual Persona Persona1 { get; set; }
 
         [Display(Name = "Persona 2:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string PersonaId2 { get; set; }
+        [NotMapped]
         public virtual Persona Persona2 { get; set; }
 
         [Display(Name = "Parentesco:")]
