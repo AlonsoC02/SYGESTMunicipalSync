@@ -34,7 +34,7 @@ namespace SYGESTMunicipalSync.Models
         public virtual DbSet<Distrito> Distrito { get; set; }
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
-        public virtual DbSet<Utilitarios> Utilitarios { get; set; }
+        //public virtual DbSet<Utilitarios> Utilitarios { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<RolUsuario> RolUsuario { get; set; }
 
