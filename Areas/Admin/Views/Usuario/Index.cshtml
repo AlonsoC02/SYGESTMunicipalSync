@@ -1,0 +1,195 @@
+﻿@*@model IEnumerable<PersonaUsuario>
+@using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div class="page-header header-filter">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-6 ml-auto mr-auto">
+                <div class="card card-login">
+
+                    <br />
+                    <form class="form" id="account" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">Registro</h4>
+                        </div>
+
+                        <p class="description text-center">¡Por favor, Llene todo el formulario!</p>
+                        <div class="card-body">
+                            <main class="maincol">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">recent_actors</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.IdPassport" class="form-control" placeholder="Cédula o Pasaporte..." />
+                                    <span asp-validation-for="Input.IdPassport" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">account_circle</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.Name" class="form-control" required placeholder="Nombre..." />
+                                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">text_snippet</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.LastName1" class="form-control" required placeholder="Primer Apellido..." />
+                                    <span asp-validation-for="Input.LastName1" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">text_snippet</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.LastName2" class="form-control" required placeholder="Segundo Apellido..." />
+                                    <span asp-validation-for="Input.LastName2" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">attach_email</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.Email" class="form-control" required placeholder="Email..." />
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">local_phone</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.PhoneNumber" class="form-control" required placeholder="Teléfono..." />
+                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">follow_the_signs</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.Address" class="form-control" required placeholder="Dirección..." />
+                                    <span asp-validation-for="Input.Address" class="text-danger"></span>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">place</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.District" class="form-control" required placeholder="Distrito..." />
+                                    <span asp-validation-for="Input.District" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">location_city</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.Canton" class="form-control" required placeholder="Cantón..." />
+                                    <span asp-validation-for="Input.Canton" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">map</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.Province" class="form-control" required placeholder="Provincia..." />
+                                    <span asp-validation-for="Input.Province" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.Password" class="form-control" required placeholder="Contraseña..." />
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">verified_user</i>
+                                        </span>
+                                    </div>
+                                    <input asp-for="Input.ConfirmPassword" class="form-control" required placeholder="Confirmar Contraseña..." />
+                                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                </div>
+
+                            </main>
+                            <div class="form-group row">
+
+                            </div>
+                            <div class="footer text-center">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                                </div>
+                            </div>
+
+
+                            @if (User.IsInRole(SD.ManagerUser))
+                            {
+                                <div class="form-group row">
+
+
+                                    <div class="col-lg-10">
+                                        <main class="main3">
+                                            <input type="radio" name="rdUserRole" value="@SD.AdminOFIM" checked /> @SD.AdminOFIM
+                                            <br />
+                                            <input type="radio" name="rdUserRole" value="@SD.AdminOFGA" checked /> @SD.AdminOFGA
+                                            <br />
+                                            <input type="radio" name="rdUserRole" value="@SD.AdminOFPA" checked /> @SD.AdminOFPA
+                                            <br />
+                                            <input type="radio" name="rdUserRole" value="@SD.CollManager" checked /> @SD.CollManager
+                                            <br />
+                                            <input type="radio" name="rdUserRole" value="@SD.FrontDeskUser" checked /> @SD.FrontDeskUser
+                                            <br />
+                                            <input type="radio" name="rdUserRole" value="@SD.ManagerUser" checked /> @SD.ManagerUser
+                                            <br />
+                                            <input type="radio" name="rdUserRole" value="@SD.RedUser" checked /> @SD.RedUser
+                                        </main>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                        <br />
+                        <br />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>*@
+
