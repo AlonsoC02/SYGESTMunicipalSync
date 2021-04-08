@@ -1,0 +1,112 @@
+﻿
+@model IEnumerable<SYGESTMunicipalSync.Areas.OFGA.Models.Basura>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+}
+
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Registro de Desechos Ordinarios</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a></li>
+                <li>Desechos Ordinarios</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <div class="border backgroundWhite">
+        <br />
+        <form asp-controller="Basura" asp-action="Index" method="post">
+            <div class="row">
+                <div class="col-lg-2 text-right">
+                    <a asp-action="Create" class="btn btn-success fa fa-plus-circle"
+                       style="width:80%; height:100%;padding:12px;">
+                        Agregar
+                    </a>
+                </div>
+                @*<div class="col-md-2 col-lg-2 text-right">
+                        <a asp-controller="" asp-action="Index"
+                           class="btn btn-info fa fa-arrow-circle-left"
+                           style="width:100%; height:90%;padding:6px;">
+                            Regresar al menú
+                        </a>
+                    </div>*@
+            </div>
+            <div class="col-md-12" style="color:black;"><hr /></div>
+        </form>
+
+
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-hover .table-responsive" id="TbBasura">
+                <thead class="thead-dark">
+                    <tr class="table-secondary" style="text-align:center;">
+                        <th>@Html.DisplayNameFor(m => m.BasuraId)</th>
+                        <th>@Html.DisplayNameFor(m => m.Peso)</th>
+                        <th>@Html.DisplayNameFor(m => m.Fecha)</th>
+
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center;">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => item.BasuraId)</td>
+                            <td>@Html.DisplayFor(m => item.Peso)</td>
+                            <td>@Html.DisplayFor(m => item.Fecha)</td>
+
+                            <div class="col-md-6">
+                                <td style="width:300px">
+
+                                    <div class="btn-group" role="group">
+                                       
+                                            <a class="btn btn-primary text-white" asp-action="Edit" asp-route-Id="@Model">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        <a class="btn btn-success text-white" asp-action="Details" asp-route-Id="@Model">
+                                            <i class="fas fa-list-alt"></i>
+                                        </a>
+                                            @*<a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@Model">
+                                              <i class="fas fa-trash-alt"></i>
+                                            </a>*@
+                                    </div>
+                                </td>
+                            </div>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h5 style="color:red;">No se encontraron registros!...</h5>
+        }
+    </div>
+</main><!-- End #main -->
+
+<script src="~/js/sweetalert2.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#TbBasura').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+            });
+    })
+</script>
+
+
