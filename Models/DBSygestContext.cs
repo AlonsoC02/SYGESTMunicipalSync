@@ -34,10 +34,64 @@ namespace SYGESTMunicipalSync.Models
         public virtual DbSet<Distrito> Distrito { get; set; }
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
-        public virtual DbSet<Utilitarios> Utilitarios { get; set; }
+        //public virtual DbSet<Utilitarios> Utilitarios { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
+        public virtual DbSet<RolUsuario> RolUsuario { get; set; }
+
         //-------------------- Area OFGA----------------------------
+
+        public virtual DbSet<Basura> Basura { get; set; }
+        public virtual DbSet<Charlas> Charlas { get; set; }
         public virtual DbSet<Clasificacion> Clasificacion { get; set; }
+        public virtual DbSet<Denuncia> Denuncia { get; set; }
+        public virtual DbSet<IngresoVenta> IngresoVenta { get; set; }
         public virtual DbSet<Materiales> Materiales { get; set; }
+        public virtual DbSet<Pacas> Pacas { get; set; }
+        public virtual DbSet<PuntoRecMaterial> PuntoRecMaterial { get; set; }
+        public virtual DbSet<Quejas> Quejas { get; set; }
+        public virtual DbSet<Recuento> Recuento { get; set; }
+        public virtual DbSet<TipoActividad> TipoActividad { get; set; }
+        public virtual DbSet<TipoDenuncia> TipoDenuncia { get; set; }
+
+        //-------------------- Area OFIM----------------------------
+
+        public virtual DbSet<Actividad> Actividad { get; set; }
+        public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<CatProductoServicio> CatProductoServicio { get; set; }
+        public virtual DbSet<Consulta> Consulta { get; set; }
+        public virtual DbSet<Cupos> Cupos { get; set; }
+        public virtual DbSet<Discapacidades> Discapacidades { get; set; }
+        public virtual DbSet<Eje> Eje { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<EstadoCivil> EstadoCivil { get; set; }
+        public virtual DbSet<Familia> Familia { get; set; }
+        public virtual DbSet<IngresoPersona> IngresoPersona { get; set; }
+        public virtual DbSet<Nacionalidad> Nacionalidad { get; set; }
+        public virtual DbSet<NivelAcademico> NivelAcademico { get; set; }
+        public virtual DbSet<Ocupacion> Ocupacion { get; set; }
+        public virtual DbSet<Padecimientos> Padecimientos { get; set; }
+        public virtual DbSet<Parentesco> Parentesco { get; set; }
+        public virtual DbSet<PersonaOFIM> PersonaOFIM { get; set; }
+        public virtual DbSet<ProductoServicio> ProductoServicio { get; set; }
+        public virtual DbSet<Seguimiento> Seguimiento { get; set; }
+        public virtual DbSet<Seguro> Seguro { get; set; }
+        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
+
+
+        //-------------------- Area PATENTES----------------------------
+
+        public virtual DbSet<Clase> Clase { get; set; }
+        public virtual DbSet<ClasifSenasa> ClasifSenasa { get; set; }
+        public virtual DbSet<Division> Division { get; set; }
+        public virtual DbSet<Establecimiento> Establecimiento { get; set; }
+        public virtual DbSet<Formulario> Formulario { get; set; }
+        public virtual DbSet<Grupo> Grupo { get; set; }
+        public virtual DbSet<Motivo> Motivo { get; set; }
+        public virtual DbSet<Propietario> Propietario { get; set; }
+        public virtual DbSet<Seccion> Seccion { get; set; }
+        public virtual DbSet<Solicitante> Solicitante { get; set; }
+        public virtual DbSet<TipoInmueble> TipoInmueble { get; set; }
+        public virtual DbSet<TipoRepresentante> TipoRepresentante { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,7 +99,8 @@ namespace SYGESTMunicipalSync.Models
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 //optionsBuilder.UseSqlServer("server=DESKTOP-4KIF3VN\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                //optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
             }                              
         }
 
@@ -71,10 +126,6 @@ namespace SYGESTMunicipalSync.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.BotonHabilitado)
-                   .HasColumnName("BotonHabilitado")
-                   .HasColumnType("bit");
 
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(200)
@@ -281,6 +332,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Persona>(entity =>
             {
+                entity.HasKey(e => e.CedulaPersona);
                 entity.Property(e => e.CedulaPersona)
                .IsRequired()
                 .HasMaxLength(100)
@@ -513,13 +565,13 @@ namespace SYGESTMunicipalSync.Models
                     .HasConstraintName("FK_PersonaOFIM_Padecimiento");
 
                 entity.Property(e => e.DiscapacidadId)
-           .HasColumnName("PersonaId");
+           .HasColumnName("DiscapacidadId");
 
                 entity.HasOne(d => d.Discapacidad)
                     .WithMany(p => p.PersonaOFIM)
                     .HasForeignKey(d => d.DiscapacidadId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_Discapacidad");
+                    .HasConstraintName("FK_PersonaOFIM_Discapacidades");
 
                 entity.Property(e => e.IngresoPersonaId)
            .HasColumnName("IngresoPersonaId");
@@ -534,7 +586,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Discapacidades>(entity =>
             {
-                entity.HasKey(e => e.DiscapacidadesId);
+                entity.HasKey(e => e.DiscapacidadId);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -755,25 +807,16 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.HasKey(e => e.FamiliaId);
 
-
-
                 entity.Property(e => e.PersonaId1)
-                .HasColumnName("PersonaId1");
-
-                entity.HasOne(d => d.Persona1)
-                    .WithMany(p => p.Familia)
-                    .HasForeignKey(d => d.PersonaId1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Familia_Persona1");
+                     .IsRequired()
+                     .HasMaxLength(100)
+                     .IsUnicode(false);
 
                 entity.Property(e => e.PersonaId2)
-              .HasColumnName("PersonaId2");
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.Persona2)
-                 .WithMany(p => p.Familia)
-                 .HasForeignKey(d => d.PersonaId2)
-                 .OnDelete(DeleteBehavior.ClientSetNull)
-                 .HasConstraintName("FK_Familia_Persona2");
 
                 entity.Property(e => e.ParentescoId)
                .HasColumnName("ParentescoId");
@@ -1403,6 +1446,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Clase>(entity =>
             {
+                entity.HasKey(e => e.CodigoClase);
                 entity.Property(e => e.CodigoClase)
                .IsRequired()
                 .HasMaxLength(50)
@@ -1462,6 +1506,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Division>(entity =>
             {
+                entity.HasKey(e => e.CodigoDivision);
                 entity.Property(e => e.CodigoDivision)
                             .IsRequired()
                             .HasMaxLength(50)
@@ -1608,6 +1653,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Grupo>(entity =>
             {
+                entity.HasKey(e => e.CodigoGrupo);
                 entity.Property(e => e.CodigoGrupo)
                             .IsRequired()
                             .HasMaxLength(50)
@@ -1639,6 +1685,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Seccion>(entity =>
             {
+                entity.HasKey(e => e.CodigoSeccion);
                 entity.Property(e => e.CodigoSeccion)
                             .IsRequired()
                             .HasMaxLength(50)

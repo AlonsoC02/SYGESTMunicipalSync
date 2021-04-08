@@ -73,7 +73,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual Provincia Provincia { get; set; }
 
 
-        public virtual ICollection<Familia> Familia { get; set; }
+        //public virtual ICollection<Familia> Familia { get; set; }
         public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
         public virtual ICollection<TipoConsulta> TipoConsulta { get; set; }
         public virtual ICollection<Consulta> Consulta { get; set; }
@@ -85,7 +85,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public virtual ICollection<Usuario> Usuario { get; set; }
         public Persona()
         {
-            Familia = new HashSet<Familia>();
+            //Familia = new HashSet<Familia>();
             PersonaOFIM = new HashSet<PersonaOFIM>();
             TipoConsulta = new HashSet<TipoConsulta>();
             Solicitante = new HashSet<Solicitante>();

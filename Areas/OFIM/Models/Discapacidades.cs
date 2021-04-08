@@ -9,7 +9,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
     public partial class Discapacidades
     {
         [Display(Name = "Id:")]
-        public int DiscapacidadesId { get; set; }
+        public int DiscapacidadId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el nombre de la Discapacidad")]
         [Display(Name = "Nombre:")]
