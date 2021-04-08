@@ -352,13 +352,13 @@ h1, h2, h3, h4, h5, h6 {
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-  width: 100%;
-  height: 75vh;
-  background: url("../img/Portada.png") top center;
-  background-size: cover;
-  position: relative;
-  margin-bottom: -140px;
-  z-index: 1;
+    width: 100%;
+    height: 75vh;
+    background: url("https://i.pinimg.com/originals/ed/12/f3/ed12f3441cca61d36061e38aa4fffee9.png") top center;
+    background-size: cover;
+    position: relative;
+    margin-bottom: -140px;
+    z-index: 1;
 }
 
 #hero:before {
