@@ -1,0 +1,109 @@
+﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.Basura
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+}
+
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Registro de Residuos Ordinarios</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Basura" asp-action="Index">Residuos Ordinarios</a></li>
+                <li>Registro de Residuos Ordinarios</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light"
+                style="text-align:center;background-color:darkslategray;">
+                Residuos Ordinarios
+            </h3>
+        </div>
+    </div>
+
+    <!-- ======= About Section ======= -->
+    <div class="row no-gutters">
+        <div class="col-md-7">
+            <div class="contact-wrap w-100 p-md-5 p-4">
+                <h2 class="text-info">Nuevo Registro</h2>
+                <br>
+                <form method="post" asp-action="Create" id="viewAgregar">
+                    <div class="backgroundWhite">
+                        <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Peso" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Peso" class=" text-danger"></span>
+                        </div>
+
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" asp-for="Fecha" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Fecha" class=" text-danger"></span>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-4 text-md-right">
+                                <input type="button" value="Agregar" id="btnAgregar"
+                                       class="btn btn-info" @*style="width: 80%;"*@
+                                       onclick="abrirModal()" />
+                            </div>
+                            <div class="col-md-2 text-md-center">
+                                <a asp-action="Index" type="button"
+                                   class="btn btn-success">
+                                    Regresar
+                                </a>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Agregar Residuos Ordinarios', '¿Realmente Desea Agregar Este Residuo Ordinario?').then((result) => {
+            if (result.value) {
+                var viewAgregar = document.getElementById("viewAgregar");
+                viewAgregar.submit();
+                Swal.fire(
+                    'El residuo ordinario fue agregado!',
+                    'exitosamente!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'El residuo ordinario no ha sido agregado!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
