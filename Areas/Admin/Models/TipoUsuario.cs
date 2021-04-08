@@ -18,15 +18,17 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Display(Name = "Nombre:")]
         public string Nombre { get; set; }
-
-        public bool BotonHabilitado { get; set; }
-        public virtual ICollection<TipoUsuarioPag> TipoUsuarioPag { get; set; }
-        public virtual ICollection<RolUsuario> RolUsuario { get; set; }
-
+        
         [Display(Name = "Descripcion:")]
         [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         [Required(ErrorMessage = "Debe digitar la descripción de la Especialidad")]
         public string Descripcion { get; set; }
+        
+        
+        public virtual ICollection<TipoUsuarioPag> TipoUsuarioPag { get; set; }
+        public virtual ICollection<RolUsuario> RolUsuario { get; set; }
+
+       
 
 
     }
