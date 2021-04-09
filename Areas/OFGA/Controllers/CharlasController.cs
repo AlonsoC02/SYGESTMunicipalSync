@@ -122,7 +122,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 charlasFromDb.Lugar = charlas.Lugar;
                 charlasFromDb.Expositor = charlas.Expositor;
                 charlasFromDb.Fecha = charlas.Fecha;
-                charlasFromDb.Activa = charlas.Activa;
+             
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
