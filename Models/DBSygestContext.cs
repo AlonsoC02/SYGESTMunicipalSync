@@ -174,7 +174,7 @@ namespace SYGESTMunicipalSync.Models
                     .WithMany(p => p.RolUsuario)
                     .HasForeignKey(d => d.RolId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RolUsuario_RolUsuario");
+                    .HasConstraintName("FK_RolUsuario_Rol");
 
                 entity.Property(e => e.UsuarioId)
                .HasColumnName("UsuarioId");
@@ -250,11 +250,10 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<RolUsuarioPag>(entity =>
             {
-                entity.Property(e => e.RolUsuarioPagId)
-                    .HasColumnName("RolUsuarioPagId");
+                entity.HasKey(e => e.RolUsuarioPagId);
 
-              
-               entity.Property(e => e.BotonHabilitado)
+
+                entity.Property(e => e.BotonHabilitado)
                     .IsRequired()
                     .HasColumnName("BotonHabilitado")
                     .HasColumnType("bit");
