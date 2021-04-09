@@ -1,17 +1,15 @@
-﻿using SYGESTMunicipalSync.Areas.OFIM.Models;
-using SYGESTMunicipalSync.Areas.PATENTES.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SYGESTMunicipalSync.Areas.Admin.Models
+namespace SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
 {
-    public partial class Persona
+    public class PersonaViewModel
     {
         [Required(ErrorMessage = "Debe digitar el ID de la Persona")]
-        [Display(Name = "Indentificacion:")]
+        [Display(Name = "Cédula o Pasaporte:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string CedulaPersona { get; set; }
 
@@ -61,35 +59,21 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Display(Name = "Distrito:")]
         public int DistritoId { get; set; }
-        public virtual Distrito Distrito { get; set; }
+        public string Distrito { get; set; }
 
         [Display(Name = "Canton:")]
         public int CantonId { get; set; }
-        public virtual Canton Canton { get; set; }
+        public string Canton { get; set; }
 
         [Display(Name = "Provincia:")]
         public int ProvinciaId { get; set; }
-        public virtual Provincia Provincia { get; set; }
+        public string Provincia { get; set; }
 
+        public string msgError { get; set; }
 
-        //public virtual ICollection<Familia> Familia { get; set; }
-        public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
-        public virtual ICollection<TipoConsulta> TipoConsulta { get; set; }
-        public virtual ICollection<Consulta> Consulta { get; set; }
-        public virtual ICollection<Seguimiento> Seguimiento { get; set; }
-        public virtual ICollection<Solicitante> Solicitante { get; set; }
-        public virtual ICollection<Propietario> Propietario { get; set; }
-        
-        public virtual ICollection<Empresa> Empresa { get; set; }
-        public virtual ICollection<Usuario> Usuario { get; set; }
-        public Persona()
+        public static implicit operator List<object>(PersonaViewModel v)
         {
-            //Familia = new HashSet<Familia>();
-            PersonaOFIM = new HashSet<PersonaOFIM>();
-            TipoConsulta = new HashSet<TipoConsulta>();
-            Solicitante = new HashSet<Solicitante>();
-            Propietario = new HashSet<Propietario>();
-            Usuario = new HashSet<Usuario>();
+            throw new NotImplementedException();
         }
     }
 }
