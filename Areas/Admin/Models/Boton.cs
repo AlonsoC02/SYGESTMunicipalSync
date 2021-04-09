@@ -8,6 +8,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 {
     public partial class Boton
     {
+        public Boton()
+        {
+            RolUsuarioPagBoton = new HashSet<RolUsuarioPagBoton>();
+
+        }
         public int BotonId { get; set; }
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
@@ -15,12 +20,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string Descripcion { get; set; }
         public bool BotonHabilitado { get; set; }
 
-        public virtual ICollection<TipoUsuarioPagBoton> TipoUsuarioPagBoton { get; set; }
-        public virtual ICollection<Pagina> Pagina { get; set; }
-        public Boton()
-        {
-            TipoUsuarioPagBoton = new HashSet<TipoUsuarioPagBoton>();
-            Pagina = new HashSet<Pagina>();
-        }
+        public virtual ICollection<RolUsuarioPagBoton> RolUsuarioPagBoton { get; set; }
+     
+        
     }
 }

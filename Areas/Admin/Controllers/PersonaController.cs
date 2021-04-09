@@ -43,6 +43,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                                  persona.Ape1 + " " +
                                  persona.Ape2,
                                  Email = persona.Email,
+                                 TelMovil= persona.TelMovil,
                                  DistritoId = distrito.DistritoId,
                                  CantonId = canton.CantonId,
                                  ProvinciaId = provincia.ProvinciaId
@@ -212,20 +213,51 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             }
             return View(persona);
         }
-        //POST - DELETE    //si se realiza una operacion es un POST
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        ////POST - DELETE    //si se realiza una operacion es un POST
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int? id)
+        //{
+        //    var persona = await _db.Persona.FindAsync(id);
+        //    if (persona == null)
+        //    {
+        //        return View();
+        //    }
+        //    _db.Persona.Remove(persona);
+        //    await _db.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        public IActionResult Delete(string Id)
         {
-            var persona = await _db.Persona.FindAsync(id);
-            if (persona == null)
+            cargarDistrito();
+            cargarCanton();
+            cargarProvincia();
+            Persona oPersona = _db.Persona
+                 .Where(m => m.CedulaPersona == Id).First();
+            return View(oPersona);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult Deleted(string Id)
+        {
+            string Error = "";
+            try
             {
-                return View();
+                Persona oPersona = _db.Persona
+                     .Where(c => c.CedulaPersona == Id).First();
+                if (oPersona != null)
+                {
+                    _db.Persona.Remove(oPersona);
+                    _db.SaveChanges();
+                }
             }
-            _db.Persona.Remove(persona);
-            await _db.SaveChangesAsync();
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
             return RedirectToAction(nameof(Index));
         }
+
         private void BuscarPersona(string CedulaPersona)
         {
             Persona oPersona = _db.Persona

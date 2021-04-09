@@ -16,7 +16,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models.ViewModels
         [Display(Name = "Nombre:")]
         public string Nombre { get; set; }
 
-        [Display(Name = "Especialidad:")]
+        [Display(Name = "Clasificacion:")]
         public int ClasificacionId { get; set; }
 
         public string Clasificacion { get; set; }

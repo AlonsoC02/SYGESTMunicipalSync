@@ -8,6 +8,13 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 {
     public partial class Pagina
     {
+
+        public Pagina()
+        {
+            RolUsuarioPag = new HashSet<RolUsuarioPag>();
+
+        }
+
         [Display(Name = "Id Página")]
         public int PaginaId { get; set; }
 
@@ -23,17 +30,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [MaxLength(100, ErrorMessage = "El nombre debe tener una longitud máxima de 100")]
         public string Controlador { get; set; }
 
-        public bool BotonHabilitado { get; set; }
+        public virtual ICollection<RolUsuarioPag> RolUsuarioPag { get; set; }
 
-        [Display(Name = "Boton:")]
-        public int? BotonId { get; set; }
-        public virtual Boton Boton { get; set; }
 
-        public virtual ICollection<TipoUsuarioPag> TipoUsuarioPag { get; set; }
-        public Pagina()
-        {
-            TipoUsuarioPag = new HashSet<TipoUsuarioPag>();
 
-        }
     }
 }
