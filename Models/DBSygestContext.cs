@@ -618,7 +618,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.IngresoMensual)
                      .IsRequired()
                      .HasColumnName("IngresoMensual")
-                     .HasColumnType("real");   // <------------------ ver si se usa real o money
+                     .HasColumnType("money");   // <------------------ ver si se usa real o money
 
             });
 
@@ -1063,7 +1063,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                      .IsRequired()
                      .HasColumnName("Peso")
-                     .HasColumnType("real");   // <------------------ ver si se usa real o money
+                     .HasColumnType("float");   // <------------------ ver si se usa real o money
 
             });
 
@@ -1071,7 +1071,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Charlas>(entity =>
             {
-                entity.HasKey(e => e.CharlasId);
+                entity.HasKey(e => e.CharlaId);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -1136,22 +1136,22 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                         .IsRequired()
                        .HasColumnName("Peso")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Precio)
                     .IsRequired()
                     .HasColumnName("Precio")
-                    .HasColumnType("real");   // <------------------ ver si se usa real o money
+                    .HasColumnType("money");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Monto)
                     .IsRequired()
                     .HasColumnName("Monto")
-                    .HasColumnType("real");   // <------------------ ver si se usa real o money
+                    .HasColumnType("money");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Total)
                     .IsRequired()
                     .HasColumnName("Total")
-                    .HasColumnType("real");   // <------------------ ver si se usa real o money
+                    .HasColumnType("money");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                     .HasColumnName("MaterialId");
@@ -1210,7 +1210,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                        .IsRequired()
                        .HasColumnName("Peso")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                    .HasColumnName("MaterialId");
@@ -1244,7 +1244,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                        .IsRequired()
                        .HasColumnName("Peso")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                   .HasColumnName("MaterialId");
@@ -1287,7 +1287,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.PesoGlobal)
                        .IsRequired()
                        .HasColumnName("PesoGlobal")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                     .HasColumnName("MaterialId");
@@ -1577,7 +1577,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Aream2)
                        .IsRequired()
                        .HasColumnName("Aream2")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.CantHombres)
                 .IsRequired();
