@@ -28,11 +28,14 @@
         <form asp-controller="Basura" asp-action="Index" method="post">
             <div class="row">
                 <div class="col-lg-2 text-right">
-                    <a asp-action="Create" class="btn btn-success fa fa-plus-circle"
+                    <a asp-action="Create" class="btn btn-info fa fa-plus-circle"
                        style="width:80%; height:100%;padding:12px;">
                         Agregar
                     </a>
                 </div>
+
+
+
                 @*<div class="col-md-2 col-lg-2 text-right">
                         <a asp-controller="" asp-action="Index"
                            class="btn btn-info fa fa-arrow-circle-left"
@@ -60,37 +63,41 @@
                 <tbody style="text-align:center;">
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(m => item.BasuraId)</td>
-                            <td>@Html.DisplayFor(m => item.Peso)</td>
-                            <td>@Html.DisplayFor(m => item.Fecha)</td>
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.BasuraId)</td>
+                        <td>@Html.DisplayFor(m => item.Peso)</td>
+                        <td>@Html.DisplayFor(m => item.Fecha)</td>
 
-                            <div class="col-md-6">
-                                <td style="width:300px">
+                        <div class="col-md-6">
+                            <a><partial name="_TableButtonPartialDelete" model="item.BasuraId" /></a>
+                        </div>
 
-                                    <div class="btn-group" role="group">
-                                       
-                                            <a class="btn btn-primary text-white" asp-action="Edit" asp-route-Id="@Model">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                        <a class="btn btn-success text-white" asp-action="Details" asp-route-Id="@Model">
-                                            <i class="fas fa-list-alt"></i>
-                                        </a>
-                                            @*<a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@Model">
-                                              <i class="fas fa-trash-alt"></i>
-                                            </a>*@
-                                    </div>
-                                </td>
-                            </div>
+                        @*<div class="col-md-6">
+        <td style="width:300px">
 
-                        </tr>
+            <div class="btn-group" role="group">
+
+                    <a class="btn btn-primary text-white" asp-action="Edit" model="item.BasuraId" asp-route-Id="@Model">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                <a class="btn btn-success text-white" asp-action="Details" asp-route-Id="@Model">
+                    <i class="fas fa-list-alt"></i>
+                </a>
+                        <a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@Model">
+          <i class="fas fa-trash-alt"></i>
+        </a>
+                        </div>
+        </td>
+    </div>*@
+
+                    </tr>
                     }
                 </tbody>
             </table>
         }
         else
         {
-            <h5 style="color:red;">No se encontraron registros!...</h5>
+            <h5 style="color:red;">No se encontraron registros de residuos ordinarios!...</h5>
         }
     </div>
 </main><!-- End #main -->

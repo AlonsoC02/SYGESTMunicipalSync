@@ -10,7 +10,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
     {
 
         [Display(Name = "Id:")]
-        public int CharlasId { get; set; }
+        public int CharlaId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el nombre de la charla")]
         [Display(Name = "Nombre:")]
