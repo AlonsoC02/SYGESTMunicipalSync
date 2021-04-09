@@ -34,5 +34,12 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de entrada ")]
         public DateTime? Fecha { get; set; }
+
+        public string msgError { get; set; }
+
+        public static implicit operator List<object>(PuntoRecMaterialMaterialesClasificacionViewModel v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SYGESTMunicipalSync.Areas.OFGA.Models;
 using SYGESTMunicipalSync.Areas.OFGA.Models.ViewModels;
 using SYGESTMunicipalSync.Models;
 using System;
@@ -67,10 +68,100 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                                   select new SelectListItem
                                   {
                                       Text = especialidad.Nombre,
-                                      Value = especialidad.ClasificacionId.ToString()
+                                      Value = especialidad.DistritoId.ToString()
                                   }
                                    ).ToList();
-            ViewBag.ListaTClasificacion = listaClasificacion;
+            ViewBag.ListaTDistrito = listaClasificacion;
+        }
+        private void cargarMaterial()
+        {
+            List<SelectListItem> listaClasificacion = new List<SelectListItem>();
+            listaClasificacion = (from especialidad in _db.Materiales
+                                  orderby especialidad.Nombre
+                                  select new SelectListItem
+                                  {
+                                      Text = especialidad.Nombre,
+                                      Value = especialidad.MaterialId.ToString()
+                                  }
+                                   ).ToList();
+            ViewBag.ListaTMaterial = listaClasificacion;
+        }
+
+        public IActionResult Create()
+        {
+            cargarMaterial();
+            cargarDistrito();
+            cargarClasificacion();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(PuntoRecMaterial materials)
+        {
+            int nVeces = 0;
+
+            try
+            {
+                nVeces = _db.PuntoRecMaterial.Where(m => m.PuntosRecMaterialId == materials.PuntosRecMaterialId).Count();
+                if (!ModelState.IsValid || nVeces >= 1)
+                {
+                    if (nVeces >= 1) ViewBag.Error = "Este id ya existe!";
+
+                    cargarMaterial();
+                    cargarDistrito();
+                    cargarClasificacion();
+                    return View(materials);
+                }
+                else
+                {
+                    PuntoRecMaterial _materials = new PuntoRecMaterial();
+                    _materials.PuntosRecMaterialId = materials.PuntosRecMaterialId;
+                    _materials.MaterialId = materials.MaterialId;
+                    _materials.Peso = materials.Peso;
+                    _materials.Fecha = materials.Fecha;
+                    _materials.ClasificacionId = materials.ClasificacionId;
+                    _materials.DistritoId = materials.DistritoId;
+
+                    _db.PuntoRecMaterial.Add(_materials);
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Edit(int? id)
+        {
+            cargarClasificacion();
+            int recCount = _db.PuntoRecMaterial.Count(e => e.PuntosRecMaterialId == id);
+            PuntoRecMaterial _materials = (from p in _db.PuntoRecMaterial
+                                     where p.PuntosRecMaterialId == id
+                                     select p).DefaultIfEmpty().Single();
+            return View(_materials);
+        }
+        [HttpPost]
+        public IActionResult Edit(Materiales materials)
+        {
+            string error = "";
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+
+                    return View(materials);
+                }
+                else
+                {
+                    _db.Materiales.Update(materials);
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
