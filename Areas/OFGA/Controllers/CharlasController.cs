@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 {
@@ -121,7 +122,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 charlasFromDb.Lugar = charlas.Lugar;
                 charlasFromDb.Expositor = charlas.Expositor;
                 charlasFromDb.Fecha = charlas.Fecha;
-                charlasFromDb.Activa = charlas.Activa;
+             
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
