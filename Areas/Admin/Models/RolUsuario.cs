@@ -23,6 +23,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Display(Name = "Usuario:")]
         public virtual Usuario Usuario { get; set; }
+
+        [Display(Name = "Boton Habilitado:")]
+        public bool BotonHabilitado { get; set; }
     }
 }
 

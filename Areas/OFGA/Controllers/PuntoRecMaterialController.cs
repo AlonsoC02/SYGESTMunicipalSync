@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SYGESTMunicipalSync.Areas.OFGA.Models.ViewModels;
 using SYGESTMunicipalSync.Models;
 using System;
@@ -42,6 +43,34 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                            }).ToList();
             lista = listaPunto;
             return View(listaPunto);
+        }
+
+        private void cargarClasificacion()
+        {
+            List<SelectListItem> listaClasificacion = new List<SelectListItem>();
+            listaClasificacion = (from especialidad in _db.Clasificacion
+                             orderby especialidad.Nombre
+                             select new SelectListItem
+                             {
+                                 Text = especialidad.Nombre,
+                                 Value = especialidad.ClasificacionId.ToString()
+                             }
+                                   ).ToList();
+            ViewBag.ListaTClasificacion = listaClasificacion;
+        }
+
+        private void cargarDistrito()
+        {
+            List<SelectListItem> listaClasificacion = new List<SelectListItem>();
+            listaClasificacion = (from especialidad in _db.Distrito
+                                  orderby especialidad.Nombre
+                                  select new SelectListItem
+                                  {
+                                      Text = especialidad.Nombre,
+                                      Value = especialidad.ClasificacionId.ToString()
+                                  }
+                                   ).ToList();
+            ViewBag.ListaTClasificacion = listaClasificacion;
         }
     }
 }
