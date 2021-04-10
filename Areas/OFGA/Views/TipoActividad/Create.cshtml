@@ -1,27 +1,24 @@
 ﻿
-@model SYGESTMunicipalSync.Areas.OFGA.Models.Basura
+@model SYGESTMunicipalSync.Areas.OFGA.Models.TipoActividad
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
-    String Fecha = @ViewBag.Fecha;
 }
 
 <main id="main">
-
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Eliminar Registro</h2>
+                    <h2>Registro de Tipos de Actividad (Denuncia)</h2>
                 </div>
             </div>
         </div>
-
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="Basura" asp-action="Delete">Residuos Ordinarios</a></li>
-                <li>Eliminar Registro</li>
+                <li><a asp-area="OFGA" asp-controller="TipoActividad" asp-action="Index">Tipo de Actividad</a></li>
+                <li>Registro de Tipo de Actividad</li>
             </ol>
         </div>
     </section><!-- End Breadcrumbs -->
@@ -30,59 +27,56 @@
         <div class="col-md-12 col-lg-12">
             <h3 class="text-light"
                 style="text-align:center;background-color:darkslategray;">
-                Eliminar
+                Tipo Actividad
             </h3>
         </div>
     </div>
-    <br />
 
     <!-- ======= About Section ======= -->
     <div class="row no-gutters">
         <div class="col-md-7">
             <div class="contact-wrap w-100 p-md-5 p-4">
-                <form method="post" asp-action="Delete" id="viewEliminar">
+                <h2 class="text-info">Nuevo Registro</h2>
+                <br>
+                <form method="post" asp-action="Create" id="viewAgregar">
                     <div class="backgroundWhite">
+                        <div asp-validation.summary="ModelOnly" class="text-danger"></div>
                         <div class=" form-group row">
                             <div class=" col-md-2">
-                                <h5><label asp-for="BasuraId" class="col-form-label"></label></h5>
+                                <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <input asp-for="BasuraId" class="form-control" readonly />
+                                <input asp-for="Nombre" class="form-control" />
                             </div>
-                            <span asp-validation-for="BasuraId" readonly class=" text-danger"></span>
+                            <span asp-validation-for="Nombre" class=" text-danger"></span>
                         </div>
 
                         <div class=" form-group row">
                             <div class=" col-md-2">
-                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
+                                <h5><label asp-for="Descripcion" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <input asp-for="Peso" readonly class="form-control" />
+                                <input asp-for="Descripcion" class="form-control" />
                             </div>
-                            <span asp-validation-for="Peso" class=" text-danger"></span>
+                            <span asp-validation-for="Descripcion" class=" text-danger"></span>
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input asp-for="Fecha" type="text" id="datepicker" readonly class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-
                             <div class="col-md-4 text-md-right">
-                                <input type="button" value="Eliminar" id="btnEliminar"
-                                       class="btn btn-danger" @*style="width: 80%;"*@
+                                <input type="button" value="Agregar" id="btnAgregar"
+                                       class="btn btn-info" @*style="width: 80%;"*@
                                        onclick="abrirModal()" />
                             </div>
+                            <div class="col-md-2 text-md-center">
+                                <a asp-action="Index" type="button" style="color:white"
+                                   class="btn btn-warning">
+                                    Regresar
+                                </a>
 
-                            <a asp-action="Index" type="button" style="color:white"
-                               class="btn btn-warning">
-                                Regresar
-                            </a>
+
+                            </div>
                         </div>
+
                     </div>
                 </form>
             </div>
@@ -94,20 +88,20 @@
 <script src="~/js/Utilitarios.js"></script>
 <script>
     function abrirModal() {
-        verModal('Eliminar', '¿Realmente Desea eliminar el registro de residuos ordinarios?').then((result) => {
+        verModal('Agregar Tipo de Actividad', '¿Realmente Desea Agregar Este Tipo de Actividad?').then((result) => {
             if (result.value) {
-                var viewEditar = document.getElementById("viewEliminar");
-                viewEditar.submit();
+                var viewAgregar = document.getElementById("viewAgregar");
+                viewAgregar.submit();
                 Swal.fire(
-                    'Eliminado!',
-                    'Operación con éxito!.',
+                    'El tipo de actividad fue agregado!',
+                    'exitosamente!.',
                     'success'
                 )
             }
             else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Cancelado',
-                    'Operación Fracasada!!!:)',
+                    'El tipo de actividad no ha sido agregado!!!:)',
                     'error'
                 )
             }
