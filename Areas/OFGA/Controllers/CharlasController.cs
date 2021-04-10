@@ -81,7 +81,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             {
                 return NotFound();
             }
-            var charlas = await _db.Charlas.SingleOrDefaultAsync(m => m.CharlaId == id);
+            var charlas = await _db.Charlas.FindAsync(id);
             if (charlas == null)
             {
                 return NotFound();
@@ -99,7 +99,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 return NotFound();
             }
 
-            var charlasFromDb = await _db.Charlas.Where(c => c.CharlaId == charlas.CharlaId).FirstOrDefaultAsync();
+            var charlasFromDb = await _db.Charlas.FindAsync(charlas.CharlaId);
 
             if (ModelState.IsValid)
             {
@@ -122,7 +122,8 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 charlasFromDb.Lugar = charlas.Lugar;
                 charlasFromDb.Expositor = charlas.Expositor;
                 charlasFromDb.Fecha = charlas.Fecha;
-             
+                charlasFromDb.Activa = charlas.Activa;
+
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -136,27 +137,31 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             if (id == null)
             {
                 return NotFound();
+
             }
-            var charlas = await _db.Charlas.SingleOrDefaultAsync(m => m.CharlaId == id);
+            var charlas = await _db.Charlas.FindAsync(id);
             if (charlas == null)
             {
                 return NotFound();
+
             }
             return View(charlas);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-
-        //POST DELETE
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var charlas = await _db.Charlas.SingleOrDefaultAsync(m => m.CharlaId == id);
+            var charlas = await _db.Charlas.FindAsync(id);
+            if (charlas == null)
+            {
+                return View();
+            }
             _db.Charlas.Remove(charlas);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        
+
         ////DETAILS
         public async Task<IActionResult> Details(int? id)
         {
@@ -164,7 +169,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             {
                 return NotFound();
             }
-            var charlas = await _db.Charlas.FirstOrDefaultAsync(m => m.CharlaId == id);
+            var charlas = await _db.Charlas.FindAsync(id);
             if (charlas == null)
             {
                 return NotFound();
