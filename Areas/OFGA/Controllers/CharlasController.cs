@@ -156,7 +156,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        
         ////DETAILS
         public async Task<IActionResult> Details(int? id)
         {
