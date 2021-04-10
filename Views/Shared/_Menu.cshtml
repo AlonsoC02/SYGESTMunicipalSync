@@ -1,104 +1,83 @@
-﻿
+﻿<head class="ftco-bg-dark-main">
 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    @*inicio*@
+    <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
+    <link href="~/lib/ej.responsive.css" rel="stylesheet" />
+    <script src="~/js/ej.web.all.min.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous" />
+    @*fin*@
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script src="~/js/jquery-ui.js"></script>
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
 
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark "
-     id="ftco-navbar">
-    <div class="container-fluid">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SYGEST</a>*@
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link href="~/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/css/flaticon.css" rel="stylesheet" />
+    <link href="~/css/icomoon.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
 
-        @* LOGO EN EL NAV *@
-        <div class="logo-img">
-            <a asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/images/LogoMuni2.png" alt="">
-            </a>
+    <link href="~/Patentes/OP/assets/css/style.css" rel="stylesheet" />
+</head>
 
-        </div>
-        <div class="logo-img">
-            <a asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/images/logo.png" alt="">
-            </a>
-
-        </div>
-        @* FIN LOGO EN EL NAV *@
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="fa fa-bars"></span> Menu
-        </button>
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav m-auto">
-
-                <li class="nav-item active">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                </li>
-                @*@if (User.IsInRole(SD.ManagerUser))
-                    {*@
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Empleados</a>
-                </li>
-                @*}*@
-                <li class="nav-item dropdown text-white-50">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                       role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        Servicios
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                        <a class="dropdown-item" asp-action="Index"
-                           asp-controller="Home" asp-area="PATENTES">Oficina de Patentes</a>
-
-                        <a class="dropdown-item" asp-action="Index"
-                           asp-controller="Home" asp-area="OFGA">Oficina de Gestión Ambiental</a>
-
-                        <a class="dropdown-item" asp-action="Index"
-                           asp-controller="Home" asp-area="OFIM">Oficina de La Mujer</a>
-
+<div class="search-background" style="color:black">
+    <div class="container pt-3 pb-2">
+        <div class="container pt-3 pb-2">
+            <div class="row justify-content-between">
+                <div class="col-md-8 order-md-last">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <a class="navbar-brand" style="color:#8c552e" asp-area="" asp-controller="Home" asp-action="Index">SyGest<span>Municipal</span> </a>
+                        </div>
+                        @*<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+                                <form action="#" class="searchform order-lg-last">
+                                    <div class="form-group d-flex">
+                                        <input type="text" class="form-control pl-3" placeholder="Search">
+                                        <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+                                    </div>
+                                </form>
+                            </div>*@
                     </div>
-                </li>
+                </div>
 
 
-                <li class="nav-item dropdown text-white-50">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                       role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        Trámites
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                        <a class="dropdown-item" asp-action="Create"
-                           asp-controller="PersonPatentes" asp-area="PATENTES">Solicitar una Patente</a>
+                <div class="col-md-6 col-lg">
+                    <div class="social-media">
+                        <p class="mb-0 d-flex">
+                            @* LINKS DE LAS REDES SOCIALES *@
+                            <a href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" class="d-flex align-items-center justify-content-center" target="_blank">
+                                <span class="fa fa-facebook">
+                                    <i class="sr-only">Facebook</i>
+                                </span>
+                            </a>
 
-                        <a class="dropdown-item" asp-action="Create"
-                           asp-controller="Complaint" asp-area="OFGA">Denuncia Ambiental</a>
+                            <a href="https://www.instagram.com/explore/locations/256658138352395/municipalidad-hojancha/" class="d-flex align-items-center justify-content-center" target="_blank">
+                                <span class="fa fa-instagram">
+                                    <i class="sr-only">Instagram</i>
+                                </span>
+                            </a>
+                            @* FIN LINKS DE LAS REDES SOCIALES *@
 
-                        @*<a class="dropdown-item" asp-action="Index"
-                            asp-controller="Home" asp-area="OFIM">Empresariedad</a>*@
-
+                        </p>
                     </div>
+                </div>
 
-
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="Home" asp-controller="Home" asp-action="Contactenos">Contáctanos</a>
-                </li>
-
-                @*<li class="nav-item">
-                        <a class="nav-link" asp-area="Home" asp-controller="Home" asp-action="Index">Preguntas Frecuentes</a>
-                    </li>*@
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="Home" asp-controller="Home" asp-action="Privacy">Privacidad</a>
-                </li>
-                @*<partial name="_LoginPartial" />*@
-                @*<li class="nav-item">
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log In</a>
-                    </li>*@
-            </ul>
+            </div>
         </div>
     </div>
-</nav>
+</div>
+

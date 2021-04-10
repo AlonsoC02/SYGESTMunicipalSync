@@ -73,7 +73,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                     {
                         PaginaId = ViewBag.ID,
                         Menu = pagina.Menu,
-                        BotonHabilitado = true,
+                       
                         Accion = pagina.Accion,
                         Controlador = pagina.Controlador,
                     };
@@ -129,7 +129,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                     {
                         PaginaId = pagina.PaginaId,
                         Menu = pagina.Menu,
-                        BotonHabilitado = true,
+                        
                         Accion = pagina.Accion,
                         Controlador = pagina.Controlador,
                     };
