@@ -1194,7 +1194,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Pacas>(entity =>
             {
-                entity.HasKey(e => e.PacasId);
+                entity.HasKey(e => e.PacaId);
 
                 entity.Property(e => e.Fecha)
                 .IsRequired()
@@ -1273,9 +1273,9 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.HasKey(e => e.RecuentoId);
 
-                entity.Property(e => e.Fecha)
+                entity.Property(e => e.FechaPeso)
                 .IsRequired()
-                .HasColumnName("Fecha")
+                .HasColumnName("FechaPeso")
                 .HasColumnType("datetime");
 
                 entity.Property(e => e.PesoGlobal)

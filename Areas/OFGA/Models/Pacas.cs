@@ -9,7 +9,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
     public partial class Pacas
     {
         [Display(Name = "Id:")]
-        public int PacasId { get; set; }
+        public int PacaId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el peso")]
         [Display(Name = "Peso")]

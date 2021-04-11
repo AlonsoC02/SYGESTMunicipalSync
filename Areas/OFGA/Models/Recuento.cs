@@ -14,7 +14,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
         [Display(Name = "Fecha:")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? Fecha { get; set; }
+        public DateTime? FechaPeso { get; set; }
 
         [Display(Name = "Material:")]
         public int MaterialId { get; set; }
