@@ -28,7 +28,6 @@
     <Folder Include="Areas\Home\Models\" />
     <Folder Include="Areas\OFGA\Data\" />
     <Folder Include="Areas\OFIM\Data\" />
-    <Folder Include="Areas\OFIM\Views\Home\" />
     <Folder Include="Areas\PATENTES\Controllers\" />
     <Folder Include="Areas\PATENTES\Data\" />
     <Folder Include="Controllers\" />

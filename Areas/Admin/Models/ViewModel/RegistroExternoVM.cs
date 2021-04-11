@@ -1,24 +1,28 @@
-﻿using SYGESTMunicipalSync.Areas.OFIM.Models;
-using SYGESTMunicipalSync.Areas.PATENTES.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SYGESTMunicipalSync.Areas.Admin.Models
+namespace SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
 {
-    public partial class Persona
+    public class RegistroExternoVM
     {
         [Required(ErrorMessage = "Debe digitar el ID de la Persona")]
         [Display(Name = "Cédula o Pasaporte:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string CedulaPersona { get; set; }
 
+        [Display(Name = "Usuario Id:")]
+        public int UsuarioId { get; set; }
+
         [Required(ErrorMessage = "Debe digitar el Nombre de la Persona")]
         [Display(Name = "Nombre:")]
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
+
+        [Display(Name = "Nombre usuario:")]
+        public string NombreUsuario { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el primer Apellido de la Persona")]
         [Display(Name = "Primer Apellido:")]
@@ -70,26 +74,27 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Display(Name = "Provincia:")]
         public int ProvinciaId { get; set; }
         public virtual Provincia Provincia { get; set; }
+      
+        [Required(ErrorMessage = "Debe digitar la contraseña del usuario")]
+        [Display(Name = "Contraseña:")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
+        public string Password { get; set; }
 
+        [Required(ErrorMessage = "Debe digitar la confirmacion de la contraseña")]
+        [Display(Name = "Confirmar contraseña:")]
+        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
+        public string ConfirmarContrasena { get; set; }
 
-        //public virtual ICollection<Familia> Familia { get; set; }
-        public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
-        public virtual ICollection<TipoConsulta> TipoConsulta { get; set; }
-        public virtual ICollection<Consulta> Consulta { get; set; }
-        public virtual ICollection<Seguimiento> Seguimiento { get; set; }
-        public virtual ICollection<Solicitante> Solicitante { get; set; }
-        public virtual ICollection<Propietario> Propietario { get; set; }
-        
-        public virtual ICollection<Empresa> Empresa { get; set; }
-        public virtual ICollection<Usuario> Usuario { get; set; }
-        public Persona()
-        {
-            //Familia = new HashSet<Familia>();
-            PersonaOFIM = new HashSet<PersonaOFIM>();
-            TipoConsulta = new HashSet<TipoConsulta>();
-            Solicitante = new HashSet<Solicitante>();
-            Propietario = new HashSet<Propietario>();
-            Usuario = new HashSet<Usuario>();
-        }
+        [Display(Name = "Rol Usuario Id:")]
+        public int RolUsuarioId { get; set; }
+
+        [Display(Name = "Rol Id:")]
+
+        public int RolId { get; set; }
+        [Display(Name = "Rol de Usuario:")]
+        public virtual Rol Rol { get; set; }
+
+        [Display(Name = "Boton Habilitado:")]
+        public bool BotonHabilitado { get; set; }
     }
 }

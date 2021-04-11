@@ -1,0 +1,303 @@
+﻿@*@model SYGESTMunicipal.Areas.OFIM.Models.ViewModel.IndexViewModel*@
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+}
+
+@*Sección del Carrusel *@
+<section class="hero-wrap hero-wrap-3" data-stellar-background-ratio="0.5">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src="images/OFIM/FACEBOOK 1.png" style="background-size:cover;width:100%;height:100%;position:relative">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="display-4" style="color: #3ADF00; text-shadow: 2px 2px 2px #000">OFICINA DE LA MUJER</h5>
+                    <p class="lead" style="color:white;text-shadow: 2px 2px 5px #000">Municipalidad de Hojancha</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="images/OFIM/FACEBOOK 2.png" style="background-size:cover;width:100%;height:100%;position:relative">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="display-4" style="color:#3ADF00;text-shadow: 2px 2px 2px #000">OFICINA DE LA MUJER</h5>
+                    <p class="lead" style="color:white;text-shadow: 2px 2px 5px #000">Municipalidad de Hojancha</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="images/OFIM/inicio.png" style="background-size:cover;width:100%;height:100%;position:relative">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="display-4" style="color:#3ADF00;text-shadow: 2px 2px 2px #000">OFICINA DE LA MUJER</h5>
+                    <p class="lead" style="color:white;text-shadow: 2px 2px 5px #000">Municipalidad de Hojancha</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="images/OFIM/Empresariedad.jpg" style="background-size:cover;width:100%;height:100%;position:relative">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="display-4" style="color:#3ADF00;text-shadow: 2px 2px 2px #000">OFICINA DE LA MUJER</h5>
+                    <p class="lead" style="color:white;text-shadow: 2px 2px 5px #000">Municipalidad de Hojancha</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <!-- Controls -->
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                @*<span class="glyphicon glyphicon-chevron-left"></span>*@
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                @*<span class="glyphicon glyphicon-chevron-right"></span>*@
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+@*Fin de Sección del Carrusel *@
+
+@*Sección Barra para Separación *@
+<section class="ftco-section ftco-no-pt ftco-no-pb ftco-bg-dark-ma">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8 py-4 heading-section text-center ftco-animate">
+                <div class="section-title">
+                    <div class="col-lg-12 heading-section text-center ftco-animate">
+                        <h2 style="color:white">Objetivos de la OFIM</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*Sección Barra para Separación *@
+
+@*Sección 1 *@
+<section class="ftco-section ftco-no-pt ftco-no-pb bg-light">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-md-6 d-flex">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-end" style="background-image: url('images/Empresariedad.jpg');">
+                    <a href="https://www.youtube.com/watch?v=S1yBzwy-I-c" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
+                        <span class="icon-play"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 pl-md-5">
+                <br />
+                <br />
+                <p class="mb-4"> « Contribuir a la incorporación de las necesidades de las mujeres en planes de desarrollo local y políticas municipales. »</p>
+                <br />
+                <p class="mb-4"> « Referir a las mujeres a los diferentes  servicios que brindan instituciones públicas y privadas. »</p>
+                <br />
+                <p class="mb-4"> « Promover la autonomía económica de las mujeres.</p>
+                <br />
+                <p class="mb-4"> « Promover liderazgo y el ejercicio de la ciudadanía de las mujeres por medio de capacitaciones. »</p>
+                <br />
+                <p class="mb-4"> « Asesoraría y promoción en materia de derechos institucionales a favor de las mujeres. »</p>
+                <br />
+                <p class="mb-4"> « Contribuir al impulso de políticas, planes y acciones para la promoción de la igualdad y equidad de género. »</p>
+
+            </div>
+        </div>
+    </div>
+</section>
+@*Fin Sección 1 *@
+
+@*Sección 2 *@
+<section class="ftco-section ftco-bg-dark-main">
+    <div class="container">
+
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Nuestros Servicios</span>
+                <h2 style="color:white">ÁREAS DE ATENCIÓN</h2>
+            </div>
+        </div>
+        <div class="row d-flex">
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/OFIM/Charlas.jpeg');">
+                    </a>
+                    <div class="text p-4 float-right d-block">
+                        <p>PROMOCIÓN DE PROCESOS RELACIONADA CON GÉNERO, VIOLENCIA INTRAFAMILIAR, DESARROLLO EMPRESARIAL.</p>
+                        <p><a class="btn btn-primary" asp-area="OFIM" asp-controller="Home" asp-action="IndexServicio">CHARLAS</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/OFIM/Talleres.jpeg');">
+                    </a>
+                    <div class="text p-4 float-right d-block">
+                        <p>PROMOCIÓN Y APOYO A LA GESTIÓN ORGANIZATIVA EMPRESARIAL DE GRUPOS DE MUJERES FORMALES E INFORMALES.</p>
+                        <p><a href="#" class="btn btn-primary">TALLERES</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/OFIM/Empresariedad.jpg');">
+                    </a>
+                    <div class="text p-4 float-right d-block">
+                        <p>GESTIÓN DE RECURSOS TÉCNICOS Y FINANCIEROS PARA FORTALECER LA EMPRESARIEDAD FEMENINA FORMAL E INFORMAL.</p>
+                        <p><a href="#" class="btn btn-primary">EMPRESARIEDAD</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/OFIM/Coordinacion.jpg');">
+                    </a>
+                    <div class="text p-4 float-right d-block">
+                        <p>GESTIÓN DE REFERENCIA DE LAS MUJERES A LOS DIFERENTES SERVICIOS QUE BRINDAN INSTITUCIONES PÚBLICAS Y PRIVADAS.</p>
+                        <p><a href="#" class="btn btn-primary">COORDINACIÓN INTERINSTITUCIONAL</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/OFIM/Promocion.jpeg');">
+                    </a>
+                    <div class="text p-4 float-right d-block">
+                        <p>ASESORÍA Y PROMOCIÓN EN MATERIA DE DERECHOS Y ACCIONES PARA LA PROMOCIÓN DE LA IGUALDAD Y EQUIDAD DE GÉNERO.</p>
+                        <p><a href="#" class="btn btn-primary">PROMOCIÓN DE<br>LOS DERECHOS</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                    <a href="blog-single.html" class="block-20" style="background-image: url('images/OFIM/Violencia.jpeg');">
+                    </a>
+                    <div class="text p-4 float-right d-block">
+                        <p>ATENCIÓN INDIVIDUALIZADA EN CASOS DE VIOLENCIA INTRAFAMILIAR, ASI COMO PREVENCIÓN Y REFERENCIA A OTRAS INSTITUCIONES.</p>
+                        <p><a href="#" class="btn btn-primary">VIOLENCIA<br>INTRAFAMILIAR</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*Fin Sección 2 *@
+
+@*Sección 3*@
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-10 text-center heading-section ftco-animate">
+                <span class="subheading">Oficina de la Mujer</span>
+                <h2 class="mb-4">FECHAS CONMEMORATIVAS</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel-seasonal owl-carousel ftco-owl">
+                    <div class="item">
+                        <div class="wrap">
+                            <div class="seasonal img d-flex align-items-center justify-content-center" style="background-image: url(images/OFIM/DiaDeLaMujer.jpg);">
+                            </div>
+                            <div class="text text-center px-4">
+                                <h3><a href="#">8 de Marzo</a></h3>
+                                <p>Día Internacional de la Mujer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="wrap">
+                            <div class="seasonal img d-flex align-items-center justify-content-center" style="background-image: url(images/OFIM/NoViolencia.jpg);">
+                            </div>
+                            <div class="text text-center px-4">
+                                <h3><a href="#">25 de Noviembre</a></h3>
+                                <p>Día Internacional Contra la No Violencia Contra la Mujer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="wrap">
+                            <div class="seasonal img d-flex align-items-center justify-content-center" style="background-image: url(images/OFIM/DiaDeLasMadres.jpg);">
+                            </div>
+                            <div class="text text-center px-4">
+                                <h3><a href="#">15 de Agosto</a></h3>
+                                <p>Día de las Madres.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="wrap">
+                            <div class="seasonal img d-flex align-items-center justify-content-center" style="background-image: url(images/OFIM/SaludMental.png);">
+                            </div>
+                            <div class="text text-center px-4">
+                                <h3><a href="#">6 de Septiembre</a></h3>
+                                <p>Día por mi Salud Mental.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*Fin Sección 3 *@
+
+
+@*<section class="ftco-section ftco-bg-dark-main">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Nuestra Agenda</span>
+                <h2 style="color:white">ACTIVIDADES DISPONIBLES</h2>
+            </div>
+        </div>
+        <ul id="menu-filters" class="menu-filter-list list-inline text-center">
+            <li class="active btn btn-secondary ml-1 mr-1" data-filter=".menu-restaurant">Mostrar Todo</li>
+            @foreach (var item in Model.Category)
+            {
+                <li class="ml-1 mr-1" data-filter=".@item.Name.Replace(" ",string.Empty)">@item.Name</li>
+            }
+        </ul>
+        @foreach (var category in Model.Category)
+        {
+            <div class="row" id="menu-wrapper">
+                <partial name="_ThumbnailAreaPartial"
+                         model="@Model.Actividad.Where(u=>u.Category.Name.Equals(category.Name))" />
+            </div>
+        }
+    </div>
+</section>*@
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.5.0.js"
+            integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+            crossorigin="anonymous">
+    </script>
+    <script>
+                //load data from server, using HTTP Post request
+                var posts = $('.post');
+                (function ($) {
+                    $("#menu-filters li").click(function () {
+                        $("#menu-filters li").removeClass('active btn btn-secondary');
+                        $(this).addClass('active btn btn-secondary');
+                        var selectedFilter = $(this).data("filter");
+                        $(".menu-restaurant").fadeOut();
+                        setTimeout(function () {
+                            $(selectedFilter).slideDown();
+                        }, 100);
+                    });
+                })(jQuery);
+    </script>
+}
+
+@*https://getbootstrap.com/docs/4.0/components/carousel/
+    https://www.w3schools.com/bootstrap/bootstrap_filters.asp*@

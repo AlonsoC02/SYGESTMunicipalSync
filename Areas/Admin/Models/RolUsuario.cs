@@ -16,7 +16,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Display(Name = "Rol Usuario Id:")]
         public int RolUsuarioId { get; set; }
 
-        [Display(Name = "Rol de Usuario Id:")]
+        [Display(Name = "Rol Id:")]
 
         public int RolId { get; set; }
         [Display(Name = "Rol de Usuario:")]

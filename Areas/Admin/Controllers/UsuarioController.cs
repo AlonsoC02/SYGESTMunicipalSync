@@ -18,7 +18,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
     {
         private readonly DBSygestContext _db;
         List<PersonaUsuario> listaUsuario = new List<PersonaUsuario>();
-        List<Usuario> lista = new List<Usuario>();
+        List<PersonaUsuario> lista = new List<PersonaUsuario>();
 
         public UsuarioController(DBSygestContext db)
         {

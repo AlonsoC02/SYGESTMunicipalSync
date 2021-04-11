@@ -1,0 +1,167 @@
+﻿@model SYGESTMunicipalSync.Areas.Admin.Models.Persona
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaDistrito;
+    List<SelectListItem> Lista1 = ViewBag.ListaCanton;
+    List<SelectListItem> Lista2 = ViewBag.ListaProvincia;
+
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light" style="text-align:center;
+                              background-color:#dc3545;width:100%;">
+            Detalles de la Persona
+        </h3>
+    </div>
+</div>
+<br />
+
+<form asp-controller="Persona" asp-action="Details" method="post">
+    <div class="container-fluid">
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label asp-for="CedulaPersona" class="col-form-label"></label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="CedulaPersona" readonly class="col-form-label" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Nombre: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Nombre" readonly class="col-form-label" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Primer Apellido: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Ape1" readonly class="col-form-label" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Segundo Apellido: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Ape2" readonly class="col-form-label" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Fecha Nacimiento: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="datetime" asp-for="FechaNac" readonly class="col-form-label" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Correo Electrónico:</label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Email" readonly class="col-form-label" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Sexo: </label>
+            </div>
+            <div class="col-md-6">
+                <select id="Sexo" asp-for="Sexo" class="form-control" disabled>
+                    <option>H</option>
+                    <option>M</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Teléfono Móvil:</label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="TelMovil" readonly class="col-form-label" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Teléfono Fijo: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="TelFijo" readonly class="col-form-label" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Fax:</label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Fax" readonly class="col-form-label" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Dirección: </label>
+            </div>
+            <div class="col-md-6">
+                <textarea asp-for="Direccion" rows="4" cols="50"
+                          class="form-control" disabled> </textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Distrito: </label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="DistritoId" class="form-control" 
+                        asp-items="@Lista" disabled></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Cantón: </label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="CantonId" class="form-control" 
+                        asp-items="@Lista1" disabled></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Provincia: </label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="ProvinciaId" class="form-control" 
+                        asp-items="@Lista2" disabled></select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-md-1 text-md-center">
+                <a asp-action="Index" type="button"
+                   class="btn btn-success">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -34,23 +34,38 @@
     <link href="~/Patentes/OP/assets/css/style.css" rel="stylesheet" />
 </head>
 
+
 <div class="search-background" style="color:black">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 col-sm-5">
+                <p>Bienvenido los servicios digitales de la Municipalidad de Hojancha</p>
+            </div>
+
+            <div class="col-md-8 col-sm-7 text-align-right">
+               
+                <span><a asp-area="" asp-controller="Login" asp-action="CerrarSesion"><i class="fa fa-key" aria-hidden="true"></i>Salir</a></span>
+                <span><a asp-area="" asp-controller="Home" asp-action="CargarUsuario"><i class="fa fa-key" aria-hidden="true"></i></a></span>
+                
+            </div>
+
+
+
+        </div>
+    </div>
     <div class="container pt-3 pb-2">
         <div class="container pt-3 pb-2">
             <div class="row justify-content-between">
+
+
+
                 <div class="col-md-8 order-md-last">
                     <div class="row">
                         <div class="col-md-6 text-center">
                             <a class="navbar-brand" style="color:#8c552e" asp-area="" asp-controller="Home" asp-action="Index">SyGest<span>Municipal</span> </a>
                         </div>
-                        @*<div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
-                                <form action="#" class="searchform order-lg-last">
-                                    <div class="form-group d-flex">
-                                        <input type="text" class="form-control pl-3" placeholder="Search">
-                                        <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
-                                    </div>
-                                </form>
-                            </div>*@
+
                     </div>
                 </div>
 
