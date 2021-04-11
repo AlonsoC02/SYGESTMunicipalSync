@@ -90,6 +90,19 @@
         </div>
     </div>
 </main>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+
+
+
+    <script src="~/js/DPickerSpanish.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+            $("#datepicker").datepicker({ minDate: 0, maxDate: "+1W" });
+            //$("#timepicker").timepicker({ minTime: '11:00 AM', maxTime: '9:00 PM', step: '30' })
+        });</script>
+}
 
 <script src="~/js/sweetalert2.js"></script>
 <script src="~/js/Utilitarios.js"></script>
