@@ -61,151 +61,273 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
-            <div class="container-fluid" style="padding-right: 25px">
-                @* LOGO  *@
-                <div class="logo-img">
-                    <a asp-area="OFGA" asp-controller="Home" asp-action="Index">
-                        <img src="~/Ambiental/assets/img/Logo_ColorSinFondo (1).png" alt="">
-                    </a>
-                </div>
-                @* LOGO  *@
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                        aria-controls="ftco-nav"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span> Menu
-                </button>
-                <div class="collapse navbar-collapse" id="ftco-nav">
-                    <ul class="navbar-nav m-auto">
+    @* LOGIN -Registrarse *@
+    <partial name="_Encabezado" />
+    @* NAV *@
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                        </li>
-
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a>
-                        </li>
-
-                        <li class="nav-item dropdown text-white-50">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                               role="button" data-toggle="dropdown" aria-haspopup="true"
-                               aria-expanded="false">
-                               Servicios
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                <a class="dropdown-item" asp-action="IndexTalks"
-                                   asp-controller="Charlas" asp-area="OFGA">Charlas Disponibles</a>
-
-                                <a class="dropdown-item" asp-action="Create"
-                                   asp-controller="Complaint" asp-area="OFGA">Denuncias</a>
-
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown text-white-50">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                               role="button" data-toggle="dropdown" aria-haspopup="true"
-                               aria-expanded="false">
-                                Información
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                <a class="dropdown-item" asp-action="IndexEduquemonos"
-                                   asp-controller="Home" asp-area="OFGA">Eduquémonos</a>
-
-                                <a class="dropdown-item" asp-action="Contacto"
-                                   asp-controller="Home" asp-area="OFGA">Contacto</a>
-
-                            </div>
-                        </li>
-
-
-                        @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
-                        {*@
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Coordinación
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    <a class="dropdown-item" asp-action="Index"
-                                       asp-controller="PersonOFGA" asp-area="OFGA">Registro Persona</a>
-
-
-
-                                    <a class="dropdown-item" asp-action="Index"
-                                       asp-controller="Charlas" asp-area="OFGA">Charlas</a>
-
-                                    <a class="dropdown-item" asp-action="Index"
-                                       asp-controller="TipoDenuncia" asp-area="OFGA">Tipo de Denuncia</a>
-
-                                    <a class="dropdown-item" asp-action="Index"
-                                       asp-controller="TipoActividad" asp-area="OFGA">Tipo de Actividad</a>
-
-                                    <a class="dropdown-item" asp-action="Index"
-                                       asp-controller="Complaint" asp-area="OFGA">Denuncias</a>
-
-
-                                </div>
-                            </li>
-
-                        @*}*@
-
-                        @*@if (User.IsInRole(SD.CollManager) || User.IsInRole(SD.AdminOFGA) || User.IsInRole(SD.ManagerUser))
-                        {*@
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Centro de Acopio
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    <a class="dropdown-item" asp-area="OFGA"
-                                       asp-controller="Clasificacion" asp-action="Index">Categoría de Materiales</a>
-
-                                    <a class="dropdown-item" asp-area="OFGA"
-                                       asp-controller="Materiales" asp-action="Index">Materiales</a>
-
-                                    <a class="dropdown-item"
-                                       asp-area="OFGA" asp-controller="PuntoRecMaterial" asp-action="Index">Punto de Recuperación</a>
-
-                                    <a class="dropdown-item"
-                                       asp-area="OFGA" asp-controller="Pacas" asp-action="Index">Pacas</a>
-
-                                    <a class="dropdown-item"
-                                       asp-area="OFGA" asp-controller="Recuento" asp-action="Index">Recuento</a>
-
-                                </div>
-
-                            </li>
-                        @*}
-
-                        @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
-                        {*@
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Recolección de Basura
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-
-                                    <a class="dropdown-item" asp-area="OFGA"
-                                       asp-controller="Basura" asp-action="Index">Residuos Ordinarios</a>
-                                </div>
-                            </li>
-                        @*}*@
-
-                        @*<partial name="_LoginPartial" />*@
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+        <div class="container-fluid" style="padding-right: 25px">
+            @* LOGO  *@
+            <div class="logo-img">
+                <a asp-area="OFGA" asp-controller="Home" asp-action="Index">
+                    <img src="~/Ambiental/assets/img/Logo_ColorSinFondo (1).png" alt="">
+                </a>
             </div>
-        </nav><!-- .nav-menu -->
-    </header><!-- End Header -->
+            @* LOGO  *@
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                    aria-controls="ftco-nav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+
+                <ul class="navbar-nav m-auto">
+
+                    @* LINK DE INICIO *@
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area=""
+                           asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+
+                    @* LINK DE INICIO OFIM *@
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="OFGA"
+                           asp-controller="Home" asp-action="Index">OFGA</a>
+                    </li>
+
+                    @* MENU DE MANTENIMIENTO PARA ADMINISTRADOR OFGA *@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuMantOFGA != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Mantenimiento
+                            </a>
+                            @* CRUD DE TIPOS CLASIFICACIÓN *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Materiales"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Clasificacion" asp-area="OFGA">Clasificación Materiales</a>
+                                    </li>
+
+                                @*}*@
+                                @* CRUD DE MATERIALES ADMITIDOS *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Materiales Admitidos"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Materiales" asp-area="OFGA">Materiales Admitidos</a>
+                                    </li>
+                                @*}*@
+                                @* CRUD DE TIPOS DE DENUNCIA *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Tipos Denuncia"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="TipoDenuncia" asp-area="OFGA">Tipos Denuncia</a>
+                                    @*</li>
+                                }*@
+
+                            </ul>
+                        </li>
+                    }
+
+
+                    @* MENU CEMTRO ACOPIO*@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuAcopio != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Centro Acopio
+                            </a>
+                            @* CRUD DE PACAS *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Pacas"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Pacas" asp-area="OFGA">Pacas</a>
+                                    </li>
+
+                                @*}*@
+                                @* CRUD DE RECUENTO *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Recuento"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Recuento" asp-area="OFGA">Recuento</a>
+                                    </li>
+                                @*}*@
+                                @* CRUD PUNTOS DE RECOLECCION*@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Punto de Recuperación Material"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="PuntoRecMaterial" asp-area="OFGA">Puntos Recuperación Material</a>
+                                    </li>
+                                    @*}*@
+                                @* CRUD INGRESO POR VENTAS*@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Ingreso por Venta"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="IngresoVenta" asp-area="OFGA">Ingreso por Venta</a>
+                                    @*</li>
+                                }*@
+                            </ul>
+                        </li>
+                    }
+                    @* MENU RESIDUOS ORDINARIOS*@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuResi != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Residuos Ordinarios
+                            </a>
+                            @* CRUD DE REGISTRO DE ENTREGAS DE BASURA *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Entregas"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Basura" asp-area="OFGA">Registro de Entregas</a>
+                                    </li>
+
+                                @*}*@
+                                @* CRUD DE RUTA DE RECOLECCIÓN *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Rutas de Recolección"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="RecoleccionBasura"
+                                           asp-controller="Home" asp-area="OFGA">Rutas de Recolección</a>
+                                    </li>
+                                @*}*@
+
+                            </ul>
+                        </li>
+                    }
+                    @* MENU DENUNCIAS AMBIENTALES*@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuDenun != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Denuncias Ambientales
+                            </a>
+                            @* CREATE DE REGISTRO DE PERSONAS*@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="Persona" asp-area="Admin">Persona</a>
+                                    </li>
+
+                                @*}*@
+                                @*CREATE DE DENUNCIAS*@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registrar Denuncia"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="Denuncia" asp-area="OFGA">Registrar Denuncia</a>
+                                    </li>
+                                @*}*@
+
+                            </ul>
+                        </li>
+                    }
+
+                    @* MENU DE CONSULTAS*@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuCons != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Consultas
+                            </a>
+                            @* CONSULTA DE DENUNCIAS*@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Denuncia"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Consulta"
+                                           asp-controller="Denuncia" asp-area="OFGA">Consulta Denuncia</a>
+                                    </li>
+
+                                @*}*@
+
+
+                            </ul>
+                        </li>
+                    }
+
+                    @* MENU PROCESOS FORMATIVOS*@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuProcForm != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Procesos Formativos
+                            </a>
+                            @* INFO DE CHARLAS *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Charlas"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="IndexTalks"
+                                           asp-controller="Charlas" asp-area="OFGA">Charlas</a>
+                                    </li>
+
+                                @*}*@
+                                @* CRUD DE CHARLAS *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro Charlas"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Charlas" asp-area="OFGA">Registro Charlas</a>
+                                    </li>
+                                @*}*@
+                                @* INFO DE FECHAS CONMEMORATIVAS*@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Fechas Conmemorativas"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Home" asp-area="OFGA">Fechas Conmemorativas</a>
+                                    </li>
+                                @*}*@
+                                @*INFO DE EDUQUEMONOS*@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Eduquémonos"))
+                                {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="IndexEduquemonos"
+                                           asp-controller="Home" asp-area="OFGA">Eduquémonos</a>
+                                    </li>
+                                @*}*@
+                            </ul>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="OFGA"
+                           asp-controller="Home" asp-action="Contacto">Contáctenos</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <!-- ======= AQUI INGRESA LA INFO DEL INDEX ======= -->
 
 
@@ -252,7 +374,7 @@
 
                         <div class="social-links">
 
-                            
+
                             <a href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" class="facebook" target="_blank"><i class="icofont-facebook"></i></a>
                             <a href="https://www.instagram.com/explore/locations/256658138352395/municipalidad-hojancha/" class="instagram" target="_blank"><i class="icofont-instagram"></i></a>
 

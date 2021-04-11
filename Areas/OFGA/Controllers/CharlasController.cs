@@ -177,8 +177,8 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             return View(charlas);
         }
 
-
-        public async Task<IActionResult> IndexTalks()
+        
+        public IActionResult IndexTalks()
         {
             listaCharlas = (from charlas in _db.Charlas
                           where charlas.Activa == true
@@ -199,12 +199,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 
             lista = listaCharlas;
 
-            //return View(await _db.Talks.ToListAsync());
-
             return View(listaCharlas);
-
-
-
 
         }
 
