@@ -1,0 +1,144 @@
+﻿
+@model SYGESTMunicipalSync.Areas.OFGA.Models.Recuento
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+
+    List<SelectListItem> Lista = ViewBag.ListaMateriales;
+    List<SelectListItem> Lista1 = ViewBag.ListaClasificacion;
+
+}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Editar Registro</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Recuento" asp-action="Edit">Recuento</a></li>
+                <li>Editar Registro</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light"
+                style="text-align:center;background-color:darkslategray;">
+                Editar
+            </h3>
+        </div>
+    </div>
+    <br />
+
+    <!-- ======= About Section ======= -->
+    <div class="row no-gutters">
+        <div class="col-md-7">
+            <div class="contact-wrap w-100 p-md-5 p-4">
+                <form method="post" asp-action="Edit" id="viewEditar">
+                    <div class="backgroundWhite">
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="RecuentoId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="RecuentoId" class="form-control" readonly />
+                            </div>
+                            <span asp-validation-for="RecuentoId" class=" text-danger"></span>
+                        </div>
+
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="PesoGlobal" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="PesoGlobal" class="form-control" />
+                            </div>
+                            <span asp-validation-for="PesoGlobal" class=" text-danger"></span>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="FechaPeso" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="FechaPeso" type="text" id="datepicker" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="MaterialId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select asp-for="MaterialId" class="form-control" required
+                                        asp-items="@Lista"></select>
+                            </div>
+                            <span asp-validation-for="MaterialId" class=" text-danger"></span>
+                        </div>
+
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="ClasificacionId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select asp-for="ClasificacionId" class="form-control" required
+                                        asp-items="@Lista1"></select>
+                            </div>
+                            <span asp-validation-for="ClasificacionId" class=" text-danger"></span>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-4 text-md-right">
+                                <a asp-action="Index" type="button" style="color:white"
+                                   class="btn btn-warning">
+                                    Regresar
+                                </a>
+                            </div>
+
+                            <div class="col-md-4 text-md-right">
+                                <input type="button" value="Editar" id="btnEditar"
+                                       class="btn btn-info" @*style="width: 80%;"*@
+                                       onclick="abrirModal()" />
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Modificar', '¿Realmente desea modificar el registro de recuento?').then((result) => {
+            if (result.value) {
+                var viewEditar = document.getElementById("viewEditar");
+                viewEditar.submit();
+                Swal.fire(
+                    'Modificado!',
+                    'Operación con éxito!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'Operación Fracasada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>

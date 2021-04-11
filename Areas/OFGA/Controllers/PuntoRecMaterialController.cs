@@ -16,7 +16,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         private readonly DBSygestContext _db;
         List<PuntoRecMaterialMaterialesClasificacionViewModel> listaPunto = new List<PuntoRecMaterialMaterialesClasificacionViewModel>();
         static List<PuntoRecMaterialMaterialesClasificacionViewModel> lista = new List<PuntoRecMaterialMaterialesClasificacionViewModel>();
-        static private string _Fecha;
+
         public PuntoRecMaterialController(DBSygestContext db)
         {
             _db = db;
@@ -24,8 +24,8 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         public IActionResult Index()
         {
             listaPunto = (from medico in _db.PuntoRecMaterial
-                           join especialidad in _db.Clasificacion
-                           on medico.ClasificacionId equals especialidad.ClasificacionId
+                          join especialidad in _db.Clasificacion
+                          on medico.ClasificacionId equals especialidad.ClasificacionId
 
                           join distrito in _db.Distrito
                           on medico.DistritoId equals distrito.DistritoId
@@ -36,31 +36,31 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                           select new PuntoRecMaterialMaterialesClasificacionViewModel
                           {
                               PuntosRecMaterialId = medico.PuntosRecMaterialId,
-                               Peso = medico.Peso,
-                               Distrito=distrito.Nombre,
-                               Clasificacion = especialidad.Nombre,
-                               Material= material.Nombre,
-                               Fecha = medico.Fecha
-                           }).ToList();
+                              Peso = medico.Peso,
+                              Distrito = distrito.Nombre,
+                              Clasificacion = especialidad.Nombre,
+                              Material = material.Nombre,
+                              Fecha = medico.Fecha
+                          }).ToList();
             lista = listaPunto;
             return View(listaPunto);
-        }
 
-        private void cargarClasificacion()
+        }
+        private void CargarClasificacion()
         {
             List<SelectListItem> listaClasificacion = new List<SelectListItem>();
             listaClasificacion = (from especialidad in _db.Clasificacion
-                             orderby especialidad.Nombre
-                             select new SelectListItem
-                             {
-                                 Text = especialidad.Nombre,
-                                 Value = especialidad.ClasificacionId.ToString()
-                             }
+                                  orderby especialidad.Nombre
+                                  select new SelectListItem
+                                  {
+                                      Text = especialidad.Nombre,
+                                      Value = especialidad.ClasificacionId.ToString()
+                                  }
                                    ).ToList();
             ViewBag.ListaTClasificacion = listaClasificacion;
         }
 
-        private void cargarDistrito()
+        private void CargarDistrito()
         {
             List<SelectListItem> listaClasificacion = new List<SelectListItem>();
             listaClasificacion = (from especialidad in _db.Distrito
@@ -73,7 +73,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                                    ).ToList();
             ViewBag.ListaTDistrito = listaClasificacion;
         }
-        private void cargarMaterial()
+        private void CargarMaterial()
         {
             List<SelectListItem> listaClasificacion = new List<SelectListItem>();
             listaClasificacion = (from especialidad in _db.Materiales
@@ -89,9 +89,9 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 
         public IActionResult Create()
         {
-            cargarMaterial();
-            cargarDistrito();
-            cargarClasificacion();
+            CargarMaterial();
+            CargarDistrito();
+            CargarClasificacion();
             return View();
         }
         [HttpPost]
@@ -106,13 +106,15 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 {
                     if (nVeces >= 1) ViewBag.Error = "Este id ya existe!";
 
-                    cargarMaterial();
-                    cargarDistrito();
-                    cargarClasificacion();
+                    CargarMaterial();
+                    CargarDistrito();
+                    CargarClasificacion();
                     return View(materials);
                 }
                 else
                 {
+
+
                     PuntoRecMaterial _materials = new PuntoRecMaterial();
                     _materials.PuntosRecMaterialId = materials.PuntosRecMaterialId;
                     _materials.MaterialId = materials.MaterialId;
@@ -123,6 +125,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 
                     _db.PuntoRecMaterial.Add(_materials);
                     _db.SaveChanges();
+
                 }
             }
             catch (Exception ex)
@@ -133,7 +136,9 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            cargarClasificacion();
+            CargarMaterial();
+            CargarDistrito();
+            CargarClasificacion();
             int recCount = _db.PuntoRecMaterial.Count(e => e.PuntosRecMaterialId == id);
             PuntoRecMaterial _materials = (from p in _db.PuntoRecMaterial
                                      where p.PuntosRecMaterialId == id
@@ -141,19 +146,21 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             return View(_materials);
         }
         [HttpPost]
-        public IActionResult Edit(Materiales materials)
+        public IActionResult Edit(PuntoRecMaterial materials)
         {
             string error = "";
             try
             {
                 if (!ModelState.IsValid)
                 {
-
+                    CargarMaterial();
+                    CargarDistrito();
+                    CargarClasificacion();
                     return View(materials);
                 }
                 else
                 {
-                    _db.Materiales.Update(materials);
+                    _db.PuntoRecMaterial.Update(materials);
                     _db.SaveChanges();
                 }
             }
@@ -162,6 +169,32 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 error = ex.Message;
             }
             return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult Delete(int? Id)
+        {
+            string Error = "";
+            try
+            {
+                PuntoRecMaterial oCupos = _db.PuntoRecMaterial
+                               .Where(m => m.PuntosRecMaterialId == Id).First();
+                _db.PuntoRecMaterial.Remove(oCupos);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Details(int id)
+        {
+            CargarMaterial();
+            CargarDistrito();
+            CargarClasificacion();
+            PuntoRecMaterial oEspecialidad = _db.PuntoRecMaterial
+                         .Where(e => e.PuntosRecMaterialId == id).First();
+            return View(oEspecialidad);
         }
     }
 }

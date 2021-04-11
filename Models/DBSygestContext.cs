@@ -99,8 +99,8 @@ namespace SYGESTMunicipalSync.Models
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 //optionsBuilder.UseSqlServer("server=DESKTOP-4KIF3VN\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                //optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                //optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
             }                              
         }
 
@@ -1194,7 +1194,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Pacas>(entity =>
             {
-                entity.HasKey(e => e.PacasId);
+                entity.HasKey(e => e.PacaId);
 
                 entity.Property(e => e.Fecha)
                 .IsRequired()
@@ -1273,9 +1273,9 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.HasKey(e => e.RecuentoId);
 
-                entity.Property(e => e.Fecha)
+                entity.Property(e => e.FechaPeso)
                 .IsRequired()
-                .HasColumnName("Fecha")
+                .HasColumnName("FechaPeso")
                 .HasColumnType("datetime");
 
                 entity.Property(e => e.PesoGlobal)
