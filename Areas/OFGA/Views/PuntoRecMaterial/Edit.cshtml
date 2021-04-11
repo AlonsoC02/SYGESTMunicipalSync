@@ -1,8 +1,10 @@
-﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.Materiales
+﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.PuntoRecMaterial
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
     List<SelectListItem> Lista = ViewBag.ListaTMaterial;
+    List<SelectListItem> Lista1 = ViewBag.ListaTClasificacion;
+    List<SelectListItem> Lista2 = ViewBag.ListaTDistrito;
 }
 <main id="main">
 
@@ -11,7 +13,7 @@
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Editar material</h2>
+                    <h2>Editar Punto de recuperacion material</h2>
 
                 </div>
             </div>
@@ -19,8 +21,8 @@
 
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="Materials" asp-action="Index">Materiales</a></li>
-                <li>Editar Materiales</li>
+                <li><a asp-area="OFGA" asp-controller="PuntoRecMaterial" asp-action="Index">Punto de recuperacion</a></li>
+                <li>Editar Punto de recuperacion</li>
             </ol>
         </div>
     </section><!-- End Breadcrumbs -->
@@ -38,28 +40,39 @@
     <div class="row no-gutters">
         <div class="col-md-7">
             <div class="contact-wrap w-100 p-md-5 p-4">
-                <form asp-action="Edit" asp-controller="Materiales" method="post" id="viewEditar">
+                <form asp-action="Edit" asp-controller="PuntoRecMaterial" method="post" id="viewEditar">
                     <div class="container-fluid">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         @*Id*@
                         <div class=" form-group row">
                                 <div class=" col-2">
-                                    <label asp-for="MaterialId" class="col-form-label"></label>
+                                    <label asp-for="PuntosRecMaterialId" class="col-form-label"></label>
                                 </div>
                                 <div class="col-5">
-                                    <input asp-for="MaterialId" class="form-control" readonly />
+                                    <input asp-for="PuntosRecMaterialId" class="form-control" readonly/>
                                 </div>
-                                <span asp-validation-for="MaterialId" class=" text-danger"></span>
+                                <span asp-validation-for="PuntosRecMaterialId" class=" text-danger"></span>
                             </div>
-                        @*Name*@
+                        @*Peso*@
                         <div class=" form-group row">
                             <div class=" col-md-2">
-                                <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
+                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <input asp-for="Nombre" class="form-control" />
+                                <input asp-for="Peso" class="form-control" />
                             </div>
-                            <span asp-validation-for="Nombre" class=" text-danger"></span>
+                            <span asp-validation-for="Peso" class=" text-danger"></span>
+                        </div>
+
+                        @*Fecha*@
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" asp-for="Fecha" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Fecha" class=" text-danger"></span>
                         </div>
 
                         @*fecha ingreso*@
@@ -82,13 +95,35 @@
                             <span asp-validation-for="Weight" class=" text-danger"></span>
                         </div>-->
                         @*color*@
-                        <div class="form-group row">
+                        <!--<div class="form-group row">
                             <div class="col-md-2">
                                 <label asp-for="Color" class="col-form-label"></label>
                             </div>
                             <div class="col-md-6">
                                 <input type="checkbox" asp-for="Color" class="form-control" />
                             </div>
+                        </div>-->
+                        @*Material*@
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="MaterialId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select asp-for="MaterialId" class="form-control"
+                                        asp-items="@Lista"></select>
+                            </div>
+                            <span asp-validation-for="MaterialId" class="text-danger"></span>
+                        </div>
+                        @*Clasificacion*@
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="DistritoId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select asp-for="DistritoId" class="form-control"
+                                        asp-items="@Lista2"></select>
+                            </div>
+                            <span asp-validation-for="DistritoId" class="text-danger"></span>
                         </div>
                         @*Material Type*@
                         <div class="form-group row">
@@ -97,10 +132,11 @@
                             </div>
                             <div class="col-md-8">
                                 <select asp-for="ClasificacionId" class="form-control"
-                                        asp-items="@Lista"></select>
+                                        asp-items="@Lista1"></select>
                             </div>
                             <span asp-validation-for="ClasificacionId" class="text-danger"></span>
                         </div>
+                        @*End Create Register Date Field*@
                         <div class="form-group row">
                             <div class="col-md-4 text-md-right">
                                 <input type="button" value="Editar" id="btnEditar"

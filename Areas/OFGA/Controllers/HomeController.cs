@@ -53,5 +53,15 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         {
             return View();
         }
+
+        public IActionResult DiaAgua()
+        {
+            return View();
+        }
+
+        public IActionResult DiaAmbiente()
+        {
+            return View();
+        }
     }
 }

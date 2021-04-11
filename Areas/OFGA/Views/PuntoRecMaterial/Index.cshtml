@@ -6,13 +6,13 @@
 <head>
     <title>Punto de recuperación</title>
 </head>
-<partial name="_Menu" />
+@*<partial name="_Menu" />*@
 <div class="container">
     <main class="pb-3" role="main">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 col-lg-12">
-                    <h2 class="text-light">Lista Medico</h2>
+                    <h2 class="text-light">Registro</h2>
                 </div>
             </div>
             <form asp-controller="PuntoRecMaterial" asp-action="Index" method="post" id="frmFilter">
@@ -68,12 +68,51 @@
             {
                 <h2 style="color:red">No se encontraron Registros...</h2>
             }
+
         </div>
-        <form asp-action="Delete" asp-controller="Medico" method="post" id="viewEliminarMedico">
-            <input type="hidden" id="txtMedicoId" name="MedicoId" />
+        <form asp-action="Delete" asp-controller="PuntoRecMaterial" method="post" id="viewEliminar">
+            <input type="hidden" id="txtConsultaId" name="PuntosRecMaterialId" />
         </form>
         <form asp-action="Edit" asp-controller="Medico" method="post" id="viewEditarMedico">
             <input type="hidden" id="txtMedicoId" name="MedicoId" />
         </form>
     </main>
 </div>
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tbDatos').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+            });
+    })
+
+    function EliminarConsulta(Id) {
+        document.getElementById("txtConsultaId").value = Id;
+        verModal('Eliminar Consulta',
+            '¿Desea eliminar la consulta '
+            + Id + '?').then((result) => {
+                if (result.value) {
+                    var viewEliminar = document.getElementById("viewEliminar");
+                    viewEliminar.submit();
+                    Swal.fire(
+                        'Eliminación!',
+                        'La Consulta ' + Id + ' fue eliminada!.',
+                        'success'
+                    )
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelado',
+                        'La Consulta no fue eliminada!!!:)',
+                        'error'
+                    )
+                }
+            })
+    }
+
+</script>

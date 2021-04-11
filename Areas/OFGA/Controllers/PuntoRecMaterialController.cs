@@ -134,5 +134,67 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult Edit(int? id)
+        {
+            CargarMaterial();
+            CargarDistrito();
+            CargarClasificacion();
+            int recCount = _db.PuntoRecMaterial.Count(e => e.PuntosRecMaterialId == id);
+            PuntoRecMaterial _materials = (from p in _db.PuntoRecMaterial
+                                     where p.PuntosRecMaterialId == id
+                                     select p).DefaultIfEmpty().Single();
+            return View(_materials);
+        }
+        [HttpPost]
+        public IActionResult Edit(PuntoRecMaterial materials)
+        {
+            string error = "";
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    CargarMaterial();
+                    CargarDistrito();
+                    CargarClasificacion();
+                    return View(materials);
+                }
+                else
+                {
+                    _db.PuntoRecMaterial.Update(materials);
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult Delete(int? Id)
+        {
+            string Error = "";
+            try
+            {
+                PuntoRecMaterial oCupos = _db.PuntoRecMaterial
+                               .Where(m => m.PuntosRecMaterialId == Id).First();
+                _db.PuntoRecMaterial.Remove(oCupos);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Details(int id)
+        {
+            CargarMaterial();
+            CargarDistrito();
+            CargarClasificacion();
+            PuntoRecMaterial oEspecialidad = _db.PuntoRecMaterial
+                         .Where(e => e.PuntosRecMaterialId == id).First();
+            return View(oEspecialidad);
+        }
     }
 }
