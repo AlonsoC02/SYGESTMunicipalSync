@@ -8,7 +8,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models.ViewModels
 {
     public class PuntoRecMaterialMaterialesClasificacionViewModel
     {
-        [Required(ErrorMessage = "Debe digitar la Identificación del medico")]
+        
         [Display(Name = "Identificación:")]
         public int PuntosRecMaterialId { get; set; }
 
@@ -33,7 +33,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models.ViewModels
 
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de entrada ")]
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         public string msgError { get; set; }
 

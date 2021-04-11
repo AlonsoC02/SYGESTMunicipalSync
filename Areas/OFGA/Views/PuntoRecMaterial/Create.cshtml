@@ -1,4 +1,4 @@
-﻿@model PuntoRecMaterialMaterialesClasificacionViewModel
+﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.PuntoRecMaterial
 @using SYGESTMunicipalSync.Areas.OFGA.Models.ViewModels
 
 @{
@@ -24,8 +24,8 @@
 
         <div class="container">
             <ol>
-                @*<li><a asp-area="OFGA" asp-controller="Materials" asp-action="Index">Materiales</a></li>*@
-                <li>Materiales</li>
+                <li><a asp-area="OFGA" asp-controller="PuntoRecMaterial" asp-action="Index">Puntos de recuperacion</a></li>
+                <li>Puntos de recuperacion</li>
             </ol>
         </div>
     </section><!-- End Breadcrumbs -->
@@ -43,9 +43,20 @@
             <div class="contact-wrap w-100 p-md-5 p-4">
                 <h2 class="text-info">Nuevo Registro</h2>
                 <br>
-                <form method="post" asp-action="Create" id="viewAgregar">
+                <form method="post" asp-controller="PuntoRecMaterial" asp-action="Create" id="viewAgregar">
                     <div class="backgroundWhite">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        @*Id*@
+                        @*<div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="PuntosRecMaterialId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="PuntosRecMaterialId" class="form-control" readonly  />
+                            </div>
+                            <span asp-validation-for="PuntosRecMaterialId" class=" text-danger"></span>
+                        </div>*@
 
                         @*Peso*@
                         <div class=" form-group row">
@@ -146,12 +157,12 @@
 <script src="~/js/Utilitarios.js"></script>
 <script>
     function abrirModal() {
-        verModal('Agregar Materiales', '¿Realmente Desea Agregar Estos Materiales?').then((result) => {
+        verModal('Agregar Materiales', '¿Realmente Desea Agregar a puntos de recuperacion?').then((result) => {
             if (result.value) {
                 var viewAgregar = document.getElementById("viewAgregar");
                 viewAgregar.submit();
                 Swal.fire(
-                    'Los materiales fueron agregados!',
+                    'El dato fue almacenado!',
                     'exitosamente!.',
                     'success'
                 )
@@ -159,7 +170,7 @@
             else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Cancelado',
-                    'Los materiales no fueron agregados!!!:)',
+                    'el dato no fueron agregados!!!:)',
                     'error'
                 )
             }
