@@ -18,18 +18,24 @@
             </div>
             <br />
             <form asp-controller="Clasificacion" asp-action="Index" method="post" id="frmFilter">
-                <div class="row contenedorBotones">
-                    <div class="col-md-2 col-lg-2 text-right">
-                        <a asp-action="Create" class="btn btn-success fa fa-plus-circle crear">
-                            Nuevo
-                        </a>
-                    </div>
+                <div class="row">
 
-                    <div class="col-md-2 colo-lg-2 text-right">
-                        <a asp-controller="Home" asp-action="Index" class="btn btn-info fa fa fa-arrow-circle-left inicio">
+
+                    <div class="col-md-2  text-right">
+                        <a asp-controller="" asp-action="Index"
+                           class="btn btn-warning fa fa-arrow-circle-left"
+                           style="width:80%; color:white; height:100%;padding:12px;">
                             Regresar al menú
                         </a>
                     </div>
+
+                    <div class="col-md-2 text-right">
+                        <a asp-action="Create" class="btn btn-info fa fa-plus-circle"
+                           style="width:80%; height:100%;padding:12px;">
+                            Agregar
+                        </a>
+                    </div>
+
                 </div>
                 <div class="col-md-12 divisor"><hr></div>
             </form>
