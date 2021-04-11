@@ -1,0 +1,112 @@
+﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.Clasificacion
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+}
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Agregar tipo de material</h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Clasificacion" asp-action="Index">Lista de tipo de materiales</a></li>
+                <li>Tipo materiales</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light"
+                style="text-align:center;background-color:darkslategray;">
+                Agregar
+            </h3>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-7">
+            <div class="contact-wrap w-100 p-md-5 p-4">
+                <h2 class="text-info">Nuevo Registro</h2>
+                <br>
+                <form method="post" asp-action="Create" id="viewAgregar">
+                    <div class="backgroundWhite">
+                        <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Nombre" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Nombre" class=" text-danger"></span>
+                        </div>
+                        @*Description*@
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="Descripcion" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea asp-for="Descripcion" rows="4" cols="50" class="form-control"> </textarea>
+                            </div>
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+                        @*------------------------*@
+                    <div class="form-group row">
+
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button" style="color:white"
+                               class="btn btn-warning">
+                                Regresar
+                            </a>
+
+
+                        </div>
+
+                        <div class="col-md-4 text-md-right">
+                            <input type="button" value="Agregar" id="btnAgregar"
+                                   class="btn btn-info"
+                                   onclick="abrirModal()" />
+                        </div>
+
+                    </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Agregar Tipo de Material', '¿Realmente Desea Agregar Este Tipo de Material?').then((result) => {
+            if (result.value) {
+                var viewAgregar = document.getElementById("viewAgregar");
+                viewAgregar.submit();
+                Swal.fire(
+                    'EL tipo de Material fue agregado!',
+                    'exitosamente!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'EL tipo de Material no ha sido agregado!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
+

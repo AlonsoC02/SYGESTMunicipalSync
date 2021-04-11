@@ -28,10 +28,10 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
         public int DistritoId { get; set; }
         public virtual Distrito Distrito { get; set; }
 
-        [Display(Name = "Lugar:")]
-        [Required(ErrorMessage = "Debe digitar el lugar del punto de recuperacion")]
-        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
-        public string Lugar { get; set; }
+        //[Display(Name = "Lugar:")]
+        //[Required(ErrorMessage = "Debe digitar el lugar del punto de recuperacion")]
+        //[StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
+        //public string Lugar { get; set; }
 
         [Display(Name = "Fecha:")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]

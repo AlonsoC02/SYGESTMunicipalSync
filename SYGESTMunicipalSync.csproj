@@ -63,4 +63,6 @@
     <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

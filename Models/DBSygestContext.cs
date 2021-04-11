@@ -25,9 +25,9 @@ namespace SYGESTMunicipalSync.Models
         //--------------------Area Admin-------------------------------
         public virtual DbSet<Boton> Boton { get; set; }
         public virtual DbSet<Pagina> Pagina { get; set; }
-        public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
-        public virtual DbSet<TipoUsuarioPag> TipoUsuarioPag { get; set; }
-        public virtual DbSet<TipoUsuarioPagBoton> TipoUsuarioPagBoton { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<RolUsuarioPag> RolUsuarioPag { get; set; }
+        public virtual DbSet<RolUsuarioPagBoton> RolUsuarioPagBoton { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Canton> Canton { get; set; }
         public virtual DbSet<Contacto> Contacto { get; set; }
@@ -118,9 +118,9 @@ namespace SYGESTMunicipalSync.Models
             // **************************** USUARIOS ************************************************
 
 
-            modelBuilder.Entity<TipoUsuario>(entity =>
+            modelBuilder.Entity<Rol>(entity =>
             {
-                entity.HasKey(e => e.TipoUsuarioId);
+                entity.HasKey(e => e.RolId);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -165,16 +165,16 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<RolUsuario>(entity =>
             {
-                entity.HasKey(e => e.RolId);
+                entity.HasKey(e => e.RolUsuarioId);
                                
                 entity.Property(e => e.RolId)
-               .HasColumnName("TipoUsuarioId");
+               .HasColumnName("RolId");
 
-                entity.HasOne(d => d.TipoUsuario)
+                entity.HasOne(d => d.Rol)
                     .WithMany(p => p.RolUsuario)
                     .HasForeignKey(d => d.RolId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_RolUsuario_TipoUsuario");
+                    .HasConstraintName("FK_RolUsuario_Rol");
 
                 entity.Property(e => e.UsuarioId)
                .HasColumnName("UsuarioId");
@@ -246,48 +246,42 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+            });
+
+            modelBuilder.Entity<RolUsuarioPag>(entity =>
+            {
+                entity.HasKey(e => e.RolUsuarioPagId);
+
+
                 entity.Property(e => e.BotonHabilitado)
                     .IsRequired()
                     .HasColumnName("BotonHabilitado")
                     .HasColumnType("bit");
 
-            });
+                entity.Property(e => e.RolUsuarioId)
+                      .HasColumnName("RolUsuarioId");
 
-            modelBuilder.Entity<TipoUsuarioPag>(entity =>
-            {
-                entity.Property(e => e.TipoUsuarioPagId)
-                    .HasColumnName("TipoUsuarioPagId");
-
-              
-               entity.Property(e => e.BotonHabilitado)
-                    .IsRequired()
-                    .HasColumnName("BotonHabilitado")
-                    .HasColumnType("bit");
-
-                entity.Property(e => e.TipoUsuarioId)
-                      .HasColumnName("TipoUsuarioId");
-
-                entity.HasOne(d => d.TipoUsuario)
-                    .WithMany(p => p.TipoUsuarioPag)
-                    .HasForeignKey(d => d.TipoUsuarioId)
+                entity.HasOne(d => d.RolUsuario)
+                    .WithMany(p => p.RolUsuarioPag)
+                    .HasForeignKey(d => d.RolUsuarioId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TipoUsuarioPag_TipoUsuario");
+                    .HasConstraintName("FK_RolUsuarioPag_RolUsuario");
 
                 entity.Property(e => e.PaginaId)
                       .HasColumnName("PaginaId");
 
                 entity.HasOne(d => d.Pagina)
-                    .WithMany(p => p.TipoUsuarioPag)
+                    .WithMany(p => p.RolUsuarioPag)
                     .HasForeignKey(d => d.PaginaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TipoUsuarioPag_Pagina");
+                    .HasConstraintName("FK_RolUsuarioPag_Pagina");
 
             });
 
-            modelBuilder.Entity<TipoUsuarioPagBoton>(entity =>
+            modelBuilder.Entity<RolUsuarioPagBoton>(entity =>
             {
-                entity.Property(e => e.TipoUsuarioPagBotonId)
-                    .HasColumnName("TipoUsuarioPagBotonId");
+                entity.Property(e => e.RolUsuarioPagBotonId)
+                    .HasColumnName("RolUsuarioPagBotonId");
 
 
                 entity.Property(e => e.BotonHabilitado)
@@ -295,23 +289,23 @@ namespace SYGESTMunicipalSync.Models
                    .HasColumnName("BotonHabilitado")
                    .HasColumnType("bit");
 
-                entity.Property(e => e.TipoUsuarioPagId)
-                      .HasColumnName("TipoUsuarioPagId");
+                entity.Property(e => e.RolUsuarioPagId)
+                      .HasColumnName("RolUsuarioPagId");
 
-                entity.HasOne(d => d.TipoUsuarioPag)
-                    .WithMany(p => p.TipoUsuarioPagBoton)
-                    .HasForeignKey(d => d.TipoUsuarioPagId)
+                entity.HasOne(d => d.RolUsuarioPag)
+                    .WithMany(p => p.RolUsuarioPagBoton)
+                    .HasForeignKey(d => d.RolUsuarioPagId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TipoUsuarioPagBoton_TipoUsuarioPag");
+                    .HasConstraintName("FK_RolUsuarioPagBoton_RolUsuarioPag");
 
                 entity.Property(e => e.BotonId)
                       .HasColumnName("BotonId");
 
                 entity.HasOne(d => d.Boton)
-                    .WithMany(p => p.TipoUsuarioPagBoton)
+                    .WithMany(p => p.RolUsuarioPagBoton)
                     .HasForeignKey(d => d.BotonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TipoUsuarioPagBoton_Boton");
+                    .HasConstraintName("FK_RolUsuarioPagBoton_Boton");
 
             });
 
@@ -618,7 +612,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.IngresoMensual)
                      .IsRequired()
                      .HasColumnName("IngresoMensual")
-                     .HasColumnType("real");   // <------------------ ver si se usa real o money
+                     .HasColumnType("money");   // <------------------ ver si se usa real o money
 
             });
 
@@ -1063,7 +1057,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                      .IsRequired()
                      .HasColumnName("Peso")
-                     .HasColumnType("real");   // <------------------ ver si se usa real o money
+                     .HasColumnType("float");   // <------------------ ver si se usa real o money
 
             });
 
@@ -1071,7 +1065,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Charlas>(entity =>
             {
-                entity.HasKey(e => e.CharlasId);
+                entity.HasKey(e => e.CharlaId);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -1136,22 +1130,22 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                         .IsRequired()
                        .HasColumnName("Peso")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Precio)
                     .IsRequired()
                     .HasColumnName("Precio")
-                    .HasColumnType("real");   // <------------------ ver si se usa real o money
+                    .HasColumnType("money");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Monto)
                     .IsRequired()
                     .HasColumnName("Monto")
-                    .HasColumnType("real");   // <------------------ ver si se usa real o money
+                    .HasColumnType("money");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.Total)
                     .IsRequired()
                     .HasColumnName("Total")
-                    .HasColumnType("real");   // <------------------ ver si se usa real o money
+                    .HasColumnType("money");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                     .HasColumnName("MaterialId");
@@ -1177,7 +1171,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Materiales>(entity =>
             {
-                entity.HasKey(e => e.MaterialesId);
+                entity.HasKey(e => e.MaterialId);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -1210,7 +1204,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                        .IsRequired()
                        .HasColumnName("Peso")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                    .HasColumnName("MaterialId");
@@ -1244,7 +1238,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Peso)
                        .IsRequired()
                        .HasColumnName("Peso")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                   .HasColumnName("MaterialId");
@@ -1287,7 +1281,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.PesoGlobal)
                        .IsRequired()
                        .HasColumnName("PesoGlobal")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.MaterialId)
                     .HasColumnName("MaterialId");
@@ -1577,7 +1571,7 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Aream2)
                        .IsRequired()
                        .HasColumnName("Aream2")
-                       .HasColumnType("real");   // <------------------ ver si se usa real o money
+                       .HasColumnType("float");   // <------------------ ver si se usa real o money
 
                 entity.Property(e => e.CantHombres)
                 .IsRequired();

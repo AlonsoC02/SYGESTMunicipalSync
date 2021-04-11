@@ -31,7 +31,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string Ape2 { get; set; }
 
         [Display(Name = "Fecha Nacimiento:")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaNac { get; set; }
 

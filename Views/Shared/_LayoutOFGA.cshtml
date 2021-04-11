@@ -96,7 +96,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
                                 <a class="dropdown-item" asp-action="IndexTalks"
-                                   asp-controller="Talks" asp-area="OFGA">Charlas Otras</a>
+                                   asp-controller="Charlas" asp-area="OFGA">Charlas Disponibles</a>
 
                                 <a class="dropdown-item" asp-action="Create"
                                    asp-controller="Complaint" asp-area="OFGA">Denuncias</a>
@@ -135,11 +135,20 @@
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="PersonOFGA" asp-area="OFGA">Registro Persona</a>
 
+
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Charlas" asp-area="OFGA">Charlas</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="TipoDenuncia" asp-area="OFGA">Tipo de Denuncia</a>
+
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="TipoActividad" asp-area="OFGA">Tipo de Actividad</a>
+
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="Complaint" asp-area="OFGA">Denuncias</a>
 
-                                    <a class="dropdown-item" asp-action="Index"
-                                       asp-controller="Talks" asp-area="OFGA">Charlas</a>
 
                                 </div>
                             </li>
@@ -159,10 +168,10 @@
                                        asp-controller="Clasificacion" asp-action="Index">Categoría de Materiales</a>
 
                                     <a class="dropdown-item" asp-area="OFGA"
-                                       asp-controller="Materials" asp-action="Index">Materiales</a>
+                                       asp-controller="Materiales" asp-action="Index">Materiales</a>
 
                                     <a class="dropdown-item"
-                                       asp-area="OFGA" asp-controller="RecoverableMaterialRecovery" asp-action="Index">Punto de Recuperación</a>
+                                       asp-area="OFGA" asp-controller="PuntoRecMaterial" asp-action="Index">Punto de Recuperación</a>
                                 </div>
 
                             </li>

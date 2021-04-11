@@ -76,11 +76,12 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 
 
 
+
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int Id)
         {
             Basura oBasura = _db.Basura
-                .Where(e => e.BasuraId == id).First();
+                .Where(e => e.BasuraId == Id).FirstOrDefault();
             return View(oBasura);
         }
         [HttpPost]

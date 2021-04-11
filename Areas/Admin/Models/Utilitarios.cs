@@ -9,6 +9,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 {
     public class Utilitarios
     {
+        public static string MenuADMIN;
         public static string MenuInicio;
         public static string MenuOFGA;
         public static string MenuOFIM;

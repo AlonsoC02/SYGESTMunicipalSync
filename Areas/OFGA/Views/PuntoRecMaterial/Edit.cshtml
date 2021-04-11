@@ -1,0 +1,196 @@
+﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.PuntoRecMaterial
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaTMaterial;
+    List<SelectListItem> Lista1 = ViewBag.ListaTClasificacion;
+    List<SelectListItem> Lista2 = ViewBag.ListaTDistrito;
+}
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Editar material</h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Materials" asp-action="Index">Materiales</a></li>
+                <li>Editar Materiales</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light"
+                style="text-align:center;background-color:darkslategray;">
+                Editar
+            </h3>
+        </div>
+    </div>
+    <br />
+
+    <div class="row no-gutters">
+        <div class="col-md-7">
+            <div class="contact-wrap w-100 p-md-5 p-4">
+                <form asp-action="Edit" asp-controller="PuntoRecMaterial" method="post" id="viewEditar">
+                    <div class="container-fluid">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @*Id*@
+                        <div class=" form-group row">
+                                <div class=" col-2">
+                                    <label asp-for="PuntosRecMaterialId" class="col-form-label"></label>
+                                </div>
+                                <div class="col-5">
+                                    <input asp-for="PuntosRecMaterialId" class="form-control" readonly/>
+                                </div>
+                                <span asp-validation-for="PuntosRecMaterialId" class=" text-danger"></span>
+                            </div>
+                        @*Peso*@
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Peso" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Peso" class=" text-danger"></span>
+                        </div>
+
+                        @*Fecha*@
+                        <div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" asp-for="Fecha" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Fecha" class=" text-danger"></span>
+                        </div>
+
+                        @*fecha ingreso*@
+                        <!--<div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="Date" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <input asp-for="Date" type="text" id="datepicker" class="form-control" />
+                            </div>
+                        </div>-->
+                        @*Peso*@
+                        <!--<div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Weight" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Weight" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Weight" class=" text-danger"></span>
+                        </div>-->
+                        @*color*@
+                        <!--<div class="form-group row">
+                            <div class="col-md-2">
+                                <label asp-for="Color" class="col-form-label"></label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="checkbox" asp-for="Color" class="form-control" />
+                            </div>
+                        </div>-->
+                        @*Material*@
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="MaterialId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select asp-for="MaterialId" class="form-control"
+                                        asp-items="@Lista"></select>
+                            </div>
+                            <span asp-validation-for="MaterialId" class="text-danger"></span>
+                        </div>
+                        @*Clasificacion*@
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="DistritoId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select asp-for="DistritoId" class="form-control"
+                                        asp-items="@Lista2"></select>
+                            </div>
+                            <span asp-validation-for="DistritoId" class="text-danger"></span>
+                        </div>
+                        @*Material Type*@
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="ClasificacionId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-8">
+                                <select asp-for="ClasificacionId" class="form-control"
+                                        asp-items="@Lista1"></select>
+                            </div>
+                            <span asp-validation-for="ClasificacionId" class="text-danger"></span>
+                        </div>
+                        @*End Create Register Date Field*@
+                        <div class="form-group row">
+                            <div class="col-md-4 text-md-right">
+                                <input type="button" value="Editar" id="btnEditar"
+                                       class="btn btn-info" @*style="width: 80%;"*@
+                                       onclick="abrirModal()" />
+                            </div>
+                            <div class="col-md-2 text-md-center">
+                                <a asp-action="Index" type="button"
+                                   class="btn btn-success">Regresar </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+
+
+
+    <script src="~/js/DPickerSpanish.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+            $("#datepicker").datepicker({ minDate: 0, maxDate: "+1W" });
+            //$("#timepicker").timepicker({ minTime: '11:00 AM', maxTime: '9:00 PM', step: '30' })
+        });</script>
+}
+
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Modificar', '¿Realmente Desea modificar?').then((result) => {
+            if (result.value) {
+                var viewEditar = document.getElementById("viewEditar");
+                viewEditar.submit();
+                Swal.fire(
+                    'Modificado!',
+                    'Operación con éxito!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'Operación Fracasada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>

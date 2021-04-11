@@ -1,0 +1,105 @@
+﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.Clasificacion
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+}
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Eliminar tipo de material</h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Clasificacion" asp-action="Index">Lista de tipo de materiales</a></li>
+                <li>Tipo de materiales</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light"
+                style="text-align:center;background-color:darkslategray;">
+                Eliminar Registro
+            </h3>
+        </div>
+    </div>
+    <br />
+    <!-- ======= About Section ======= -->
+    <div class="row no-gutters">
+        <div class="col-md-7">
+            <div class="contact-wrap w-100 p-md-5 p-4">
+                <form method="post" asp-action="Delete" id="viewEliminar">
+                    <div class="backgroundWhite">
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="ClasificacionId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="ClasificacionId" class=" form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Nombre" class=" form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4 text-md-right">
+                                <a asp-action="Index" type="button" style="color:white"
+                                   class="btn btn-warning">
+                                    Regresar
+                                </a>
+                            </div>
+
+                            <div class="col-md-4 text-md-right">
+                                <input type="button" value="Eliminar" id="btnEliminar"
+                                       class="btn btn-danger"
+                                       onclick="abrirModal()" />
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Eliminar Categoría De Materiales', '¿Desea Eliminar Esta Categoría?').then((result) => {
+            if (result.value) {
+                var viewEliminar = document.getElementById("viewEliminar");
+                viewEliminar.submit();
+                Swal.fire(
+                    'Eliminado!',
+                    'La categoría de materiales fue eliminada!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'La categoría no ha sido eliminada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>

@@ -9,7 +9,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
     public partial class Materiales
     {
         [Display(Name = "Id:")]
-        public int MaterialesId { get; set; }
+        public int MaterialId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el nombre del material")]
         [Display(Name = "Nombre:")]

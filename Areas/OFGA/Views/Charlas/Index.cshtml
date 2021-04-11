@@ -1,0 +1,109 @@
+﻿@model IEnumerable<SYGESTMunicipalSync.Areas.OFGA.Models.Charlas>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
+}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Lista de charlas</h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a></li>
+                <li>Charlas</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <div class="border backgroundWhite">
+        <br />
+        @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
+        {*@
+            <form asp-controller="Charlas" asp-action="Index" method="post">
+                <div class="row">
+                    <div class="col-md-2  text-right">
+                        <a asp-controller="" asp-action="Index"
+                           class="btn btn-warning fa fa-arrow-circle-left"
+                           style="width:80%; color:white; height:100%;padding:12px;">
+                            Regresar al menú
+                        </a>
+                    </div>
+
+                    <div class="col-md-2 text-right">
+                        <a asp-action="Create" class="btn btn-info fa fa-plus-circle"
+                           style="width:80%; height:100%;padding:12px;">
+                            Agregar
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-12 divisor"><hr></div>
+            </form>
+        @*}*@
+        @*//Vista del filtro*@
+        @*<div class="row">
+                <div class="col-12 text-right">
+                    <partial name="_Filter" />
+                </div>
+            </div>*@
+        <div>
+
+
+            @if (Model.Count() > 0)
+            {
+
+                <table class="table table-hover .table-responsive" id="TbCharlas">
+                    <thead class="thead-dark">
+                        <tr class="table-secondary" style="text-align:center;">
+                            <th>@Html.DisplayNameFor(m => m.CharlaId)</th>
+                            <th>@Html.DisplayNameFor(m => m.Nombre)</th>
+                            <th>@Html.DisplayNameFor(m => m.Fecha)</th>
+                            <th>@Html.DisplayNameFor(m => m.Activa)</th>
+
+                            <th>Operaciones</th>
+
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center;">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.CharlaId)</td>
+                                <td>@Html.DisplayFor(m => item.Nombre)</td>
+                                <td>@Html.DisplayFor(m => item.Fecha)</td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Activa)
+                                </td>
+                                @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
+                                {*@
+
+                                    <div class="col-md-6 text-right">
+                                        <a><partial name="_TableButtonPartialDelete" model="item.CharlaId" /></a>
+                                    </div>
+                                @*}*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h3>No Existen charlas registradas</h3>
+            }
+        </div>
+    </div>
+
+
+
+
+</main><!-- End #main -->

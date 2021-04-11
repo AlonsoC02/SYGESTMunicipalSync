@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace SYGESTMunicipalSync.Areas.Admin.Models
 {
-    public partial class TipoUsuario
+    public partial class Rol
     {
-        public TipoUsuario()
+        public Rol()
         {
             RolUsuario = new HashSet<RolUsuario>();
-            TipoUsuarioPag = new HashSet<TipoUsuarioPag>();
+            
         }
-        [Display(Name = "Tipo Usuario Id:")]
-        public int TipoUsuarioId { get; set; }
+        [Display(Name = "Rol Usuario Id:")]
+        public int RolId { get; set; }
 
         [Display(Name = "Nombre:")]
         public string Nombre { get; set; }
@@ -24,8 +24,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Required(ErrorMessage = "Debe digitar la descripción de la Especialidad")]
         public string Descripcion { get; set; }
         
-        
-        public virtual ICollection<TipoUsuarioPag> TipoUsuarioPag { get; set; }
+
         public virtual ICollection<RolUsuario> RolUsuario { get; set; }
 
        

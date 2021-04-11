@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace SYGESTMunicipalSync.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class TipoUsuarioController : Controller
+    public class RolUsuarioController : Controller
     {
         public IActionResult Index()
         {
