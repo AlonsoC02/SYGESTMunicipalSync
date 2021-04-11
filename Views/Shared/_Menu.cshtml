@@ -35,7 +35,7 @@
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                 </li>
                 @*@if (User.IsInRole(SD.ManagerUser))
-                    {*@
+        {*@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Empleados</a>
                 </li>
@@ -60,44 +60,51 @@
                 </li>
 
 
-                <li class="nav-item dropdown text-white-50">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                       role="button" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        Trámites
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                        <a class="dropdown-item" asp-action="Create"
-                           asp-controller="PersonPatentes" asp-area="PATENTES">Solicitar una Patente</a>
+                <!--<li class="nav-item dropdown text-white-50">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+       role="button" data-toggle="dropdown" aria-haspopup="true"
+       aria-expanded="false">
+        Trámites
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+        <a class="dropdown-item" asp-action="Create"
+           asp-controller="PersonPatentes" asp-area="PATENTES">Solicitar una Patente</a>
 
-                        <a class="dropdown-item" asp-action="Create"
-                           asp-controller="Complaint" asp-area="OFGA">Denuncia Ambiental</a>
+        <a class="dropdown-item" asp-action="Create"
+           asp-controller="Complaint" asp-area="OFGA">Denuncia Ambiental</a>-->
+                @*<a class="dropdown-item" asp-action="Index"
+        asp-controller="Home" asp-area="OFIM">Empresariedad</a>*@
 
-                        @*<a class="dropdown-item" asp-action="Index"
-                            asp-controller="Home" asp-area="OFIM">Empresariedad</a>*@
-
-                    </div>
+                <!--</div>
 
 
-                </li>
+    </li>-->
 
                 <li class="nav-item">
                     <a class="nav-link" asp-area="Home" asp-controller="Home" asp-action="Contactenos">Contáctanos</a>
                 </li>
 
                 @*<li class="nav-item">
-                        <a class="nav-link" asp-area="Home" asp-controller="Home" asp-action="Index">Preguntas Frecuentes</a>
-                    </li>*@
+            <a class="nav-link" asp-area="Home" asp-controller="Home" asp-action="Index">Preguntas Frecuentes</a>
+        </li>*@
                 <li class="nav-item">
                     <a class="nav-link" asp-area="Home" asp-controller="Home" asp-action="Privacy">Privacidad</a>
                 </li>
                 @*<partial name="_LoginPartial" />*@
                 @*<li class="nav-item">
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log In</a>
-                    </li>*@
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
+              </li>
+        <li class="nav-item">
+          <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Log In</a>
+         </li>*@
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Registrarse</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action="">Inicio de Sesión</a>
+                </li>
             </ul>
         </div>
     </div>
