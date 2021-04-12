@@ -1,25 +1,42 @@
 ﻿
 @{
-    ViewData["Title"] = "DiaAgua";
+    ViewData["Title"] = "Dia del Agua";
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
-
+<section id="hero">
+    <div class="hero-container" data-aos="fade-up">
+        <h1>Día Mundial del Agua</h1>
+        <h4 text-shadow: 1px 2px 3px #fff">
+            Hacer conciencia de la importancia del agua es de todos,
+            ya que esta se ve amenazada ante el uso desproporcional por el crecimiento
+            de la población, la demanda de la industrias y la agricultura,
+            añadiendo a ello la contaminación en la que se encuntra vulnerable y
+            el cambio climático que la afecta directamente,
+            son entre otras las causas que tiene en peligro este líquido vital 
+            para la existencia tanto humana, como de la vida misma.
+        </h4>
+        
+        <br />
+    </div>
+</section><!-- End Hero -->
+<br />
+<br />
+<br />
 <main id="main">
-
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
-        <div class="breadcrumb-hero">
-            <div class="container">
-                <div class="breadcrumb-hero">
-                    <h2>Día Mundial del Agua</h2>
-                    <h4>
-                        Hacer conciencia de la importancia del agua es de todos, ya que esta se ve amenazada ante el uso desproporcional por el crecimiento
-                        de la población, la demanda de la industrias y la agricultura, añadiendo a ello la contaminación en la que se encuntra vulnerable y
-                        el cambio climático que la afecta directamente, son entre otras las causas que tiene en peligro este líquido vital para la existencia tanto humana, como de la vida misma.
-                    </h4>
+        @*<div class="breadcrumb-hero">
+                <div class="container">
+                    <div class="breadcrumb-hero">
+                        <h2>Día Mundial del Agua</h2>
+                        <h4>
+                            Hacer conciencia de la importancia del agua es de todos, ya que esta se ve amenazada ante el uso desproporcional por el crecimiento
+                            de la población, la demanda de la industrias y la agricultura, añadiendo a ello la contaminación en la que se encuntra vulnerable y
+                            el cambio climático que la afecta directamente, son entre otras las causas que tiene en peligro este líquido vital para la existencia tanto humana, como de la vida misma.
+                        </h4>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
         <div class="container">
             <ol>
                 <li><a asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a></li>
