@@ -1,8 +1,8 @@
-﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.TipoActividad
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Categoria
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
-   
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+
 }
 
 <main id="main">
@@ -19,7 +19,7 @@
 
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="TipoActividad" asp-action="Edit">Tipo de Actividad</a></li>
+                <li><a asp-area="OFIM" asp-controller="Categoria" asp-action="Edit">Proceso formativo</a></li>
                 <li>Editar Registro</li>
             </ol>
         </div>
@@ -43,12 +43,12 @@
                     <div class="backgroundWhite">
                         <div class=" form-group row">
                             <div class=" col-md-2">
-                                <h5><label asp-for="TipoActividadId" class="col-form-label"></label></h5>
+                                <h5><label asp-for="CategoriaId" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <input asp-for="TipoActividadId" class="form-control" readonly />
+                                <input asp-for="CategoriaId" class="form-control" readonly />
                             </div>
-                            <span asp-validation-for="TipoActividadId" class=" text-danger"></span>
+                            <span asp-validation-for="CategoriaId" class=" text-danger"></span>
                         </div>
 
                         <div class=" form-group row">
@@ -61,15 +61,14 @@
                             <span asp-validation-for="Nombre" class=" text-danger"></span>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Descripcion" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <textarea asp-for="Descripcion" rows="4" cols="50" class="form-control"> </textarea>
-                            </div>
-                            <span asp-validation-for="Descripcion" class="text-danger"></span>
-                        </div>
+                        @*<div class="form-group row">
+                                <div class="col-md-2">
+                                    <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                                </div>
+                                <div class="col-md-8">
+                                    <input asp-for="Fecha" type="text" id="datepicker" class="form-control" />
+                                </div>
+                            </div>*@
                         <div class="form-group row">
                             <div class="col-md-4 text-md-right">
                                 <a asp-action="Index" type="button" style="color:white"
@@ -91,28 +90,36 @@
         </div>
     </div>
 </main>
+@section Scripts{
 
-<script src="~/js/sweetalert2.js"></script>
-<script src="~/js/Utilitarios.js"></script>
-<script>
-    function abrirModal() {
-        verModal('Modificar', '¿Realmente Desea modificar el registro de Tipo de Actividad?').then((result) => {
-            if (result.value) {
-                var viewEditar = document.getElementById("viewEditar");
-                viewEditar.submit();
-                Swal.fire(
-                    'Modificado!',
-                    'Operación con éxito!.',
-                    'success'
-                )
-            }
-            else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire(
-                    'Cancelado',
-                    'Operación Fracasada!!!:)',
-                    'error'
-                )
-            }
-        })
-    }
-</script>
+
+
+
+
+
+
+    <script src="~/js/sweetalert2.js"></script>
+    <script src="~/js/Utilitarios.js"></script>
+    <script>
+        function abrirModal() {
+            verModal('Modificar', '¿Realmente Desea modificar el registro de proceso formativo?').then((result) => {
+                if (result.value) {
+                    var viewEditar = document.getElementById("viewEditar");
+                    viewEditar.submit();
+                    Swal.fire(
+                        'Modificado!',
+                        'Operación con éxito!.',
+                        'success'
+                    )
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelado',
+                        'Operación Fracasada!!!:)',
+                        'error'
+                    )
+                }
+            })
+        }
+    </script>
+}

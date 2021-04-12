@@ -1,26 +1,24 @@
-﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.TipoActividad
+﻿
+@model SYGESTMunicipalSync.Areas.OFIM.Models.CatProductoServicio
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
-   
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
 }
 
 <main id="main">
-
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Editar Registro</h2>
+                    <h2>Registro de categoría de producto o servicio</h2>
                 </div>
             </div>
         </div>
-
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="TipoActividad" asp-action="Edit">Tipo de Actividad</a></li>
-                <li>Editar Registro</li>
+                <li><a asp-area="OFIM" asp-controller="CatProductoServicio" asp-action="Index">Categoría de producto o servicio</a></li>
+                <li>Registro de categoría de producto o servicio</li>
             </ol>
         </div>
     </section><!-- End Breadcrumbs -->
@@ -29,28 +27,20 @@
         <div class="col-md-12 col-lg-12">
             <h3 class="text-light"
                 style="text-align:center;background-color:darkslategray;">
-                Editar
+                Categoría de producto o servicio
             </h3>
         </div>
     </div>
-    <br />
 
     <!-- ======= About Section ======= -->
     <div class="row no-gutters">
         <div class="col-md-7">
             <div class="contact-wrap w-100 p-md-5 p-4">
-                <form method="post" asp-action="Edit" id="viewEditar">
+                <h2 class="text-info">Nuevo Registro</h2>
+                <br>
+                <form method="post" asp-action="Create" id="viewAgregar">
                     <div class="backgroundWhite">
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="TipoActividadId" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="TipoActividadId" class="form-control" readonly />
-                            </div>
-                            <span asp-validation-for="TipoActividadId" class=" text-danger"></span>
-                        </div>
-
+                        <div asp-validation.summary="ModelOnly" class="text-danger"></div>
                         <div class=" form-group row">
                             <div class=" col-md-2">
                                 <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
@@ -70,21 +60,26 @@
                             </div>
                             <span asp-validation-for="Descripcion" class="text-danger"></span>
                         </div>
+
                         <div class="form-group row">
+
                             <div class="col-md-4 text-md-right">
                                 <a asp-action="Index" type="button" style="color:white"
                                    class="btn btn-warning">
                                     Regresar
                                 </a>
+
+
                             </div>
 
                             <div class="col-md-4 text-md-right">
-                                <input type="button" value="Editar" id="btnEditar"
-                                       class="btn btn-info" @*style="width: 80%;"*@
+                                <input type="button" value="Agregar" id="btnAgregar"
+                                       class="btn btn-info"
                                        onclick="abrirModal()" />
                             </div>
 
                         </div>
+
                     </div>
                 </form>
             </div>
@@ -96,20 +91,20 @@
 <script src="~/js/Utilitarios.js"></script>
 <script>
     function abrirModal() {
-        verModal('Modificar', '¿Realmente Desea modificar el registro de Tipo de Actividad?').then((result) => {
+        verModal('Agregar categoria de producto o servicio', '¿Realmente desea agregar esta categoría de producto o servicio?').then((result) => {
             if (result.value) {
-                var viewEditar = document.getElementById("viewEditar");
-                viewEditar.submit();
+                var viewAgregar = document.getElementById("viewAgregar");
+                viewAgregar.submit();
                 Swal.fire(
-                    'Modificado!',
-                    'Operación con éxito!.',
+                    'La categoría de producto o servicio fue agregada!',
+                    'exitosamente!.',
                     'success'
                 )
             }
             else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Cancelado',
-                    'Operación Fracasada!!!:)',
+                    'La categoría de producto o servicio no ha sido agregado!!!:)',
                     'error'
                 )
             }

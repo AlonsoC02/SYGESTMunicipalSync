@@ -1,8 +1,8 @@
-﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.TipoActividad
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.CatProductoServicio
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
-   
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+
 }
 
 <main id="main">
@@ -19,7 +19,7 @@
 
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="TipoActividad" asp-action="Edit">Tipo de Actividad</a></li>
+                <li><a asp-area="OFIM" asp-controller="CatProductoServicio" asp-action="Edit">Categoría de producto o servicio</a></li>
                 <li>Editar Registro</li>
             </ol>
         </div>
@@ -43,12 +43,12 @@
                     <div class="backgroundWhite">
                         <div class=" form-group row">
                             <div class=" col-md-2">
-                                <h5><label asp-for="TipoActividadId" class="col-form-label"></label></h5>
+                                <h5><label asp-for="CatProductoServicioId" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <input asp-for="TipoActividadId" class="form-control" readonly />
+                                <input asp-for="CatProductoServicioId" class="form-control" readonly />
                             </div>
-                            <span asp-validation-for="TipoActividadId" class=" text-danger"></span>
+                            <span asp-validation-for="CatProductoServicioId" class=" text-danger"></span>
                         </div>
 
                         <div class=" form-group row">
@@ -96,7 +96,7 @@
 <script src="~/js/Utilitarios.js"></script>
 <script>
     function abrirModal() {
-        verModal('Modificar', '¿Realmente Desea modificar el registro de Tipo de Actividad?').then((result) => {
+        verModal('Modificar', '¿Realmente Desea modificar el registro de categoría de producto o servicio?').then((result) => {
             if (result.value) {
                 var viewEditar = document.getElementById("viewEditar");
                 viewEditar.submit();

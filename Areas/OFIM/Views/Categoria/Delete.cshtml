@@ -1,8 +1,7 @@
-﻿@model SYGESTMunicipalSync.Areas.OFGA.Models.TipoActividad
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Categoria
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
-   
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
 }
 
 <main id="main">
@@ -12,15 +11,15 @@
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Editar Registro</h2>
+                    <h2>Eliminar Registro</h2>
                 </div>
             </div>
         </div>
 
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="TipoActividad" asp-action="Edit">Tipo de Actividad</a></li>
-                <li>Editar Registro</li>
+                <li><a asp-area="OFIM" asp-controller="Categoria" asp-action="Delete">Procesos Formativos></a></li>
+                <li>Eliminar Procesos Formativos</li>
             </ol>
         </div>
     </section><!-- End Breadcrumbs -->
@@ -29,7 +28,7 @@
         <div class="col-md-12 col-lg-12">
             <h3 class="text-light"
                 style="text-align:center;background-color:darkslategray;">
-                Editar
+                Eliminar
             </h3>
         </div>
     </div>
@@ -39,16 +38,16 @@
     <div class="row no-gutters">
         <div class="col-md-7">
             <div class="contact-wrap w-100 p-md-5 p-4">
-                <form method="post" asp-action="Edit" id="viewEditar">
+                <form method="post" asp-action="Delete" id="viewEliminar">
                     <div class="backgroundWhite">
                         <div class=" form-group row">
                             <div class=" col-md-2">
-                                <h5><label asp-for="TipoActividadId" class="col-form-label"></label></h5>
+                                <h5><label asp-for="CategoriaId" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <input asp-for="TipoActividadId" class="form-control" readonly />
+                                <input asp-for="CategoriaId" class="form-control" readonly />
                             </div>
-                            <span asp-validation-for="TipoActividadId" class=" text-danger"></span>
+                            <span asp-validation-for="CategoriaId" readonly class=" text-danger"></span>
                         </div>
 
                         <div class=" form-group row">
@@ -56,20 +55,19 @@
                                 <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <input asp-for="Nombre" class="form-control" />
+                                <input asp-for="Nombre" readonly class="form-control" />
                             </div>
                             <span asp-validation-for="Nombre" class=" text-danger"></span>
                         </div>
 
-                        <div class="form-group row">
+                        @*<div class="form-group row">
                             <div class="col-md-2">
-                                <h5><label asp-for="Descripcion" class="col-form-label"></label></h5>
+                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
                             </div>
-                            <div class="col-md-9">
-                                <textarea asp-for="Descripcion" rows="4" cols="50" class="form-control"> </textarea>
+                            <div class="col-md-8">
+                                <input asp-for="Fecha" type="text" id="datepicker" readonly class="form-control" />
                             </div>
-                            <span asp-validation-for="Descripcion" class="text-danger"></span>
-                        </div>
+                        </div>*@
                         <div class="form-group row">
                             <div class="col-md-4 text-md-right">
                                 <a asp-action="Index" type="button" style="color:white"
@@ -79,10 +77,11 @@
                             </div>
 
                             <div class="col-md-4 text-md-right">
-                                <input type="button" value="Editar" id="btnEditar"
-                                       class="btn btn-info" @*style="width: 80%;"*@
+                                <input type="button" value="Eliminar" id="btnEliminar"
+                                       class="btn btn-danger"
                                        onclick="abrirModal()" />
                             </div>
+
 
                         </div>
                     </div>
@@ -96,12 +95,12 @@
 <script src="~/js/Utilitarios.js"></script>
 <script>
     function abrirModal() {
-        verModal('Modificar', '¿Realmente Desea modificar el registro de Tipo de Actividad?').then((result) => {
+        verModal('Eliminar', '¿Realmente Desea eliminar el registro?').then((result) => {
             if (result.value) {
-                var viewEditar = document.getElementById("viewEditar");
+                var viewEditar = document.getElementById("viewEliminar");
                 viewEditar.submit();
                 Swal.fire(
-                    'Modificado!',
+                    'Eliminado!',
                     'Operación con éxito!.',
                     'success'
                 )
