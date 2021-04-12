@@ -68,14 +68,19 @@
                                    asp-controller="Persona" asp-action="Edit"
                                    asp-route-id="@item.CedulaPersona"></a>
 
-                                <a class="fa fa-arrow-circle-left btn btn-primary" aria-hidden="true"
-                                   asp-controller="Persona" asp-action="Delete"
-                                   asp-route-id="@item.CedulaPersona"></a>
+                                <i class="fa fa-trash-o  btn btn-primary" aria-hidden="true"
+                                   onclick="EliminarPersona(@item.CedulaPersona)"></i>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
+            <div class="col-md-15 text-md-right">
+                <script>
+                    document.write('Ultima modificación: ' + window.document.lastModified)
+
+                </script>
+            </div>
         }
         else
         {
@@ -84,7 +89,10 @@
 
  </div>
 
+    <form asp-action="Delete" asp-controller="Persona" method="post" id="viewEliminar">
+        <input type="hidden" id="txtPersonaId" name="Id" />
 
+    </form>
         <script src="~/js/sweetalert2.js"></script>
         <script src="~/js/Utilitarios.js"></script>
 
@@ -97,6 +105,30 @@
                         }
                     });
             })
+
+
+            function EliminarPersona(CedulaPersona) {
+                document.getElementById("txtPersonaId").value = CedulaPersona;
+                verModal('Eliminar Persona',
+                    '¿Desea eliminar la persona '
+                    + Id + ' ?').then((result) => {
+                        if (result.value) {
+                            alert("No se puede eliminar una persona si la información está en uso")
+                            var viewEliminar = document.getElementById("viewEliminar");
+                            viewEliminar.submit();
+                            Swal.fire(
+                                'Eliminación!',
+                                'La Persona  ' + CedulaPersona + ' fue eliminada!.',
+                                'success'
+                            )
+                        }
+                        else if (result.dismiss === Swal.DismissReason.cancel) {
+                            Swal.fire(
+                                'Cancelado',
+                                'LaPersona no fue eliminada!!!:)',
+                                'error'
+                            )
+                        }
+                    })
+            }
         </script>
-        }
->

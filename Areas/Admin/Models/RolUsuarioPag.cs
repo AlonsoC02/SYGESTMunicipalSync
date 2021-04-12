@@ -12,8 +12,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public int RolUsuarioPagId { get; set; }
 
         [Display(Name = "Rol Usuario:")]
-        public int? RolUsuarioId { get; set; }
-        public virtual RolUsuario RolUsuario { get; set; }
+        public int? RolId { get; set; }
+        public virtual Rol Rol { get; set; }
 
         [Display(Name = "Página Id")]
         public int? PaginaId { get; set; }

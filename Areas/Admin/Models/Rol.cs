@@ -10,8 +10,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
     {
         public Rol()
         {
-            RolUsuario = new HashSet<RolUsuario>();
-            
+            Usuario = new HashSet<Usuario>();
+            RolUsuarioPag = new HashSet<RolUsuarioPag>();
         }
         [Display(Name = "Rol Usuario Id:")]
         public int RolId { get; set; }
@@ -25,7 +25,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string Descripcion { get; set; }
         
 
-        public virtual ICollection<RolUsuario> RolUsuario { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<RolUsuarioPag> RolUsuarioPag { get; set; }
 
        
 

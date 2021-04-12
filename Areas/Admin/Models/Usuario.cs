@@ -29,13 +29,12 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public virtual Persona Persona { get; set; }
 
-        public virtual ICollection<RolUsuario> RolUsuario { get; set; }
-        public virtual ICollection<Login> Login { get; set; }
+        [Display(Name = "Rol Id:")]
+        public int RolId { get; set; }
+        public virtual Rol Rol { get; set; }
 
-        public Usuario()
-        {
-            RolUsuario = new HashSet<RolUsuario>();
-            Login = new HashSet<Login>();
-        }
+       
+
+        
     }
 }
