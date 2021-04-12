@@ -100,8 +100,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             cargarDistrito();
             cargarCanton();
             cargarProvincia();
-            
-
             return View();
         }
 
@@ -140,7 +138,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                     _persona.DistritoId = persona.DistritoId;
                     _persona.ProvinciaId = persona.ProvinciaId;
 
-                   
                     _db.Persona.Add(_persona);
                     _db.SaveChanges();
                 }
@@ -228,35 +225,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         //    return RedirectToAction(nameof(Index));
         //}
 
-        public IActionResult Delete(string Id)
-        {
-            cargarDistrito();
-            cargarCanton();
-            cargarProvincia();
-            Persona oPersona = _db.Persona
-                 .Where(m => m.CedulaPersona == Id).First();
-            return View(oPersona);
-        }
-        [HttpPost, ActionName("Delete")]
-        public IActionResult Deleted(string Id)
-        {
-            string Error = "";
-            try
-            {
-                Persona oPersona = _db.Persona
-                     .Where(c => c.CedulaPersona == Id).First();
-                if (oPersona != null)
-                {
-                    _db.Persona.Remove(oPersona);
-                    _db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                Error = ex.Message;
-            }
-            return RedirectToAction(nameof(Index));
-        }
+
 
         private void BuscarPersona(string CedulaPersona)
         {

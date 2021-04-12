@@ -153,7 +153,9 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-
+                    CargarMaterial();
+                    CargarDistrito();
+                    CargarClasificacion();
                     return View(materials);
                 }
                 else
@@ -167,6 +169,32 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 error = ex.Message;
             }
             return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult Delete(int? Id)
+        {
+            string Error = "";
+            try
+            {
+                PuntoRecMaterial oCupos = _db.PuntoRecMaterial
+                               .Where(m => m.PuntosRecMaterialId == Id).First();
+                _db.PuntoRecMaterial.Remove(oCupos);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Details(int id)
+        {
+            CargarMaterial();
+            CargarDistrito();
+            CargarClasificacion();
+            PuntoRecMaterial oEspecialidad = _db.PuntoRecMaterial
+                         .Where(e => e.PuntosRecMaterialId == id).First();
+            return View(oEspecialidad);
         }
     }
 }

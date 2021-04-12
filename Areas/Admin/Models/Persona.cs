@@ -11,7 +11,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
     public partial class Persona
     {
         [Required(ErrorMessage = "Debe digitar el ID de la Persona")]
-        [Display(Name = "Indentificacion:")]
+        [Display(Name = "Cédula o Pasaporte:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string CedulaPersona { get; set; }
 
@@ -21,12 +21,12 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el primer Apellido de la Persona")]
-        [Display(Name = "Apellido:")]
+        [Display(Name = "Primer Apellido:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string Ape1 { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el segundo Apellido de la Persona")]
-        [Display(Name = "Apellido:")]
+        [Display(Name = "Segundo Apellido:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string Ape2 { get; set; }
 

@@ -1,0 +1,214 @@
+﻿@model SYGESTMunicipalSync.Areas.Admin.Models.Persona
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaDistrito;
+    List<SelectListItem> Lista1 = ViewBag.ListaCanton;
+    List<SelectListItem> Lista2 = ViewBag.ListaProvincia;
+
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light" style="text-align:center;
+                              background-color:#dc3545;width:100%;">
+            Editar Persona
+        </h3>
+    </div>
+</div>
+<br />
+
+<form asp-controller="Persona" asp-action="Edit" method="post" id="viewEditar">
+    <div class="container-fluid">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Cédula o Pasaporte: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="CedulaPersona" class="form-control" disabled />
+            </div>
+            <span asp-validation-for="CedulaPersona" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Nombre: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Nombre" class="form-control" required />
+            </div>
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Primer Apellido: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Ape1" class="form-control" required />
+            </div>
+            <span asp-validation-for="Ape1" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Segundo Apellido: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Ape2" class="form-control" required />
+            </div>
+            <span asp-validation-for="Ape2" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Fecha Nacimiento: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="date" asp-for="FechaNac" class="form-control" />
+            </div>
+            <span asp-validation-for="FechaNac" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Correo Electrónico:</label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Sexo: </label>
+            </div>
+            <div class="col-md-6">
+                <select id="Sexo" asp-for="Sexo" class="form-control">
+                    <option>H</option>
+                    <option>M</option>
+                </select>
+            </div>
+            <span asp-validation-for="Sexo" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Teléfono Móvil:</label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="TelMovil" class="form-control" />
+            </div>
+            <span asp-validation-for="TelMovil" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Teléfono Fijo: <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="TelFijo" class="form-control" required />
+            </div>
+            <span asp-validation-for="TelFijo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Fax:</label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Fax" class="form-control" />
+            </div>
+            <span asp-validation-for="Fax" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Dirección: </label>
+            </div>
+            <div class="col-md-6">
+                <textarea asp-for="Direccion" rows="4" cols="50"
+                          class="form-control"> </textarea>
+            </div>
+            <span asp-validation-for="Direccion" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Distrito: </label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="DistritoId" class="form-control" required
+                        asp-items="@Lista"></select>
+            </div>
+            <span asp-validation-for="DistritoId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Cantón: </label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="CantonId" class="form-control" required
+                        asp-items="@Lista1"></select>
+            </div>
+            <span asp-validation-for="CantonId" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Provincia: </label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="ProvinciaId" class="form-control"
+                        asp-items="@Lista2"></select>
+            </div>
+            <span asp-validation-for="ProvinciaId" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <input type="button" value="Editar" id="btnEditar"
+                       class="btn btn-info"
+                       onclick="abrirModal()" />
+            </div>
+
+            <div class="col-md-1 text-md-center">
+                <a asp-action="Index" type="button"
+                   class="btn btn-success">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+}
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Editar Persona', '¿Realmente Desea editar los datos de esta Persona?').then((result) => {
+            if (result.value) {
+                var viewAgregar = document.getElementById("viewEditar");
+                viewAgregar.submit();
+                Swal.fire(
+                    'Los datos de esta persona han sido modificados!',
+                    'exitosamente!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'La persona no ha sido modificada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
