@@ -120,7 +120,7 @@
                     <label>Teléfono Fijo: </label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="TelFijo" placeholder="Digite un número de casa válido">
+                    <input asp-for="TelFijo" class="form-control" placeholder="Digite un número de casa válido">
                 </div>
                 <span asp-validation-for="TelFijo" class="text-danger"></span>
             </div>
@@ -130,7 +130,7 @@
                     <label>Fax:</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="Fax" placeholder="Digite un número de fax válido">
+                    <input asp-for="Fax" class="form-control" placeholder="Digite un número de fax válido">
                 </div>
                 <span asp-validation-for="Fax" class="text-danger"></span>
             </div>
@@ -151,7 +151,7 @@
                     <label>Distrito: <span class="required">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <select asp-for="DistritoId" placeholder="Seleccione el distrito donde vive" required
+                    <select asp-for="DistritoId" placeholder="Seleccione el Domicilio donde vive" required
                             asp-items="@Lista"></select>
                 </div>
                 <span asp-validation-for="DistritoId" class="text-danger"></span>

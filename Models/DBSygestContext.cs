@@ -330,7 +330,7 @@ namespace SYGESTMunicipalSync.Models
                      .IsRequired()
                      .HasMaxLength(200)
                      .IsUnicode(false);
-
+               
                 entity.Property(e => e.DistritoId)
                    .HasColumnName("DistritoId");
 
@@ -373,26 +373,6 @@ namespace SYGESTMunicipalSync.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.CantonId)
-                .HasColumnName("CantonId");
-
-                entity.HasOne(d => d.Canton)
-                    .WithMany(p => p.Provincia)
-                    .HasForeignKey(d => d.CantonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Provincia_Canton");
-
-                entity.Property(e => e.DistritoId)
-               .HasColumnName("DistritoId");
-
-                entity.HasOne(d => d.Distrito)
-                    .WithMany(p => p.Provincia)
-                    .HasForeignKey(d => d.DistritoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Provincia_Distrito");
-
-
             });
 
             modelBuilder.Entity<Canton>(entity =>
@@ -404,14 +384,14 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
                            
-                entity.Property(e => e.DistritoId)
-               .HasColumnName("DistritoId");
+                entity.Property(e => e.ProvinciaId)
+               .HasColumnName("ProvinciaId");
 
-                entity.HasOne(d => d.Distrito)
+                entity.HasOne(d => d.Provincia)
                     .WithMany(p => p.Canton)
-                    .HasForeignKey(d => d.DistritoId)
+                    .HasForeignKey(d => d.ProvinciaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Canton_Distrito");
+                    .HasConstraintName("FK_Canton_Provincia");
 
 
             });
@@ -424,9 +404,31 @@ namespace SYGESTMunicipalSync.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-                            
+
+
+                entity.Property(e => e.CantonId)
+              .HasColumnName("CantonId");
+
+                entity.HasOne(d => d.Canton)
+                    .WithMany(p => p.Distrito)
+                    .HasForeignKey(d => d.CantonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Distrito_Canton");
+
+
+                entity.Property(e => e.ProvinciaId)
+              .HasColumnName("ProvinciaId");
+
+                entity.HasOne(d => d.Provincia)
+                    .WithMany(p => p.Distrito)
+                    .HasForeignKey(d => d.ProvinciaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Distrito_Provincia");
+
+
             });
 
+           
 
 
 

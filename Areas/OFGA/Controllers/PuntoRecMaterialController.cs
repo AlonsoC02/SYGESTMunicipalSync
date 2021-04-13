@@ -23,24 +23,24 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         }
         public IActionResult Index()
         {
-            listaPunto = (from medico in _db.PuntoRecMaterial
-                          join especialidad in _db.Clasificacion
-                          on medico.ClasificacionId equals especialidad.ClasificacionId
+            listaPunto = (from puntoRecMaterial in _db.PuntoRecMaterial
+                          join clasificacion in _db.Clasificacion
+                          on puntoRecMaterial.ClasificacionId equals clasificacion.ClasificacionId
 
                           join distrito in _db.Distrito
-                          on medico.DistritoId equals distrito.DistritoId
+                          on puntoRecMaterial.DistritoId equals distrito.DistritoId
 
                           join material in _db.Materiales
-                          on medico.MaterialId equals material.MaterialId
+                          on puntoRecMaterial.MaterialId equals material.MaterialId
 
                           select new PuntoRecMaterialMaterialesClasificacionViewModel
                           {
-                              PuntosRecMaterialId = medico.PuntosRecMaterialId,
-                              Peso = medico.Peso,
+                              PuntosRecMaterialId = puntoRecMaterial.PuntosRecMaterialId,
+                              Peso = puntoRecMaterial.Peso,
                               Distrito = distrito.Nombre,
-                              Clasificacion = especialidad.Nombre,
+                              Clasificacion = clasificacion.Nombre,
                               Material = material.Nombre,
-                              Fecha = medico.Fecha
+                              Fecha = puntoRecMaterial.Fecha
                           }).ToList();
             lista = listaPunto;
             return View(listaPunto);
@@ -49,12 +49,12 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         private void CargarClasificacion()
         {
             List<SelectListItem> listaClasificacion = new List<SelectListItem>();
-            listaClasificacion = (from especialidad in _db.Clasificacion
-                                  orderby especialidad.Nombre
+            listaClasificacion = (from clasificacion in _db.Clasificacion
+                                  orderby clasificacion.Nombre
                                   select new SelectListItem
                                   {
-                                      Text = especialidad.Nombre,
-                                      Value = especialidad.ClasificacionId.ToString()
+                                      Text = clasificacion.Nombre,
+                                      Value = clasificacion.ClasificacionId.ToString()
                                   }
                                    ).ToList();
             ViewBag.ListaTClasificacion = listaClasificacion;
@@ -62,29 +62,29 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 
         private void CargarDistrito()
         {
-            List<SelectListItem> listaClasificacion = new List<SelectListItem>();
-            listaClasificacion = (from especialidad in _db.Distrito
-                                  orderby especialidad.Nombre
+            List<SelectListItem> listaDistrito = new List<SelectListItem>();
+            listaDistrito = (from distrito in _db.Distrito
+                                  orderby distrito.Nombre
                                   select new SelectListItem
                                   {
-                                      Text = especialidad.Nombre,
-                                      Value = especialidad.DistritoId.ToString()
+                                      Text = distrito.Nombre,
+                                      Value = distrito.DistritoId.ToString()
                                   }
                                    ).ToList();
-            ViewBag.ListaTDistrito = listaClasificacion;
+            ViewBag.ListaTDistrito = listaDistrito;
         }
         private void CargarMaterial()
         {
-            List<SelectListItem> listaClasificacion = new List<SelectListItem>();
-            listaClasificacion = (from especialidad in _db.Materiales
-                                  orderby especialidad.Nombre
+            List<SelectListItem> listaMaterial= new List<SelectListItem>();
+            listaMaterial = (from material in _db.Materiales
+                                  orderby material.Nombre
                                   select new SelectListItem
                                   {
-                                      Text = especialidad.Nombre,
-                                      Value = especialidad.MaterialId.ToString()
+                                      Text = material.Nombre,
+                                      Value = material.MaterialId.ToString()
                                   }
                                    ).ToList();
-            ViewBag.ListaTMaterial = listaClasificacion;
+            ViewBag.ListaTMaterial = listaMaterial;
         }
 
         public IActionResult Create()

@@ -18,13 +18,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
 
-        [Display(Name = "Canton:")]
-        public int CantonId { get; set; }
-        public virtual Canton Canton { get; set; }
-
-        [Display(Name = "Distrito:")]
-        public int DistritoId { get; set; }
-        public virtual Distrito Distrito { get; set; }
+       
+        public virtual ICollection<Canton> Canton { get; set; }
+        public virtual ICollection<Distrito> Distrito { get; set; }
         public virtual ICollection<Persona> Persona { get; set; }
         
         public virtual ICollection<Denuncia> Denuncia { get; set; }
