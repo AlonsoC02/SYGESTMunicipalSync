@@ -1,0 +1,233 @@
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Empresa
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+
+    List<SelectListItem> Lista = ViewBag.ListaPersona;
+    List<SelectListItem> Lista1 = ViewBag.ListaCatProductoServicio;
+
+}
+@*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
+    {*@
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="breadcrumb-hero">
+            <div class="container">
+                <div class="breadcrumb-hero">
+                    <h2>Editar Empresa</h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <ol>
+                <li><a asp-area="OFGA" asp-controller="Empresa" asp-action="Index">Lista de Empresa</a></li>
+                <li>Empresa</li>
+            </ol>
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light"
+                style="text-align:center;background-color:darkslategray;">
+                Editar
+            </h3>
+        </div>
+    </div>
+    <br />
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" id="viewEditar">
+        <div class="row backgroundWhiteBorder">
+            <div class="col-md-4 border align-self-baseline">
+                @{
+                    var base64 = Convert.ToBase64String(Model.Logo);
+                    var imgsrc = string.Format("data:image/jpg;base64, {0}", base64);
+                }
+                <img src="@imgsrc" style="height: 100%; width:110%" />
+            </div>
+            <div class="col-md-6 pt-3 pt-lg-0 content">
+                <div class="container">
+                    <br />
+                    <br />
+                    <div class="breadcrumb-hero text-md-center">
+                        <h2>Detalles de empresa Registrada</h2>
+                    </div>
+                </div>
+                <br />
+                <br />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="EmpresaId" class="form-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input asp-for="EmpresaId" readonly class="form-control" />
+                    </div>
+                    <span asp-validation-for="EmpresaId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Nombre" class="form-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input asp-for="Nombre" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div class=" form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Descripcion" class="col-form-label"></label></h5>
+                    </div>
+                    <div class="col-md-9">
+                        <textarea asp-for="Descripcion" rows="4" cols="50"
+                                  class="form-control"> </textarea>
+                    </div>
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+
+                <div class=" form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Ubicacion" class="col-form-label"></label></h5>
+                    </div>
+                    <div class="col-md-9">
+                        <textarea asp-for="Ubicacion" rows="4" cols="50"
+                                  class="form-control"> </textarea>
+                    </div>
+                    <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Email" class="form-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="PaginaWeb" class="form-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input asp-for="PaginaWeb" class="form-control" />
+                    </div>
+                    <span asp-validation-for="PaginaWeb" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Telefono" class="form-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input asp-for="Telefono" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Logo" class="custom-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="file" id="projectImage" name="files"
+                               multiple class="form-control" />
+                    </div>
+                </div>
+
+                <div class=" form-group row">
+                    <div class=" col-md-2">
+                        <h5><label asp-for="Persona" class="col-form-label"></label></h5>
+                    </div>
+                    <div class="col-md-8">
+                        <select asp-for="PersonaId" class="form-control" required
+                                asp-items="@Lista"></select>
+                    </div>
+                    <span asp-validation-for="PersonaId" class=" text-danger"></span>
+                </div>
+
+                <div class=" form-group row">
+                    <div class=" col-md-2">
+                        <h5><label asp-for="CatProductoServicioId" class="col-form-label"></label></h5>
+                    </div>
+                    <div class="col-md-8">
+                        <select asp-for="CatProductoServicioId" class="form-control" required
+                                asp-items="@Lista1"></select>
+                    </div>
+                    <span asp-validation-for="CatProductoServicioId" class=" text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group row">
+
+                    <div class="col-md-5 text-md-right">
+                        <a asp-action="Index" type="button" style="color:white"
+                           class="btn btn-warning">
+                            Regresar
+                        </a>
+
+
+                    </div>
+
+                    <div class="col-md-5 text-md-right">
+                        <input type="button" value="Editar" id="btnEditar"
+                               class="btn btn-info" @*style="width: 80%;"*@
+                               onclick="abrirModal()" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+
+    @*}*@
+
+    <script src="~/js/DPickerSpanish.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+            $("#datepicker").datepicker({ minDate: 0, maxDate: "+1W" });
+            //$("#timepicker").timepicker({ minTime: '11:00 AM', maxTime: '9:00 PM', step: '30' })
+        });</script>
+}
+
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Modificar', '¿Realmente Desea modificar?').then((result) => {
+            if (result.value) {
+                var viewEditar = document.getElementById("viewEditar");
+                viewEditar.submit();
+                Swal.fire(
+                    'Modificado!',
+                    'Operación con éxito!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'Operación Fracasada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
+

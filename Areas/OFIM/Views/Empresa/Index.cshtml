@@ -1,5 +1,6 @@
-﻿
-@model IEnumerable<SYGESTMunicipalSync.Areas.OFIM.Models.CatProductoServicio>
+﻿@model IEnumerable<EmpresaViewModel>
+
+@using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
@@ -11,26 +12,26 @@
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Registro de Categoría de Producto o Servicio</h2>
+                    <h2>Registro de Empresas</h2>
                 </div>
             </div>
         </div>
         <div class="container">
             <ol>
                 <li><a asp-area="OFIM" asp-controller="Home" asp-action="Index">Oficina de la Mujer</a></li>
-                <li>categoría de Servicio o Producto</li>
+                <li>Empresa</li>
             </ol>
         </div>
     </section><!-- End Breadcrumbs -->
 
     <div class="border backgroundWhite">
         <br />
-        <form asp-controller="CatProductoServicio" asp-action="Index" method="post">
+        <form asp-controller="Empresa" asp-action="Index" method="post">
             <div class="row">
 
 
                 <div class="col-md-2  text-right">
-                    <a asp-controller="Home" asp-action="Index"
+                    <a asp-controller="" asp-action="Index"
                        class="btn btn-warning fa fa-arrow-circle-left"
                        style="width:80%; color:white; height:100%;padding:12px;">
                         Regresar al menú
@@ -51,12 +52,12 @@
 
         @if (Model.Count() > 0)
         {
-            <table class="table table-hover .table-responsive" id="TbCatProductoServicio">
+            <table class="table table-hover .table-responsive" id="TbEmpresa">
                 <thead class="thead-dark">
                     <tr class="table-secondary" style="text-align:center;">
-                        <th>@Html.DisplayNameFor(m => m.CatProductoServicioId)</th>
+                        <th>@Html.DisplayNameFor(m => m.EmpresaId)</th>
                         <th>@Html.DisplayNameFor(m => m.Nombre)</th>
-                        <th>@Html.DisplayNameFor(m => m.Descripcion)</th>
+                        <th>@Html.DisplayNameFor(m => m.PersonaId)</th>
 
                         <th>Operaciones</th>
                     </tr>
@@ -65,12 +66,12 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(m => item.CatProductoServicioId)</td>
+                            <td>@Html.DisplayFor(m => item.EmpresaId)</td>
                             <td>@Html.DisplayFor(m => item.Nombre)</td>
-                            <td>@Html.DisplayFor(m => item.Descripcion)</td>
+                            <td>@Html.DisplayFor(m => item.PersonaId)</td>
 
                             <div class="col-md-6">
-                                <a><partial name="_TableButtonPartialDelete" model="item.CatProductoServicioId" /></a>
+                                <a><partial name="_TableButtonPartialDelete" model="item.EmpresaId" /></a>
                             </div>
 
                             @*<div class="col-md-6">
@@ -98,7 +99,7 @@
         }
         else
         {
-            <h5 style="color:red;">No se encontraron registros de categorías de producto o servicio!...</h5>
+            <h5 style="color:red;">No se encontraron registros de pacas!...</h5>
         }
     </div>
 </main><!-- End #main -->
