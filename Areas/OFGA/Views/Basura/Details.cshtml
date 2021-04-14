@@ -5,86 +5,64 @@
     String Fecha = @ViewBag.Fecha;
 }
 
-<main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="breadcrumb-hero">
-            <div class="container">
-                <div class="breadcrumb-hero">
-                    <h2>Mostrar Registro</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <ol>
-                <li><a asp-area="OFGA" asp-controller="Basura" asp-action="Details">Residuos Ordinarios</a></li>
-                <li>Mostrar Registro</li>
-            </ol>
-        </div>
-    </section><!-- End Breadcrumbs -->
-
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <h3 class="text-light"
-                style="text-align:center;background-color:darkslategray;">
-               Listar
-            </h3>
-        </div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Mostrar Registro
+        </h3>
     </div>
-    <br />
-
-    <!-- ======= About Section ======= -->
-    <div class="row no-gutters">
-        <div class="col-md-7">
-            <div class="contact-wrap w-100 p-md-5 p-4">
-                <form method="post" asp-action="Edit" id="viewMostrar">
-                    <div class="backgroundWhite">
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="BasuraId" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="BasuraId" class="form-control" readonly />
-                            </div>
-                            <span asp-validation-for="BasuraId" readonly class=" text-danger"></span>
+</div>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <form method="post" asp-action="Edit" id="viewMostrar">
+                <div class="backgroundWhite">
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="BasuraId" class="col-form-label"></label></h5>
                         </div>
-
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Peso" readonly class="form-control" />
-                            </div>
-                            <span asp-validation-for="Peso" class=" text-danger"></span>
+                        <div class="col-md-9">
+                            <input asp-for="BasuraId" class="form-control" readonly />
                         </div>
+                        <span asp-validation-for="BasuraId" readonly class=" text-danger"></span>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input asp-for="Fecha" type="text" id="datepicker" readonly class="form-control" />
-                            </div>
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Peso" class="col-form-label"></label></h5>
                         </div>
-                        <div class="form-group row">
+                        <div class="col-md-9">
+                            <input asp-for="Peso" readonly class="form-control" />
+                        </div>
+                        <span asp-validation-for="Peso" class=" text-danger"></span>
+                    </div>
 
-                            <div class="col-md-4 text-md-right">
-                                <a asp-action="Index" type="button" style="color:white"
-                                   class="btn btn-warning">
-                                    Regresar
-                                </a>
-                            </div>
-                                                       
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <input asp-for="Fecha" type="text" id="datepicker" readonly class="form-control" />
                         </div>
                     </div>
-                </form>
-            </div>
+                    <div class="form-group row">
+
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button" style="color:white"
+                               class="btn btn-warning">
+                                Regresar
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</main>
+</div>
 
 <script src="~/js/sweetalert2.js"></script>
 <script src="~/js/Utilitarios.js"></script>

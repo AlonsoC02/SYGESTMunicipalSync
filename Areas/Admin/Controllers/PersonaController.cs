@@ -43,10 +43,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                                  persona.Ape1 + " " +
                                  persona.Ape2,
                                  Email = persona.Email,
+                                 FechaNac = persona.FechaNac,
                                  TelMovil= persona.TelMovil,
-                                 DistritoId = distrito.DistritoId,
-                                 CantonId = canton.CantonId,
-                                 ProvinciaId = provincia.ProvinciaId
+                                 Distrito = distrito.Nombre,
+                                 Canton = canton.Nombre,
+                                 Provincia = provincia.Nombre
                              }).ToList();
             ViewBag.Controlador = "Persona";
             ViewBag.Accion = "Index";
@@ -54,23 +55,27 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         }
         private void cargarDistrito()
         {
-            List<SelectListItem> listaDistrito = new List<SelectListItem>();
+            List<SelectListItem> listaDistrito= new List<SelectListItem>();
             listaDistrito = (from distrito in _db.Distrito
-                                orderby distrito.Nombre
-                                select new SelectListItem
-                                {
-                                    Text = distrito.Nombre,
-                                    Value = distrito.DistritoId.ToString()
-                                }
+                             orderby distrito.Nombre
+                             
+
+                             select new SelectListItem
+                             {
+                                 Text = distrito.Nombre,
+
+                                 Value = distrito.DistritoId.ToString()
+                             }
                                 ).ToList();
             ViewBag.ListaDistrito = listaDistrito;
         }
 
-        private void cargarCanton()
+
+        private void ListarCanton()
         {
             List<SelectListItem> listaCanton = new List<SelectListItem>();
             listaCanton = (from canton in _db.Canton
-                              orderby canton.CantonId
+                              orderby canton.Nombre
                               select new SelectListItem
                               {
                                   Text = canton.Nombre,
@@ -80,7 +85,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             ViewBag.ListaCanton = listaCanton;
         }
 
-        private void cargarProvincia()
+        private void ListarProvincia()
         {
             List<SelectListItem> listaProvincia = new List<SelectListItem>();
             listaProvincia = (from provincia in _db.Provincia
@@ -94,12 +99,26 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             ViewBag.ListaProvincia = listaProvincia;
         }
 
-        
+        private void BuscarPersona(string PersonaId)
+        {
+            Persona oPersona = _db.Persona
+           .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+            if (oPersona != null)
+            {
+                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.Nombre = oPersona.Nombre + " " + oPersona.Ape1;
+                
+            }
+            else
+            {
+                ViewBag.Error = "Persona no registrada, intente de nuevo!";
+            }
+        }
         public IActionResult Create()
         {
             cargarDistrito();
-            cargarCanton();
-            cargarProvincia();
+            ListarCanton();
+            ListarProvincia();
             return View();
         }
 
@@ -115,8 +134,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                 {
                     if (nVeces >= 1) ViewBag.Error = "Esta cédula de persona ya existe!";
                     cargarDistrito();
-                    cargarCanton();
-                    cargarProvincia();
+                    ListarCanton();
+                    ListarProvincia();
                     return View(persona);
                 }
                 else
@@ -133,7 +152,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                     _persona.TelFijo = persona.TelFijo;
                     _persona.Fax = persona.Fax;
                     _persona.Direccion = persona.Direccion;
-
+                
                     _persona.CantonId = persona.CantonId;
                     _persona.DistritoId = persona.DistritoId;
                     _persona.ProvinciaId = persona.ProvinciaId;
@@ -152,8 +171,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         public IActionResult Edit(string id)
         {
             cargarDistrito();
-            cargarCanton();
-            cargarProvincia();
+            ListarCanton();
+            ListarProvincia();
             int recCount = _db.Persona.Count(e => e.CedulaPersona == id);
             Persona _persona = (from p in _db.Persona
                                         where p.CedulaPersona == id
@@ -169,8 +188,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                 if (!ModelState.IsValid)
                 {
                     cargarDistrito();
-                    cargarCanton();
-                    cargarProvincia();
+                    ListarCanton();
+                    ListarProvincia();
                     return View(persona);
                 }
                 else
@@ -189,59 +208,31 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         public IActionResult Details(string id)
         {
             cargarDistrito();
-            cargarCanton();
-            cargarProvincia();
+            ListarCanton();
+            ListarProvincia();
             Persona persona = _db.Persona
                        .Where(e => e.CedulaPersona == id).First();
             return View(persona);
         }
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public IActionResult Delete(string CedulaPersona)
         {
-            if (id == null)
+            var Error = "";
+            try
             {
-                return NotFound();
-
+                Persona oPersona = _db.Persona
+                             .Where(e => e.CedulaPersona == CedulaPersona).First();
+                _db.Persona.Remove(oPersona);
+                _db.SaveChanges();
             }
-            var persona = await _db.Persona.FindAsync(id);
-            if (persona == null)
+            catch (Exception ex)
             {
-                return NotFound();
-
+                Error = ex.Message;
             }
-            return View(persona);
+            return RedirectToAction(nameof(Index));
         }
-        ////POST - DELETE    //si se realiza una operacion es un POST
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int? id)
-        //{
-        //    var persona = await _db.Persona.FindAsync(id);
-        //    if (persona == null)
-        //    {
-        //        return View();
-        //    }
-        //    _db.Persona.Remove(persona);
-        //    await _db.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
 
 
-
-        private void BuscarPersona(string CedulaPersona)
-        {
-            Persona oPersona = _db.Persona
-           .Where(p => p.CedulaPersona == CedulaPersona).FirstOrDefault();
-            if (oPersona != null)
-            {
-                ViewBag.PersonOfimID = oPersona.CedulaPersona;
-                ViewBag.Nombre = oPersona.CedulaPersona + " " + oPersona.Ape1;
-
-            }
-            else
-            {
-                ViewBag.Error = "Persona no registrada, intente de nuevo!";
-            }
-        }
 
 
 

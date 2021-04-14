@@ -39,25 +39,24 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public string Email { get; set; }
 
         [Display(Name = "Sexo:")]
-        [EmailAddress(ErrorMessage = "Debe ingresar un sexo valido")]
         public char Sexo { get; set; }
 
         [Display(Name = "Telefono Movil:")]
-        [EmailAddress(ErrorMessage = "Debe ingresar un teléfono valido")]
+        
         public int TelMovil { get; set; }
 
         [Display(Name = "Telefono Fijo:")]
-        [EmailAddress(ErrorMessage = "Debe ingresar un teléfono valido")]
         public int TelFijo { get; set; }
 
         [Display(Name = "Fax:")]
-        [EmailAddress(ErrorMessage = "Debe ingresar un fax valido")]
+      
         public int Fax { get; set; }
 
         [Display(Name = "Dirección:")]
         [Required(ErrorMessage = "Debe digitar la dirección valida")]
         [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         public string Direccion { get; set; }
+       
 
         [Display(Name = "Distrito:")]
         public int DistritoId { get; set; }

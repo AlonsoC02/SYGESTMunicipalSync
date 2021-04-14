@@ -63,5 +63,15 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         {
             return View();
         }
+
+        public IActionResult EcoRomeria()
+        {
+            return View();
+        }
+
+        public IActionResult DiaArbol()
+        {
+            return View();
+        }
     }
 }
