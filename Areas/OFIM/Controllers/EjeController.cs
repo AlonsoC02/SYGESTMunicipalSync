@@ -228,7 +228,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ejes = await (from Eje in _db.Eje
                           where Eje.CategoriaId == id
                           select Eje).ToListAsync();
-            return Json(new SelectList(ejes, "Id", "Name"));
+            return Json(new SelectList(ejes, "Id", "Nombre"));
         }
 
         //public FileResult exportar()

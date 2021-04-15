@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 {
     [Area("OFIM")]
-
     public class ActividadController : Controller
     {
         private readonly DBSygestContext _db;
@@ -28,6 +27,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ActividadVM = new ActividadViewModel()
             {
                 Categoria = _db.Categoria,
+                Eje = _db.Eje,
                 Actividad = new Models.Actividad()
             };
         }
