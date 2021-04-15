@@ -75,7 +75,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
         //GET - CREATE
 
-        public IActionResult Create(int id)
+        public IActionResult Create(EmpresaViewModel EmpresaVM)
             
         {
             cargarCatProductoServicio();
