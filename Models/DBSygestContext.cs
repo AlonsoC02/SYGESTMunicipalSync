@@ -96,8 +96,8 @@ namespace SYGESTMunicipalSync.Models
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 //optionsBuilder.UseSqlServer("server=DESKTOP-4KIF3VN\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                //optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                //optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
             }                              
         }
 
@@ -896,7 +896,7 @@ namespace SYGESTMunicipalSync.Models
             // **************************** ACTIVIDADES OFICINA DE LA MUJER************************************************
             modelBuilder.Entity<Categoria>(entity =>
             {
-                entity.HasKey(e => e.CategoriaId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -906,7 +906,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Eje>(entity =>
             {
-                entity.HasKey(e => e.EjeId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -927,7 +927,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Actividad>(entity =>
             {
-                entity.HasKey(e => e.ActividadId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()

@@ -1,0 +1,89 @@
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel.EjeAndCategoriaViewModel
+@using SYGESTMunicipal.Extensions
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+
+}
+
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <h3 class="text-light" style="text-align:center;
+                              background-color:#dc3545;width:100%;">
+                Editar Ejes
+            </h3>
+        </div>
+    </div>
+    <br />
+
+    <form asp-action="Edit" asp-controller="Eje" id="viewEditar">
+        <div class="container-fluid">
+            <input type="hidden" asp-for="Eje.CategoriaId" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="Eje.Categoria.Nombre" class="col-form-label"></label>
+                </div>
+                <div class="col-md-6">
+                    <select manifest="ddlCategory" asp-for="Eje.CategoriaId" disabled
+                            asp-items="Model.CategoriaList.ToSelectListItem(Model.Eje.CategoriaId)"
+                            class="form-control"></select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label asp-for="Eje.Nombre" class="col-form-label"></label>
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="Eje.Nombre" class="form-control" />
+                </div>
+                <span asp-validation-for="Eje.Nombre" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-3 text-md-right">
+                    <input type="button" value="Editar" id="btnEditar"
+                           class="btn btn-info" @*style="width: 80%;"*@
+                           onclick="abrirModal()" />
+                </div>
+                <div class="col-md-1 text-md-center">
+                    <a asp-action="Index" type="button"
+                       class="btn btn-success">Regresar </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Modificar', '¿Realmente Desea modificar?').then((result) => {
+            if (result.value) {
+                var viewEditar = document.getElementById("viewEditar");
+                viewEditar.submit();
+                Swal.fire(
+                    'Modificado!',
+                    'Operación con éxito!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'Operación Fracasada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
+
+
