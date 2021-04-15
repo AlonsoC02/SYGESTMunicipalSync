@@ -67,7 +67,7 @@
                                 <h5><label asp-for="Descripcion" class="col-form-label"></label></h5>
                             </div>
                             <div class="col-md-9">
-                                <textarea asp-for="Descripcion" rows="4" cols="50" class="form-control"> </textarea>
+                                <textarea asp-for="Descripcion" rows="4" cols="50" class="form-control" readonly> </textarea>
                             </div>
                             <span asp-validation-for="Descripcion" class="text-danger"></span>
                         </div>
@@ -96,15 +96,14 @@
 
 <script src="~/js/sweetalert2.js"></script>
 <script src="~/js/Utilitarios.js"></script>
-
 <script>
     function abrirModal() {
-        verModal('Modificar', '¿Realmente Desea modificar el registro de categoría de producto o servicio?').then((result) => {
+        verModal('Eliminar', '¿Realmente Desea eliminar el registro de categoría de producto o servicio?').then((result) => {
             if (result.value) {
-                var viewEliminar = document.getElementById("viewEliminar");
+                var viewEditar = document.getElementById("viewEliminar");
                 viewEditar.submit();
                 Swal.fire(
-                    'Modificado!',
+                    'Eliminado!',
                     'Operación con éxito!.',
                     'success'
                 )

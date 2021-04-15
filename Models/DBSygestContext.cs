@@ -695,9 +695,9 @@ namespace SYGESTMunicipalSync.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Logo)
-                 .IsRequired()
-                 .HasColumnName("Imagen")
-                 .HasColumnType("varbinary(max)");
+                .HasColumnName("Logo")
+                .HasColumnType("varbinary(max)");
+
 
                 entity.Property(e => e.Ubicacion)
                  .IsRequired()

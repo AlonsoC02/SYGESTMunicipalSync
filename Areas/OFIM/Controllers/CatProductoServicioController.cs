@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 {
+    [Area("OFIM")]
     public class CatProductoServicioController : Controller
     {
         private readonly DBSygestContext _db;
