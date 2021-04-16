@@ -1,5 +1,5 @@
 ﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel.ProductoServicioViewModel
-@*@using SYGESTMunicipalSync.Extensions*@
+@using SYGESTMunicipalSync.Extensions
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
@@ -62,17 +62,16 @@
                             <span asp-validation-for="ProductoServicio.Descripcion" class="text-danger"></span>
                         </div>
 
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="ProductoServicio.Imagen" class="col-form-label"></label></h5>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label asp-for="ProductoServicio.Imagen" class="col-form-label"></label>
                             </div>
-                            <div class="col-md-9">
-                                <input type="file" id="projectimage" name="files"
-                                       multiple class="form-control" />
+                            <div class="col-md-6">
+                                <input type="file" id="projectImage" name="files" multiple class="form-control" />
                             </div>
                         </div>
 
-                        @*<div class="form-group row">
+                        <div class="form-group row">
                             <div class="col-md-2">
                                 <label asp-for="ProductoServicio.CatProductoServicioId" class="col-form-label"></label>
                             </div>
@@ -81,7 +80,7 @@
                                         asp-items="Model.CatProductoServicio.ToSelectListItem(Model.ProductoServicio.CatProductoServicioId)"
                                         class="form-control"></select>
                             </div>
-                        </div>*@
+                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-2">
@@ -150,9 +149,9 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript">
      $(document).ready(function () {
-         GetEjes();
+         GetEmpresa();
          $('#CatProductoServicioId').change(function () {
-             GetEjes();
+             GetEmpresa();
          });
      });
     function GetEmpresa() {

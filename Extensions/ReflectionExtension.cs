@@ -1,4 +1,4 @@
-﻿namespace SYGESTMunicipal.Data
+﻿namespace SYGESTMunicipalSync.Data
 {
     public static class ReflectionExtension
     {
