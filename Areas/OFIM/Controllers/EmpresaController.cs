@@ -76,7 +76,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
         //GET - CREATE
 
-        public IActionResult Create(int id)
+        public IActionResult Create()
             
         {
             cargarCatProductoServicio();
@@ -85,9 +85,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         }
         ////POST - CREATE
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Create(Empresa empresa)
+        public IActionResult Create(Empresa empresa)
         {
             if (ModelState.IsValid)
             {

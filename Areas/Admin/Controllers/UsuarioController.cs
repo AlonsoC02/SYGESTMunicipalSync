@@ -13,198 +13,204 @@ using System.Threading.Tasks;
 namespace SYGESTMunicipalSync.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [ServiceFilter(typeof(Seguridad))]
+   // [ServiceFilter(typeof(Seguridad))]
     public class UsuarioController : Controller
     {
         private readonly DBSygestContext _db;
-        List<PersonaUsuario> listaUsuario = new List<PersonaUsuario>();
-        List<PersonaUsuario> lista = new List<PersonaUsuario>();
+        List<RegistroExternoVM> listaUsuario = new List<RegistroExternoVM>();
+        
 
         public UsuarioController(DBSygestContext db)
         {
             _db = db;
         }
-
-        public List<PersonaUsuario> listarUsuarios()
+        //INDEX
+        public IActionResult Index()
         {
             listaUsuario = (from usuario in _db.Usuario
+
                             join _Persona in _db.Persona
                             on usuario.PersonaId
                             equals _Persona.CedulaPersona
 
-                            select new PersonaUsuario
+                            join _Rol in _db.Rol
+                            on usuario.RolId
+                            equals _Rol.RolId
+
+                            select new RegistroExternoVM
                             {
                                 UsuarioId = usuario.UsuarioId,
                                 NombreUsuario = usuario.NombreUsuario,
                                 Password = usuario.NombreUsuario,
-                                PersonaId = _Persona.CedulaPersona +
-                                          " " + _Persona.Nombre +
-                                          " " + _Persona.Ape1,
-                                }).ToList();
-            return listaUsuario;
-        }
-
-        private void cargarPersona()
-        {
-            List<SelectListItem> listaPersona = new List<SelectListItem>();
-            listaPersona = (from _Persona in _db.Persona
-                            orderby _Persona.CedulaPersona
-                            select new SelectListItem
-                                {
-                                    Text = _Persona.CedulaPersona + ", " 
-                                    + _Persona.Nombre + " - " + _Persona.Ape1
-                                    ,
-                                    Value = _Persona.CedulaPersona.ToString()
-                                }).ToList();
-            ViewBag.ListaPersona = listaPersona;
-        }
-
-       //INDEX
-        public IActionResult Index()
-        {
-            listaUsuario = listarUsuarios();
+                                PersonaId = _Persona.CedulaPersona,
+                                NombrePersona = _Persona.Nombre +
+                                          " " + _Persona.Ape1 +
+                                          " " + _Persona.Ape2,
+                                NombreRol = _Rol.Nombre
+                            }).ToList();
+            ViewBag.Controlador = "Usuario";
+            ViewBag.Accion = "Index";
             return View(listaUsuario);
         }
 
-        //GET CREATE
-        [HttpGet]
-        public IActionResult Create()
+        private void cargarRol()
         {
-            cargarPersona();
-            return View();
+            List<SelectListItem> listaRol = new List<SelectListItem>();
+            listaRol = (from _Rol in _db.Rol
+                        orderby _Rol.RolId
+                        select new SelectListItem
+                        {
+                            Text = _Rol.Nombre,
+                            Value = _Rol.RolId.ToString()
+                        }).ToList();
+            ViewBag.ListaRol = listaRol;
         }
 
+         public IActionResult Create(string PersonaId)
+        {
+            cargarRol();
+            if (PersonaId != null)
+            {
+                BuscarPersona(PersonaId);
+            }
+            ViewBag.Controlador = "Usuario";
+            ViewBag.Accion = "Create";
+            return View();
+        }
+        
+        private void BuscarPersona(string PersonaId)
+        {
+            Persona oPersona = _db.Persona
+           .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+            if (oPersona != null)
+            {
+                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1;
 
-        //POST CREATE
-        [HttpPost]
-        public IActionResult Create(Usuario usuario)
+            }
+            else
+            {
+                ViewBag.Error = "Persona no registrada, intente de nuevo!";
+            }
+        }
+
+       
+        public IActionResult ListarPersona()
+        {
+            List<Persona> listaPersona = new List<Persona>();
+
+            listaPersona = (from persona in _db.Persona 
+                            select new Persona
+                                {
+                                CedulaPersona = persona.CedulaPersona,
+                                Nombre = persona.Nombre,
+                                Ape1= persona.Ape1,
+                                Ape2= persona.Ape2,
+                                Email = persona.Email,
+                                FechaNac = persona.FechaNac,
+                                TelMovil = persona.TelMovil
+                            }).ToList();
+            return View(listaPersona);
+        }
+
+        //private int buscarRol (int rolId)
+        //{
+        //    int _rolId = 0;
+        //    Rol oRol= _db.Rol
+        //        .Where(m => m.RolId == rolId).SingleOrDefault();
+        //    if (oRol != null)
+        //    {
+        //        _rolId = oRol.RolId;
+        //    }
+        //    return _rolId;
+        //}
+
+        private void buscarUsuario(int Id)
+        {
+            listaUsuario = (from _usuario in _db.Usuario
+                          join _rol in _db.Rol on _usuario.RolId equals _rol.RolId
+                          
+                          join _persona in _db.Persona on _usuario.PersonaId equals _persona.CedulaPersona
+                          where _usuario.UsuarioId == Id
+                          select new RegistroExternoVM
+                          {
+                              UsuarioId = _usuario.UsuarioId,
+                              NombreUsuario = _usuario.NombreUsuario,
+                              PersonaId = _usuario.PersonaId,
+                              NombrePersona = _persona.Nombre + " " + _persona.Ape1+ " " + _persona.Ape2,
+                              RolId = _usuario.RolId,
+                              NombreRol = _rol.Nombre,
+                              
+                          }).ToList();
+        }
+
+        public IActionResult Details(int Id)
+        {
+            buscarUsuario(Id);
+            return View(listaUsuario);
+        }
+        public IActionResult Delete(int Id)
+        {
+            buscarUsuario(Id);
+            return View(listaUsuario);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult Deleted(int Id)
         {
             string Error = "";
             try
             {
+                Usuario oUsuario = _db.Usuario
+                    .Where(c => c.UsuarioId == Id).First();
+                if (oUsuario != null)
+                {
+                    _db.Usuario.Remove(oUsuario);
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Created(RegistroExternoVM usuario)
+        {
+            try
+            {
                 if (!ModelState.IsValid)
                 {
-                    return View(usuario);
+                    cargarRol();
                 }
                 else
                 {
-                    string password = Utilitarios.CifrarDatos(usuario.Password);
-                    string ConfirmarContrasena = Utilitarios.CifrarDatos(usuario.ConfirmarContrasena);
+                   
                     Usuario _usuario = new Usuario();
-                    _usuario.UsuarioId = usuario.UsuarioId;
+                    //_usuario.UsuarioId = usuario.UsuarioId;
                     _usuario.NombreUsuario = usuario.NombreUsuario;
+                    _usuario.Password = usuario.Password;
+                    //_usuario.ConfirmarContrasena = usuario.ConfirmarContrasena;
                     _usuario.PersonaId = usuario.PersonaId;
-                    _usuario.Password = password;
-                    _usuario.ConfirmarContrasena = ConfirmarContrasena;
+                    _usuario.RolId = usuario.RolId;
                     _db.Usuario.Add(_usuario);
-                    _db.SaveChanges();
+                    await _db.SaveChangesAsync();
                 }
             }
             catch (Exception ex)
             {
-                Error = ex.Message;
+                ViewBag.Error = ex.Message;
             }
+            //Si se quiere caer de nuevo en Create
+            //para seguir agregando usuario
+            cargarRol();
+            // determinarUltimoRegistro();
             return RedirectToAction(nameof(Index));
+
         }
 
-        //DETAILS
-        public IActionResult Details(int id)
-        {
-            cargarPersona();
-            int recCount = _db.Usuario.Count(e => e.UsuarioId == id);
-            Usuario _usuario = (from u in _db.Usuario
-                                where u.UsuarioId == id
-                                select u).DefaultIfEmpty().Single();
-            _usuario.Password = Utilitarios.DescifrarDatos(_usuario.Password);
-            _usuario.ConfirmarContrasena = Utilitarios.DescifrarDatos(_usuario.ConfirmarContrasena);
-            return View(_usuario);
-        }
 
-        //GET EDIT
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            int UsuarioId = Int32.Parse(HttpContext.Session.GetString("UsuarioId"));
-            if (UsuarioId == id)
-            {
-                cargarPersona();
-                int recCount = _db.Usuario.Count(e => e.UsuarioId == id);
-                Usuario _usuario = (from u in _db.Usuario
-                                    where u.UsuarioId == id
-                                    select u).DefaultIfEmpty().Single();
-                _usuario.Password = Utilitarios.DescifrarDatos(_usuario.Password);
-                _usuario.ConfirmarContrasena = Utilitarios.DescifrarDatos(_usuario.ConfirmarContrasena);
-                return View(_usuario);
-            }
-            else
-            {
-                return RedirectToAction(nameof(Index));
-            }
-        }
 
-        //POST EDIT
-        [HttpPost]
-        public IActionResult Edit(Usuario _Usuario)
-        {
-            string rpta = "";
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    //Escribimos nuestra logica
-                    var query = (from state in ModelState.Values
-                                 from error in state.Errors
-                                 select error.ErrorMessage).ToList();
 
-                    rpta += "<ul class='list-group'>";
-                    foreach (var item in query)
-                    {
-                        rpta += "<li class='list-group-item list-group-item-danger'>";
-                        rpta += item;
-                        rpta += "</li>";
-                    }
-                    rpta += "</ul>";
-                }
-                else
-                {
-                    rpta = "OK";
-                    string pass = Utilitarios.CifrarDatos(_Usuario.Password);
-                    string confirm = Utilitarios.CifrarDatos(_Usuario.ConfirmarContrasena);
-                    Usuario user = new Usuario();
-                    user.UsuarioId = _Usuario.UsuarioId;
-                    user.NombreUsuario = _Usuario.NombreUsuario;
-                    user.PersonaId = _Usuario.PersonaId;
-                    user.Password = pass;
-                    user.ConfirmarContrasena = confirm;
-                    _db.Usuario.Update(user);
-                    _db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                rpta = ex.Message;
-            }
-            return RedirectToAction(nameof(Index));
-        }
-
-        //DELETE
-        [HttpPost]
-        public IActionResult Delete(int UsuarioId)
-        {
-            var Error = "";
-            try
-            {
-                Usuario usuario = _db.Usuario
-                             .Where(e => e.UsuarioId == UsuarioId).First();
-                _db.Usuario.Remove(usuario);
-                _db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Error = ex.Message;
-            }
-            return RedirectToAction(nameof(Index));
-        }
 
     }
 }

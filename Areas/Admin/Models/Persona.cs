@@ -42,7 +42,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         public char Sexo { get; set; }
 
         [Display(Name = "Telefono Movil:")]
-        
         public int TelMovil { get; set; }
 
         [Display(Name = "Telefono Fijo:")]
