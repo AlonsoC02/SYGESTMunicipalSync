@@ -668,8 +668,8 @@ namespace SYGESTMunicipalSync.Models
                   .IsUnicode(false);
 
                 entity.Property(e => e.Imagen)
-                 .HasColumnName("Imagen")
-                 .HasColumnType("varbinary(max)");
+              .HasColumnName("Imagen")
+              .HasColumnType("varbinary(max)");
 
                 entity.Property(e => e.EmpresaId)
               .HasColumnName("EmpresaId");

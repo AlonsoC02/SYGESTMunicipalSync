@@ -15,6 +15,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
     public class ProductoServicioController : Controller
     {
         private readonly DBSygestContext _db;
+
         private readonly IWebHostEnvironment _hostEnvironment;
         [BindProperty]
         public ProductoServicioViewModel ProductoServicioVM { get; set; }
@@ -26,6 +27,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ProductoServicioVM = new ProductoServicioViewModel()
             {
                 CatProductoServicio = _db.CatProductoServicio,
+                Empresa = _db.Empresa,
                 ProductoServicio = new Models.ProductoServicio()
             };
         }
@@ -88,7 +90,6 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             }
             return View(ProductoServicioVM.ProductoServicio);
         }
-
 
         //GET - EDIT
         public async Task<IActionResult> Edit(int? id)

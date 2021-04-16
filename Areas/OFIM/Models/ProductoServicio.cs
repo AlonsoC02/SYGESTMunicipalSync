@@ -21,12 +21,11 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         public string Descripcion { get; set; }
 
+        public byte[] Imagen { get; set; }
+
         [Display(Name = "Empresa:")]
         public int EmpresaId { get; set; }
         public virtual Empresa Empresa { get; set; }
-
-        [Display(Name = "Imagen")]
-        public byte[] Imagen { get; set; }
 
         [Display(Name = "Categoria producto/servicio:")]
         public int CatProductoServicioId { get; set; }
