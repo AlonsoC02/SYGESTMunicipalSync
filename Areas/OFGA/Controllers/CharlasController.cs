@@ -132,33 +132,21 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 
 
         //DELETE
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        public IActionResult Delete(int? CharlaId)
         {
-            if (id == null)
+            var Error = "";
+            try
             {
-                return NotFound();
-
+                Charlas oCharlas = _db.Charlas
+                             .Where(e => e.CharlaId == CharlaId).First();
+                _db.Charlas.Remove(oCharlas);
+                _db.SaveChanges();
             }
-            var charlas = await _db.Charlas.FindAsync(id);
-            if (charlas == null)
+            catch (Exception ex)
             {
-                return NotFound();
-
+                Error = ex.Message;
             }
-            return View(charlas);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
-        {
-            var charlas = await _db.Charlas.FindAsync(id);
-            if (charlas == null)
-            {
-                return View();
-            }
-            _db.Charlas.Remove(charlas);
-            await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

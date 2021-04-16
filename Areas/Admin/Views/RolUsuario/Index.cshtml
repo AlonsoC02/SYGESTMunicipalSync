@@ -3,24 +3,26 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Roles de Usuarios
+        </h3>
+    </div>
+</div>
+
 <div class="container">
     <main class="pb-3" role="main">
         <div class="<border backgroundWhite">
             <div class="row">
-
                 <div class="col-md-6 col-lg-12">
                     <h2 class="text-dark">Lista de Roles</h2>
                 </div>
-
             </div>
-
             <form asp-controller="RolUsuario" asp-action="Index" method="post">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label>Roles de Usuarios:</label>
-                    </div>
-                </div>
-                <div class="col-md-12" style="color:black;"><hr /></div>
+            <div class="col-md-12" style="color:black;"><hr /></div>
             </form>
 
             <div class="row contenedorBotones">

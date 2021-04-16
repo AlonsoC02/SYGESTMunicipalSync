@@ -9,7 +9,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 {
     public partial class Categoria
     {
-        public int CategoriaId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Categoria")]
         [DisplayName("Nombre Categoria")]

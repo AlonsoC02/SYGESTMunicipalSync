@@ -5,9 +5,11 @@ using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 {
@@ -28,17 +30,17 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             _db = db;
         }
 
-        public List<EjeCategoria> BuscarEjeCategoria(string nombreCategoria)
+        public List<EjeCategoria> BuscarEjeCategory(string nombreCategory)
         {
-            List<EjeCategoria> listaEjeCategoria = new List<EjeCategoria>();
-            if (nombreCategoria == null || nombreCategoria.Length == 0)
+            List<EjeCategoria> listaEjeCategory = new List<EjeCategoria>();
+            if (nombreCategory == null || nombreCategory.Length == 0)
             {
                 listaEje = (from Eje in _db.Eje
                             join category in _db.Categoria
-                            on Eje.CategoriaId equals category.CategoriaId
+                            on Eje.CategoriaId equals category.Id
                             select new EjeCategoria
                             {
-                                EjeId = Eje.EjeId,
+                                Id = Eje.Id,
                                 Nombre = Eje.Nombre,
                                 Categoria = category.Nombre
                             }).ToList();
@@ -48,15 +50,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 listaEje = (from Eje in _db.Eje
                             join category in _db.Categoria
-                            on Eje.CategoriaId equals category.CategoriaId
-                            where category.Nombre.Contains(nombreCategoria)
+                            on Eje.CategoriaId equals category.Id
+                            where category.Nombre.Contains(nombreCategory)
                             select new EjeCategoria
                             {
-                                EjeId = Eje.EjeId,
+                                Id = Eje.Id,
                                 Nombre = Eje.Nombre,
                                 Categoria = category.Nombre
                             }).ToList();
-                ViewBag.Categoria = nombreCategoria;
+                ViewBag.Category = nombreCategory;
             }
             lista = listaEje;
             return listaEje;
@@ -65,7 +67,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
         public IActionResult Index()
         {
-            listaEje = BuscarEjeCategoria("");
+            listaEje = BuscarEjeCategory("");
             return View(listaEje);
         }
         //GET - CREATE
@@ -118,7 +120,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-            var eje = await _db.Eje.SingleOrDefaultAsync(m => m.EjeId == id);
+            var eje = await _db.Eje.SingleOrDefaultAsync(m => m.Id == id);
             if (eje == null)
             {
                 return NotFound();
@@ -178,7 +180,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-            var eje = await _db.Eje.SingleOrDefaultAsync(m => m.EjeId == Id);
+            var eje = await _db.Eje.SingleOrDefaultAsync(m => m.Id == Id);
             if (eje == null)
             {
                 return NotFound();
@@ -203,12 +205,12 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
                 if (EjeExist.Count() > 0)
                 {
-                    StatusMessage = "Error: Este Eje está siendo usado por la actividad " + EjeExist.First().ActividadId +
+                    StatusMessage = "Error: Este Eje está siendo usado por la actividad " + EjeExist.First().Id +
                             " Primero debe editar o eliminar la actividad para poder eliminar este eje";
                 }
                 else
                 {
-                    Eje oEje = _db.Eje.Where(e => e.EjeId == Id).First();
+                    Eje oEje = _db.Eje.Where(e => e.Id == Id).First();
                     _db.Eje.Remove(oEje);
                     _db.SaveChanges();
                     StatusMessage = StatusMessage;
@@ -232,8 +234,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         //public FileResult exportar()
         //{
         //    Utilitarios util = new Utilitarios();
-        //    string[] cabeceras = { "Id Eje", "Nombre", "Categoria" };
-        //    string[] nombrePropiedades = { "Id", "Nombre", "Categoria" };
+        //    string[] cabeceras = { "Id Eje", "Nombre", "Category" };
+        //    string[] nombrePropiedades = { "Id", "Name", "Category" };
         //    string titulo = "Reporte de Ejes";
         //    byte[] buffer = util.ExportarPDFDatos(nombrePropiedades, lista, titulo);
         //    return File(buffer, "application/pdf");
