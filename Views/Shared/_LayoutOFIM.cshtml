@@ -404,7 +404,7 @@
                                     {*@
                                         <li class="nav-item active">
                                             <a class="nav-link" asp-action="Index"
-                                               asp-controller="CatProductoServicio" asp-area="OFIM">Registro de Producto/Servicio</a>
+                                               asp-controller="ProductoServicio" asp-area="OFIM">Registro de Producto/Servicio</a>
                                         </li>
                                         @*}*@
 
@@ -418,13 +418,13 @@
                                     @*}*@
 
                                     @* CONSULTA DE LA CATEGORIA DE PRODUCTO O SERVICIO *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Producto/Servicio"))
-                                    {
+                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Producto/Servicio"))
+                                    {*@
                                         <li class="nav-item active">
                                             <a class="nav-link" asp-action="Index"
                                                asp-controller="CatProductoServicio" asp-area="OFIM">Consulta Producto/Servicio</a>
                                         </li>
-                                    }
+                                    @*}*@
 
                                     @* INFO INDEX EMPRESAS *@
                                     @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Marca Cantonal"))

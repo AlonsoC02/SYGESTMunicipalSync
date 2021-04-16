@@ -16,6 +16,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
 
         public Empresa Empresa { get; set; }  //objeto de Actividad (CRUD)
         public IEnumerable<Persona> Persona { get; set; }
+        
         public IEnumerable<CatProductoServicio> CatProductoServicio { get; set; }
 
 
@@ -25,8 +26,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
 
         
 
-        [Display(Name = "Logo")]
-        public byte[] Logo { get; set; }
+        //[Display(Name = "Logo")]
+        //public byte[] Logo { get; set; }
 
         [Display(Name = "Ubicacion:")]
         [Required(ErrorMessage = "Debe digitar la Ubicacion")]

@@ -639,7 +639,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<CatProductoServicio>(entity =>
             {
-                entity.HasKey(e => e.CatProductoServicioId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -656,7 +656,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<ProductoServicio>(entity =>
             {
-                entity.HasKey(e => e.CatProductoServicioId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -680,6 +680,15 @@ namespace SYGESTMunicipalSync.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductoServicio_Empresa");
 
+                entity.Property(e => e.CatProductoServicioId)
+            .HasColumnName("CatProductoServicioId");
+
+                entity.HasOne(d => d.CatProductoServicio)
+                    .WithMany(p => p.ProductoServicio)
+                    .HasForeignKey(d => d.CatProductoServicioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ProductoServicio_CatProductoServicio");
+
 
 
             });
@@ -687,16 +696,16 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Empresa>(entity =>
             {
-                entity.HasKey(e => e.EmpresaId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Logo)
-                .HasColumnName("Logo")
-                .HasColumnType("varbinary(max)");
+                //entity.Property(e => e.Logo)
+                //.HasColumnName("Logo")
+                //.HasColumnType("varbinary(max)");
 
 
                 entity.Property(e => e.Ubicacion)

@@ -27,7 +27,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
                                   select new CatProductoServicio
                                   {
-                                      CatProductoServicioId = catProductoServicio.CatProductoServicioId,
+                                      Id = catProductoServicio.Id,
                                       Nombre = catProductoServicio.Nombre,
                                       Descripcion = catProductoServicio.Descripcion
 
@@ -50,7 +50,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
             try
             {
-                nVeces = _db.CatProductoServicio.Where(m => m.CatProductoServicioId == catProductoServicio.CatProductoServicioId).Count();
+                nVeces = _db.CatProductoServicio.Where(m => m.Id == catProductoServicio.Id).Count();
                 if (!ModelState.IsValid || nVeces >= 1)
                 {
                     if (nVeces >= 1) ViewBag.Error = "Esta registro ya existe!";
@@ -80,7 +80,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         public IActionResult Edit(int Id)
         {
             CatProductoServicio oCatProductoServicio = _db.CatProductoServicio
-                .Where(e => e.CatProductoServicioId == Id).FirstOrDefault();
+                .Where(e => e.Id == Id).FirstOrDefault();
             return View(oCatProductoServicio);
         }
         [HttpPost]
@@ -112,7 +112,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         {
 
             CatProductoServicio oCatProductoServicio = _db.CatProductoServicio
-                       .Where(e => e.CatProductoServicioId == id).First();
+                       .Where(e => e.Id == id).First();
             return View(oCatProductoServicio);
         }
 
