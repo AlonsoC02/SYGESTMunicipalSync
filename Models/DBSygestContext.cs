@@ -143,10 +143,10 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                    .IsUnicode(false);
 
-                entity.Property(e => e.ConfirmarContrasena)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                   .IsUnicode(false);
+                //entity.Property(e => e.ConfirmarContrasena)
+                //    .IsRequired()
+                //    .HasMaxLength(50)
+                //   .IsUnicode(false);
 
                 entity.Property(e => e.PersonaId)
                    .HasColumnName("PersonaId");
@@ -157,7 +157,16 @@ namespace SYGESTMunicipalSync.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Usuario_Persona");
 
-                
+                entity.Property(e => e.RolId)
+                  .HasColumnName("RolId");
+
+                entity.HasOne(d => d.Rol)
+                    .WithMany(p => p.Usuario)
+                    .HasForeignKey(d => d.RolId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Usuario_Rol");
+
+
             });
 
            

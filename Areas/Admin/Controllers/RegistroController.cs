@@ -24,5 +24,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         {
             return View();
         }
+
+
     }
 }

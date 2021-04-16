@@ -75,7 +75,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
         //GET - CREATE
 
-        public IActionResult Create(int id)
+        public IActionResult Create()
             
         {
             cargarCatProductoServicio();
@@ -84,9 +84,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         }
         ////POST - CREATE
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Create(Empresa empresa)
+        public IActionResult Create(Empresa empresa)
         {
             if (ModelState.IsValid)
             {
@@ -103,9 +101,20 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                         }
                     }
                     empresa.Logo = p1;
+                    Empresa _empre = new Empresa();
+                    _empre.EmpresaId = ViewBag.ID;
+                    _empre.Nombre = empresa.Nombre;
+                    _empre.Descripcion = empresa.Descripcion;
+                    _empre.Ubicacion = empresa.Ubicacion;
+                    _empre.Telefono = empresa.Telefono;
+                    _empre.Email = empresa.Email;
+                    _empre.PaginaWeb = empresa.PaginaWeb;
+                    _empre.PersonaId = empresa.PersonaId;
+                    _empre.CatProductoServicioId = empresa.CatProductoServicioId;
+                    _empre.Logo = empresa.Logo;
                 }
                 _db.Empresa.Add(empresa);
-                await _db.SaveChangesAsync();
+                _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(empresa);
