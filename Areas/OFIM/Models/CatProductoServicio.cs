@@ -9,7 +9,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
     public partial class CatProductoServicio
     {
         [Display(Name = "Id:")]
-        public int CatProductoServicioId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el nombre de la categoria o producto")]
         [Display(Name = "Nombre:")]

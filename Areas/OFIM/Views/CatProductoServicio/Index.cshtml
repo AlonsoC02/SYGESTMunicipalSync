@@ -54,7 +54,7 @@
             <table class="table table-hover .table-responsive" id="TbCatProductoServicio">
                 <thead class="thead-dark">
                     <tr class="table-secondary" style="text-align:center;">
-                        <th>@Html.DisplayNameFor(m => m.CatProductoServicioId)</th>
+                        <th>@Html.DisplayNameFor(m => m.Id)</th>
                         <th>@Html.DisplayNameFor(m => m.Nombre)</th>
                         <th>@Html.DisplayNameFor(m => m.Descripcion)</th>
 
@@ -65,12 +65,12 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(m => item.CatProductoServicioId)</td>
+                            <td>@Html.DisplayFor(m => item.Id)</td>
                             <td>@Html.DisplayFor(m => item.Nombre)</td>
                             <td>@Html.DisplayFor(m => item.Descripcion)</td>
 
                             <div class="col-md-6">
-                                <a><partial name="_TableButtonPartialDelete" model="item.CatProductoServicioId" /></a>
+                                <a><partial name="_TableButtonPartialDelete" model="item.Id" /></a>
                             </div>
 
                             @*<div class="col-md-6">

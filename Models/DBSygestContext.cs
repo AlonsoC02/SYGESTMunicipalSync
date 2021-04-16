@@ -96,8 +96,8 @@ namespace SYGESTMunicipalSync.Models
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 //optionsBuilder.UseSqlServer("server=DESKTOP-4KIF3VN\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                //optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                //optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
             }                              
         }
 
@@ -648,7 +648,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<CatProductoServicio>(entity =>
             {
-                entity.HasKey(e => e.CatProductoServicioId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -665,7 +665,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<ProductoServicio>(entity =>
             {
-                entity.HasKey(e => e.CatProductoServicioId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -677,8 +677,8 @@ namespace SYGESTMunicipalSync.Models
                   .IsUnicode(false);
 
                 entity.Property(e => e.Imagen)
-                 .HasColumnName("Imagen")
-                 .HasColumnType("varbinary(max)");
+              .HasColumnName("Imagen")
+              .HasColumnType("varbinary(max)");
 
                 entity.Property(e => e.EmpresaId)
               .HasColumnName("EmpresaId");
@@ -689,6 +689,15 @@ namespace SYGESTMunicipalSync.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductoServicio_Empresa");
 
+                entity.Property(e => e.CatProductoServicioId)
+            .HasColumnName("CatProductoServicioId");
+
+                entity.HasOne(d => d.CatProductoServicio)
+                    .WithMany(p => p.ProductoServicio)
+                    .HasForeignKey(d => d.CatProductoServicioId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ProductoServicio_CatProductoServicio");
+
 
 
             });
@@ -696,16 +705,16 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Empresa>(entity =>
             {
-                entity.HasKey(e => e.EmpresaId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Logo)
-                .HasColumnName("Logo")
-                .HasColumnType("varbinary(max)");
+                //entity.Property(e => e.Logo)
+                //.HasColumnName("Logo")
+                //.HasColumnType("varbinary(max)");
 
 
                 entity.Property(e => e.Ubicacion)
@@ -905,7 +914,7 @@ namespace SYGESTMunicipalSync.Models
             // **************************** ACTIVIDADES OFICINA DE LA MUJER************************************************
             modelBuilder.Entity<Categoria>(entity =>
             {
-                entity.HasKey(e => e.CategoriaId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -915,7 +924,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Eje>(entity =>
             {
-                entity.HasKey(e => e.EjeId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -936,7 +945,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Actividad>(entity =>
             {
-                entity.HasKey(e => e.ActividadId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()

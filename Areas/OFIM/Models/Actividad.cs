@@ -14,7 +14,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         {
             Cupos = new HashSet<Cupos>();
         }
-        public int ActividadId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Actividad")]
         [DisplayName("Nombre Actividad")]

@@ -12,30 +12,30 @@ using System.Threading.Tasks;
 namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 {
     [Area("OFIM")]
-    public class ActividadController : Controller
+    public class ProductoServicioController : Controller
     {
         private readonly DBSygestContext _db;
 
         private readonly IWebHostEnvironment _hostEnvironment;
         [BindProperty]
-        public ActividadViewModel ActividadVM { get; set; }
-        public ActividadController(DBSygestContext db,
+        public ProductoServicioViewModel ProductoServicioVM { get; set; }
+        public ProductoServicioController(DBSygestContext db,
             IWebHostEnvironment hostEnvironment)
         {
             _db = db;
             _hostEnvironment = hostEnvironment;
-            ActividadVM = new ActividadViewModel()
+            ProductoServicioVM = new ProductoServicioViewModel()
             {
-                Categoria = _db.Categoria,
-                Eje = _db.Eje,
-                Actividad = new Models.Actividad()
+                CatProductoServicio = _db.CatProductoServicio,
+                Empresa = _db.Empresa,
+                ProductoServicio = new Models.ProductoServicio()
             };
         }
         public async Task<IActionResult> Index()
         {
-            var Actividad =
-            await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).ToListAsync();
-            return View(Actividad);
+            var ProductoServicio =
+            await _db.ProductoServicio.Include(m => m.CatProductoServicio).Include(m => m.Empresa).ToListAsync();
+            return View(ProductoServicio);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -43,30 +43,30 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         {
             if (dato == null)
             {
-                var Actividad =
-                await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).ToListAsync();
-                return View(Actividad);
+                var ProductoServicio =
+                await _db.ProductoServicio.Include(m => m.CatProductoServicio).Include(m => m.Empresa).ToListAsync();
+                return View(ProductoServicio);
             }
             else
             {
-                var actItem =
-                     await _db.Actividad.Where(p => p.Categoria.Nombre == dato)
-                     .Include(p => p.Eje).Include(c => c.Categoria).ToListAsync();
+                var prodServicioItem =
+                     await _db.ProductoServicio.Where(p => p.CatProductoServicio.Nombre == dato)
+                     .Include(p => p.Empresa).Include(c => c.CatProductoServicio).ToListAsync();
 
-                return View(actItem);
+                return View(prodServicioItem);
             }
         }
 
         //GET - CREATE
         public IActionResult Create()
         {
-            return View(ActividadVM);
+            return View(ProductoServicioVM);
         }
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePOST()
         {
-            ActividadVM.Actividad.EjeId = Convert.ToInt32(Request.Form["EjeId"].ToString());
+            ProductoServicioVM.ProductoServicio.EmpresaId = Convert.ToInt32(Request.Form["EmpresaId"].ToString());
 
             if (ModelState.IsValid)
             {
@@ -82,15 +82,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             p1 = ms1.ToArray();
                         }
                     }
-                    ActividadVM.Actividad.Imagen = p1;
+                    ProductoServicioVM.ProductoServicio.Imagen = p1;
                 }
-                _db.Actividad.Add(ActividadVM.Actividad);
+                _db.ProductoServicio.Add(ProductoServicioVM.ProductoServicio);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(ActividadVM.Actividad);
+            return View(ProductoServicioVM.ProductoServicio);
         }
-
 
         //GET - EDIT
         public async Task<IActionResult> Edit(int? id)
@@ -99,13 +98,13 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-             ActividadVM.Actividad = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.Id == id);
-            ActividadVM.Eje = await _db.Eje.Where(p => p.CategoriaId == ActividadVM.Actividad.CategoriaId).ToListAsync();
-            if (ActividadVM.Actividad == null)
+            ProductoServicioVM.ProductoServicio = await _db.ProductoServicio.Include(m => m.CatProductoServicio).Include(m => m.Empresa).SingleOrDefaultAsync(m => m.Id == id);
+            ProductoServicioVM.Empresa = await _db.Empresa.Where(p => p.CatProductoServicioId == ProductoServicioVM.ProductoServicio.CatProductoServicioId).ToListAsync();
+            if (ProductoServicioVM.ProductoServicio == null)
             {
                 return NotFound();
             }
-            return View(ActividadVM);
+            return View(ProductoServicioVM);
         }
 
         //POST - EDIT
@@ -117,15 +116,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-            ActividadVM.Actividad.EjeId = Convert.ToInt32(Request.Form["EjeId"].ToString());
+            ProductoServicioVM.ProductoServicio.EmpresaId = Convert.ToInt32(Request.Form["EmpresaId"].ToString());
             if (!ModelState.IsValid)
             {
-                ActividadVM.Eje = await _db.Eje.Where(p => p.CategoriaId == ActividadVM.Actividad.CategoriaId).ToListAsync();
-                return View(ActividadVM);
+                ProductoServicioVM.Empresa = await _db.Empresa.Where(p => p.CatProductoServicioId == ProductoServicioVM.ProductoServicio.CatProductoServicioId).ToListAsync();
+                return View(ProductoServicioVM);
             }
             //work in the image saving
             var files = HttpContext.Request.Form.Files;
-             var actividadFromDb = await _db.Actividad.FindAsync(ActividadVM.Actividad.Id);
+            var productoServicioFromDb = await _db.ProductoServicio.FindAsync(ProductoServicioVM.ProductoServicio.Id);
             if (files.Count > 0)
             {
                 byte[] p1 = null;
@@ -137,14 +136,13 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                         p1 = ms1.ToArray();
                     }
                 }
-                actividadFromDb.Imagen = p1;
+                productoServicioFromDb.Imagen = p1;
             }
-            actividadFromDb.Nombre = ActividadVM.Actividad.Nombre;
-            actividadFromDb.Descripcion = ActividadVM.Actividad.Descripcion;
-            actividadFromDb.Fecha = ActividadVM.Actividad.Fecha;
-            actividadFromDb.Activo = ActividadVM.Actividad.Activo;
-            actividadFromDb.CategoriaId = ActividadVM.Actividad.CategoriaId;
-            actividadFromDb.EjeId = ActividadVM.Actividad.EjeId;
+            productoServicioFromDb.Nombre = ProductoServicioVM.ProductoServicio.Nombre;
+            productoServicioFromDb.Descripcion = ProductoServicioVM.ProductoServicio.Descripcion;
+            productoServicioFromDb.CatProductoServicioId = ProductoServicioVM.ProductoServicio.CatProductoServicioId;
+            productoServicioFromDb.EmpresaId = ProductoServicioVM.ProductoServicio.EmpresaId;
+         
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -156,14 +154,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-            ActividadVM.Actividad = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.Id == id);
-            ActividadVM.Eje = await _db.Eje.Where(s => s.CategoriaId == ActividadVM.Actividad.CategoriaId).ToListAsync();
+            ProductoServicioVM.ProductoServicio = await _db.ProductoServicio.Include(m => m.CatProductoServicio).Include(m => m.Empresa).SingleOrDefaultAsync(m => m.Id == id);
+            ProductoServicioVM.Empresa = await _db.Empresa.Where(s => s.CatProductoServicioId == ProductoServicioVM.ProductoServicio.CatProductoServicioId).ToListAsync();
 
-            if (ActividadVM.Actividad == null)
+            if (ProductoServicioVM.ProductoServicio == null)
             {
                 return NotFound();
             }
-            return View(ActividadVM);
+            return View(ProductoServicioVM);
         }
 
         //GET - DELETE
@@ -173,9 +171,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             string Error = "";
             try
             {
-                var actividadDelete = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.Id == Id);
+                var productoServicioDelete = await _db.ProductoServicio.Include(m => m.CatProductoServicio).Include(m => m.Empresa).SingleOrDefaultAsync(m => m.Id == Id);
 
-                _db.Actividad.Remove(actividadDelete);
+                _db.ProductoServicio.Remove(productoServicioDelete);
                 _db.SaveChanges();
             }
             catch (Exception ex)
@@ -185,7 +183,5 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
     }
 }
-

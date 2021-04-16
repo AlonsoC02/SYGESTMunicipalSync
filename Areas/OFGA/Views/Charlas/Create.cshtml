@@ -4,140 +4,120 @@
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
 
-<main id="main">
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="breadcrumb-hero">
-            <div class="container">
-                <div class="breadcrumb-hero">
-                    <h2>Crear charla</h2>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <ol>
-                <li><a asp-area="OFGA" asp-controller="Talks" asp-action="Index">Lista de Charlas</a></li>
-                <li>Charlas</li>
-            </ol>
-        </div>
-    </section><!-- End Breadcrumbs -->
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <h3 class="text-light"
-                style="text-align:center;background-color:darkslategray;">
-                Agregar
-            </h3>
-        </div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Crear Charla
+        </h3>
     </div>
-    <!-- ======= About Section ======= -->
-    <div class="row no-gutters">
-        <div class="col-md-7">
-            <div class="contact-wrap w-100 p-md-5 p-4">
-                <h2 class="text-info">Nuevo Registro</h2>
-                <br>
-                <form method="post" enctype="multipart/form-data" id="viewAgregar">
-                    <div class="backgroundWhite">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
-
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Nombre" class="form-control" /> @*agregar datos*@
-                            </div>
-                            <span asp-validation-for="Nombre" class=" text-danger"></span>
+</div>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <h2 class="text-info">Nuevo Registro</h2>
+            <br>
+            <form method="post" enctype="multipart/form-data" id="viewAgregar">
+                <div class="backgroundWhite">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
                         </div>
-
-
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Descripcion" class="col-form-label">Descripción</label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <textarea asp-for="Descripcion" rows="4" cols="50"
-                                          class="form-control"> </textarea>
-                            </div>
-                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        <div class="col-md-9">
+                            <input asp-for="Nombre" class="form-control" /> @*agregar datos*@
                         </div>
+                        <span asp-validation-for="Nombre" class=" text-danger"></span>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class=" col-md-2">
-                                <h5><label>Fecha:</label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="date" asp-for="Fecha" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Fecha" class="text-danger"></span>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="Descripcion" class="col-form-label">Descripción</label></h5>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Lugar" class="col-form-label">Ubicación</label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <textarea asp-for="Lugar" rows="4" cols="50"
-                                          class="form-control"> </textarea>
-                            </div>
-                            <span asp-validation-for="Lugar" class="text-danger"></span>
+                        <div class="col-md-9">
+                            <textarea asp-for="Descripcion" rows="4" cols="50"
+                                      class="form-control"> </textarea>
                         </div>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Expositor" class="col-form-label">Expositores</label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <textarea asp-for="Expositor" rows="4" cols="50"
-                                          class="form-control"> </textarea>
-                            </div>
-                            <span asp-validation-for="Expositor" class="text-danger"></span>
+                    <div class="form-group row">
+                        <div class=" col-md-2">
+                            <h5><label>Fecha:</label></h5>
                         </div>
-
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for=" Imagen" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="file" id="projectImage" name="files"
-                                       multiple class="form-control" />
-                            </div>
+                        <div class="col-md-8">
+                            <input type="date" asp-for="Fecha" class="form-control" />
                         </div>
+                        <span asp-validation-for="Fecha" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Activa" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-7">
-                                <input type="checkbox" asp-for="Activa" class="form-control" />
-                            </div>
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="Lugar" class="col-form-label">Ubicación</label></h5>
                         </div>
+                        <div class="col-md-9">
+                            <textarea asp-for="Lugar" rows="4" cols="50"
+                                      class="form-control"> </textarea>
+                        </div>
+                        <span asp-validation-for="Lugar" class="text-danger"></span>
+                    </div>
 
-                        <div class="form-group row">
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="Expositor" class="col-form-label">Expositores</label></h5>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea asp-for="Expositor" rows="4" cols="50"
+                                      class="form-control"> </textarea>
+                        </div>
+                        <span asp-validation-for="Expositor" class="text-danger"></span>
+                    </div>
 
-                            <div class="col-md-4 text-md-right">
-                                <a asp-action="Index" type="button" style="color:white"
-                                   class="btn btn-warning">
-                                    Regresar
-                                </a>
-
-
-                            </div>
-
-                            <div class="col-md-4 text-md-right">
-                                <input type="button" value="Agregar" id="btnAgregar"
-                                       class="btn btn-info" 
-                                       onclick="abrirModal()" />
-                            </div>
-
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for=" Imagen" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="file" id="projectImage" name="files"
+                                   multiple class="form-control" />
                         </div>
                     </div>
-                </form>
-            </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="Activa" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="checkbox" asp-for="Activa" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button" style="color:white"
+                               class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                                Regresar
+                            </a>
+
+
+                        </div>
+
+                        <div class="col-md-4 text-md-right">
+                            <input type="button" value="Agregar" id="btnAgregar"
+                                   class="btn btn-info"
+                                   onclick="abrirModal()" />
+                        </div>
+
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</main>
+</div>
+
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
@@ -29,7 +30,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             listaEmpresa = (from empresa in _db.Empresa
                             select new EmpresaViewModel
                             {
-                                EmpresaId = empresa.EmpresaId,
+                                EmpresaId = empresa.Id,
                                 Nombre = empresa.Nombre,
                                 Descripcion = empresa.Descripcion.Substring(0, 85) + "...",
                                 Ubicacion = empresa.Ubicacion.Substring(0, 85) + "...",
@@ -38,7 +39,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                                 PaginaWeb = empresa.PaginaWeb,
                                 PersonaId = empresa.PersonaId,
                                 CatProductoServicioId = empresa.CatProductoServicioId,
-                                Logo = empresa.Logo
+                                //Logo = empresa.Logo
 
 
                             }).ToList();
@@ -67,7 +68,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             select new SelectListItem
                             {
                                 Text = catProductoServicio.Nombre,
-                                Value = catProductoServicio.CatProductoServicioId.ToString()
+                                Value = catProductoServicio.Id.ToString()
                             }
                                 ).ToList();
             ViewBag.ListaCatProductoServicio = listaCatProductoServicio;
@@ -100,33 +101,28 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             p1 = ms1.ToArray();
                         }
                     }
-                    empresa.Logo = p1;
-                    Empresa _empre = new Empresa();
-                    _empre.EmpresaId = ViewBag.ID;
-                    _empre.Nombre = empresa.Nombre;
-                    _empre.Descripcion = empresa.Descripcion;
-                    _empre.Ubicacion = empresa.Ubicacion;
-                    _empre.Telefono = empresa.Telefono;
-                    _empre.Email = empresa.Email;
-                    _empre.PaginaWeb = empresa.PaginaWeb;
-                    _empre.PersonaId = empresa.PersonaId;
-                    _empre.CatProductoServicioId = empresa.CatProductoServicioId;
-                    _empre.Logo = empresa.Logo;
+                    //empresa.Logo = p1;
                 }
-                _db.Empresa.Add(empresa);
-                _db.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+               
             }
-            return View(empresa);
+            _db.Empresa.Add(empresa);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+           
         }
 
      
         public async Task<IActionResult> Edit(int? id)
         {
+
+            cargarPersona();
+            cargarCatProductoServicio();
+
             if (id == null)
             {
                 return NotFound();
             }
+           
             var empresa = await _db.Empresa.FindAsync(id);
             if (empresa == null)
             {
@@ -140,12 +136,12 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Empresa empresa)
         {
-            if (empresa.EmpresaId == 0)
+            if (empresa.Id == 0)
             {
                 return NotFound();
             }
 
-            var empresaFromDb = await _db.Empresa.FindAsync(empresa.EmpresaId);
+            var empresaFromDb = await _db.Empresa.FindAsync(empresa.Id);
 
             if (ModelState.IsValid)
             {
@@ -161,7 +157,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             p1 = ms1.ToArray();
                         }
                     }
-                    empresaFromDb.Logo = p1;
+                    //empresaFromDb.Logo = p1;
                 }
                 empresaFromDb.Nombre = empresa.Nombre;
                 empresaFromDb.Descripcion = empresa.Descripcion;
@@ -217,12 +213,25 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
+            cargarPersona();
+            cargarCatProductoServicio();
+
             var empresa = await _db.Empresa.FindAsync(id);
             if (empresa == null)
             {
                 return NotFound();
             }
             return View(empresa);
+        }
+
+        [ActionName("GetEmpresa")]
+        public async Task<IActionResult> GetEmpresa(int id)
+        {
+            List<Empresa> empresa = new List<Empresa>();
+            empresa = await (from Empresa in _db.Empresa
+                          where Empresa.CatProductoServicioId == id
+                          select Empresa).ToListAsync();
+            return Json(new SelectList(empresa, "Id", "Nombre"));
         }
 
     }
