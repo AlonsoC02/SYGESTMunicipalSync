@@ -6,36 +6,15 @@
 }
 @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
 {*@
-    <main id="main">
-
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-            <div class="breadcrumb-hero">
-                <div class="container">
-                    <div class="breadcrumb-hero">
-                        <h2>Editar Charlas</h2>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <ol>
-                    <li><a asp-area="OFGA" asp-controller="Charlas" asp-action="Index">Lista de Charlas</a></li>
-                    <li>Charlas</li>
-                </ol>
-            </div>
-        </section><!-- End Breadcrumbs -->
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <h3 class="text-light"
-                    style="text-align:center;background-color:darkslategray;">
-                    Editar
-                </h3>
-            </div>
-        </div>
-        <br />
-        <form asp-action="Edit" method="post" enctype="multipart/form-data" id="viewEditar">
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+           Editar Charla
+        </h3>
+    </div>
+</div>
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" id="viewEditar">
             <div class="row backgroundWhiteBorder">
                 <div class="col-md-4 border align-self-baseline">
                     @{
