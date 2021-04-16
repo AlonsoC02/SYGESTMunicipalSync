@@ -41,13 +41,13 @@
     <br />
     <form asp-action="Details" method="post" enctype="multipart/form-data" id="viewEditar">
         <div class="row backgroundWhiteBorder">
-            <div class="col-md-4 border align-self-baseline">
+            @*<div class="col-md-4 border align-self-baseline">
                 @{
                     var base64 = Convert.ToBase64String(Model.Logo);
                     var imgsrc = string.Format("data:image/jpg;base64, {0}", base64);
                 }
                 <img src="@imgsrc" style="height: 100%; width:110%" />
-            </div>
+            </div>*@
             <div class="col-md-6 pt-3 pt-lg-0 content">
                 <div class="container">
                     <br />
@@ -63,12 +63,12 @@
 
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <h5><label asp-for="EmpresaId" class="form-label"></label></h5>
+                        <h5><label asp-for="Id" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="EmpresaId" readonly class="form-control" />
+                        <input asp-for="Id" readonly class="form-control" />
                     </div>
-                    <span asp-validation-for="EmpresaId" class="text-danger"></span>
+                    <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
 
                 <div class="form-group row">
@@ -76,7 +76,7 @@
                         <h5><label asp-for="Nombre" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Nombre" class="form-control" />
+                        <input asp-for="Nombre" class="form-control" readonly/>
                     </div>
                     <span asp-validation-for="Nombre" class="text-danger"></span>
                 </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-md-9">
                         <textarea asp-for="Descripcion" rows="4" cols="50"
-                                  class="form-control"> </textarea>
+                                  class="form-control" readonly> </textarea>
                     </div>
                     <span asp-validation-for="Descripcion" class="text-danger"></span>
                 </div>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="col-md-9">
                         <textarea asp-for="Ubicacion" rows="4" cols="50"
-                                  class="form-control"> </textarea>
+                                  class="form-control" readonly> </textarea>
                     </div>
                     <span asp-validation-for="Ubicacion" class="text-danger"></span>
                 </div>
@@ -108,7 +108,7 @@
                         <h5><label asp-for="Email" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" class="form-control" readonly/>
                     </div>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
@@ -119,7 +119,7 @@
                         <h5><label asp-for="PaginaWeb" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="PaginaWeb" class="form-control" />
+                        <input asp-for="PaginaWeb" class="form-control" readonly />
                     </div>
                     <span asp-validation-for="PaginaWeb" class="text-danger"></span>
                 </div>
@@ -130,12 +130,12 @@
                         <h5><label asp-for="Telefono" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Telefono" class="form-control" />
+                        <input asp-for="Telefono" class="form-control" readonly />
                     </div>
                     <span asp-validation-for="Telefono" class="text-danger"></span>
                 </div>
 
-                <div class="form-group row">
+                @*<div class="form-group row">
                     <div class="col-md-3 text-right">
                         <h5><label asp-for="Logo" class="custom-label"></label></h5>
                     </div>
@@ -143,13 +143,13 @@
                         <input type="file" id="projectImage" name="files"
                                multiple class="form-control" />
                     </div>
-                </div>
+                </div>*@
 
                 <div class=" form-group row">
-                    <div class=" col-md-2">
+                    <div class=" col-md-3">
                         <h5><label asp-for="Persona" class="col-form-label"></label></h5>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <select asp-for="PersonaId" class="form-control" required
                                 asp-items="@Lista"></select>
                     </div>
@@ -157,10 +157,10 @@
                 </div>
 
                 <div class=" form-group row">
-                    <div class=" col-md-2">
+                    <div class=" col-md-3">
                         <h5><label asp-for="CatProductoServicioId" class="col-form-label"></label></h5>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <select asp-for="CatProductoServicioId" class="form-control" required
                                 asp-items="@Lista1"></select>
                     </div>

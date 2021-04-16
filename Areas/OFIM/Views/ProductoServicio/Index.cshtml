@@ -1,9 +1,10 @@
-﻿
-@model IEnumerable<SYGESTMunicipalSync.Areas.OFIM.Models.CatProductoServicio>
+﻿@using SYGESTMunicipalSync.Areas.OFIM.Models
+@model IEnumerable<ProductoServicio>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
 }
+
 
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
@@ -11,26 +12,26 @@
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Registro de Categoría de Producto o Servicio</h2>
+                    <h2>Registro de Empresas</h2>
                 </div>
             </div>
         </div>
         <div class="container">
             <ol>
                 <li><a asp-area="OFIM" asp-controller="Home" asp-action="Index">Oficina de la Mujer</a></li>
-                <li>categoría de Servicio o Producto</li>
+                <li>Producto/Servicio</li>
             </ol>
         </div>
     </section><!-- End Breadcrumbs -->
 
     <div class="border backgroundWhite">
         <br />
-        <form asp-controller="CatProductoServicio" asp-action="Index" method="post">
+        <form asp-controller="ProductoServicio" asp-action="Index" method="post">
             <div class="row">
 
 
                 <div class="col-md-2  text-right">
-                    <a asp-controller="Home" asp-action="Index"
+                    <a asp-controller="" asp-action="Index"
                        class="btn btn-warning fa fa-arrow-circle-left"
                        style="width:80%; color:white; height:100%;padding:12px;">
                         Regresar al menú
@@ -51,54 +52,54 @@
 
         @if (Model.Count() > 0)
         {
-            <table class="table table-hover .table-responsive" id="TbCatProductoServicio">
+            <table class="table table-hover .table-responsive" id="TbProductoServicio">
                 <thead class="thead-dark">
                     <tr class="table-secondary" style="text-align:center;">
                         <th>@Html.DisplayNameFor(m => m.Id)</th>
                         <th>@Html.DisplayNameFor(m => m.Nombre)</th>
-                        <th>@Html.DisplayNameFor(m => m.Descripcion)</th>
+                        <th>@Html.DisplayNameFor(m => m.CatProductoServicioId)</th>
+                        <th>@Html.DisplayNameFor(m => m.EmpresaId)</th>
 
+                     
                         <th>Operaciones</th>
                     </tr>
                 </thead>
                 <tbody style="text-align:center;">
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(m => item.Id)</td>
-                            <td>@Html.DisplayFor(m => item.Nombre)</td>
-                            <td>@Html.DisplayFor(m => item.Descripcion)</td>
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.Id)</td>
+                        <td>@Html.DisplayFor(m => item.Nombre)</td>
+                        <td>@Html.DisplayFor(m => item.CatProductoServicio.Nombre)</td>
+                        <td>@Html.DisplayFor(m => item.Empresa.Nombre)</td>
 
-                            <div class="col-md-6">
-                                <a><partial name="_TableButtonPartialDelete" model="item.Id" /></a>
+                        <td style="width:300px">
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-primary text-white"
+                                   asp-controller="ProductoServicio"
+                                   asp-action="Edit" asp-route-Id="@item.Id">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-success text-white"
+                                   asp-controller="ProductoServicio"
+                                   asp-action="Details" asp-route-Id="@item.Id">
+                                    <i class="fas fa-list-alt"></i>
+                                </a>
+                                <i class="fa fa-trash btn btn-danger" aria-hidden="true"
+                                   onclick="EliminarProductoServicio(@item.Id)"></i>
+
                             </div>
+                        </td>
 
-                            @*<div class="col-md-6">
-                                    <td style="width:300px">
 
-                                        <div class="btn-group" role="group">
-
-                                                <a class="btn btn-primary text-white" asp-action="Edit" model="item.BasuraId" asp-route-Id="@Model">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                            <a class="btn btn-success text-white" asp-action="Details" asp-route-Id="@Model">
-                                                <i class="fas fa-list-alt"></i>
-                                            </a>
-                                                    <a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@Model">
-                                      <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                                    </div>
-                                    </td>
-                                </div>*@
-
-                        </tr>
+                    </tr>
                     }
                 </tbody>
             </table>
         }
         else
         {
-            <h5 style="color:red;">No se encontraron registros de categorías de producto o servicio!...</h5>
+            <h5 style="color:red;">No se encontraron registros de Producto/servicio!...</h5>
         }
     </div>
 </main><!-- End #main -->

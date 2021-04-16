@@ -10,15 +10,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
     public partial class Empresa
     {
         
-        [Display(Name = "EMpresa Id:")]
-        public int EmpresaId { get; set; }
+        [Display(Name = "Empresa Id:")]
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Empresa")]
         [Display(Name = "Nombre:")]
         public string Nombre { get; set; }
 
-        [Display(Name = "Logo")]
-        public byte[] Logo { get; set; }
+        //[Display(Name = "Logo")]
+        //public byte[] Logo { get; set; }
 
         [Display(Name = "Ubicacion:")]
         [Required(ErrorMessage = "Debe digitar la Ubicacion")]

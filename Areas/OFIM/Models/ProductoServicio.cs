@@ -8,8 +8,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 {
     public partial class ProductoServicio
     {
-        [Display(Name = "Seguimiento:")]
-        public int SeguimientoId { get; set; }
+        [Display(Name = "Producto/Servicio Id:")]
+        public int Id { get; set; }
 
         [Display(Name = "Nombre:")]
         [Required(ErrorMessage = "Debe digitar el nombre del producto/servicio")]
