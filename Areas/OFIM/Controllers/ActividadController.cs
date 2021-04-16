@@ -4,7 +4,7 @@ using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 {
     [Area("OFIM")]
-
     public class ActividadController : Controller
     {
         private readonly DBSygestContext _db;
@@ -28,6 +27,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ActividadVM = new ActividadViewModel()
             {
                 Categoria = _db.Categoria,
+                Eje = _db.Eje,
                 Actividad = new Models.Actividad()
             };
         }
@@ -99,7 +99,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-            ActividadVM.Actividad = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.ActividadId == id);
+             ActividadVM.Actividad = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.Id == id);
             ActividadVM.Eje = await _db.Eje.Where(p => p.CategoriaId == ActividadVM.Actividad.CategoriaId).ToListAsync();
             if (ActividadVM.Actividad == null)
             {
@@ -125,7 +125,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             }
             //work in the image saving
             var files = HttpContext.Request.Form.Files;
-            var actividadFromDb = await _db.Actividad.FindAsync(ActividadVM.Actividad.ActividadId);
+             var actividadFromDb = await _db.Actividad.FindAsync(ActividadVM.Actividad.Id);
             if (files.Count > 0)
             {
                 byte[] p1 = null;
@@ -156,7 +156,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-            ActividadVM.Actividad = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.ActividadId == id);
+            ActividadVM.Actividad = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.Id == id);
             ActividadVM.Eje = await _db.Eje.Where(s => s.CategoriaId == ActividadVM.Actividad.CategoriaId).ToListAsync();
 
             if (ActividadVM.Actividad == null)
@@ -173,7 +173,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             string Error = "";
             try
             {
-                var actividadDelete = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.ActividadId == Id);
+                var actividadDelete = await _db.Actividad.Include(m => m.Categoria).Include(m => m.Eje).SingleOrDefaultAsync(m => m.Id == Id);
 
                 _db.Actividad.Remove(actividadDelete);
                 _db.SaveChanges();

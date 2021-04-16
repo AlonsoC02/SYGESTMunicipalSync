@@ -10,7 +10,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 {
     public partial class Eje
     {
-        public int EjeId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre del Eje")]
         [DisplayName("Nombre Eje")]

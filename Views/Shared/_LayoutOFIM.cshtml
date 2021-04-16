@@ -400,22 +400,22 @@
                                     }
 
                                     @* CREATE CATEGORIA DE PRODUCTO O SERVICIO *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Producto/Servicio"))
-                                    {
+                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Producto/Servicio"))
+                                    {*@
                                         <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Create"
+                                            <a class="nav-link" asp-action="Index"
                                                asp-controller="CatProductoServicio" asp-area="OFIM">Registro de Producto/Servicio</a>
                                         </li>
-                                    }
+                                        @*}*@
 
                                     @* CONSULTA EMPRESA *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Empresas"))
-                                    {
+                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Empresas"))
+                                    {*@
                                         <li class="nav-item active">
                                             <a class="nav-link" asp-action="Index"
                                                asp-controller="Empresa" asp-area="OFIM">Consulta Empresas</a>
                                         </li>
-                                    }
+                                    @*}*@
 
                                     @* CONSULTA DE LA CATEGORIA DE PRODUCTO O SERVICIO *@
                                     @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Producto/Servicio"))
