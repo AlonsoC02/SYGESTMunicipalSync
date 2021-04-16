@@ -5,137 +5,118 @@
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
     List<SelectListItem> Lista = ViewBag.ListaTMaterial;
 }
-<main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="breadcrumb-hero">
-            <div class="container">
-                <div class="breadcrumb-hero">
-                    <h2>Agregar Material</h2>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <ol>
-                <li><a asp-area="OFGA" asp-controller="Materiales" asp-action="Index">Materiales</a></li>
-                <li>Materiales</li>
-            </ol>
-        </div>
-    </section><!-- End Breadcrumbs -->
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <h3 class="text-light"
-                style="text-align:center;background-color:darkslategray;">
-                Agregar
-            </h3>
-        </div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Agregar Material
+        </h3>
     </div>
+</div>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <h2 class="text-info">Nuevo Registro</h2>
+            <br>
+            <form method="post" asp-action="Create" id="viewAgregar">
+                <div class="backgroundWhite">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @*Id*@
+                    @*<div class=" form-group row">
+                            <div class=" col-2">
+                                <label asp-for="Id" class="col-form-label"></label>
+                            </div>
+                            <div class="col-5">
+                                <input asp-for="Id" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Id" class=" text-danger"></span>
+                        </div>*@
+                    @*Name*@
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-9">
+                            <input asp-for="Nombre" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Nombre" class=" text-danger"></span>
+                    </div>
 
-    <div class="row no-gutters">
-        <div class="col-md-7">
-            <div class="contact-wrap w-100 p-md-5 p-4">
-                <h2 class="text-info">Nuevo Registro</h2>
-                <br>
-                <form method="post" asp-action="Create" id="viewAgregar">
-                    <div class="backgroundWhite">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        @*Id*@
-                        @*<div class=" form-group row">
-                                <div class=" col-2">
-                                    <label asp-for="Id" class="col-form-label"></label>
-                                </div>
-                                <div class="col-5">
-                                    <input asp-for="Id" class="form-control" />
-                                </div>
-                                <span asp-validation-for="Id" class=" text-danger"></span>
-                            </div>*@
-                        @*Name*@
-                        <div class=" form-group row">
+                    @*fecha ingreso*@
+                    @*<div class="form-group row">
                             <div class=" col-md-2">
-                                <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Nombre" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Nombre" class=" text-danger"></span>
-                        </div>
-
-                        @*fecha ingreso*@
-                        @*<div class="form-group row">
-                                <div class=" col-md-2">
-                                    <h5><label>Fecha:</label></h5>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="date" asp-for="Date" class="form-control" />
-                                </div>
-                                <span asp-validation-for="Date" class="text-danger"></span>
-                            </div>*@
-                        @*Peso*@
-                        @*<div class=" form-group row">
-                                <div class=" col-md-2">
-                                    <h5><label asp-for="Weight" class="col-form-label"></label></h5>
-                                </div>
-                                <div class="col-md-9">
-                                    <input asp-for="Weight" class="form-control" />
-                                </div>
-                                <span asp-validation-for="Weight" class=" text-danger"></span>
-                            </div>*@
-                        @*color*@
-                        @*<div class=" form-group row">
-                                <div class=" col-md-2">
-                                    <h5><label asp-for="Color" class="col-form-label"></label></h5>
-                                </div>
-                                <div class="col-md-9">
-                                    <input asp-for="Color" class="form-control" />
-                                </div>
-                                <span asp-validation-for="Color" class=" text-danger"></span>
-                            </div>*@
-                        @*color*@
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <label asp-for="Color" class="col-form-label"></label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="checkbox" asp-for="Color" class="form-control" />
-                            </div>
-                        </div>
-
-                        @*Material Type*@
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="ClasificacionId" class="col-form-label"></label></h5>
+                                <h5><label>Fecha:</label></h5>
                             </div>
                             <div class="col-md-8">
-                                <select asp-for="ClasificacionId" class="form-control"
-                                        asp-items="@Lista"></select>
+                                <input type="date" asp-for="Date" class="form-control" />
                             </div>
-                            <span asp-validation-for="ClasificacionId" class="text-danger"></span>
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>*@
+                    @*Peso*@
+                    @*<div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Weight" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Weight" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Weight" class=" text-danger"></span>
+                        </div>*@
+                    @*color*@
+                    @*<div class=" form-group row">
+                            <div class=" col-md-2">
+                                <h5><label asp-for="Color" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Color" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Color" class=" text-danger"></span>
+                        </div>*@
+                    @*color*@
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Color" class="col-form-label"></label>
                         </div>
-                        @*End Create Register Date Field*@
-
-                        <div class="form-group row">
-                            <div class="col-md-4 text-md-right">
-                                <input type="button" value="Agregar" id="btnAgregar"
-                                       class="btn btn-info" @*style="width: 80%;"*@
-                                       onclick="abrirModal()" />
-                            </div>
-                            <div class="col-md-2 text-md-center">
-                                <a asp-action="Index" type="button"
-                                   class="btn btn-success">
-                                    Regresar
-                                </a>
-
-
-                            </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" asp-for="Color" class="form-control" />
                         </div>
                     </div>
-                </form>
-            </div>
+
+                    @*Material Type*@
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="ClasificacionId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="ClasificacionId" class="form-control"
+                                    asp-items="@Lista"></select>
+                        </div>
+                        <span asp-validation-for="ClasificacionId" class="text-danger"></span>
+                    </div>
+                    @*End Create Register Date Field*@
+
+                    <div class="form-group row">
+                        <div class="col-md-4 text-md-right">
+                            <input type="button" value="Agregar" id="btnAgregar"
+                                   class="btn btn-info" @*style="width: 80%;"*@
+                                   onclick="abrirModal()" />
+                        </div>
+                        <div class="col-md-2 text-md-center">
+                            <a asp-action="Index" type="button"
+                               class="btn btn-success">
+                                Regresar
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </main>
 
 @section Scripts{

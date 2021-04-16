@@ -4,50 +4,58 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
-<head>
-    <title>Materiales</title>
-</head>
-<partial name="_Menu" />
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Registro de Materiales
+        </h3>
+    </div>
+</div>
+
 <div class="container">
     <main class="pb-3" role="main">
-        <div class="container-fluid">
+        <div class="<border backgroundWhite">
             <div class="row">
                 <div class="col-md-6 col-lg-12">
-                    <h2 class="text-light">Lista Medico</h2>
+                    <h2 class="text-dark">Lista Materiales</h2>
                 </div>
             </div>
             <form asp-controller="Materiales" asp-action="Index" method="post" id="frmFilter">
-                <div class="row contenedorBotones">
-                    <div class="col-md-2 col-lg-2 text-right">
-                        <a asp-action="Create" class="btn btn-success fa fa-plus-circle crear">
-                            Nuevo
-                        </a>
-                    </div>
-                    <div class="col-md-2 colo-lg-2 text-right">
-                        <a asp-controller="Home" asp-action="Index" class="btn btn-info fa fa fa-arrow-circle-left inicio">
-                            Regresar al menú
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-12" style="color:black;"><hr></div>
+                <div class="col-md-12" style="color:black;"><hr /></div>
             </form>
+            <div class="row contenedorBotones">
+                <div class="col-md-6 text-md-left">
+                    <a asp-controller="" asp-action="Index" class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                        Regresar al menú
+                    </a>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <a asp-action="Create" class="btn btn-info">
+                        <i class="fas fa-plus"></i>
+                        &nbsp; Crear Nuevo
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12 divisor"><hr></div>
+
             @if (Model.Count() > 0)
             {
                 <div class="contenedorTablas">
-                    <table class="table table-hover border .table-responsive" id="TbEspecial">
+                    <table class="table table-hover border .table-responsive" id="TbMateriales">
                         <thead class="thead-dark">
-                            <tr class="table-secondary trs">
+                            <tr class="table-secondary" style="text-align:center;">
                                 <th>@Html.DisplayNameFor(m => m.MaterialId)</th>
                                 <th>@Html.DisplayNameFor(m => m.Nombre)</th>
                                 <th>@Html.DisplayNameFor(m => m.Clasificacion)</th>
                                 @*<th>@Html.DisplayNameFor(m => m.Direccion)</th>
-                                <th>@Html.DisplayNameFor(m => m.TelefonoFijo)</th>
-                                <th>@Html.DisplayNameFor(m => m.TelefonoCelular)</th>
-                                <th>@Html.DisplayNameFor(m => m.Especialidad)</th>*@
+                                    <th>@Html.DisplayNameFor(m => m.TelefonoFijo)</th>
+                                    <th>@Html.DisplayNameFor(m => m.TelefonoCelular)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Especialidad)</th>*@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="text-align:center;">
                             @foreach (var item in Model)
                             {
                                 <tr>
@@ -55,10 +63,28 @@
                                     <td>@Html.DisplayFor(m => item.Nombre)</td>
                                     <td>@Html.DisplayFor(m => item.Clasificacion)</td>
                                     @*<td>@Html.DisplayFor(m => item.Direccion)</td>
-                                    <td>@Html.DisplayFor(m => item.TelefonoFijo)</td>
-                                    <td>@Html.DisplayFor(m => item.TelefonoCelular)</td>
-                                    <td>@Html.DisplayFor(m => item.Especialidad)</td>*@
-                                    <partial name="_AddEditAndView" model="item.MaterialId" />
+                                        <td>@Html.DisplayFor(m => item.TelefonoFijo)</td>
+                                        <td>@Html.DisplayFor(m => item.TelefonoCelular)</td>
+                                        <td>@Html.DisplayFor(m => item.Especialidad)</td>*@
+
+                                    <td style="width:300px">
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-primary text-white"
+                                               asp-controller="Materiales"
+                                               asp-action="Edit" asp-route-id="@item.MaterialId">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-success text-white"
+                                               asp-controller="Materiales"
+                                               asp-action="Details" asp-route-id="@item.MaterialId">
+                                                <i class="fas fa-list-alt"></i>
+                                            </a>
+
+                                            <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
+                                               onclick="EliminarMateriales(@item.MaterialId)"></i>
+
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -67,15 +93,53 @@
             }
             else
             {
-                <h2 style="color:red">No se encontraron registros.</h2>
+                <h3 style="color:red;">No existen Materiales registrados!...</h3>
             }
         </div>
-        <form asp-action="Delete" asp-controller="Medico" method="post" id="viewEliminarMedico">
-            <input type="hidden" id="txtMedicoId" name="MedicoId" />
+        <form asp-action="Delete" asp-controller="Materiales" method="post" id="viewEliminar">
+            <input type="hidden" id="txtMaterialId" name="MaterialId" />
         </form>
-        <form asp-action="Edit" asp-controller="Medico" method="post" id="viewEditarMedico">
-            <input type="hidden" id="txtMedicoId" name="MedicoId" />
+        <form asp-action="Edit" asp-controller="Materiales" method="post" id="viewEditar">
+            <input type="hidden" id="txtMaterialId" name="MaterialId" />
         </form>
     </main>
 </div>
-@*<partial name="_EndPag" />*@
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#TbMateriales').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+            });
+    })
+
+    function EliminarMateriales(MaterialId) {
+        document.getElementById("txtMaterialId").value = MaterialId;
+        verModal('Eliminar Material',
+            '¿Desea Eliminar el Material '
+            + MaterialId + ' ?').then((result) => {
+                if (result.value) {
+                    alert("No puede eliminar el material si esta está siendo utilizado por otra actividad")
+                    var viewEliminar = document.getElementById("viewEliminar");
+                    viewEliminar.submit();
+                    Swal.fire(
+                        'Eliminación!',
+                        'El Material  ' + MaterialId + ' fue eliminado!.',
+                        'success'
+                    )
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelado',
+                        'El Material no fue eliminada!!!:)',
+                        'error'
+                    )
+                }
+            })
+    }
+</script>

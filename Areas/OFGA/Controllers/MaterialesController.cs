@@ -157,33 +157,29 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-
-            }
-            var materials = await _db.Materiales.FindAsync(id);
-            if (materials == null)
-            {
-                return NotFound();
-
-            }
-            return View(materials);
+            cargarClasificacion();
+            Materiales materiales = _db.Materiales
+                       .Where(e => e.MaterialId == id).First();
+            return View(materiales);
         }
-        //POST - DELETE    //si se realiza una operacion es un POST
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+
+        [HttpPost]
+        public IActionResult Delete(int? MaterialId)
         {
-            var materials = await _db.Materiales.FindAsync(id);
-            if (materials == null)
+            var Error = "";
+            try
             {
-                return View();
+                Materiales oMateriales = _db.Materiales
+                             .Where(e => e.MaterialId == MaterialId).First();
+                _db.Materiales.Remove(oMateriales);
+                _db.SaveChanges();
             }
-            _db.Materiales.Remove(materials);
-            await _db.SaveChangesAsync();
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
             return RedirectToAction(nameof(Index));
         }
     }
