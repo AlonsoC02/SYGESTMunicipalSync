@@ -113,18 +113,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             return View(listaPersona);
         }
 
-        //private int buscarRol (int rolId)
-        //{
-        //    int _rolId = 0;
-        //    Rol oRol= _db.Rol
-        //        .Where(m => m.RolId == rolId).SingleOrDefault();
-        //    if (oRol != null)
-        //    {
-        //        _rolId = oRol.RolId;
-        //    }
-        //    return _rolId;
-        //}
-
         private void buscarUsuario(int Id)
         {
             listaUsuario = (from _usuario in _db.Usuario
@@ -149,31 +137,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             buscarUsuario(Id);
             return View(listaUsuario);
         }
-        public IActionResult Delete(int Id)
-        {
-            buscarUsuario(Id);
-            return View(listaUsuario);
-        }
-        [HttpPost, ActionName("Delete")]
-        public IActionResult Deleted(int Id)
-        {
-            string Error = "";
-            try
-            {
-                Usuario oUsuario = _db.Usuario
-                    .Where(c => c.UsuarioId == Id).First();
-                if (oUsuario != null)
-                {
-                    _db.Usuario.Remove(oUsuario);
-                    _db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                Error = ex.Message;
-            }
-            return RedirectToAction(nameof(Index));
-        }
+     
         public async Task<IActionResult> Created(RegistroExternoVM usuario)
         {
             try
@@ -186,10 +150,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                 {
                    
                     Usuario _usuario = new Usuario();
-                    //_usuario.UsuarioId = usuario.UsuarioId;
+                  
                     _usuario.NombreUsuario = usuario.NombreUsuario;
                     _usuario.Password = usuario.Password;
-                    //_usuario.ConfirmarContrasena = usuario.ConfirmarContrasena;
                     _usuario.PersonaId = usuario.PersonaId;
                     _usuario.RolId = usuario.RolId;
                     _db.Usuario.Add(_usuario);
@@ -200,10 +163,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             {
                 ViewBag.Error = ex.Message;
             }
-            //Si se quiere caer de nuevo en Create
-            //para seguir agregando usuario
-            cargarRol();
-            // determinarUltimoRegistro();
+            
             return RedirectToAction(nameof(Index));
 
         }

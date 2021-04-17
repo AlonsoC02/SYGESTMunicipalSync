@@ -83,9 +83,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             cargarPersona();
             return View();
         }
-        ////POST - CREATE
+        //POST - CREATE
         [HttpPost]
-        public IActionResult Create(Empresa empresa)
+        public async Task<IActionResult> Create(Empresa empresa)
         {
             if (ModelState.IsValid)
             {
@@ -103,15 +103,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     }
                     //empresa.Logo = p1;
                 }
-               
+
             }
             _db.Empresa.Add(empresa);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-           
+
         }
 
-     
+
         public async Task<IActionResult> Edit(int? id)
         {
 
