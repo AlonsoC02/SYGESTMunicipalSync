@@ -9,46 +9,27 @@
     List<SelectListItem> Lista2 = ViewBag.ListaTDistrito;
 
 }
-<main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="breadcrumb-hero">
-            <div class="container">
-                <div class="breadcrumb-hero">
-                    <h2>Agregar Punto de recuperacion</h2>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <ol>
-                <li><a asp-area="OFGA" asp-controller="PuntoRecMaterial" asp-action="Index">Puntos de recuperacion</a></li>
-                <li>Puntos de recuperacion</li>
-            </ol>
-        </div>
-    </section><!-- End Breadcrumbs -->
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <h3 class="text-light"
-                style="text-align:center;background-color:darkslategray;">
-                Agregar
-            </h3>
-        </div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Agregar Punto de Recuperación
+        </h3>
     </div>
+</div>
 
-    <div class="row no-gutters">
-        <div class="col-md-7">
-            <div class="contact-wrap w-100 p-md-5 p-4">
-                <h2 class="text-info">Nuevo Registro</h2>
-                <br>
-                <form method="post" asp-controller="PuntoRecMaterial" asp-action="Create" id="viewAgregar">
-                    <div class="backgroundWhite">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <h2 class="text-info">Nuevo Registro</h2>
+            <br>
+            <form method="post" asp-controller="PuntoRecMaterial" asp-action="Create" id="viewAgregar">
+                <div class="backgroundWhite">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        @*Id*@
-                        @*<div class=" form-group row">
+                    @*Id*@
+                    @*<div class=" form-group row">
                             <div class=" col-md-2">
                                 <h5><label asp-for="PuntosRecMaterialId" class="col-form-label"></label></h5>
                             </div>
@@ -58,85 +39,83 @@
                             <span asp-validation-for="PuntosRecMaterialId" class=" text-danger"></span>
                         </div>*@
 
-                        @*Peso*@
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Peso" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Peso" class=" text-danger"></span>
+                    @*Peso*@
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Peso" class="col-form-label"></label></h5>
                         </div>
-
-                        @*Fecha*@
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="date" asp-for="Fecha" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Fecha" class=" text-danger"></span>
+                        <div class="col-md-9">
+                            <input asp-for="Peso" class="form-control" />
                         </div>
-
-                        @*Material*@
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="MaterialId" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <select asp-for="MaterialId" class="form-control"
-                                        asp-items="@Lista"></select>
-                            </div>
-                            <span asp-validation-for="MaterialId" class="text-danger"></span>
-                        </div>
-                        @*Clasificacion*@
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="DistritoId" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <select asp-for="DistritoId" class="form-control"
-                                        asp-items="@Lista2"></select>
-                            </div>
-                            <span asp-validation-for="DistritoId" class="text-danger"></span>
-                        </div>
-                        @*Material Type*@
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="ClasificacionId" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <select asp-for="ClasificacionId" class="form-control"
-                                        asp-items="@Lista1"></select>
-                            </div>
-                            <span asp-validation-for="ClasificacionId" class="text-danger"></span>
-                        </div>
-                        @*End Create Register Date Field*@
-
-
-                        <div class="form-group row">
-                            <div class="col-md-4 text-md-right">
-                                <input type="button" value="Agregar" id="btnAgregar"
-                                       class="btn btn-info" @*style="width: 80%;"*@
-                                       onclick="abrirModal()" />
-                            </div>
-                            <div class="col-md-2 text-md-center">
-                                <a asp-action="Index" type="button"
-                                   class="btn btn-success">
-                                    Regresar
-                                </a>
-
-
-                            </div>
-                        </div>
+                        <span asp-validation-for="Peso" class=" text-danger"></span>
                     </div>
-                </form>
-            </div>
+
+                    @*Fecha*@
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="date" asp-for="Fecha" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Fecha" class=" text-danger"></span>
+                    </div>
+
+                    @*Material*@
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="MaterialId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="MaterialId" class="form-control"
+                                    asp-items="@Lista"></select>
+                        </div>
+                        <span asp-validation-for="MaterialId" class="text-danger"></span>
+                    </div>
+                    @*Clasificacion*@
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="DistritoId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="DistritoId" class="form-control"
+                                    asp-items="@Lista2"></select>
+                        </div>
+                        <span asp-validation-for="DistritoId" class="text-danger"></span>
+                    </div>
+                    @*Material Type*@
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="ClasificacionId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="ClasificacionId" class="form-control"
+                                    asp-items="@Lista1"></select>
+                        </div>
+                        <span asp-validation-for="ClasificacionId" class="text-danger"></span>
+                    </div>
+                    @*End Create Register Date Field*@
+
+
+                <div class="form-group row">
+                    <div class="col-md-4 text-md-right">
+                        <a asp-action="Index" type="button" style="color:white"
+                           class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                            Regresar
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 text-md-right">
+                        <input type="button" value="Agregar" id="btnAgregar"
+                               class="btn btn-info"
+                               onclick="abrirModal()" />
+                    </div>
+                </div>
+                </div>
+            </form>
         </div>
     </div>
-</main>
+</div>
 
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
