@@ -53,7 +53,7 @@
             @* LOGO EN EL NAV *@
             <div class="logo-img">
                 <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/LogoMuni2.png" alt="">
+                    <img src="~/images/LogoMuni2.png" alt="Logo Municipalidad de Hojancha">
                 </a>
 
             </div>
@@ -158,13 +158,13 @@
                                 Departamentos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Patentes"))
-                                {
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Patentes"))
+                                {*@
                                     <li class="nav-item active">
                                         <a class="dropdown-item" asp-action="Index"
                                            asp-controller="Home" asp-area="PATENTES">Oficina de Patentes</a>
                                     </li>
-                                }
+                                @*}*@
 
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Gestión Ambiental"))
                                 {*@
