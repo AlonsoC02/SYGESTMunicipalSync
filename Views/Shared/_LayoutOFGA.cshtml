@@ -1,4 +1,4 @@
-﻿@*@using SYGESTMunicipal.Utility*@
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,25 +7,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
-    <link href="~/lib/ej.responsive.css" rel="stylesheet" />
-    <script src="~/js/ej.web.all.min.js"></script>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous" />
-
-
+      
     <title>@ViewData["Title"] - OFGA</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="~/Ambiental/assets/img/logopequeño.png" rel="icon">
-    <link href="~/Ambiental/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-
+   
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -42,6 +29,7 @@
     <link href="~/css/style.css" rel="stylesheet"/>
     <!-- Template Main CSS File -->
     <link href="~/Ambiental/assets/css/style.css" rel="stylesheet">
+
     <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
     <link href="~/lib/ej.responsive.css" rel="stylesheet"/>
     <script src="~/js/ej.web.all.min.js"></script>
@@ -49,15 +37,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossorigin="anonymous" />
-    <!-- =======================================================
-    * Template Name: Serenity - v2.1.0
-    * Template URL: https://bootstrapmade.com/serenity-bootstrap-corporate-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
-
-
-
+   
 </head>
 
 <body>
@@ -130,12 +110,13 @@
                     <li class="nav-item active">
                         <a class="nav-link" asp-action="Index"
                            asp-controller="TipoDenuncia" asp-area="OFGA">Tipos Denuncia</a>
-                        @*</li>
-                            }*@
+                        </li>
+                            @*}*@
 
                 </ul>
             </li>
- } @* MENU CEMTRO ACOPIO*@
+             } 
+                        @* MENU CEMTRO ACOPIO*@
                         @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuAcopio != "")
                         {
             <li class="nav-item dropdown text-white-50">
@@ -430,7 +411,7 @@
     <script src="~/Ambiental/assets/js/main.js"></script>
     <script src="~/js/jquery-ui.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @RenderSection("Scripts", required: false);
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>
