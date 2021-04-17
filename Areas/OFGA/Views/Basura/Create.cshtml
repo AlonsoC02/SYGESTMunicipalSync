@@ -4,68 +4,62 @@
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
 
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <h3 class="text-light"
-                style="text-align:center;background-color:#263182;">
-                Residuos Ordinarios
-            </h3>
-        </div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Residuos Ordinarios
+        </h3>
     </div>
+</div>
 
-    <!-- ======= About Section ======= -->
-    <div class="row no-gutters">
-        <div class="col-md-7">
-            <div class="contact-wrap w-100 p-md-5 p-4">
-                <h2 class="text-info">Nuevo Registro</h2>
-                <br>
-                <form method="post" asp-action="Create" id="viewAgregar">
-                    <div class="backgroundWhite">
-                        <div asp-validation.summary="ModelOnly" class="text-danger"></div>
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Peso" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Peso" class=" text-danger"></span>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <h2 class="text-info">Nuevo Registro</h2>
+            <br>
+            <form method="post" asp-action="Create" id="viewAgregar">
+                <div class="backgroundWhite">
+                    <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Peso" class="col-form-label"></label></h5>
                         </div>
-
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="date" asp-for="Fecha" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Fecha" class=" text-danger"></span>
+                        <div class="col-md-9">
+                            <input asp-for="Peso" class="form-control" />
                         </div>
-
-                        <div class="form-group row">
-
-                            <div class="col-md-4 text-md-right">
-                                <a asp-action="Index" type="button" style="color:white"
-                                   class="btn btn-warning">
-                                    Regresar
-                                </a>
-
-
-                            </div>
-
-                            <div class="col-md-4 text-md-right">
-                                <input type="button" value="Agregar" id="btnAgregar"
-                                       class="btn btn-info" 
-                                       onclick="abrirModal()" />
-                            </div>
-
-                        </div>
-
+                        <span asp-validation-for="Peso" class=" text-danger"></span>
                     </div>
-                </form>
-            </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="date" asp-for="Fecha" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Fecha" class=" text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button" style="color:white"
+                               class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                                Regresar
+                            </a>
+                        </div>
+
+                        <div class="col-md-4 text-md-right">
+                            <input type="button" value="Agregar" id="btnAgregar"
+                                   class="btn btn-info"
+                                   onclick="abrirModal()" />
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
 <script src="~/js/sweetalert2.js"></script>
 <script src="~/js/Utilitarios.js"></script>
