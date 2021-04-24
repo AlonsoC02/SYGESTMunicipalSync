@@ -96,8 +96,8 @@ namespace SYGESTMunicipalSync.Models
             {
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 //optionsBuilder.UseSqlServer("server=DESKTOP-4KIF3VN\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
-                //optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                //optionsBuilder.UseSqlServer("server=LAPTOP-9LLKQMMH\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
+                optionsBuilder.UseSqlServer("server=LAPTOP-FQENG2D7\\SQLEXPRESS;Database=SYGEST;Trusted_Connection=True;MultipleActiveResultsets=true");
             }                              
         }
 
@@ -703,10 +703,7 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                //entity.Property(e => e.Logo)
-                //.HasColumnName("Logo")
-                //.HasColumnType("varbinary(max)");
-
+           
 
                 entity.Property(e => e.Ubicacion)
                  .IsRequired()
@@ -720,6 +717,11 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Email)
                  .HasMaxLength(100)
                  .IsUnicode(false);
+
+                entity.Property(e => e.Logo)
+                .IsRequired()
+                .HasColumnName("Logo")
+                .HasColumnType("varbinary(max)");        // <------------------------------------------------------
 
                 entity.Property(e => e.Descripcion)
                   .HasMaxLength(200)

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
@@ -13,49 +12,65 @@ using System.Threading.Tasks;
 
 namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 {
+
     [Area("OFIM")]
     public class EmpresaController : Controller
     {
 
         private readonly DBSygestContext _db;
-        List<EmpresaViewModel> listaEmpresa = new List<EmpresaViewModel>();
-        static List<EmpresaViewModel> lista = new List<EmpresaViewModel>();
-        public EmpresaController(DBSygestContext db)
+
+        private readonly IWebHostEnvironment _hostEnvironment;
+        [BindProperty]
+        public EmpresaViewModel EmpresaVM { get; set; }
+        public EmpresaController(DBSygestContext db,
+            IWebHostEnvironment hostEnvironment)
         {
             _db = db;
+            _hostEnvironment = hostEnvironment;
+            EmpresaVM = new EmpresaViewModel()
+            {
+                CatProductoServicio = _db.CatProductoServicio,
+                Persona = _db.Persona,
+                Empresa = new Models.Empresa()
+            };
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            listaEmpresa = (from empresa in _db.Empresa
-                            select new EmpresaViewModel
-                            {
-                                EmpresaId = empresa.Id,
-                                Nombre = empresa.Nombre,
-                                Descripcion = empresa.Descripcion.Substring(0, 85) + "...",
-                                Ubicacion = empresa.Ubicacion.Substring(0, 85) + "...",
-                                Telefono = empresa.Telefono,
-                                Email = empresa.Email,
-                                PaginaWeb = empresa.PaginaWeb,
-                                PersonaId = empresa.PersonaId,
-                                CatProductoServicioId = empresa.CatProductoServicioId,
-                                //Logo = empresa.Logo
-
-
-                            }).ToList();
-            lista = listaEmpresa;
-            return View(listaEmpresa);
+            var Empresa =
+            await _db.Empresa.Include(m => m.CatProductoServicio).Include(m => m.Persona).ToListAsync();
+            return View(Empresa);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string dato)
+        {
+            if (dato == null)
+            {
+                var Empresa =
+                await _db.Empresa.Include(m => m.CatProductoServicio).Include(m => m.Persona).ToListAsync();
+                return View(Empresa);
+            }
+            else
+            {
+                var empresaItem =
+                     await _db.Empresa.Where(p => p.CatProductoServicio.Nombre == dato)
+                     .Include(p => p.Persona).Include(c => c.CatProductoServicio).ToListAsync();
+
+                return View(empresaItem);
+            }
+        }
+
         private void cargarPersona()
         {
             List<SelectListItem> listaPersona = new List<SelectListItem>();
             listaPersona = (from persona in _db.Persona
-                               orderby persona.Nombre
-                               select new SelectListItem
-                               {
-                                   Text = persona.Nombre,
-                                   Value = persona.CedulaPersona.ToString()
-                               }
+                            orderby persona.Nombre
+                            select new SelectListItem
+                            {
+                                Text = persona.Nombre,
+                                Value = persona.CedulaPersona.ToString()
+                            }
                                 ).ToList();
             ViewBag.ListaPersona = listaPersona;
         }
@@ -64,86 +79,31 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         {
             List<SelectListItem> listaCatProductoServicio = new List<SelectListItem>();
             listaCatProductoServicio = (from catProductoServicio in _db.CatProductoServicio
-                            orderby catProductoServicio.Nombre
-                            select new SelectListItem
-                            {
-                                Text = catProductoServicio.Nombre,
-                                Value = catProductoServicio.Id.ToString()
-                            }
+                                        orderby catProductoServicio.Nombre
+                                        select new SelectListItem
+                                        {
+                                            Text = catProductoServicio.Nombre,
+                                            Value = catProductoServicio.Id.ToString()
+                                        }
                                 ).ToList();
             ViewBag.ListaCatProductoServicio = listaCatProductoServicio;
         }
 
+
+
+
         //GET - CREATE
-
-        public IActionResult Create(int id)
-            
+        public IActionResult Create()
         {
             cargarCatProductoServicio();
             cargarPersona();
-            return View();
+            return View(EmpresaVM);
         }
-        ////POST - CREATE
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Create(Empresa empresa)
+        public async Task<IActionResult> CreatePOST()
         {
-            if (ModelState.IsValid)
-            {
-                var files = HttpContext.Request.Form.Files;
-                if (files.Count > 0)
-                {
-                    byte[] p1 = null;
-                    using (var fs1 = files[0].OpenReadStream())
-                    {
-                        using (var ms1 = new MemoryStream())
-                        {
-                            fs1.CopyTo(ms1);
-                            p1 = ms1.ToArray();
-                        }
-                    }
-                    //empresa.Logo = p1;
-                }
-               
-            }
-            _db.Empresa.Add(empresa);
-            await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-           
-        }
-
-     
-        public async Task<IActionResult> Edit(int? id)
-        {
-
-            cargarPersona();
-            cargarCatProductoServicio();
-
-            if (id == null)
-            {
-                return NotFound();
-            }
-           
-            var empresa = await _db.Empresa.FindAsync(id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-            return View(empresa);
-        }
-
-        //Postt-Edit
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Empresa empresa)
-        {
-            if (empresa.Id == 0)
-            {
-                return NotFound();
-            }
-
-            var empresaFromDb = await _db.Empresa.FindAsync(empresa.Id);
+            EmpresaVM.Empresa.CatProductoServicioId = Convert.ToInt32(Request.Form["CatProductoServicioId"].ToString());
 
             if (ModelState.IsValid)
             {
@@ -159,82 +119,112 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             p1 = ms1.ToArray();
                         }
                     }
-                    //empresaFromDb.Logo = p1;
+                    EmpresaVM.Empresa.Logo = p1;
                 }
-                empresaFromDb.Nombre = empresa.Nombre;
-                empresaFromDb.Descripcion = empresa.Descripcion;
-                empresaFromDb.Ubicacion = empresa.Ubicacion;
-                empresaFromDb.Email = empresa.Email;
-                empresaFromDb.PaginaWeb = empresa.PaginaWeb;
-                empresaFromDb.Telefono = empresa.Telefono;
-                empresaFromDb.PersonaId = empresa.PersonaId;
-                empresaFromDb.CatProductoServicioId = empresa.CatProductoServicioId;
-
+                _db.Empresa.Add(EmpresaVM.Empresa);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(empresa);
+            return View(EmpresaVM.Empresa);
         }
 
 
-        //DELETE
-        public async Task<IActionResult> Delete(int? id)
+
+        //GET - EDIT
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
-
             }
-            var empresa = await _db.Empresa.FindAsync(id);
-            if (empresa == null)
+            cargarPersona();
+            cargarCatProductoServicio();
+            if (EmpresaVM.Empresa == null)
             {
                 return NotFound();
-
             }
-            return View(empresa);
+            return View(EmpresaVM);
         }
 
-        [HttpPost, ActionName("Delete")]
+        //POST - EDIT
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        public async Task<IActionResult> EditPOST(int? id)
         {
-            var empresa = await _db.Empresa.FindAsync(id);
-            if (empresa == null)
+            if (id == null)
             {
-                return View();
+                return NotFound();
             }
-            _db.Empresa.Remove(empresa);
+            
+            if (!ModelState.IsValid)
+            {
+              
+                return View(EmpresaVM);
+            }
+            //work in the image saving
+            var files = HttpContext.Request.Form.Files;
+            var empresaFromDb = await _db.Empresa.FindAsync(EmpresaVM.Empresa.Id);
+            if (files.Count > 0)
+            {
+                byte[] p1 = null;
+                using (var fs1 = files[0].OpenReadStream())
+                {
+                    using (var ms1 = new MemoryStream())
+                    {
+                        fs1.CopyTo(ms1);
+                        p1 = ms1.ToArray();
+                    }
+                }
+                empresaFromDb.Logo = p1;
+            }
+            empresaFromDb.Nombre = EmpresaVM.Empresa.Nombre;
+            empresaFromDb.Descripcion = EmpresaVM.Empresa.Descripcion;
+            empresaFromDb.Ubicacion = EmpresaVM.Empresa.Ubicacion;
+            empresaFromDb.Email = EmpresaVM.Empresa.Email;
+            empresaFromDb.PaginaWeb = EmpresaVM.Empresa.PaginaWeb;
+            empresaFromDb.Telefono = EmpresaVM.Empresa.Telefono;
+            empresaFromDb.PersonaId = EmpresaVM.Empresa.PersonaId;
+            empresaFromDb.CatProductoServicioId = EmpresaVM.Empresa.CatProductoServicioId;
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        ////DETAILS
+        //GET - DETAILS
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            cargarPersona();
-            cargarCatProductoServicio();
+          
 
-            var empresa = await _db.Empresa.FindAsync(id);
-            if (empresa == null)
+            if (EmpresaVM.Empresa == null)
             {
                 return NotFound();
             }
-            return View(empresa);
+            return View(EmpresaVM);
         }
 
-        [ActionName("GetEmpresa")]
-        public async Task<IActionResult> GetEmpresa(int id)
+        //GET - DELETE
+
+        public async Task<IActionResult> Delete(int? Id)
         {
-            List<Empresa> empresa = new List<Empresa>();
-            empresa = await (from Empresa in _db.Empresa
-                          where Empresa.CatProductoServicioId == id
-                          select Empresa).ToListAsync();
-            return Json(new SelectList(empresa, "Id", "Nombre"));
+            string Error = "";
+            try
+            {
+                var empresaDelete = await _db.Empresa.Include(m => m.CatProductoServicio).Include(m => m.Persona).SingleOrDefaultAsync(m => m.Id == Id);
+
+                _db.Empresa.Remove(empresaDelete);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
         }
+
+
 
     }
 }

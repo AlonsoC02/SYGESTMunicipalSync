@@ -49,11 +49,11 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             }
             else
             {
-                var prodServicioItem =
+                var actItem =
                      await _db.ProductoServicio.Where(p => p.CatProductoServicio.Nombre == dato)
                      .Include(p => p.Empresa).Include(c => c.CatProductoServicio).ToListAsync();
 
-                return View(prodServicioItem);
+                return View(actItem);
             }
         }
 
@@ -91,6 +91,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return View(ProductoServicioVM.ProductoServicio);
         }
 
+
         //GET - EDIT
         public async Task<IActionResult> Edit(int? id)
         {
@@ -124,7 +125,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             }
             //work in the image saving
             var files = HttpContext.Request.Form.Files;
-            var productoServicioFromDb = await _db.ProductoServicio.FindAsync(ProductoServicioVM.ProductoServicio.Id);
+            var prodServicioFromDb = await _db.ProductoServicio.FindAsync(ProductoServicioVM.ProductoServicio.Id);
             if (files.Count > 0)
             {
                 byte[] p1 = null;
@@ -136,13 +137,12 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                         p1 = ms1.ToArray();
                     }
                 }
-                productoServicioFromDb.Imagen = p1;
+                prodServicioFromDb.Imagen = p1;
             }
-            productoServicioFromDb.Nombre = ProductoServicioVM.ProductoServicio.Nombre;
-            productoServicioFromDb.Descripcion = ProductoServicioVM.ProductoServicio.Descripcion;
-            productoServicioFromDb.CatProductoServicioId = ProductoServicioVM.ProductoServicio.CatProductoServicioId;
-            productoServicioFromDb.EmpresaId = ProductoServicioVM.ProductoServicio.EmpresaId;
-         
+            prodServicioFromDb.Nombre = ProductoServicioVM.ProductoServicio.Nombre;
+            prodServicioFromDb.Descripcion = ProductoServicioVM.ProductoServicio.Descripcion;
+            prodServicioFromDb.CatProductoServicioId = ProductoServicioVM.ProductoServicio.CatProductoServicioId;
+            prodServicioFromDb.EmpresaId = ProductoServicioVM.ProductoServicio.EmpresaId;
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -182,6 +182,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
 
     }
 }
