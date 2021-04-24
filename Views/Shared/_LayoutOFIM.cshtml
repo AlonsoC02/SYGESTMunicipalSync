@@ -5,11 +5,9 @@
     <title>@ViewData["Title"] - OFIM</title>
 
     <meta charset="utf-8" />
-   @* <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">*@
+    @* <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">*@
 
     <link href="~/css/site.css" rel="stylesheet" />
-    <script src="~/js/jquery-ui.js"></script>
-    <link href="~/css/jquery-ui.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
 
@@ -46,10 +44,13 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
+
     <script src="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.css" />
     <script src="~/js/Datepair.js"></script>
     <script src="~/js/jquery.datepair.js"></script>
+    <link href="~/css/Paginador.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 </head>
 
@@ -57,398 +58,398 @@
     @* LOGIN -Registrarse *@
     <partial name="_Encabezado" />
     @* NAV *@
-    
-        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
-            <div class="container-fluid" style="padding-right: 25px">
 
-                @* LOGO Muni *@
-                <div class="logo-img">
-                    <a asp-area="OFIM" asp-controller="Home" asp-action="Index">
-                        <img src="~/images/OFIM.png" alt="">
-                    </a>
-                </div>
-                @* FIN LOGO Muni *@
+    <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+        <div class="container-fluid" style="padding-right: 25px">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                        aria-controls="ftco-nav"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span> Menu
-                </button>
-
-                <div class="collapse navbar-collapse" id="ftco-nav">
-
-                    <ul class="navbar-nav m-auto">
-
-                        @* LINK DE INICIO *@
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area=""
-                               asp-controller="Home" asp-action="Index">Inicio</a>
-                        </li>
-
-                        @* LINK DE INICIO OFIM *@
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area="OFIM"
-                               asp-controller="Home" asp-action="Index">OFIM</a>
-                        </li>
-
-                        @* MENU DE MANTENIMIENTO PARA ADMINISTRADOR OFIM *@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuMantOFIM != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Mantenimiento
-                                </a>
-                                @* CRUD DE TIPOS CONSULTAS *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Tipo Consulta"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="TipoConsulta" asp-area="OFIM">Tipo Consulta</a>
-                                        </li>
-                                    @*}*@
-
-                                    @* CRUD CATEGORIA DE ACTIVIDADES *@
-
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Tipos Formación"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Categoria" asp-area="OFIM">Tipos Formación</a>
-                                        </li>
-                                    @*}*@
-
-                                    @* CRUD EJES PARA ACTIVIDADES *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Ejes de Acción"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Eje" asp-area="OFIM">Ejes de Acción</a>
-                                        </li>
-                                    @*}*@
-
-                                    @* CRUD CATEGORIA EMPRESAS *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Empresas"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="CatProductoServicio" asp-area="OFIM">Clasificación Empresas</a>
-                                        </li>
-                                    }
-
-
-                                </ul>
-                            </li>
-
-                        }
-
-                        @* MENU PARA REGISTRO DE ATENCIÓN *@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuRegAten != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Registro Atención
-                                </a>
-                                @* CRUD DE PERSONAS *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Persona" asp-area="Admin">Persona</a>
-                                        </li>
-                                    }
-
-                                    @* CRUD DATOS PERSONALES DE PERSONA OFIM*@
-
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Datos Personales"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="PersonaOFIM" asp-area="OFIM">Datos Personales</a>
-                                        </li>
-                                    }
-
-                                    @* CRUD  PARA REGISTRO CONSULTA *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Consultas"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Consulta" asp-area="OFIM">Registro de Consultas</a>
-                                        </li>
-                                    }
-
-                                    @* CRUD SEGUIMIENTO *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Seguimiento"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Seguimiento" asp-area="OFIM">Registro de Seguimiento</a>
-                                        </li>
-                                    }
-
-
-                                </ul>
-                            </li>
-
-                        }
-
-                        @* MENU PARA GESTIÓN DE SERVICIOS*@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuGestServ != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Gestión de Servicios
-                                </a>
-                                @* CRUD REGISTRO ACTIVIDADES*@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro Actividades"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Actividad" asp-area="OFIM">Registro Actividades</a>
-                                        </li>
-                                    @*}*@
-
-                                    @* CRUD REGISTRO CUPOS *@
-
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Apertura Cupos"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Cupos" asp-area="OFIM">Apertura Cupos</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </li>
-                        }
-
-                        @* MENU PARA RED INTERINSTITUCIONAL *@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuRED != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Red Interinstitucional
-                                </a>
-                                @* CRUD DE PERSONAS *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Create"
-                                               asp-controller="Persona" asp-area="Admin">Persona</a>
-                                        </li>
-                                    @*}*@
-
-                                    @* CRUD DATOS PERSONALES DE PERSONA OFIM*@
-
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Datos Personales"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Create"
-                                               asp-controller="PersonaOFIM" asp-area="OFIM">Datos Personales</a>
-                                        </li>
-                                    }
-
-                                    @* CRUD  PARA REGISTRO CONSULTA *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Consultas"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Create"
-                                               asp-controller="Consulta" asp-area="OFIM">Registro de Consultas</a>
-                                        </li>
-                                    }
-
-                                    @* CRUD SEGUIMIENTO *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Seguimiento"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Create"
-                                               asp-controller="Seguimiento" asp-area="OFIM">Registro de Seguimiento</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </li>
-                        }
-
-                        @* MENU PARA CONSULTAS *@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuConsulta != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Consultas
-                                </a>
-                                @* CRUD DE CONTACTOS DE OFIM *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Contactos"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Contactos"
-                                               asp-controller="PersonaOFIM" asp-area="OFIM">Contactos</a>
-                                        </li>
-                                    }
-
-                                    @* CRUD CASOS DE VIOLENCIA DOMÉSTICA *@
-
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Casos Violencia Doméstica"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="CasosViolencia"
-                                               asp-controller="Consulta" asp-area="OFIM">Casos Violencia Doméstica</a>
-                                        </li>
-                                    }
-                                    @* CRUD CASOS DE INSCRIPCIONES *@
-
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Inscripciones Actividades"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Inscripcion" asp-area="OFIM">Inscripciones Actividades</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </li>
-                        }
-
-                        @* MENU PARA PROCESOS INFORMATIVOS*@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuFormacion != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Procesos Formativos
-                                </a>
-                                @* INFO DE CHARLAS*@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Charlas"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Charlas"
-                                               asp-controller="Home" asp-area="OFIM">Charlas</a>
-                                        </li>
-                                    }
-
-                                    @* INFO TALLERES *@
-
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Talleres"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Talleres"
-                                               asp-controller="Home" asp-area="OFIM">Talleres</a>
-                                        </li>
-                                    }
-
-                                    @* INFO FECHAS CONMEMORATIVAS *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Fechas Conmemorativas"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Fechas"
-                                               asp-controller="Home" asp-area="OFIM">Fechas Conmemorativas</a>
-                                        </li>
-                                    }
-
-                                    @* INFO ACTIVIDADES*@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Actividades"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Actividades"
-                                               asp-controller="Home" asp-area="OFIM">Actividades</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </li>
-                        }
-
-                        @* MENU PARA EMPRESARIEDAD *@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuEmpre != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Empresariedad
-                                </a>
-                                @* CREATE DE PERSONAS *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Create"
-                                               asp-controller="Persona" asp-area="Admin">Persona</a>
-                                        </li>
-                                    }
-
-                                    @* CREATE EMPRESA *@
-
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro Empresa"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Create"
-                                               asp-controller="Empresa" asp-area="OFIM">Registro Empresa</a>
-                                        </li>
-                                    }
-
-                                    @* CREATE CATEGORIA DE PRODUCTO O SERVICIO *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Producto/Servicio"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="ProductoServicio" asp-area="OFIM">Registro de Producto/Servicio</a>
-                                        </li>
-                                        @*}*@
-
-                                    @* CONSULTA EMPRESA *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Empresas"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Empresa" asp-area="OFIM">Consulta Empresas</a>
-                                        </li>
-                                    @*}*@
-
-                                    @* CONSULTA DE LA CATEGORIA DE PRODUCTO O SERVICIO *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Producto/Servicio"))
-                                    {*@
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="CatProductoServicio" asp-area="OFIM">Consulta Producto/Servicio</a>
-                                        </li>
-                                    @*}*@
-
-                                    @* INFO INDEX EMPRESAS *@
-                                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Marca Cantonal"))
-                                    {
-                                        <li class="nav-item active">
-                                            <a class="nav-link" asp-action="Index"
-                                               asp-controller="Empresariedad" asp-area="OFIM">Marca Cantonal</a>
-                                        </li>
-                                    }
-
-                                </ul>
-                            </li>
-
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="OFIM"
-                               asp-controller="Home" asp-action="Contactenos">Contáctenos</a>
-                        </li>
-
-                    </ul>
-                </div>
+            @* LOGO Muni *@
+            <div class="logo-img">
+                <a asp-area="OFIM" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/OFIM.png" alt="">
+                </a>
             </div>
-        </nav>
-        <!-- END nav -->
+            @* FIN LOGO Muni *@
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                    aria-controls="ftco-nav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+
+                <ul class="navbar-nav m-auto">
+
+                    @* LINK DE INICIO *@
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area=""
+                           asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+
+                    @* LINK DE INICIO OFIM *@
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="OFIM"
+                           asp-controller="Home" asp-action="Index">OFIM</a>
+                    </li>
+
+                    @* MENU DE MANTENIMIENTO PARA ADMINISTRADOR OFIM *@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuMantOFIM != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Mantenimiento
+                            </a>
+                            @* CRUD DE TIPOS CONSULTAS *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Tipo Consulta"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="TipoConsulta" asp-area="OFIM">Tipo Consulta</a>
+                                </li>
+                                @*}*@
+
+                                @* CRUD CATEGORIA DE ACTIVIDADES *@
+
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Tipos Formación"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="Categoria" asp-area="OFIM">Tipos Formación</a>
+                                </li>
+                                @*}*@
+
+                                @* CRUD EJES PARA ACTIVIDADES *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Ejes de Acción"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="Eje" asp-area="OFIM">Ejes de Acción</a>
+                                </li>
+                                @*}*@
+
+                                @* CRUD CATEGORIA EMPRESAS *@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Empresas"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="CatProductoServicio" asp-area="OFIM">Clasificación Empresas</a>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </li>
+
+                    }
+
+                    @* MENU PARA REGISTRO DE ATENCIÓN *@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuRegAten != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Registro Atención
+                            </a>
+                            @* CRUD DE PERSONAS *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Persona" asp-area="Admin">Persona</a>
+                                    </li>
+                                }
+
+                                @* CRUD DATOS PERSONALES DE PERSONA OFIM*@
+
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Datos Personales"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="PersonaOFIM" asp-area="OFIM">Datos Personales</a>
+                                    </li>
+                                }
+
+                                @* CRUD  PARA REGISTRO CONSULTA *@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Consultas"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Consulta" asp-area="OFIM">Registro de Consultas</a>
+                                    </li>
+                                }
+
+                                @* CRUD SEGUIMIENTO *@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Seguimiento"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Seguimiento" asp-area="OFIM">Registro de Seguimiento</a>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </li>
+
+                    }
+
+                    @* MENU PARA GESTIÓN DE SERVICIOS*@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuGestServ != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Gestión de Servicios
+                            </a>
+                            @* CRUD REGISTRO ACTIVIDADES*@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro Actividades"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="Actividad" asp-area="OFIM">Registro Actividades</a>
+                                </li>
+                                @*}*@
+
+                                @* CRUD REGISTRO CUPOS *@
+
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Apertura Cupos"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Cupos" asp-area="OFIM">Apertura Cupos</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                    @* MENU PARA RED INTERINSTITUCIONAL *@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuRED != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Red Interinstitucional
+                            </a>
+                            @* CRUD DE PERSONAS *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Create"
+                                       asp-controller="Persona" asp-area="Admin">Persona</a>
+                                </li>
+                                @*}*@
+
+                                @* CRUD DATOS PERSONALES DE PERSONA OFIM*@
+
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Datos Personales"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="PersonaOFIM" asp-area="OFIM">Datos Personales</a>
+                                    </li>
+                                }
+
+                                @* CRUD  PARA REGISTRO CONSULTA *@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Consultas"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="Consulta" asp-area="OFIM">Registro de Consultas</a>
+                                    </li>
+                                }
+
+                                @* CRUD SEGUIMIENTO *@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Seguimiento"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="Seguimiento" asp-area="OFIM">Registro de Seguimiento</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                    @* MENU PARA CONSULTAS *@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuConsulta != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Consultas
+                            </a>
+                            @* CRUD DE CONTACTOS DE OFIM *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Contactos"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Contactos"
+                                           asp-controller="PersonaOFIM" asp-area="OFIM">Contactos</a>
+                                    </li>
+                                }
+
+                                @* CRUD CASOS DE VIOLENCIA DOMÉSTICA *@
+
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Casos Violencia Doméstica"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="CasosViolencia"
+                                           asp-controller="Consulta" asp-area="OFIM">Casos Violencia Doméstica</a>
+                                    </li>
+                                }
+                                @* CRUD CASOS DE INSCRIPCIONES *@
+
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Inscripciones Actividades"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Inscripcion" asp-area="OFIM">Inscripciones Actividades</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                    @* MENU PARA PROCESOS INFORMATIVOS*@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuFormacion != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Procesos Formativos
+                            </a>
+                            @* INFO DE CHARLAS*@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Charlas"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Charlas"
+                                           asp-controller="Home" asp-area="OFIM">Charlas</a>
+                                    </li>
+                                }
+
+                                @* INFO TALLERES *@
+
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Talleres"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Talleres"
+                                           asp-controller="Home" asp-area="OFIM">Talleres</a>
+                                    </li>
+                                }
+
+                                @* INFO FECHAS CONMEMORATIVAS *@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Fechas Conmemorativas"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Fechas"
+                                           asp-controller="Home" asp-area="OFIM">Fechas Conmemorativas</a>
+                                    </li>
+                                }
+
+                                @* INFO ACTIVIDADES*@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Actividades"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Actividades"
+                                           asp-controller="Home" asp-area="OFIM">Actividades</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                    @* MENU PARA EMPRESARIEDAD *@
+                    @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuEmpre != "")
+                    {
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Empresariedad
+                            </a>
+                            @* CREATE DE PERSONAS *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="Persona" asp-area="Admin">Persona</a>
+                                    </li>
+                                }
+
+                                @* CREATE EMPRESA *@
+
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro Empresa"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="Empresa" asp-area="OFIM">Registro Empresa</a>
+                                    </li>
+                                }
+
+                                @* CREATE CATEGORIA DE PRODUCTO O SERVICIO *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Producto/Servicio"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="ProductoServicio" asp-area="OFIM">Registro de Producto/Servicio</a>
+                                </li>
+                                @*}*@
+
+                                @* CONSULTA EMPRESA *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Empresas"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="Empresa" asp-area="OFIM">Consulta Empresas</a>
+                                </li>
+                                @*}*@
+
+                                @* CONSULTA DE LA CATEGORIA DE PRODUCTO O SERVICIO *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Producto/Servicio"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="CatProductoServicio" asp-area="OFIM">Consulta Producto/Servicio</a>
+                                </li>
+                                @*}*@
+
+                                @* INFO INDEX EMPRESAS *@
+                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Marca Cantonal"))
+                                {
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Empresariedad" asp-area="OFIM">Marca Cantonal</a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="OFIM"
+                           asp-controller="Home" asp-action="Contactenos">Contáctenos</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
 
     <div class="show fullscreen">
         <main role="main">
@@ -591,7 +592,7 @@
                 <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
             </svg>
         </div>*@
-
+    @*SCRIPT*@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
