@@ -4,61 +4,78 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
-<head>
-    <title>Punto de recuperación</title>
-</head>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Puntos de Recuperación
+        </h3>
+    </div>
+</div>
 
 <div class="container">
     <main class="pb-3" role="main">
-        <div class="container-fluid">
+        <div class="<border backgroundWhite">
             <div class="row">
                 <div class="col-md-6 col-lg-12">
-                    <h2 class="text-light">Registro</h2>
+                    <h2 class="text-dark">Lista</h2>
                 </div>
             </div>
             <form asp-controller="PuntoRecMaterial" asp-action="Index" method="post" id="frmFilter">
-                <div class="row contenedorBotones">
-                    <div class="col-md-2 col-lg-2 text-right">
-                        <a asp-action="Create" class="btn btn-success fa fa-plus-circle crear">
-                            Nuevo
-                        </a>
-                    </div>
-                    <div class="col-md-2 colo-lg-2 text-right">
-                        <a asp-controller="Home" asp-action="Index" class="btn btn-info fa fa fa-arrow-circle-left inicio">
-                            Regresar al menú
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-12" style="color:black;"><hr></div>
+                <div class="col-md-12" style="color:black;"><hr /></div>
             </form>
+            <div class="row contenedorBotones">
+                <div class="col-md-6 text-md-left">
+                    <a asp-controller="" asp-action="Index"
+                       class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                        Regresar al menú
+                    </a>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <a asp-action="Create" class="btn btn-info">
+                        <i class="fas fa-plus"></i>
+                        &nbsp; Crear Nuevo
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12 divisor"><hr></div>
             @if (Model.Count() > 0)
             {
                 <div class="contenedorTablas">
-                    <table class="table table-hover border .table-responsive" id="TbEspecial">
+                    <table class="table table-hover .table-responsive" id="TbPuntoRecMaterial">
                         <thead class="thead-dark">
-                            <tr class="table-secondary trs">
+                            <tr class="table-secondary" style="text-align:center;">
                                 <th>@Html.DisplayNameFor(m => m.Peso)</th>
                                 <th>@Html.DisplayNameFor(m => m.Material)</th>
                                 <th>@Html.DisplayNameFor(m => m.Clasificacion)</th>
-                                @*<th>@Html.DisplayNameFor(m => m.Direccion)</th>
-                                    <th>@Html.DisplayNameFor(m => m.TelefonoFijo)</th>
-                                    <th>@Html.DisplayNameFor(m => m.TelefonoCelular)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Especialidad)</th>*@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="text-align:center;">
                             @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(m => item.Peso)</td>
                                     <td>@Html.DisplayFor(m => item.Material)</td>
                                     <td>@Html.DisplayFor(m => item.Clasificacion)</td>
-                                    @*<td>@Html.DisplayFor(m => item.Direccion)</td>
-                                        <td>@Html.DisplayFor(m => item.TelefonoFijo)</td>
-                                        <td>@Html.DisplayFor(m => item.TelefonoCelular)</td>
-                                        <td>@Html.DisplayFor(m => item.Especialidad)</td>*@
-                                    <partial name="_AddEditAndView" model="item.PuntosRecMaterialId" />
+                                 
+                                    <td style="width:300px">
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-primary text-white"
+                                               asp-controller="PuntoRecMaterial"
+                                               asp-action="Edit" asp-route-id="@item.PuntosRecMaterialId">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-success text-white"
+                                               asp-controller="PuntoRecMaterial"
+                                               asp-action="Details" asp-route-id="@item.PuntosRecMaterialId">
+                                                <i class="fas fa-list-alt"></i>
+                                            </a>
+
+                                            <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
+                                               onclick="EliminarPuntoRecMaterial(@item.PuntosRecMaterialId)"></i>
+                                        </div>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -72,10 +89,10 @@
 
         </div>
         <form asp-action="Delete" asp-controller="PuntoRecMaterial" method="post" id="viewEliminar">
-            <input type="hidden" id="txtConsultaId" name="PuntosRecMaterialId" />
+            <input type="hidden" id="txtPuntosRecMaterialId" name="PuntosRecMaterialId" />
         </form>
         <form asp-action="Edit" asp-controller="Medico" method="post" id="viewEditarMedico">
-            <input type="hidden" id="txtMedicoId" name="MedicoId" />
+            <input type="hidden" id="txtPuntosRecMaterialId" name="PuntosRecMaterialId" />
         </form>
     </main>
 </div>
@@ -84,7 +101,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#tbDatos').DataTable(
+        $('#TbPuntoRecMaterial').DataTable(
             {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -92,24 +109,24 @@
             });
     })
 
-    function EliminarConsulta(Id) {
-        document.getElementById("txtConsultaId").value = Id;
-        verModal('Eliminar Consulta',
-            '¿Desea eliminar la consulta '
-            + Id + '?').then((result) => {
+    function EliminarPuntoRecMaterial(PuntosRecMaterialId) {
+        document.getElementById("txtPuntosRecMaterialId").value = PuntosRecMaterialId;
+        verModal('Eliminar Punto de Recuperación de Materiales',
+            '¿Desea eliminar este Punto de Recuperación '
+            + PuntosRecMaterialId + '?').then((result) => {
                 if (result.value) {
                     var viewEliminar = document.getElementById("viewEliminar");
                     viewEliminar.submit();
                     Swal.fire(
                         'Eliminación!',
-                        'La Consulta ' + Id + ' fue eliminada!.',
+                        'El Punto de Recuperación ' + PuntosRecMaterialId + ' fue eliminado!.',
                         'success'
                     )
                 }
                 else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire(
                         'Cancelado',
-                        'La Consulta no fue eliminada!!!:)',
+                        'El Punto de Recuperación no fue eliminada!!!:)',
                         'error'
                     )
                 }

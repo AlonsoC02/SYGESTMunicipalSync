@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
 
-    <!-- ======= Breadcrumbs ======= -->
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <h3 class="text-light"
@@ -15,32 +14,33 @@
     </div>
 </div>
 
-  <div class="border backgroundWhite">
-            <br />
-            <form asp-controller="Basura" asp-action="Index" method="post">
-                <div class="row">
-
-
-                    <div class="col-md-2  text-right">
-                        <a asp-controller="" asp-action="Index"
-                           class="btn btn-warning fa fa-arrow-circle-left"
-                           style="width:80%; color:white; height:100%;padding:12px;">
-                            Regresar al menú
-                        </a>
-                    </div>
-
-                    <div class="col-md-2 text-right">
-                        <a asp-action="Create" class="btn btn-info fa fa-plus-circle"
-                           style="width:80%; height:100%;padding:12px;">
-                            Agregar
-                        </a>
-                    </div>
-
+<div class="container">
+    <main class="pb-3" role="main">
+        <div class="<border backgroundWhite">
+            <div class="row">
+                <div class="col-md-6 col-lg-12">
+                    <h2 class="text-dark">Lista</h2>
                 </div>
+            </div>
+            <form asp-controller="Basura" asp-action="Index" method="post">
                 <div class="col-md-12" style="color:black;"><hr /></div>
             </form>
+            <div class="row contenedorBotones">
+                <div class="col-md-6 text-md-left">
+                    <a asp-controller="" asp-action="Index"
+                       class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                        Regresar al menú
+                    </a>
+                </div>
 
-
+                <div class="col-md-6 text-md-right">
+                    <a asp-action="Create" class="btn btn-info">
+                        <i class="fas fa-plus"></i>
+                        &nbsp; Crear Nuevo
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12 divisor"><hr></div>
             @if (Model.Count() > 0)
             {
                 <table class="table table-hover .table-responsive" id="TbBasura">
@@ -61,28 +61,23 @@
                                 <td>@Html.DisplayFor(m => item.Peso)</td>
                                 <td>@Html.DisplayFor(m => item.Fecha)</td>
 
-                                <div class="col-md-6">
-                                    <a><partial name="_TableButtonPartialDelete" model="item.BasuraId" /></a>
-                                </div>
+                                <td style="width:300px">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-primary text-white"
+                                           asp-controller="Basura"
+                                           asp-action="Edit" asp-route-id="@item.BasuraId">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-success text-white"
+                                           asp-controller="Basura"
+                                           asp-action="Details" asp-route-id="@item.BasuraId">
+                                            <i class="fas fa-list-alt"></i>
+                                        </a>
 
-                                @*<div class="col-md-6">
-                                    <td style="width:300px">
-
-                                        <div class="btn-group" role="group">
-
-                                                <a class="btn btn-primary text-white" asp-action="Edit" model="item.BasuraId" asp-route-Id="@Model">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                            <a class="btn btn-success text-white" asp-action="Details" asp-route-Id="@Model">
-                                                <i class="fas fa-list-alt"></i>
-                                            </a>
-                                                    <a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@Model">
-                                      <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                                    </div>
-                                    </td>
-                                </div>*@
-
+                                        <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
+                                           onclick="EliminarBasura(@item.BasuraId)"></i>
+                                    </div>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -93,10 +88,18 @@
                 <h5 style="color:red;">No se encontraron registros de residuos ordinarios!...</h5>
             }
         </div>
+        <form asp-action="Delete" asp-controller="Basura" method="post" id="viewEliminar">
+            <input type="hidden" id="txtBasuraId" name="BasuraId" />
 
+        </form>
+        <form asp-action="Edit" asp-controller="Basura" method="post" id="viewEditar">
+            <input type="hidden" id="txtBasuraId" name="BasuraId" />
+        </form>
+    </main><!-- End #main -->
+</div>
 
 <script src="~/js/sweetalert2.js"></script>
-
+<script src="~/js/Utilitarios.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -107,6 +110,31 @@
                 }
             });
     })
+
+    function EliminarBasura(BasuraId) {
+        document.getElementById("txtBasuraId").value = BasuraId;
+        verModal('Eliminar Residuos Ordinarios',
+            '¿Desea eliminar estos residuos ordinarios '
+            + BasuraId + ' ?').then((result) => {
+                if (result.value) {
+                    alert("No puede eliminar los residuos ordinarios si están siendo utilizado por otra actividad")
+                    var viewEliminar = document.getElementById("viewEliminar");
+                    viewEliminar.submit();
+                    Swal.fire(
+                        'Eliminación!',
+                        'Los residuos ordinarios  ' + BasuraId + ' fue eliminado!.',
+                        'success'
+                    )
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelado',
+                        'Los residuos ordinarios no fueron eliminado!!!:)',
+                        'error'
+                    )
+                }
+            })
+    }
 </script>
 
 
