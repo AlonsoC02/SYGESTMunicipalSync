@@ -30,7 +30,7 @@
                     <a asp-area="Home"
                        asp-controller="Home"
                        asp-action="Index"
-                       class="btn btn-info fa fa fa-arrow-circle-left inicio">
+                       class="btn btn-success fa fa fa-arrow-circle-left inicio">
                         Regresar al Menú
                     </a>
                 </div>
@@ -80,12 +80,12 @@
 
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
-                                            <a class="btn btn-primary text-white"
+                                            <a class="btn btn-warning text-white"
                                                asp-controller="Persona"
                                                asp-action="Edit" asp-route-id="@item.CedulaPersona">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-success text-white"
+                                            <a class="btn btn-primary" 
                                                asp-controller="Persona"
                                                asp-action="Details" asp-route-id="@item.CedulaPersona">
                                                 <i class="fas fa-list-alt"></i>
