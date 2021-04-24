@@ -32,9 +32,23 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             return View(listaClasificacion);
         }
 
+        private void cargarUltimoRegistro()
+        {
+            var ultimoRegistro = _db.Set<Clasificacion>().OrderByDescending(e => e.ClasificacionId).FirstOrDefault();
+            if (ultimoRegistro == null)
+            {
+                ViewBag.ID = 1;
+
+            }
+            else
+            {
+                ViewBag.ID = ultimoRegistro.ClasificacionId + 1;
+            }
+        }
+
         public IActionResult Create()
         {
-
+            cargarUltimoRegistro();
             return View();
         }
         [HttpPost]
@@ -56,6 +70,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 }
                 else
                 {
+                    cargarUltimoRegistro();
                     _db.Clasificacion.Add(materialType);
                     _db.SaveChanges();
                 }
