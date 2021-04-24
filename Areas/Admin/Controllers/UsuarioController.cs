@@ -18,7 +18,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
     {
         private readonly DBSygestContext _db;
         List<RegistroExternoVM> listaUsuario = new List<RegistroExternoVM>();
-        
+        List<Usuario> lista = new List<Usuario>();
 
         public UsuarioController(DBSygestContext db)
         {
@@ -132,13 +132,18 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                           }).ToList();
         }
 
-        public IActionResult Details(int Id)
+        public IActionResult Details(int id)
         {
-            buscarUsuario(Id);
-            return View(listaUsuario);
+            cargarRol();
+            int recCount = _db.Usuario.Count(e => e.UsuarioId == id);
+            Usuario _usuario = (from u in _db.Usuario
+                                where u.UsuarioId == id
+                                select u).DefaultIfEmpty().Single();
+            _usuario.Password = Utilitarios.DescifrarDatos(_usuario.Password);
+            return View(_usuario);
         }
      
-        public async Task<IActionResult> Created(RegistroExternoVM usuario)
+        public async Task<IActionResult> Created(Usuario usuario)
         {
             try
             {
@@ -148,18 +153,18 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                 }
                 else
                 {
-                   
+                    string password = Utilitarios.CifrarDatos(usuario.Password);
                     Usuario _usuario = new Usuario();
                   
                     _usuario.NombreUsuario = usuario.NombreUsuario;
-                    _usuario.Password = usuario.Password;
+                    _usuario.Password = password;
                     _usuario.PersonaId = usuario.PersonaId;
                     _usuario.RolId = usuario.RolId;
                     _db.Usuario.Add(_usuario);
                     await _db.SaveChangesAsync();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 ViewBag.Error = ex.Message;
             }
