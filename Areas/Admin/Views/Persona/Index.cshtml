@@ -74,9 +74,9 @@
                                     <td>@Html.DisplayFor(m => item.FechaNac, "{0:dd/MM/yyyy h:mm tt}")</td>
                                     <td>@Html.DisplayFor(m => item.Email)</td>
                                     <td>@Html.DisplayFor(m => item.TelMovil)</td>
-                                    <td>@Html.DisplayFor(m => item.DistritoId)</td>
-                                    <td>@Html.DisplayFor(m => item.CantonId)</td>
-                                    <td>@Html.DisplayFor(m => item.ProvinciaId)</td>
+                                    <td>@Html.DisplayFor(m => item.Distrito)</td>
+                                    <td>@Html.DisplayFor(m => item.Canton)</td>
+                                    <td>@Html.DisplayFor(m => item.Provincia)</td>
 
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
@@ -138,7 +138,9 @@
                 }
             });
     })
+</script>
 
+<script>
     function EliminarRol(CedulaPersona) {
         document.getElementById("txtCedulaPersona").value = CedulaPersona;
         verModal('Eliminar Persona',

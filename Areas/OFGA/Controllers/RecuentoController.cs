@@ -164,28 +164,17 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                        .Where(e => e.RecuentoId == id).First();
             return View(recuento);
         }
-        public IActionResult Delete(int Id)
+        //DELETE
+        [HttpPost]
+        public IActionResult Delete(int? RecuentoId)
         {
-            cargarMateriales();
-            cargarClasificacion();
-
-            Recuento oRecuento = _db.Recuento
-                 .Where(m => m.RecuentoId == Id).First();
-            return View(oRecuento);
-        }
-        [HttpPost, ActionName("Delete")]
-        public IActionResult Deleted(int Id)
-        {
-            string Error = "";
+            var Error = "";
             try
             {
                 Recuento oRecuento = _db.Recuento
-                     .Where(c => c.RecuentoId == Id).First();
-                if (oRecuento != null)
-                {
-                    _db.Recuento.Remove(oRecuento);
-                    _db.SaveChanges();
-                }
+                             .Where(e => e.RecuentoId == RecuentoId).First();
+                _db.Recuento.Remove(oRecuento);
+                _db.SaveChanges();
             }
             catch (Exception ex)
             {

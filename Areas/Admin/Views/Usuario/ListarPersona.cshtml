@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Persona>
+@using SYGESTMunicipalSync.Areas.Admin.Models
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light" style="text-align:center;background-color:darkslategray;">
+            Lista de Personas
+        </h3>
+    </div>
+</div>
+<div class="container">
+    <main class="pb-3" role="main">
+        <div class="<border backgroundWhite">
+            <div class="row">
+                <div class="col-md-6 col-lg-12">
+                    <h2 class="text-dark">Lista de Roles</h2>
+                </div>
+            </div>
+            <div class="col-md-12 divisor"><hr></div>
+            <form asp-controller="Usuario" asp-action="Create" style="width:100%;" method="post" id="ViewBuscar">
+                
+                    @if (Model.Count() > 0)
+                    {
+                <div class="contenedorTablas">
+                    <table class="table table-hover .table-responsive" id="TbPersonas" name="TbPersonas">
+                        <thead class="thead-dark">
+                            <tr class="table-secondary" style="text-align:left;">
+                                <th>@Html.DisplayNameFor(m => m.CedulaPersona)</th>
+                                <th>@Html.DisplayNameFor(m => m.Nombre)</th>
+                                <th>@Html.DisplayNameFor(m => m.Ape1)</th>
+                                <th>@Html.DisplayNameFor(m => m.Ape2)</th>
+                                <th>Seleccionar</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:left;">
+                            @foreach (var item in Model)
+                            {
+                <tr>
+                    <td>@Html.DisplayFor(m => item.CedulaPersona)</td>
+                    <td>@Html.DisplayFor(m => item.Nombre)</td>
+                    <td>@Html.DisplayFor(m => item.Ape1)</td>
+                    <td>@Html.DisplayFor(m => item.Ape2)</td>
+                    <td style="width:300px">
+                        <i class="fa fa-fast-backward btn btn-info" aria-hidden="true"
+                           onclick="DatosPersona(@item.CedulaPersona)"></i>
+                    </td>
+                </tr>}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-15 text-md-right">
+                    <script>
+                        document.write('Ultima modificación: ' + window.document.lastModified)
+
+                    </script>
+                </div>
+            }
+            else
+            {
+                <h3 style="color:red;">No existen Roles registrados!...</h3>
+            }
+</form>
+
+        </div>
+    </main>
+</div>
+
+<form asp-action="Create" asp-controller="Usuario" method="post" id="viewPasar">
+    <input type="hidden" id="txtPersonaId" name="PersonaId" />
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#TbPersonas').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+            });
+    })
+
+    function DatosPersona(PersonaId) {
+        document.getElementById("txtPersonaId").value = PersonaId;
+        var viewPasar = document.getElementById("viewPasar");
+        viewPasar.submit();
+    }
+</script>

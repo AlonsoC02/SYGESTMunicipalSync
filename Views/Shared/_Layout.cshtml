@@ -18,8 +18,8 @@
           crossorigin="anonymous" />
     @*fin*@
     <link href="~/css/site.css" rel="stylesheet" />
-    <script src="~/js/jquery-ui.js"></script>
-    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    @*<script src="~/js/jquery-ui.js"></script>
+        <link href="~/css/jquery-ui.css" rel="stylesheet" />*@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
 
@@ -36,6 +36,8 @@
     <link href="~/css/icomoon.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
 
+    <link href="~/css/Paginador.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <link href="~/Patentes/OP/assets/css/style.css" rel="stylesheet" />
 </head>
 
@@ -53,7 +55,7 @@
             @* LOGO EN EL NAV *@
             <div class="logo-img">
                 <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/LogoMuni2.png" alt="">
+                    <img src="~/images/LogoMuni2.png" alt="Logo Municipalidad de Hojancha">
                 </a>
 
             </div>
@@ -71,12 +73,12 @@
                 <span class="fa fa-bars"></span> Menu
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
-                
+
                 <ul class="navbar-nav m-auto">
 
                     @* LINK DE INICIO *@
                     <li class="nav-item active">
-                        <a class="nav-link" asp-area="" 
+                        <a class="nav-link" asp-area=""
                            asp-controller="Home" asp-action="Index">Inicio</a>
                     </li>
                     @* MENU PARA ADMINISTRADOR *@
@@ -91,57 +93,57 @@
                             @* CRUD DE PERSONAS *@
                             <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item" asp-action="Index"
-                                           asp-controller="Persona" asp-area="Admin">Persona</a>
-                                    </li>
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Persona" asp-area="Admin">Persona</a>
+                                </li>
                                 @*}*@
 
                                 @* CRUD USUARIOS *@
 
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Usuarios"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item"asp-action="Index"
-                                           asp-controller="Usuario" asp-area="Admin">Usuarios</a>
-                                    </li>
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Usuario" asp-area="Admin">Usuarios</a>
+                                </li>
                                 @*}*@
 
                                 @* CRUD ROLES DE LOS USUARIOS *@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Roles"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item" asp-action="Index"
-                                           asp-controller="RolUsuario" asp-area="Admin">Roles</a>
-                                    </li>
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="RolUsuario" asp-area="Admin">Roles</a>
+                                </li>
                                 @*}*@
 
                                 @* CRUD PAGINAS *@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Páginas"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item" asp-action="Index"
-                                           asp-controller="Pagina" asp-area="Admin">Páginas</a>
-                                    </li>
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Pagina" asp-area="Admin">Páginas</a>
+                                </li>
                                 @*}*@
 
                                 @* CRUD ROLES DE LOS USUARIOS EN PAGINAS *@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Roles en Páginas"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item" asp-action="Index"
-                                           asp-controller="RolUsuarioPag" asp-area="Admin">Roles en Páginas</a>
-                                    </li>
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="RolUsuarioPag" asp-area="Admin">Roles en Páginas</a>
+                                </li>
                                 @*}*@
 
                                 @* CRUD PAGINAS CON ROLES EN LOS BOTONES *@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Gestión de Botones"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item"asp-action="Index"
-                                           asp-controller="RolUsuarioPagBoton" asp-area="Admin">Gestión de Botones</a>
-                                    </li>
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="RolUsuarioPagBoton" asp-area="Admin">Gestión de Botones</a>
+                                </li>
                                 @*}*@
 
                             </ul>
@@ -158,29 +160,29 @@
                                 Departamentos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Patentes"))
-                                {
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item" asp-action="Index"
-                                           asp-controller="Home" asp-area="PATENTES">Oficina de Patentes</a>
-                                    </li>
-                                }
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Patentes"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Home" asp-area="PATENTES">Oficina de Patentes</a>
+                                </li>
+                                @*}*@
 
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Gestión Ambiental"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item" asp-action="Index"
-                                           asp-controller="Home" asp-area="OFGA">Oficina de Gestión Ambiental</a>
-                                    </li>
-                                    @*}*@
-                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de la Mujer"))
-                                {*@
-                                    <li class="nav-item active">
-                                        <a class="dropdown-item" asp-action="Index"
-                                           asp-controller="Home" asp-area="OFIM">Oficina de la Mujer</a>
-                                    </li>
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Home" asp-area="OFGA">Oficina de Gestión Ambiental</a>
+                                </li>
                                 @*}*@
-                               
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de la Mujer"))
+                                    {*@
+                                <li class="nav-item active">
+                                    <a class="dropdown-item" asp-action="Index"
+                                       asp-controller="Home" asp-area="OFIM">Oficina de la Mujer</a>
+                                </li>
+                                @*}*@
+
 
                             </ul>
                         </li>
@@ -221,26 +223,26 @@
                                     </li>
                                 }
 
-                                
+
                             </ul>
                         </li>
 
                     }
 
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Home" 
+                        <a class="nav-link" asp-area="Home"
                            asp-controller="Home" asp-action="Contactenos">Contáctenos</a>
                     </li>
 
                     @*<li class="nav-item">
-                        <a class="nav-link" asp-area="Home" 
-                        asp-controller="Home" asp-action="Index">Preguntas Frecuentes</a>
-                    </li>*@
+                            <a class="nav-link" asp-area="Home"
+                            asp-controller="Home" asp-action="Index">Preguntas Frecuentes</a>
+                        </li>*@
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Home" 
+                        <a class="nav-link" asp-area="Home"
                            asp-controller="Home" asp-action="Privacy">Privacidad</a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -381,7 +383,7 @@
 
 
     @* SCRIPT*@
-    <script src="js/jquery.min.js"></script>
+ 
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -409,7 +411,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/jquery-ui.js"></script>
+   
+    <script src="~/js/Paginador.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

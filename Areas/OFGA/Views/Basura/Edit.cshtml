@@ -13,67 +13,76 @@
         </h3>
     </div>
 </div>
-     <!-- ======= About Section ======= -->
-    <div class="row no-gutters">
-        <div class="col-md-7">
-            <div class="contact-wrap w-100 p-md-5 p-4">
-                <form method="post" asp-action="Edit" id="viewEditar">
-                    <div class="backgroundWhite">
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="BasuraId" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="BasuraId" class="form-control" readonly />
-                            </div>
-                            <span asp-validation-for="BasuraId" class=" text-danger"></span>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <form method="post" asp-action="Edit" id="viewEditar">
+                <div class="backgroundWhite">
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="BasuraId" class="col-form-label"></label></h5>
                         </div>
-
-                        <div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Peso" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Peso" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Peso" class=" text-danger"></span>
+                        <div class="col-md-9">
+                            <input asp-for="BasuraId" class="form-control" readonly />
                         </div>
+                        <span asp-validation-for="BasuraId" class=" text-danger"></span>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input asp-for="Fecha" type="text" id="datepicker" class="form-control" />
-                            </div>
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Peso" class="col-form-label"></label></h5>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-md-4 text-md-right">
-                                <a asp-action="Index" type="button" style="color:white"
-                                   class="btn btn-warning">
-                                    Regresar
-                                </a>
-                            </div>
+                        <div class="col-md-9">
+                            <input asp-for="Peso" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Peso" class=" text-danger"></span>
+                    </div>
 
-                            <div class="col-md-4 text-md-right">
-                                <input type="button" value="Editar" id="btnEditar"
-                                       class="btn btn-info" @*style="width: 80%;"*@
-                                       onclick="abrirModal()" />
-                            </div>
-
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="Fecha" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <input asp-for="Fecha" type="text" class="form-control" id="datepicker" />
                         </div>
                     </div>
-                </form>
-            </div>
+                    <div class="form-group row">
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button" style="color:white"
+                               class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                                Regresar
+                            </a>
+                        </div>
+
+                        <div class="col-md-4 text-md-right">
+                            <input type="button" value="Editar" id="btnEditar"
+                                   class="btn btn-info"
+                                   onclick="abrirModal()" />
+                        </div>
+
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</main>
+</div>
+
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+    <script src="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.js"></script>
+    <script src="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.css"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+    <script src="~/js/jquery.datepair.js"></script>
+    <script src="~/js/jquery.datepair.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/jquery.timepicker.js"></script>
+    <script src="~/js/jquery.timepicker.min.js"></script>
 
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
 
-    <script src="~/js/DPickerSpanish.js"></script>
     <script>
         $(function () {
             $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();

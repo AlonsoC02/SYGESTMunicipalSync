@@ -1,15 +1,32 @@
-﻿@*@using SYGESTMunicipal.Utility*@
+﻿
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-    <meta name="author" content="GeeksLabs">
-    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-    <link rel="shortcut icon" href="~/Patentes/img/favicon.png">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+    <title>@ViewData["Title"] - OFICINA DE PATENTES</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Patentes/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Patentes/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="~/Patentes/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Patentes/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="~/Patentes/assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="~/Patentes/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+    <link href="~/css/style.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="~/Patentes/assets/css/style.css" rel="stylesheet">
 
     <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
     <link href="~/lib/ej.responsive.css" rel="stylesheet" />
@@ -18,171 +35,103 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossorigin="anonymous" />
-
-    <title>Oficina de Patentes</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="~/Patentes/css/bootstrap.min.css" rel="stylesheet">
-    <!-- bootstrap theme -->
-    <link href="~/Patentes/css/bootstrap-theme.css" rel="stylesheet">
-    <!--external css-->
-    <!-- font icon -->
-    <link href="~/Patentes/css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="~/Patentes/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- full calendar css-->
-    <link href="~/Patentes/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-    <link href="~/Patentes/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
-    <!-- easy pie chart-->
-    <link href="~/Patentes/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
-    <!-- owl carousel -->
-    <link rel="stylesheet" href="~/Patentes/css/owl.carousel.css" type="text/css">
-    <link href="~/Patentes/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="~/Patentes/css/fullcalendar.css">
-    <link href="~/Patentes/css/widgets.css" rel="stylesheet">
-    <link href="~/Patentes/css/style.css" rel="stylesheet">
-    <link href="~/Patentes/css/style-responsive.css" rel="stylesheet" />
-    <link href="~/Patentes/css/xcharts.min.css" rel=" stylesheet">
-    <link href="~/Patentes/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-    <!-- =======================================================
-      Theme Name: NiceAdmin
-      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-      Author: BootstrapMade
-      Author URL: https://bootstrapmade.com
-    ======================================================= -->
-    <link href="~/lib/syncfusion-javascript/Content/ej/web/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />
-    <link href="~/lib/ej.responsive.css" rel="stylesheet" />
-    <script src="~/js/ej.web.all.min.js"></script>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-          crossorigin="anonymous" />
+    <link href="~/css/Paginador.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
-
 <body>
 
-
+    @* LOGIN -Registrarse *@
+    <partial name="_Encabezado" />
+    @* NAV *@
     <!-- container section start -->
-    <section id="container" class="">
-        <header class="header dark-bg">
-            <div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+    <header>
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+            <div class="container-fluid" style="padding-right: 25px">
+                @* LOGO  *@
+                <div class="logo-img">
+                    <a asp-area="OFGA" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/LogoMuni2.png" alt="Oficina de Patentes">
+                    </a>
+                </div>
+                @* LOGO  *@
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                        aria-controls="ftco-nav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+
+                <div class="collapse navbar-collapse" id="ftco-nav">
+
+                    <ul class="navbar-nav m-auto">
+
+                        @* LINK DE INICIO *@
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-area=""
+                               asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+
+                        @* LINK DE INICIO OFPA *@
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-area="PATENTES"
+                               asp-controller="Home" asp-action="Index">Oficina de Patentes</a>
+                        </li>
+
+                        @* MENU DE MANTENIMIENTO PARA ADMINISTRADOR OFGA *@
+                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuMantOFGA != "")
+                        {
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Mantenimiento
+                                </a>
+                                @* CRUD DE TIPOS CLASIFICACIÓN *@
+                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Materiales"))
+                                        {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-area="PATENTES"
+                                           asp-controller="Establecimiento" asp-action="Create"> Establecimiento</a>
+                                    </li>
+
+                                    @*}*@
+                                    @* CRUD DE MATERIALES ADMITIDOS *@
+                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Materiales Admitidos"))
+                                        {*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-area="PATENTES" asp-controller="Home" asp-action="Index">Solicitud de Patentes</a>
+                                    </li>
+                                    @*}*@
+
+
+                                </ul>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="PATENTES"
+                               asp-controller="Home" asp-action="Contacto">Contáctenos</a>
+                        </li>
+
+
+                    </ul>
+                </div>
             </div>
+        </nav>
 
-            <!--logo start-->
-            <a href="#" class="logo"><span class="lite">OFICINA DE PATENTES</span></a>
-            <!--logo end-->
-            <!--<div class="nav search-row" id="top_menu">-->
-            <!--  search form start -->
-            <!--<ul class="nav top-menu">
-        <li>
-            <form class="navbar-form">
-                <input class="form-control" placeholder="Search" type="text">
-            </form>
-        </li>
-    </ul>-->
-            <!--  search form end -->
-            <!--</div>-->
-           
-        </header>
-        <!--header end-->
-        <!--sidebar start-->
-        <aside>
-            <div id="sidebar" class="nav-collapse ">
-                <!-- sidebar menu start-->
-                <ul class="sidebar-menu">
-
-                    <li class="sidebar-menu">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">SyGest Municipal</a>
-                    </li>
-
-                    <li class="sidebar-menu active">
-                        <a class="nav-link" asp-area="PATENTES" asp-controller="Home" asp-action="Index">Oficina de Patentes</a>
-                    </li>
-
-                    <partial name="_LoginPartialPatentes" />
-
-                    <li class="sub-menu">
-                        <a href="javascript:;" class="">
-                            <i class="icon_documents_alt"></i>
-
-                            <span>Formulario Único</span>
-                            <span class="menu-arrow arrow_carrot-right"></span>
-                        </a>
-                        <ul class="sub">
-
-
-                            @*@if (User.IsInRole(SD.FrontDeskUser) || User.IsInRole(SD.Guest))
-                            {*@
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="PATENTES" asp-controller="Establishment" asp-action="Create"> Establecimiento</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="PATENTES" asp-controller="PersonPatentes" asp-action="Create"> Persona</a>
-                                </li>
-                            @*}
-                            else
-                            {*@
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="PATENTES" asp-controller="PersonPatentes" asp-action="Index"> Persona</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="PATENTES" asp-controller="Establishment" asp-action="Index"> Establecimiento</a>
-                                </li>
-                            @*}*@
-                        </ul>
-
-
-                    </li>
-
-
-
-
-                    @*<li class="sub-menu">
-            <a href="javascript:;" class="">
-                <i class="icon_globe"></i>
-                <span>Servicios</span>
-                <span class="menu-arrow arrow_carrot-right"></span>
-            </a>
-            <ul class="sub">
-                @if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFPA) || User.IsInRole(SD.FrontDeskUser))
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="PATENTES" asp-controller="Home" asp-action="Index">Solicitud de Patentes</a>
-                    </li>
-                }
-
-            </ul>
-        </li>*@
-
-
-                    @*<li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="Register">Registrarse</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-controller="Account" asp-action="Login">Iniciar Sesión</a>
-        </li>*@
-                </ul>
-
-                <!-- sidebar menu end-->
-            </div>
-        </aside>
-        <!--sidebar end-->
-    </section>
-
+    </header>
 
     <div class="show fullscreen">
         <main role="main">
             @RenderBody()
         </main>
     </div>
- 
+
     <!-- ======= Footer ======= -->
-    <footer id="footer" style="background-color:black">
+    <footer id="footer">
         <div class="footer-top">
             <div class="container">
-                <div class="row2" style="color:white;text-shadow: 1px 1px 4px #000">
-                    <br />
+                <div class="row">
+
                     <div class="col-lg-3 col-md-6 footer-info">
                         <h3>Municipalidad de Hojancha</h3>
                         <p>Siempre pensando en la comodidad para usted, ofrece sus servicios en línea y al alcalce de sus manos.</p>
@@ -199,9 +148,6 @@
                         </ul>
                     </div>
 
-
-
-
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h4>Información del contacto</h4>
                         <p>
@@ -214,8 +160,8 @@
                         <div class="social-links">
 
 
-                            <a href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" class="facebook"><i class="icofont-facebook"></i></a>
-                            <a href="https://www.instagram.com/explore/locations/256658138352395/municipalidad-hojancha/" class="instagram"><i class="icofont-instagram"></i></a>
+                            <a href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" class="facebook" target="_blank"><i class="icofont-facebook"></i></a>
+                            <a href="https://www.instagram.com/explore/locations/256658138352395/municipalidad-hojancha/" class="instagram" target="_blank"><i class="icofont-instagram"></i></a>
 
                         </div>
 
@@ -257,93 +203,27 @@
             </div>
         </div>
     </footer><!-- End Footer -->
-    <!-- javascripts -->
-    <script src="~/Patentes/js/jquery.js"></script>
-    <script src="~/Patentes/js/jquery-ui-1.10.4.min.js"></script>
-    <script src="~/Patentes/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="~/Patentes/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <!-- bootstrap -->
-    <script src="~/Patentes/js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
-    <script src="~/Patentes/js/jquery.scrollTo.min.js"></script>
-    <script src="~/Patentes/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <!-- charts scripts -->
-    <script src="~/Patentes/assets/jquery-knob/js/jquery.knob.js"></script>
-    <script src="~/Patentes/js/jquery.sparkline.js" type="text/javascript"></script>
-    <script src="~/Patentes/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-    <script src="~/Patentes/js/owl.carousel.js"></script>
-    <!-- jQuery full calendar -->
-    @*<script src="~/Patentes/js/fullcalendar.min.js"></script>*@
-    <!-- Full Google Calendar - Calendar -->
-    @*<script src="~/Patentes/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>*@
-    <!--script for this page only-->
-    @*<script src="~/Patentes/js/calendar-custom.js"></script>*@
-    <script src="~/Patentes/js/jquery.rateit.min.js"></script>
-    <!-- custom select -->
-    <script src="~/Patentes/js/jquery.customSelect.min.js"></script>
-    <script src="~/Patentes/assets/chart-master/Chart.js"></script>
 
-    <!--custome script for all page-->
-    <script src="~/Patentes/js/scripts.js"></script>
-    <!-- custom script for this page-->
-    <script src="~/Patentes/js/sparkline-chart.js"></script>
-    <script src="~/Patentes/js/easy-pie-chart.js"></script>
-    <script src="~/Patentes/js/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="~/Patentes/js/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="~/Patentes/js/xcharts.min.js"></script>
-    <script src="~/Patentes/js/jquery.autosize.min.js"></script>
-    <script src="~/Patentes/js/jquery.placeholder.min.js"></script>
-    <script src="~/Patentes/js/gdp-data.js"></script>
-    <script src="~/Patentes/js/morris.min.js"></script>
-    <script src="~/Patentes/js/sparklines.js"></script>
-    <script src="~/Patentes/js/charts.js"></script>
-    <script src="~/Patentes/js/jquery.slimscroll.min.js"></script>
-    <script>
-        //knob
-        $(function () {
-            $(".knob").knob({
-                'draw': function () {
-                    $(this.i).val(this.cv + '%')
-                }
-            })
-        });
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
-        //carousel
-        $(document).ready(function () {
-            $("#owl-slider").owlCarousel({
-                navigation: true,
-                slideSpeed: 300,
-                paginationSpeed: 400,
-                singleItem: true
+    <!-- Vendor JS Files -->
+    <script src="~/Patentes/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Patentes/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Patentes/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Patentes/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/Patentes/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/Patentes/assets/vendor/counterup/counterup.min.js"></script>
+    <script src="~/Patentes/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Patentes/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/Patentes/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-            });
-        });
 
-        //custom select box
-
-        $(function () {
-            $('select.styled').customSelect();
-        });
-
-        /* ---------- Map ---------- */
-        $(function () {
-            $('#map').vectorMap({
-                map: 'world_mill_en',
-                series: {
-                    regions: [{
-                        values: gdpData,
-                        scale: ['#000', '#000'],
-                        normalizeFunction: 'polynomial'
-                    }]
-                },
-                backgroundColor: '#eef3f7',
-                onLabelShow: function (e, el, code) {
-                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-                }
-            });
-        });
-    </script>
-
+    <!-- Template Main JS File -->
+    <script src="~/Patentes/assets/js/main.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/Paginador.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

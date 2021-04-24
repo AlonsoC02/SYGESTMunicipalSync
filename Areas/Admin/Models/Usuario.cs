@@ -16,13 +16,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Required(ErrorMessage = "Debe digitar la contraseña del usuario")]
         [Display(Name = "Contraseña:")]
-        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
+        [StringLength(12, ErrorMessage = "La clave debe contener almenos 6 caracteres.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "Debe digitar la confirmacion de la contraseña")]
-        [Display(Name = "Confirmar contraseña:")]
-        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
-        public string ConfirmarContrasena { get; set; }
 
         [Display(Name = "Persona:")]
         public string PersonaId { get; set; }

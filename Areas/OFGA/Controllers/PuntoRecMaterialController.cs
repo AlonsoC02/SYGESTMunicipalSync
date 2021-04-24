@@ -170,24 +170,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        [HttpPost]
-        public IActionResult Delete(int? Id)
-        {
-            string Error = "";
-            try
-            {
-                PuntoRecMaterial oCupos = _db.PuntoRecMaterial
-                               .Where(m => m.PuntosRecMaterialId == Id).First();
-                _db.PuntoRecMaterial.Remove(oCupos);
-                _db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Error = ex.Message;
-            }
-            return RedirectToAction(nameof(Index));
-        }
-        public IActionResult Details(int id)
+           public IActionResult Details(int id)
         {
             CargarMaterial();
             CargarDistrito();
@@ -195,6 +178,25 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             PuntoRecMaterial oEspecialidad = _db.PuntoRecMaterial
                          .Where(e => e.PuntosRecMaterialId == id).First();
             return View(oEspecialidad);
+        }
+
+        //DELETE
+        [HttpPost]
+        public IActionResult Delete(int? PuntosRecMaterialId)
+        {
+            var Error = "";
+            try
+            {
+                PuntoRecMaterial oPuntoRecMaterial = _db.PuntoRecMaterial
+                             .Where(e => e.PuntosRecMaterialId == PuntosRecMaterialId).First();
+                _db.PuntoRecMaterial.Remove(oPuntoRecMaterial);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
