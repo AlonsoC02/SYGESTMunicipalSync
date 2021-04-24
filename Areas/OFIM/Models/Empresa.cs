@@ -17,8 +17,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Nombre:")]
         public string Nombre { get; set; }
 
-        //[Display(Name = "Logo")]
-        //public byte[] Logo { get; set; }
+        public byte[] Logo { get; set; }
 
         [Display(Name = "Ubicacion:")]
         [Required(ErrorMessage = "Debe digitar la Ubicacion")]
