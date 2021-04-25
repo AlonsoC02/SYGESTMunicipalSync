@@ -51,12 +51,10 @@
         <div>
             <!-- Controls -->
             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                @*<span class="glyphicon glyphicon-chevron-left"></span>*@
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                @*<span class="glyphicon glyphicon-chevron-right"></span>*@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
@@ -252,31 +250,6 @@
 </section>
 @*Fin Sección 3 *@
 
-
-@*<section class="ftco-section ftco-bg-dark-main">
-    <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">Nuestra Agenda</span>
-                <h2 style="color:white">ACTIVIDADES DISPONIBLES</h2>
-            </div>
-        </div>
-        <ul id="menu-filters" class="menu-filter-list list-inline text-center">
-            <li class="active btn btn-secondary ml-1 mr-1" data-filter=".menu-restaurant">Mostrar Todo</li>
-            @foreach (var item in Model.Category)
-            {
-                <li class="ml-1 mr-1" data-filter=".@item.Name.Replace(" ",string.Empty)">@item.Name</li>
-            }
-        </ul>
-        @foreach (var category in Model.Category)
-        {
-            <div class="row" id="menu-wrapper">
-                <partial name="_ThumbnailAreaPartial"
-                         model="@Model.Actividad.Where(u=>u.Category.Name.Equals(category.Name))" />
-            </div>
-        }
-    </div>
-</section>*@
 @section Scripts{
     <script src="https://code.jquery.com/jquery-3.5.0.js"
             integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
