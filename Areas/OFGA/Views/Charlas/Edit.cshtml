@@ -127,7 +127,7 @@
 
                         <div class="col-md-5 text-md-right">
                             <input type="button" value="Editar" id="btnEditar"
-                                   class="btn btn-info" @*style="width: 80%;"*@
+                                   class="btn btn-info" 
                                    onclick="abrirModal()" />
                         </div>
 
@@ -146,7 +146,6 @@
         $(function () {
             $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
             $("#datepicker").datepicker({ minDate: 0, maxDate: "+1W" });
-            //$("#timepicker").timepicker({ minTime: '11:00 AM', maxTime: '9:00 PM', step: '30' })
         });</script>
 }
 

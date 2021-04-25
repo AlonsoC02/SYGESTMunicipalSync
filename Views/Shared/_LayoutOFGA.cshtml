@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="~/Ambiental/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    @*<link href="~/Ambiental/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">*@
     <link href="~/Ambiental/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
     <link href="~/Ambiental/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="~/Ambiental/assets/vendor/venobox/venobox.css" rel="stylesheet">
@@ -39,6 +39,8 @@
           crossorigin="anonymous" />
     <link href="~/css/Paginador.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -89,30 +91,22 @@
                                 </a>
                                 @* CRUD DE TIPOS CLASIFICACIÓN *@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Materiales"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="Clasificacion" asp-area="OFGA">Clasificación Materiales</a>
                                     </li>
 
-                                    @*}*@
                                     @* CRUD DE MATERIALES ADMITIDOS *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Materiales Admitidos"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="Materiales" asp-area="OFGA">Materiales Admitidos</a>
                                     </li>
-                                    @*}*@
+
                                     @* CRUD DE TIPOS DE DENUNCIA *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Tipos Denuncia"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="TipoDenuncia" asp-area="OFGA">Tipos Denuncia</a>
                                     </li>
-                                    @*}*@
 
                                 </ul>
                             </li>
@@ -128,38 +122,26 @@
                                 </a>
                                 @* CRUD DE PACAS *@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Pacas"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="Pacas" asp-area="OFGA">Pacas</a>
                                     </li>
 
-                                    @*}*@
                                     @* CRUD DE RECUENTO *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Recuento"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="Recuento" asp-area="OFGA">Recuento</a>
                                     </li>
-                                    @*}*@
+
                                     @* CRUD PUNTOS DE RECOLECCION*@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Punto de Recuperación Material"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="PuntoRecMaterial" asp-area="OFGA">Puntos Recuperación Material</a>
                                     </li>
-                                    @*}*@
                                     @* CRUD INGRESO POR VENTAS*@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Ingreso por Venta"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="IngresoVenta" asp-area="OFGA">Ingreso por Venta</a>
-                                        @*</li>
-                                            }*@
                                 </ul>
                             </li>
                         } @* MENU RESIDUOS ORDINARIOS*@
@@ -173,22 +155,16 @@
                                 </a>
                                 @* CRUD DE REGISTRO DE ENTREGAS DE BASURA *@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro de Entregas"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="Basura" asp-area="OFGA">Registro de Entregas</a>
                                     </li>
 
-                                    @*}*@
                                     @* CRUD DE RUTA DE RECOLECCIÓN *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Rutas de Recolección"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="RecoleccionBasura"
                                            asp-controller="Home" asp-area="OFGA">Rutas de Recolección</a>
                                     </li>
-                                    @*}*@
 
                                 </ul>
                             </li>
@@ -203,17 +179,12 @@
                                 </a>
                                 @* CREATE DE REGISTRO DE PERSONAS*@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Create"
                                            asp-controller="Persona" asp-area="Admin">Persona</a>
                                     </li>
 
-                                    @*}*@
                                     @*CREATE DE DENUNCIAS*@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registrar Denuncia"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Create"
                                            asp-controller="Denuncia" asp-area="OFGA">Registrar Denuncia</a>
@@ -233,8 +204,6 @@
                                 </a>
                                 @* CONSULTA DE DENUNCIAS*@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Consulta Denuncia"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Consulta"
                                            asp-controller="Denuncia" asp-area="OFGA">Consulta Denuncia</a>
@@ -256,38 +225,26 @@
                                 </a>
                                 @* INFO DE CHARLAS *@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Charlas"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="IndexTalks"
                                            asp-controller="Charlas" asp-area="OFGA">Charlas</a>
                                     </li>
 
-                                    @*}*@
                                     @* CRUD DE CHARLAS *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Registro Charlas"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="Charlas" asp-area="OFGA">Registro Charlas</a>
                                     </li>
-                                    @*}*@
                                     @* INFO DE FECHAS CONMEMORATIVAS*@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Fechas Conmemorativas"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
                                            asp-controller="Home" asp-area="OFGA">Fechas Conmemorativas</a>
                                     </li>
-                                    @*}*@
                                     @*INFO DE EDUQUEMONOS*@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Eduquémonos"))
-                                        {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="IndexEduquemonos"
                                            asp-controller="Home" asp-area="OFGA">Eduquémonos</a>
                                     </li>
-                                    @*}*@
                                 </ul>
                             </li>
                         }

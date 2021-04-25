@@ -30,7 +30,7 @@
             <div class="row contenedorBotones">
                 <div class="col-md-6 text-md-left">
                     <a asp-controller="" asp-action="Index"
-                       class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                       class="btn btn-success fa fa fa-arrow-circle-left inicio">
                         Regresar al menú
                     </a>
                 </div>
@@ -44,12 +44,6 @@
             </div>
             <div class="col-md-12 divisor"><hr></div>
             @*}*@
-            @*//Vista del filtro*@
-            @*<div class="row">
-                    <div class="col-12 text-right">
-                        <partial name="_Filter" />
-                    </div>
-                </div>*@
             <div>
 
 
@@ -82,12 +76,12 @@
                                         {*@
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
-                                            <a class="btn btn-primary text-white"
+                                            <a class="btn btn-warning text-white"
                                                asp-controller="Charlas"
                                                asp-action="Edit" asp-route-id="@item.CharlaId">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-success text-white"
+                                            <a class="btn btn-primary text-white"
                                                asp-controller="Charlas"
                                                asp-action="Details" asp-route-id="@item.CharlaId">
                                                 <i class="fas fa-list-alt"></i>

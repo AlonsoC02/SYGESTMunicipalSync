@@ -23,17 +23,6 @@
             <form method="post" asp-action="Create" id="viewAgregar">
                 <div class="backgroundWhite">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    @*Id*@
-                    @*<div class=" form-group row">
-                            <div class=" col-2">
-                                <label asp-for="Id" class="col-form-label"></label>
-                            </div>
-                            <div class="col-5">
-                                <input asp-for="Id" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Id" class=" text-danger"></span>
-                        </div>*@
-                    @*Name*@
                     <div class=" form-group row">
                         <div class=" col-md-2">
                             <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
@@ -43,38 +32,6 @@
                         </div>
                         <span asp-validation-for="Nombre" class=" text-danger"></span>
                     </div>
-
-                    @*fecha ingreso*@
-                    @*<div class="form-group row">
-                            <div class=" col-md-2">
-                                <h5><label>Fecha:</label></h5>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="date" asp-for="Date" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Date" class="text-danger"></span>
-                        </div>*@
-                    @*Peso*@
-                    @*<div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Weight" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Weight" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Weight" class=" text-danger"></span>
-                        </div>*@
-                    @*color*@
-                    @*<div class=" form-group row">
-                            <div class=" col-md-2">
-                                <h5><label asp-for="Color" class="col-form-label"></label></h5>
-                            </div>
-                            <div class="col-md-9">
-                                <input asp-for="Color" class="form-control" />
-                            </div>
-                            <span asp-validation-for="Color" class=" text-danger"></span>
-                        </div>*@
-                    @*color*@
                     <div class="form-group row">
                         <div class="col-md-2">
                             <label asp-for="Color" class="col-form-label"></label>
@@ -97,27 +54,26 @@
                     </div>
                     @*End Create Register Date Field*@
 
-                    <div class="form-group row">
-                        <div class="col-md-4 text-md-right">
-                            <input type="button" value="Agregar" id="btnAgregar"
-                                   class="btn btn-info" @*style="width: 80%;"*@
-                                   onclick="abrirModal()" />
-                        </div>
-                        <div class="col-md-2 text-md-center">
-                            <a asp-action="Index" type="button"
-                               class="btn btn-success">
-                                Regresar
-                            </a>
+                <div class="form-group row">
 
-
-                        </div>
+                    <div class="col-md-4 text-md-right">
+                        <a asp-action="Index" type="button" style="color:white"
+                           class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                            Regresar
+                        </a>
                     </div>
+                    <div class="col-md-1 text-md-center">
+                        <input type="button" value="Agregar" id="btnAgregar"
+                               class="btn btn-info"
+                               onclick="abrirModal()" />
+                    </div>
+                </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-</main>
+
 
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>

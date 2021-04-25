@@ -7,9 +7,8 @@
 }
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <h3 class="text-light" style="text-align:center;
-                              background-color:#dc3545;width:100%;">
-            Agregar un Usuario
+        <h3 class="text-light" style="text-align:center; background-color:#263182;width:100%;">
+           Agregar Usuario
         </h3>
     </div>
 </div>
@@ -33,7 +32,7 @@
 
             <div class=" col-md-2 text-right">
                 <label asp-for="Password">Password:<span class="required">*</span></label>
-                
+
             </div>
             <div class="col-md-6">
                 <input type="password" name="password" id="Password" onkeyup="checkPass();">
@@ -96,17 +95,17 @@
         </div>
 
         <div class="form-group row">
+
             <div class="col-md-3 text-md-right">
+                <a asp-action="Index" type="button" style="color:white"
+                   class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                    Regresar
+                </a>
+            </div>
+            <div class="col-md-1 text-md-center">
                 <input type="button" value="Agregar" id="btnAgregar"
                        class="btn btn-info"
                        onclick="abrirModal()" />
-            </div>
-
-            <div class="col-md-1 text-md-center">
-                <a asp-action="Index" type="button"
-                   class="btn btn-success">
-                    Regresar
-                </a>
             </div>
         </div>
     </div>
@@ -141,15 +140,15 @@
 </script>
 <script type="text/javascript">
     function checkPass() {
-  
+
         var password = document.getElementById('Password');
         var confirm = document.getElementById('confirm2');
 
         var message = document.getElementById('confirm-message2');
-      
+
         var good_color = "#66cc66";
         var bad_color = "#ff6666";
-      
+
         if (password.value == confirm.value) {
 
             confirm.style.backgroundColor = good_color;
