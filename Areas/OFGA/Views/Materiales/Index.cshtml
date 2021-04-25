@@ -49,9 +49,9 @@
                                 <th>@Html.DisplayNameFor(m => m.Nombre)</th>
                                 <th>@Html.DisplayNameFor(m => m.Clasificacion)</th>
                                 @*<th>@Html.DisplayNameFor(m => m.Direccion)</th>
-                                    <th>@Html.DisplayNameFor(m => m.TelefonoFijo)</th>
-                                    <th>@Html.DisplayNameFor(m => m.TelefonoCelular)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Especialidad)</th>*@
+                            <th>@Html.DisplayNameFor(m => m.TelefonoFijo)</th>
+                            <th>@Html.DisplayNameFor(m => m.TelefonoCelular)</th>
+                            <th>@Html.DisplayNameFor(m => m.Especialidad)</th>*@
                                 <th></th>
                             </tr>
                         </thead>
@@ -63,9 +63,9 @@
                                     <td>@Html.DisplayFor(m => item.Nombre)</td>
                                     <td>@Html.DisplayFor(m => item.Clasificacion)</td>
                                     @*<td>@Html.DisplayFor(m => item.Direccion)</td>
-                                        <td>@Html.DisplayFor(m => item.TelefonoFijo)</td>
-                                        <td>@Html.DisplayFor(m => item.TelefonoCelular)</td>
-                                        <td>@Html.DisplayFor(m => item.Especialidad)</td>*@
+                                <td>@Html.DisplayFor(m => item.TelefonoFijo)</td>
+                                <td>@Html.DisplayFor(m => item.TelefonoCelular)</td>
+                                <td>@Html.DisplayFor(m => item.Especialidad)</td>*@
 
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
@@ -89,6 +89,12 @@
                             }
                         </tbody>
                     </table>
+                </div>
+                <div class="col-md-15 text-md-right">
+                    <script>
+                        document.write('Ultima modificación: ' + window.document.lastModified)
+
+                    </script>
                 </div>
             }
             else

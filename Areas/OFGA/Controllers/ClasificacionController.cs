@@ -127,7 +127,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-       //POST - DELETE    //si se realiza una operacion es un POST
+        //POST - DELETE    //si se realiza una operacion es un POST
         [HttpPost]
         public IActionResult Delete(int? ClasificacionId)
         {
