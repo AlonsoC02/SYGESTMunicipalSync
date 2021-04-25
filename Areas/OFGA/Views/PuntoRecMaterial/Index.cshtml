@@ -58,7 +58,7 @@
                                     <td>@Html.DisplayFor(m => item.Peso)</td>
                                     <td>@Html.DisplayFor(m => item.Material)</td>
                                     <td>@Html.DisplayFor(m => item.Clasificacion)</td>
-                                 
+
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
                                             <a class="btn btn-warning text-white"
@@ -80,6 +80,12 @@
                             }
                         </tbody>
                     </table>
+                </div>
+                <div class="col-md-15 text-md-right">
+                    <script>
+                        document.write('Ultima modificación: ' + window.document.lastModified)
+
+                    </script>
                 </div>
             }
             else

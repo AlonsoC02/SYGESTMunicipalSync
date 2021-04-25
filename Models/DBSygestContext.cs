@@ -1409,7 +1409,6 @@ namespace SYGESTMunicipalSync.Models
                    .IsUnicode(false);
 
                 entity.Property(e => e.Descripcion)
-                   .IsRequired()
                    .HasMaxLength(200)
                    .IsUnicode(false);
 

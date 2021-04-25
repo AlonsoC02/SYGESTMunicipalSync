@@ -64,18 +64,18 @@
                                 <td style="width:300px">
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-warning text-white"
-                                           asp-controller="Clasificacion"
+                                           asp-controller="TipoDenuncia"
                                            asp-action="Edit" asp-route-id="@item.TipoDenunciaId">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <a class="btn btn-primary text-white"
-                                           asp-controller="Clasificacion"
+                                           asp-controller="TipoDenuncia"
                                            asp-action="Details" asp-route-id="@item.TipoDenunciaId">
                                             <i class="fas fa-list-alt"></i>
                                         </a>
 
                                         <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
-                                           onclick="EliminarClasificacion(@item.TipoDenunciaId)"></i>
+                                           onclick="EliminarTipoDenuncia(@item.TipoDenunciaId)"></i>
 
                                     </div>
                                 </td>
