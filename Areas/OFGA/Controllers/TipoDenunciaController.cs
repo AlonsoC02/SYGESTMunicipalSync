@@ -29,7 +29,8 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                                   {
                                       TipoDenunciaId = tipoDenuncia.TipoDenunciaId,
                                       Nombre = tipoDenuncia.Nombre,
-                                     
+                                      Descripcion = tipoDenuncia.Descripcion,
+
 
 
                                   }).ToList();

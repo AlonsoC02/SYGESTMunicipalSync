@@ -1,4 +1,4 @@
-﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Empresa
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel.EmpresaViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,6 +6,7 @@
 
     List<SelectListItem> Lista = ViewBag.ListaPersona;
     List<SelectListItem> Lista1 = ViewBag.ListaCatProductoServicio;
+
 
 }
 
@@ -40,6 +41,13 @@
     <br />
     <form asp-action="Edit" method="post" enctype="multipart/form-data" id="viewEditar">
         <div class="row backgroundWhiteBorder">
+            @*<div class="col-md-4 border align-self-baseline">
+                    @{
+                        var base64 = Convert.ToBase64String(Model.Empresa.Logo);
+                        var imgsrc = string.Format("data:image/jpg;base64, {0}", base64);
+                    }
+                    <img src="@imgsrc" style="height: 100%; width:110%" />
+                </div>*@
             <div class="col-md-6 pt-3 pt-lg-0 content">
                 <div class="container">
                     <br />
@@ -55,97 +63,108 @@
 
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <h5><label asp-for="Id" class="form-label"></label></h5>
+                        <h5><label asp-for="Empresa.Id" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Id" readonly class="form-control" />
+                        <input asp-for="Empresa.Id" readonly class="form-control" />
                     </div>
-                    <span asp-validation-for="Id" class="text-danger"></span>
+                    <span asp-validation-for="Empresa.Id" class="text-danger"></span>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <h5><label asp-for="Nombre" class="form-label"></label></h5>
+                        <h5><label asp-for="Empresa.Nombre" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Nombre" class="form-control" />
+                        <input asp-for="Empresa.Nombre" class="form-control" />
                     </div>
-                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                    <span asp-validation-for="Empresa.Nombre" class="text-danger"></span>
                 </div>
 
                 <div class=" form-group row">
                     <div class="col-md-3 text-right">
-                        <h5><label asp-for="Descripcion" class="col-form-label"></label></h5>
+                        <h5><label asp-for="Empresa.Descripcion" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-9">
-                        <textarea asp-for="Descripcion" rows="4" cols="50"
+                        <textarea asp-for="Empresa.Descripcion" rows="4" cols="50"
                                   class="form-control"> </textarea>
                     </div>
-                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    <span asp-validation-for="Empresa.Descripcion" class="text-danger"></span>
                 </div>
 
                 <div class=" form-group row">
                     <div class="col-md-3 text-right">
-                        <h5><label asp-for="Ubicacion" class="col-form-label"></label></h5>
+                        <h5><label asp-for="Empresa.Ubicacion" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-9">
-                        <textarea asp-for="Ubicacion" rows="4" cols="50"
+                        <textarea asp-for="Empresa.Ubicacion" rows="4" cols="50"
                                   class="form-control"> </textarea>
                     </div>
-                    <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                    <span asp-validation-for="Empresa.Ubicacion" class="text-danger"></span>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <h5><label asp-for="Email" class="form-label"></label></h5>
+                        <h5><label asp-for="Empresa.Email" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Empresa.Email" class="form-control" />
                     </div>
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-
-
-                <div class="form-group row">
-                    <div class="col-md-3 text-right">
-                        <h5><label asp-for="PaginaWeb" class="form-label"></label></h5>
-                    </div>
-                    <div class="col-md-7">
-                        <input asp-for="PaginaWeb" class="form-control" />
-                    </div>
-                    <span asp-validation-for="PaginaWeb" class="text-danger"></span>
+                    <span asp-validation-for="Empresa.Email" class="text-danger"></span>
                 </div>
 
 
                 <div class="form-group row">
                     <div class="col-md-3 text-right">
-                        <h5><label asp-for="Telefono" class="form-label"></label></h5>
+                        <h5><label asp-for="Empresa.PaginaWeb" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Telefono" class="form-control" />
+                        <input asp-for="Empresa.PaginaWeb" class="form-control" />
                     </div>
-                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                    <span asp-validation-for="Empresa.PaginaWeb" class="text-danger"></span>
                 </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Empresa.Telefono" class="form-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input asp-for="Empresa.Telefono" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Empresa.Telefono" class="text-danger"></span>
+                </div>
+
+                <div class="form-group row">
+            <div class="col-md-3 text-right">
+                <h5><label asp-for="Empresa.Logo" class="custom-label"></label></h5>
+            </div>
+            <div class="col-md-7">
+                <input type="file" id="projectImage" name="files"
+                       multiple class="form-control" />
+            </div>
+        </div>
+
                 <div class=" form-group row">
                     <div class=" col-md-3">
                         <h5><label asp-for="Persona" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <select asp-for="PersonaId" class="form-control" required
+                        <select asp-for="Empresa.PersonaId" class="form-control" required
                                 asp-items="@Lista"></select>
                     </div>
-                    <span asp-validation-for="PersonaId" class=" text-danger"></span>
+                    <span asp-validation-for="Empresa.PersonaId" class=" text-danger"></span>
                 </div>
 
                 <div class=" form-group row">
                     <div class=" col-md-3">
-                        <h5><label asp-for="CatProductoServicioId" class="col-form-label"></label></h5>
+                        <h5><label asp-for="Empresa.CatProductoServicioId" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <select asp-for="CatProductoServicioId" class="form-control" required
+                        <select asp-for="Empresa.CatProductoServicioId" class="form-control" required
                                 asp-items="@Lista1"></select>
                     </div>
-                    <span asp-validation-for="CatProductoServicioId" class=" text-danger"></span>
+                    <span asp-validation-for="Empresa.CatProductoServicioId" class=" text-danger"></span>
                 </div>
 
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
@@ -103,7 +104,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePOST()
         {
-            EmpresaVM.Empresa.CatProductoServicioId = Convert.ToInt32(Request.Form["CatProductoServicioId"].ToString());
+        
 
             if (ModelState.IsValid)
             {
@@ -224,7 +225,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [ActionName("GetEmpresa")]
+        public async Task<IActionResult> GetEmpresa(int id)
+        {
+            List<Empresa> empresa = new List<Empresa>();
+            empresa = await (from Empresa in _db.Empresa
+                          where Empresa.CatProductoServicioId == id
+                          select Empresa).ToListAsync();
+            return Json(new SelectList(empresa, "Id", "Nombre"));
+        }
 
     }
 }
