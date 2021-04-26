@@ -1,9 +1,9 @@
-﻿@model SYGESTMunicipalSync.Areas.Admin.Models.Usuario
+﻿@using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
+@model IEnumerable<RegistroExternoVM>
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<SelectListItem> Lista = ViewBag.ListaRol;
 }
 
 <div class="row">
@@ -21,23 +21,27 @@
                     <h2 class="text-dark">
                         <img src="~/images/Folder.png" alt="Usuario">
 
-                        
-                            <input asp-for="Persona" />
-                       
+
+                        Detalles del Usuario
+
 
                     </h2>
                 </div>
             </div>
+
             <div class="col-md-12 divisor"><hr></div>
-            <form asp-controller="Usuario" asp-action="Details">
+            <form asp-controller="Citas" asp-action="Details">
                 <div class="backgroundWhiteBorder10Padding">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @if (Model.Count() > 0)
+                    {
+                        @foreach (var item in Model)
+                        {
                             <div class="form-group row">
                                 <div class="col-md-4 col-lg-4 text-right">
-                                    <label>Número de Usuario asignado:</label>
+                                    <label>Usuario Id asignado:</label>
                                 </div>
                                 <div class="col-md-8 col-lg-8 text-left">
-                                    <input asp-for="UsuarioId" readonly="readonly" class="form-control" />
+                                    @Html.DisplayFor(m => item.UsuarioId)
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -45,17 +49,26 @@
                                     <label>Nombre Usuario:</label>
                                 </div>
                                 <div class="col-md-8 col-lg-8 text-left">
-                                    <input asp-for="NombreUsuario" readonly="readonly" class="form-control" />
+                                    @Html.DisplayFor(m => item.NombreUsuario)
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-4 col-lg-4 text-right">
-                                    <label>Contraseña:</label>
+                                    <label>Cédula o Pasaporte:</label>
                                 </div>
                                 <div class="col-md-8 col-lg-8 text-left">
-                                    <input asp-for="Password" readonly="readonly" class="form-control" />
+                                    @Html.DisplayFor(m => item.PersonaId)
                                 </div>
-                                <span asp-validation-for="Password" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-4 col-lg-4 text-right">
+                                    <label>Nombre Persona:</label>
+                                </div>
+                                <div class="col-md-8 col-lg-8 text-left">
+                                    @Html.DisplayFor(m => item.NombrePersona)
+                                </div>
                             </div>
 
                             <div class="form-group row">
@@ -63,9 +76,19 @@
                                     <label>Tipo de Rol:</label>
                                 </div>
                                 <div class="col-md-8 col-lg-8 text-left">
-                                    <select asp-for="Rol" disabled class="form-control" asp-items="@Lista"></select>
+                                    @Html.DisplayFor(m => item.NombreRol)
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-4 col-lg-4 text-right">
+                                    <label>Contraseña:</label>
+                                </div>
+                                <div class="col-md-8 col-lg-8 text-left">
+                                    @Html.DisplayFor(m => item.Password)
+                                </div>
+                            </div>
+
                             <div class="form-group row">
 
                                 <div class="col-md-4 text-md-right">
@@ -76,8 +99,20 @@
                                 </div>
 
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <h3>NO hay regsitros</h3>
+                    }
+
                 </div>
             </form>
+
+
+
         </div>
     </main>
 </div>
+
+
