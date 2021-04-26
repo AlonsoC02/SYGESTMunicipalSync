@@ -23,7 +23,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
         public DateTime Fecha { get; set; }
 
 
-        [Display(Name = "Descripcion:")]
+        [Display(Name = "Descripción:")]
         [Required(ErrorMessage = "Debe digitar la descripción de la charla")]
         [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         public string Descripcion { get; set; }
