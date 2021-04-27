@@ -94,24 +94,26 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             }
         }
 
-       
-        public IActionResult ListarPersona()
+
+        public IActionResult ListarPersona(string PersonaId)
         {
             List<Persona> listaPersona = new List<Persona>();
-
-            listaPersona = (from persona in _db.Persona 
+            listaPersona = (from persona in _db.Persona
                             select new Persona
-                                {
+                            {
                                 CedulaPersona = persona.CedulaPersona,
                                 Nombre = persona.Nombre,
-                                Ape1= persona.Ape1,
-                                Ape2= persona.Ape2,
+                                Ape1 = persona.Ape1,
+                                Ape2 = persona.Ape2,
                                 Email = persona.Email,
                                 FechaNac = persona.FechaNac,
                                 TelMovil = persona.TelMovil
                             }).ToList();
             return View(listaPersona);
         }
+
+        
+
 
         private void buscarUsuario(int Id)
         {
