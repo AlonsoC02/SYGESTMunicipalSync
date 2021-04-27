@@ -27,7 +27,7 @@
             <div class="row contenedorBotones">
                 <div class="col-md-6 text-md-left">
                     <a asp-controller="" asp-action="Index"
-                       class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                       class="btn btn-success fa fa fa-arrow-circle-left inicio">
                         Regresar al menú
                     </a>
                 </div>
@@ -58,15 +58,15 @@
                                     <td>@Html.DisplayFor(m => item.Peso)</td>
                                     <td>@Html.DisplayFor(m => item.Material)</td>
                                     <td>@Html.DisplayFor(m => item.Clasificacion)</td>
-                                 
+
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
-                                            <a class="btn btn-primary text-white"
+                                            <a class="btn btn-warning text-white"
                                                asp-controller="PuntoRecMaterial"
                                                asp-action="Edit" asp-route-id="@item.PuntosRecMaterialId">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-success text-white"
+                                            <a class="btn btn-primary text-white"
                                                asp-controller="PuntoRecMaterial"
                                                asp-action="Details" asp-route-id="@item.PuntosRecMaterialId">
                                                 <i class="fas fa-list-alt"></i>
@@ -80,6 +80,12 @@
                             }
                         </tbody>
                     </table>
+                </div>
+                <div class="col-md-15 text-md-right">
+                    <script>
+                        document.write('Ultima modificación: ' + window.document.lastModified)
+
+                    </script>
                 </div>
             }
             else

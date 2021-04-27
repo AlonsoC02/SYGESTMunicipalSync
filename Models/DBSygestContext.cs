@@ -728,7 +728,6 @@ namespace SYGESTMunicipalSync.Models
                  .IsUnicode(false);
 
                 entity.Property(e => e.Logo)
-                .IsRequired()
                 .HasColumnName("Logo")
                 .HasColumnType("varbinary(max)");        // <------------------------------------------------------
 
@@ -1407,6 +1406,10 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.Nombre)
                    .IsRequired()
                    .HasMaxLength(50)
+                   .IsUnicode(false);
+
+                entity.Property(e => e.Descripcion)
+                   .HasMaxLength(200)
                    .IsUnicode(false);
 
             });

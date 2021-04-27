@@ -29,7 +29,8 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                                   {
                                       TipoDenunciaId = tipoDenuncia.TipoDenunciaId,
                                       Nombre = tipoDenuncia.Nombre,
-                                     
+                                      Descripcion = tipoDenuncia.Descripcion,
+
 
 
                                   }).ToList();
@@ -38,9 +39,23 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
 
         }
 
+        private void cargarUltimoRegistro()
+        {
+            var ultimoRegistro = _db.Set<TipoDenuncia>().OrderByDescending(e => e.TipoDenunciaId).FirstOrDefault();
+            if (ultimoRegistro == null)
+            {
+                ViewBag.ID = 1;
+
+            }
+            else
+            {
+                ViewBag.ID = ultimoRegistro.TipoDenunciaId + 1;
+            }
+        }
+
         public IActionResult Create()
         {
-
+            cargarUltimoRegistro();
             return View();
         }
         [HttpPost]
@@ -59,7 +74,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                 }
                 else
                 {
-
+                    cargarUltimoRegistro();
                     _db.TipoDenuncia.Add(tipoDenuncia);
                     _db.SaveChanges();
                 }

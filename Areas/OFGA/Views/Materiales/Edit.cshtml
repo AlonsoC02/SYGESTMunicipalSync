@@ -42,31 +42,12 @@
                             <span asp-validation-for="Nombre" class=" text-danger"></span>
                         </div>
 
-                        @*fecha ingreso*@
-                        <!--<div class="form-group row">
-                <div class="col-md-2">
-                    <h5><label asp-for="Date" class="col-form-label"></label></h5>
-                </div>
-                <div class="col-md-8">
-                    <input asp-for="Date" type="text" id="datepicker" class="form-control" />
-                </div>
-            </div>-->
-                        @*Peso*@
-                        <!--<div class=" form-group row">
-                <div class=" col-md-2">
-                    <h5><label asp-for="Weight" class="col-form-label"></label></h5>
-                </div>
-                <div class="col-md-9">
-                    <input asp-for="Weight" class="form-control" />
-                </div>
-                <span asp-validation-for="Weight" class=" text-danger"></span>
-            </div>-->
                         @*color*@
                         <div class="form-group row">
                             <div class="col-md-2">
                                 <label asp-for="Color" class="col-form-label"></label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="checkbox" asp-for="Color" class="form-control" />
                             </div>
                         </div>
@@ -84,9 +65,9 @@
                         <div class="form-group row">
                             <div class="col-md-4 text-md-right">
                                 <a asp-action="Index" type="button"
-                                   class="btn btn-danger fa fa fa-arrow-circle-left inicio"> Regresar</a>
+                                   class="btn btn-success fa fa fa-arrow-circle-left inicio"> Regresar</a>
                             </div>
-                            <div class="col-md-2 text-md-center">
+                            <div class="col-md-8 text-md-center">
                                 <input type="button" value="Editar" id="btnEditar"
                                        class="btn btn-info"
                                        onclick="abrirModal()" />

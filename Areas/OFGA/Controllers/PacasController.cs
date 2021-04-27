@@ -174,13 +174,13 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             return View(oPacas);
         }
         [HttpPost, ActionName("Delete")]
-        public IActionResult Deleted(int Id)
+        public IActionResult Deleted(int PacaId)
         {
             string Error = "";
             try
             {
                 Pacas oPacas = _db.Pacas
-                     .Where(c => c.PacaId == Id).First();
+                     .Where(c => c.PacaId == PacaId).First();
                 if (oPacas != null)
                 {
                     _db.Pacas.Remove(oPacas);

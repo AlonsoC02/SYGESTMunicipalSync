@@ -16,6 +16,10 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string Nombre { get; set; }
 
+        [Display(Name = "Descripción:")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 100 caracteres")]
+        public string Descripcion { get; set; }
+
         public virtual ICollection<Denuncia> Denuncia { get; set; }
 
         public TipoDenuncia()

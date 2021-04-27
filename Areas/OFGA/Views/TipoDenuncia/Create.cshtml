@@ -25,6 +25,17 @@
                     <div class="backgroundWhite">
                         <div asp-validation.summary="ModelOnly" class="text-danger"></div>
                         <div class=" form-group row">
+
+                            <div class=" col-md-2">
+                                <h5><label asp-for="TipoDenunciaId" class="col-form-label"></label></h5>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="TipoDenunciaId" value="@ViewBag.ID" readonly class="form-control" />
+                            </div>
+                            <span asp-validation-for="TipoDenunciaId" class=" text-danger"></span>
+                        </div>
+                        <div class=" form-group row">
+
                             <div class=" col-md-2">
                                 <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
                             </div>
@@ -34,27 +45,31 @@
                             <span asp-validation-for="Nombre" class=" text-danger"></span>
                         </div>
 
-                     
+
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label asp-for="Descripcion" class="col-form-label"></label>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.TextAreaFor(m => m.Descripcion, new { rows = "3", cols = "56", @class = "text-area" })
+                            </div>
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
 
                         <div class="form-group row">
 
                             <div class="col-md-4 text-md-right">
                                 <a asp-action="Index" type="button" style="color:white"
-                                   class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                                   class="btn btn-success fa fa fa-arrow-circle-left inicio">
                                     Regresar
                                 </a>
-
-
                             </div>
-
-                            <div class="col-md-4 text-md-right">
+                            <div class="col-md-1 text-md-center">
                                 <input type="button" value="Agregar" id="btnAgregar"
                                        class="btn btn-info"
                                        onclick="abrirModal()" />
                             </div>
-
                         </div>
-
                     </div>
                 </form>
             </div>

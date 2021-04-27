@@ -30,7 +30,7 @@
             <div class="row contenedorBotones">
                 <div class="col-md-6 text-md-left">
                     <a asp-controller="" asp-action="Index"
-                       class="btn btn-danger fa fa fa-arrow-circle-left inicio">
+                       class="btn btn-success fa fa fa-arrow-circle-left inicio">
                         Regresar al menú
                     </a>
                 </div>
@@ -44,71 +44,71 @@
             </div>
             <div class="col-md-12 divisor"><hr></div>
             @*}*@
-            @*//Vista del filtro*@
-            @*<div class="row">
-                    <div class="col-12 text-right">
-                        <partial name="_Filter" />
-                    </div>
-                </div>*@
-            <div>
+        <div>
 
 
-                @if (Model.Count() > 0)
-                {
+            @if (Model.Count() > 0)
+            {
 
-                    <table class="table table-hover .table-responsive" id="TbCharlas">
-                        <thead class="thead-dark">
-                            <tr class="table-secondary" style="text-align:center;">
-                                <th>@Html.DisplayNameFor(m => m.CharlaId)</th>
-                                <th>@Html.DisplayNameFor(m => m.Nombre)</th>
-                                <th>@Html.DisplayNameFor(m => m.Fecha)</th>
-                                <th>@Html.DisplayNameFor(m => m.Activa)</th>
+                <table class="table table-hover .table-responsive" id="TbCharlas">
+                    <thead class="thead-dark">
+                        <tr class="table-secondary" style="text-align:center;">
+                            <th>@Html.DisplayNameFor(m => m.CharlaId)</th>
+                            <th>@Html.DisplayNameFor(m => m.Nombre)</th>
+                            <th>@Html.DisplayNameFor(m => m.Fecha)</th>
+                            <th>@Html.DisplayNameFor(m => m.Activa)</th>
 
-                                <th>Operaciones</th>
+                            <th>Operaciones</th>
 
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center;">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.CharlaId)</td>
+                                <td>@Html.DisplayFor(m => item.Nombre)</td>
+                                <td>@Html.DisplayFor(m => item.Fecha)</td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Activa)
+                                </td>
+                                @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
+                            {*@
+                                <td style="width:300px">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-warning text-white"
+                                           asp-controller="Charlas"
+                                           asp-action="Edit" asp-route-id="@item.CharlaId">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-primary text-white"
+                                           asp-controller="Charlas"
+                                           asp-action="Details" asp-route-id="@item.CharlaId">
+                                            <i class="fas fa-list-alt"></i>
+                                        </a>
+
+                                        <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
+                                           onclick="EliminarCharlas(@item.CharlaId)"></i>
+
+                                    </div>
+                                </td>
+                                @*}*@
                             </tr>
-                        </thead>
-                        <tbody style="text-align:center;">
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(m => item.CharlaId)</td>
-                                    <td>@Html.DisplayFor(m => item.Nombre)</td>
-                                    <td>@Html.DisplayFor(m => item.Fecha)</td>
-                                    <td>
-                                        @Html.DisplayFor(m => item.Activa)
-                                    </td>
-                                    @*@if (User.IsInRole(SD.ManagerUser) || User.IsInRole(SD.AdminOFGA))
-                                        {*@
-                                    <td style="width:300px">
-                                        <div class="btn-group" role="group">
-                                            <a class="btn btn-primary text-white"
-                                               asp-controller="Charlas"
-                                               asp-action="Edit" asp-route-id="@item.CharlaId">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <a class="btn btn-success text-white"
-                                               asp-controller="Charlas"
-                                               asp-action="Details" asp-route-id="@item.CharlaId">
-                                                <i class="fas fa-list-alt"></i>
-                                            </a>
+                        }
+                    </tbody>
+                </table>
+                <div class="col-md-15 text-md-right">
+                    <script>
+                        document.write('Ultima modificación: ' + window.document.lastModified)
 
-                                            <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
-                                               onclick="EliminarCharlas(@item.CharlaId)"></i>
-
-                                        </div>
-                                    </td>
-                                    @*}*@
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <h3 style="color:red;">No existen charlas registradas!...</h3>
-                }
-            </div>
+                    </script>
+                </div>
+            }
+            else
+            {
+                <h3 style="color:red;">No existen charlas registradas!...</h3>
+            }
+        </div>
         </div>
         <form asp-action="Delete" asp-controller="Charlas" method="post" id="viewEliminar">
             <input type="hidden" id="txtCharlaId" name="CharlaId" />

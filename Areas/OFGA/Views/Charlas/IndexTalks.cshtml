@@ -6,184 +6,127 @@
     ViewData["Title"] = "IndexTalks";
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
+<br />
+<br />
+<br />
+@foreach (var item in Model)
+{
+    <ul class="ftco-section" style="text-align:center;background-color:darkslategray;">
+        <div class="container">
+            <h2 class="text-light">
+                Charla Disponible
+            </h2>
+            <div class="row">
+                <div class="col-lg-6 video-box align-self-baseline">
+                    <br />
+                    @{
+                        var base64 = Convert.ToBase64String(item.Imagen);
+                        var imgsrc = string.Format("data:image/jpg;base64, {0}", base64);
+                    }
+                    <img src="@imgsrc" style="height: 100%; width:110%" />
+                </div>
+                <div class="col-lg-6 pt-3 pt-lg-0 content">
+                    <br />
+                    <ul>
+                        <div class="form-group row col-lg-12 text-left">
+                            <h4>
+                                <div class="col-md text-right" style="color:#95D93C;text-shadow: 3px 3px 6px #000">
 
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <h3 class="text-light"
-            style="text-align:center;background-color:#263182;">
-            Charlas Disponibles
-        </h3>
-    </div>
-</div>
-
-            @foreach (var item in Model)
-            {
-
-
-                <ul class="ftco-section" style="text-align:center;background-color:darkslategray;">
-                    @*<div class="breadcrumb-hero">*@
-                    <div class="container">
-
-                        <br />
-                        @*<br />
-                            <br />
-                            <br />*@
-
-
-                        <div class="row  border">
-
-                            @*<span class="border border-white">*@
-
-                            <br />
-                            <br />
-
-
-
-                            <div class="col-lg-5 video-box align-self-baseline">
-
-
-                                <br />
-                                @{
-                                    var base64 = Convert.ToBase64String(item.Imagen);
-                                    var imgsrc = string.Format("data:image/jpg;base64, {0}", base64);
-                                }
-                                <img src="@imgsrc" style="height: 100%; width:110%" />
-                                <br />
-                                <br />
+                                    <th>@Html.DisplayNameFor(m => m.Nombre)</th>
+                                </div>
+                            </h4>
+                            <div class="col-md" style="color:darkgray;text-shadow: 3px 3px 6px #000">
+                                <h4 style="color:white">@Html.DisplayFor(m => item.Nombre)</h4>
                             </div>
+                        </div>
+                        <div class="form-group row col-lg-12 text-left">
+                            <h4>
+                                <div class="col-md text-right" style="color:#95D93C;text-shadow: 3px 3px 6px #000">
 
-
-                            <div class="col-lg-6 pt-3 pt-lg-0 content">
-
-
-                                <br />
-                                <ul>
-                                    <div class="form-group row col-md text-md-left">
-                                        <h4>
-                                            <div class="col-md text-right" style="color:White;text-shadow: 2px 2px 5px #000">
-
-                                                <th>@Html.DisplayNameFor(m => m.Nombre)</th>
-                                            </div>
-                                        </h4>
-
-                                        <div class="col-md" style="color:darkgray;text-shadow: 2px 2px 5px #000">
-                                            <h5 style="color:darkgray">@Html.DisplayFor(m => item.Nombre)</h5>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row col-lg-12 text-left">
-                                        <h4>
-                                            <div class="col-md text-right" style="color:White;text-shadow: 2px 2px 5px #000">
-
-                                                <th>@Html.DisplayNameFor(m => m.Descripcion)</th>
-                                            </div>
-                                        </h4>
-
-
-                                        <div class="col-lg-12" style="color:darkgray;text-shadow: 2px 2px 5px #000">
-                                            <h5 style="color:darkgray">@Html.DisplayFor(m => item.Descripcion)</h5>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row col-md-7 text-left">
-                                        <h4>
-                                            <div class="col-md-7 text-right" style="color:White;text-shadow: 2px 2px 5px #000">
-
-                                                <th>@Html.DisplayNameFor(m => m.Fecha)</th>
-                                            </div>
-                                        </h4>
-
-                                        <div class="col-md-7" style="color:darkgray;text-shadow: 2px 2px 5px #000">
-                                            <h5 style="color:darkgray">@Html.DisplayFor(m => item.Fecha)</h5>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row col-lg-12 text-left">
-                                        <h4>
-                                            <div class="col-md text-right" style="color:White;text-shadow: 2px 2px 5px #000">
-
-                                                <th>@Html.DisplayNameFor(m => m.Lugar)</th>
-                                            </div>
-                                        </h4>
-
-
-                                        <div class="col-lg-12" style="color:darkgray;text-shadow: 2px 2px 5px #000">
-                                            <h5 style="color:darkgray">@Html.DisplayFor(m => item.Lugar)</h5>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row col-lg-12 text-left">
-                                        <h4>
-                                            <div class="col-md text-right" style="color:White;text-shadow: 2px 2px 5px #000">
-
-                                                <th>@Html.DisplayNameFor(m => m.Expositor)</th>
-                                            </div>
-                                        </h4>
-
-
-                                        <div class="col-lg-12" style="color:darkgray;text-shadow: 2px 2px 5px #000">
-                                            <h5 style="color:darkgray">@Html.DisplayFor(m => item.Expositor)</h5>
-                                        </div>
-
-                                    </div>
-
-
-                                </ul>
-
-
-
+                                    <th>@Html.DisplayNameFor(m => m.Descripcion)</th>
+                                </div>
+                            </h4>
+                            <div class="col-md" style="color:darkgray;text-shadow: 3px 3px 6px #000">
+                                <h4 style="color:white">@Html.DisplayFor(m => item.Descripcion)</h4>
                             </div>
-                            @*</span>*@
+                        </div>
+                        <div class="form-group row col-lg-12 text-left">
+                            <h4>
+                                <div class="col-md text-right" style="color:#95D93C;text-shadow: 3px 3px 6px #000">
 
-
+                                    <th>@Html.DisplayNameFor(m => m.Fecha)</th>
+                                </div>
+                            </h4>
+                            <div class="col-md" style="color:darkgray;text-shadow: 3px 3px 6px #000">
+                                <h4 style="color:white">@Html.DisplayFor(m => item.Fecha)</h4>
+                            </div>
                         </div>
 
+                        <div class="form-group row col-lg-12 text-left">
+                            <h4>
+                                <div class="col-md text-right" style="color:#95D93C;text-shadow: 3px 3px 6px #000">
 
-                        <br />
+                                    <th>@Html.DisplayNameFor(m => m.Lugar)</th>
+                                </div>
+                            </h4>
 
+                            <div class="col-md" style="color:#95D93C;text-shadow: 3px 3px 6px #000">
+                                <h4 style="color:white">@Html.DisplayFor(m => item.Lugar)</h4>
+                            </div>
 
-                    </div>
-                    @*</div>*@
-                </ul>
-                <section id="breadcrumbs" class="breadcrumbs">
-                    <div class="breadcrumb-hero col-md-12">
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                    </div>
-                </section>
-            }
+                        </div>
+                        <div class="form-group row col-lg-12 text-left">
+                            <h4>
+                                <div class="col-md text-right" style="color:#95D93C;text-shadow: 3px 3px 6px #000">
+
+                                    <th>@Html.DisplayNameFor(m => m.Expositor)</th>
+                                </div>
+                            </h4>
+                            <div class="col-md" style="color:darkgray;text-shadow: 3px 3px 6px #000">
+                                <h4 style="color:white">@Html.DisplayFor(m => item.Expositor)</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-11 text-right">
+                                <a asp-controller="" asp-action="Index" type="button"
+                                   class="btn btn-outline-success btn-lg fa fa fa-arrow-circle-left inicio">
+                                    Regresar
+                                </a>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
         </div>
-        </section>
+    </ul>
+    <br />
+    <br />
+}
 
-        @section Scripts{
-            <script src="https://code.jquery.com/jquery-3.5.0.js"
-                    integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
-                    crossorigin="anonymous">
-            </script>
-            <script>
-                        //load data from server, using HTTP Post request
-                        var posts = $('.post');
-                        (function ($) {
-                            $("#menu-filters li").click(function () {
-                                $("#menu-filters li").removeClass('active btn btn-secondary');
-                                $(this).addClass('active btn btn-secondary');
-                                var selectedFilter = $(this).data("filter");
-                                $(".menu-restaurant").fadeOut();
-                                setTimeout(function () {
-                                    $(selectedFilter).slideDown();
-                                }, 100);
-                            });
-                        })(jQuery);
-            </script>
-        }
 
-        @*https://getbootstrap.com/docs/4.0/components/carousel/
-            https://www.w3schools.com/bootstrap/bootstrap_filters.asp*@
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.5.0.js"
+            integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        //load data from server, using HTTP Post request
+        var posts = $('.post');
+        (function ($) {
+            $("#menu-filters li").click(function () {
+                $("#menu-filters li").removeClass('active btn btn-secondary');
+                $(this).addClass('active btn btn-secondary');
+                var selectedFilter = $(this).data("filter");
+                $(".menu-restaurant").fadeOut();
+                setTimeout(function () {
+                    $(selectedFilter).slideDown();
+                }, 100);
+            });
+        })(jQuery);
+    </script>
+}
+
+@*https://getbootstrap.com/docs/4.0/components/carousel/
+    https://www.w3schools.com/bootstrap/bootstrap_filters.asp*@
 
 
