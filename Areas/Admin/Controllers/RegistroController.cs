@@ -61,7 +61,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             ViewBag.ListaRol = listaRol;
         }
 
-        [HttpGet]
         public IActionResult Create(string PersonaId)
         {
             cargarRol();
@@ -73,13 +72,16 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             ViewBag.Accion = "Create";
             return View();
         }
+
+        [HttpPost]
         private void BuscarPersona(string PersonaId)
         {
-            var busqueda = _db.Set<Persona>().OrderByDescending(e => e.CedulaPersona).Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
-            if (busqueda == null)
+            Persona oPersona = _db.Persona
+           .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+            if (oPersona != null)
             {
-                ViewBag.PersonaID = busqueda.CedulaPersona;
-                ViewBag.NombrePersona = busqueda.Nombre + " " + busqueda.Ape1;
+                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1;
 
             }
             else
@@ -87,26 +89,24 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                 ViewBag.Error = "Persona no registrada, intente de nuevo!";
             }
         }
-        //public IActionResult BuscarPersona(string PersonaId)
-        //{
-        //    Persona Busqueda = _db.Persona
-        //   .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
-        //    if (Busqueda!= null)
-        //    {
-        //        (from  _persona in _db.Persona 
-        //                    select new RegistroExternoVM
-        //                    {
-        //                        PersonaId = _persona.CedulaPersona,
-        //                        NombrePersona = _persona.Nombre + " " + _persona.Ape1 + " " + _persona.Ape2,
 
-        //                    }).ToList();
-        //        return View(Busqueda);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //}
+
+        public IActionResult ListarPersona(string PersonaId)
+        {
+            List<Persona> listaPersona = new List<Persona>();
+            listaPersona = (from persona in _db.Persona where persona. CedulaPersona ==PersonaId
+                            select new Persona
+                            {
+                                CedulaPersona = persona.CedulaPersona,
+                                Nombre = persona.Nombre,
+                                Ape1 = persona.Ape1,
+                                Ape2 = persona.Ape2,
+                                Email = persona.Email,
+                                FechaNac = persona.FechaNac,
+                                TelMovil = persona.TelMovil
+                            }).ToList();
+            return View(listaPersona);
+        }
 
 
         public async Task<IActionResult> Created(Usuario usuario)
