@@ -22,7 +22,7 @@ namespace SYGESTMunicipalSync.Filter
             var user = context.HttpContext.Session.GetString("UsuarioId");
             if (user == null)
             {
-                context.Result = new RedirectResult("/Login/Index");
+                context.Result = new RedirectResult("/Home/Home/Index");
             }
 
 

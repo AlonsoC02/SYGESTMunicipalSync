@@ -41,7 +41,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                             {
                                 UsuarioId = usuario.UsuarioId,
                                 NombreUsuario = usuario.NombreUsuario,
-                                Password = usuario.NombreUsuario,
+                                Password = usuario.Password,
                                 PersonaId = _Persona.CedulaPersona,
                                 NombrePersona = _Persona.Nombre +
                                           " " + _Persona.Ape1 +
@@ -94,24 +94,26 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             }
         }
 
-       
-        public IActionResult ListarPersona()
+
+        public IActionResult ListarPersona(string PersonaId)
         {
             List<Persona> listaPersona = new List<Persona>();
-
-            listaPersona = (from persona in _db.Persona 
+            listaPersona = (from persona in _db.Persona
                             select new Persona
-                                {
+                            {
                                 CedulaPersona = persona.CedulaPersona,
                                 Nombre = persona.Nombre,
-                                Ape1= persona.Ape1,
-                                Ape2= persona.Ape2,
+                                Ape1 = persona.Ape1,
+                                Ape2 = persona.Ape2,
                                 Email = persona.Email,
                                 FechaNac = persona.FechaNac,
                                 TelMovil = persona.TelMovil
                             }).ToList();
             return View(listaPersona);
         }
+
+        
+
 
         private void buscarUsuario(int Id)
         {
@@ -128,19 +130,15 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                               NombrePersona = _persona.Nombre + " " + _persona.Ape1+ " " + _persona.Ape2,
                               RolId = _usuario.RolId,
                               NombreRol = _rol.Nombre,
+                              Password = Utilitarios.DescifrarDatos(_usuario.Password)
                               
                           }).ToList();
         }
 
         public IActionResult Details(int id)
         {
-            cargarRol();
-            int recCount = _db.Usuario.Count(e => e.UsuarioId == id);
-            Usuario _usuario = (from u in _db.Usuario
-                                where u.UsuarioId == id
-                                select u).DefaultIfEmpty().Single();
-            _usuario.Password = Utilitarios.DescifrarDatos(_usuario.Password);
-            return View(_usuario);
+            buscarUsuario(id);
+            return View(listaUsuario);
         }
      
         public async Task<IActionResult> Created(Usuario usuario)
@@ -172,12 +170,69 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-
-        public IActionResult Login()
+        
+        public IActionResult Edit(int? Id)
         {
-            return View();
+            cargarRol();
+            Usuario _usuarios = (from u in _db.Usuario
+                           
+                            where u.UsuarioId == Id
+                            select u
+                           ).DefaultIfEmpty().Single();
+
+            _usuarios.Password = Utilitarios.DescifrarDatos(_usuarios.Password);
+
+            return View(_usuarios);
+        }
+        [HttpPost]
+        public IActionResult Edit(Usuario usuario)
+        {
+            string error = "";
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    cargarRol();
+                    return View(usuario);
+                }
+                else
+                {
+                    string password = Utilitarios.CifrarDatos(usuario.Password);
+                    Usuario _usuario = new Usuario();
+                    _usuario.UsuarioId = usuario.UsuarioId;
+                    _usuario.NombreUsuario = usuario.NombreUsuario;
+                    _usuario.PersonaId = usuario.PersonaId;
+                    _usuario.RolId = usuario.RolId;
+                    _usuario.Password = password;
+                   
+                    _db.Usuario.Update(_usuario);
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public IActionResult Delete(int UsuarioId)
+        {
+            var Error = "";
+            try
+            {
+                Usuario oUsuario = _db.Usuario
+                             .Where(e => e.UsuarioId == UsuarioId).First();
+                _db.Usuario.Remove(oUsuario);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
 
     }

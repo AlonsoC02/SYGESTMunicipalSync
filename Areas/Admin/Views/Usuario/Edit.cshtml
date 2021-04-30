@@ -1,0 +1,167 @@
+﻿@using SYGESTMunicipalSync.Areas.Admin.Models
+@model Usuario
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaRol;
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light" style="text-align:center;
+                              background-color:#dc3545;width:100%;">
+            Recuperar Usuario
+        </h3>
+    </div>
+</div>
+<br />
+
+<form asp-controller="Usuario" asp-action="Edit" id="viewEditar">
+    <div class="container-fluid">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Número Usuario Asignado: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="UsuarioId" readonly="readonly" class="form-control" />
+            </div>
+            <span asp-validation-for="UsuarioId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Nombre Usuario: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="NombreUsuario" class="form-control" required>
+            </div>
+            <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Cédula o Pasaporte: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="PersonaId" class="form-control" readonly="readonly" />
+            </div>
+
+        </div>
+
+        @*<div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Nombre Persona: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Persona" readonly="readonly" class="form-control" />
+            </div>
+        </div>*@
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Rol: <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="RolId" class="form-control"  id="Lista"
+                        asp-items="@Lista"></select>
+            </div>
+            <span asp-validation-for="RolId" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group row">
+
+            <div class=" col-md-2 text-right">
+                <label asp-for="Password">Password:</label>
+
+            </div>
+            <div class="col-md-6">
+                <input type="password" name="password" id="Password" onkeyup="checkPass();">
+            </div>
+            <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
+        </div>
+
+        <div class="form-group row">
+
+            <div class=" col-md-2 text-right">
+                <label for="confirm2">Confirm Password:</label>
+            </div>
+            <div class="col-md-6">
+                <input type="password" name="confirm" id="confirm2" onkeyup="checkPass();">
+            </div>
+            <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-md-3 text-md-right">
+                <input type="button" value="Modificar" id="btnAgregar"
+                       class="btn btn-info"
+                       onclick="abrirModal()" />
+            </div>
+
+            <div class="col-md-1 text-md-center">
+                <a asp-action="Index" type="button"
+                   class="btn btn-success">
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form asp-action="Edit" asp-controller="Usuario" method="post" id="viewEditar">
+    <input type="hidden" id="txtUsuarioId" name="CitaId" />
+</form>
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Modificar Usuario', '¿Realmente Desea modificar estos datos?').then((result) => {
+            if (result.value) {
+               /* alert("Si la confirmación de Contraseña es incorrecta, este usuario no se podrá guardar")*/
+
+                var viewAgregar = document.getElementById("viewEditar");
+                viewAgregar.submit();
+                Swal.fire(
+                    'El usuario fue modificado!',
+                    'exitosamente!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'El usuario no ha sido modificado!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
+<script type="text/javascript">
+    function checkPass() {
+
+        var password = document.getElementById('Password');
+        var confirm = document.getElementById('confirm2');
+
+        var message = document.getElementById('confirm-message2');
+
+        var good_color = "#66cc66";
+        var bad_color = "#ff6666";
+
+        if (password.value == confirm.value) {
+
+            confirm.style.backgroundColor = good_color;
+            message.style.color = good_color;
+            message.innerHTML = '<img src="/images/check.png" alt="Las Contraseñas Coinciden!">';
+        } else {
+            confirm.style.backgroundColor = bad_color;
+            message.style.color = bad_color;
+            message.innerHTML = '<img src="/images/boton-x.png" alt="Las Contraseñas No Coinciden!">';
+        }
+    }
+</script>

@@ -16,13 +16,12 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
         [Required(ErrorMessage = "Debe digitar la contraseña del usuario")]
         [Display(Name = "Contraseña:")]
-        [StringLength(12, ErrorMessage = "La clave debe contener almenos 6 caracteres.", MinimumLength = 6)]
+        //[StringLength(12, ErrorMessage = "La clave debe contener almenos 6 caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Display(Name = "Persona:")]
         public string PersonaId { get; set; }
-        [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public virtual Persona Persona { get; set; }
 
         [Display(Name = "Rol Id:")]
