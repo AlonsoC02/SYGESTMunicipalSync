@@ -173,7 +173,10 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
 
         }
 
-
+        public IActionResult Login()
+        {
+            return View();
+        }
 
 
 

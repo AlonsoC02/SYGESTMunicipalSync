@@ -116,7 +116,7 @@
 
                                 @* CRUD ROLES DE LOS USUARIOS EN PAGINAS *@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Roles en Páginas"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="RolUsuarioPag" asp-area="Admin">Roles en Páginas</a>
@@ -125,7 +125,7 @@
 
                                 @* CRUD PAGINAS CON ROLES EN LOS BOTONES *@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Gestión de Botones"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="RolUsuarioPagBoton" asp-area="Admin">Gestión de Botones</a>
@@ -147,7 +147,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Patentes"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="Home" asp-area="PATENTES">Oficina de Patentes</a>
@@ -155,14 +155,14 @@
                                 @*}*@
 
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Gestión Ambiental"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="Home" asp-area="OFGA">Oficina de Gestión Ambiental</a>
                                 </li>
                                 @*}*@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de la Mujer"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="Home" asp-area="OFIM">Oficina de la Mujer</a>
@@ -223,6 +223,11 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Home"
                            asp-controller="Home" asp-action="Privacy">Privacidad</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Admin"
+                           asp-controller="Usuario" asp-action="Login">Login</a>
                     </li>
 
                 </ul>

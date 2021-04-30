@@ -65,7 +65,7 @@
                     <ul class="navbar-nav m-auto">
 
                         @* LINK DE INICIO *@
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" asp-area=""
                                asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
@@ -88,7 +88,7 @@
                                 @* CRUD DE TIPOS CLASIFICACIÓN *@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
                                     @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Materiales"))
-                                        {*@
+                    {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-area="PATENTES"
                                            asp-controller="Establecimiento" asp-action="Create"> Establecimiento</a>
@@ -97,7 +97,7 @@
                                     @*}*@
                                     @* CRUD DE MATERIALES ADMITIDOS *@
                                     @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Materiales Admitidos"))
-                                        {*@
+                    {*@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-area="PATENTES" asp-controller="Home" asp-action="Index">Solicitud de Patentes</a>
                                     </li>
@@ -107,9 +107,24 @@
                                 </ul>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="PATENTES"
-                               asp-controller="Home" asp-action="Contacto">Contáctenos</a>
+                        <li class="nav-item dropdown text-white-50">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                               role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Información
+                            </a>
+
+
+
+                            <div class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+
+                                <a href="#inicio_Servicios" class="dropdown-item"> Pasos para solicitud de Patentes</a>
+
+                                <a href="#requerimientos" class="dropdown-item"> Requerimientos para hacer solicitud</a>
+
+                                <a href="#contacto_ubicacion" class="dropdown-item">Contacto y Ubicación</a>
+
+                            </div>
                         </li>
 
 

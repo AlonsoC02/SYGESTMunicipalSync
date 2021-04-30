@@ -19,63 +19,29 @@
             </div>
 
             <form asp-controller="Eje" asp-action="Index" method="post">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label>Listar por categorias:</label>
-                    </div>
-                    <div class="col-md-2 text-right">
-                        <input type="text" class="form-control" name="name" id="name"
-                               value="@ViewBag.Categoria" />
-                    </div>  <br />
-                    <div class="col-md-1 text-right">
-                        <input type="button" value="Buscar" class="btn btn-outline-success"
-                               onclick="Buscar()" />
-                    </div>  <br />
-                    <div class="col-md-1 text-right">
-                        <input type="button" value="Resetear" class="btn btn-outline-danger"
-                               onclick="Resetear()" />
-                    </div><br />
-
-                    <div class="col-md-1 text-right">
-                        <input type="button" value="Generar PDF" class="btn btn-outline-primary" onclick="ExportarPDF()" />
-                    </div>
-                    <div class="col-md-2 text-right">
-                        <input type="button" value="Generar Excel" class="btn btn-outline-secondary" onclick="ExportarExcel()" />
-                    </div>
-
-                </div>
                 <div class="col-md-12" style="color:black;"><hr /></div>
             </form>
-
             <div class="row contenedorBotones">
-
                 <div class="col-md-6 text-md-left">
-                    <a asp-controller="Home"
-                       asp-action="Index"
-                       asp-area="OFIM"
-                       class="btn btn-info fa fa fa-arrow-circle-left inicio">
-                        Regresar OFIM
+                    <a asp-controller="" asp-action="Index"
+                       class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                        Regresar al menú
                     </a>
                 </div>
-
                 <div class="col-md-6 text-md-right">
-                    <p>
-                        <a asp-action="Create" class="btn btn-info">
-                            <i class="fas fa-plus"></i>
-                            &nbsp; Crear Nuevo
-                        </a>
-                    </p>
+                    <a asp-action="Create" class="btn btn-info">
+                        <i class="fas fa-plus"></i>
+                        &nbsp; Crear Nuevo
+                    </a>
                 </div>
             </div>
             <div class="col-md-12 divisor"><hr></div>
-
             @if (Model.Count() > 0)
             {
                 <div class="contenedorTablas">
-                    <table class="table table-hover .table-responsive" id="tbDatos" name="tbDatos">
+                    <table class="table table-hover border .table-responsive" id="tbEje" name="tbEje">
                         <thead class="thead-dark">
                             <tr class="table-secondary" style="text-align:center;">
-
                                 <th>@Html.DisplayNameFor(m => m.Nombre)</th>
                                 <th>@Html.DisplayNameFor(m => m.Categoria)</th>
 
@@ -91,20 +57,19 @@
 
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
-                                            <a class="btn btn-primary text-white"
+                                            <a class="btn btn-warning text-white"
                                                asp-controller="Eje"
-                                               asp-action="Edit" asp-route-Id="@item.Id">
+                                               asp-action="Edit" asp-route-id="@item.Id">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-success text-white"
+                                            <a class="btn btn-primary text-white"
                                                asp-controller="Eje"
-                                               asp-action="Details" asp-route-Id="@item.Id">
+                                               asp-action="Details" asp-route-id="@item.Id">
                                                 <i class="fas fa-list-alt"></i>
                                             </a>
 
-                                            <i class="fa fa-trash btn btn-danger" aria-hidden="true"
+                                            <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
                                                onclick="EliminarEje(@item.Id)"></i>
-
                                         </div>
                                     </td>
                                 </tr>
@@ -124,18 +89,12 @@
                 <h3 style="color:red;">No existen Ejes registrados!...</h3>
             }
         </div>
-
         <form asp-action="Delete" asp-controller="Eje" method="post" id="viewEliminar">
-            <input type="hidden" id="txtEjeId" name="Id" />
+            <input type="hidden" id="txtId" name="Id" />
 
         </form>
         <form asp-action="Edit" asp-controller="Eje" method="post" id="viewEditar">
-            <input type="hidden" id="txtEjeId" name="Id" />
-        </form>
-
-        <form asp-action="exportar" target="_blank" asp-controller="Eje" asp-route-id="tbDatos"
-              method="post" id="viewExportarPDF">
-            <input type="hidden" id="txtBuscar" name="txtBuscar" />
+            <input type="hidden" id="txtId" name="Id" />
         </form>
     </main>
 </div>
@@ -147,7 +106,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#tbDatos').DataTable(
+        $('#tbEje').DataTable(
             {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
@@ -156,7 +115,7 @@
     })
 
     function EliminarEje(Id) {
-        document.getElementById("txtEjeId").value = Id;
+        document.getElementById("txtId").value = Id;
         verModal('Eliminar Eje',
             '¿Desea eliminar el eje '
             + Id + ' ?').then((result) => {
@@ -179,21 +138,4 @@
                 }
             })
     }
-
-    function Buscar() {
-        var name = document.getElementById("name").value;
-        var url = "/OFIM/Eje/BuscarEjeCategory/?nombreCategory=" + name;
-        var tbody = document.getElementById("tbDatos");
-        var campos = new Array("Id", "Name", "Category");
-        pintarPantallaConsulta(url, campos, tbody);
-    }
-    function ExportarPDF() {
-        var aux = document.getElementById("viewExportarPDF");
-        aux.submit();
-    }
-    function Resetear() {
-        document.getElementById("name").value = "";
-        Buscar();
-    }
-
 </script>
