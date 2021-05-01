@@ -49,13 +49,6 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                              on personaOFIM.SeguroId equals
                              seguro.SeguroId
 
-                             join discapacidad in _db.Discapacidades
-                             on personaOFIM.DiscapacidadId equals
-                             discapacidad.DiscapacidadId
-
-                             join padecimiento in _db.Padecimientos
-                             on personaOFIM.PadecimientoId equals
-                             padecimiento.PadecimientoId
 
                              join ingreso in _db.IngresoPersona
                              on personaOFIM.IngresoPersonaId equals
@@ -64,16 +57,16 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                              select new PerOFIMViewModel
                              {
                                  PersonaOFIMId = personaOFIM.PersonaOFIMId,
+                                 Padecimiento = personaOFIM.Discapacidad,
+                                 Discapacidad = personaOFIM.Padecimiento,
                                  PersonaId = persona.CedulaPersona,
-                                 Persona= persona.Nombre,
+                                 Persona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
                                  Ocupacion = ocupacion.Nombre,
-                                 Seguro= seguro.Nombre,
+                                 Seguro = seguro.Nombre,
                                  Nacionalidad = nacionalidad.Nombre,
                                  NivelAcademico = nivelAcademico.Nombre,
                                  EstadoCivil = estadoCivil.Nombre,
-                                 Padecimiento = padecimiento.Nombre,
-                                 Discapacidad = discapacidad.Nombre,
-                                 IngresoPersona = ingreso.IngresoMensual
+                               
 
                              }).ToList();
             ViewBag.Controlador = "PersonaOFIM";
@@ -150,6 +143,34 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ViewBag.ListaSeguro = listaSeguro;
         }
 
+        private void cargarPersona()
+        {
+            List<SelectListItem> listaPersona = new List<SelectListItem>();
+            listaPersona = (from persona in _db.Persona
+                            orderby persona.Nombre
+                            select new SelectListItem
+                            {
+                                Text = persona.Nombre + " " + persona.Ape1 + " " +persona.Ape2,
+                                Value = persona.CedulaPersona.ToString()
+                            }
+                                ).ToList();
+            ViewBag.ListaPersona = listaPersona;
+        }
+
+        private void cargarIngresoPersona()
+        {
+            List<SelectListItem> listaIngresoPersona = new List<SelectListItem>();
+            listaIngresoPersona = (from ingresoPersona in _db.IngresoPersona
+                           orderby ingresoPersona.IngresoMensual
+                           select new SelectListItem
+                           {
+                               Text = ingresoPersona.IngresoMensual.ToString(),
+                               Value = ingresoPersona.IngresoPersonaId.ToString()
+                           }
+                                ).ToList();
+            ViewBag.ListaIngresoPersona = listaIngresoPersona;
+        }
+
         public IActionResult Create()
         {
             cargarEstadoCivil();
@@ -157,6 +178,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             cargarNacionalidad();
             cargarNivelAcademico();
             cargarSeguro();
+            cargarIngresoPersona();
+            cargarPersona();
 
             return View();
         }
@@ -177,6 +200,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     cargarNacionalidad();
                     cargarNivelAcademico();
                     cargarSeguro();
+                    cargarIngresoPersona();
+                    cargarPersona();
                     return View(personaOFIM);
                 }
                 else
@@ -189,8 +214,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     _personaOFIM.NacionalidadId = personaOFIM.NacionalidadId;
                     _personaOFIM.NivelAcademicoId = personaOFIM.NivelAcademicoId;
                     _personaOFIM.EstadoCivilId = personaOFIM.EstadoCivilId;
-                    _personaOFIM.PadecimientoId = personaOFIM.PadecimientoId;
-                    _personaOFIM.DiscapacidadId = personaOFIM.DiscapacidadId;
+                    _personaOFIM.Padecimiento = personaOFIM.Padecimiento;
+                    _personaOFIM.Discapacidad = personaOFIM.Discapacidad;
                     _personaOFIM.IngresoPersonaId = personaOFIM.IngresoPersonaId;
 
                     
@@ -205,13 +230,15 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
             cargarEstadoCivil();
             cargarOcupacion();
             cargarNacionalidad();
             cargarNivelAcademico();
             cargarSeguro();
+            cargarIngresoPersona();
+            cargarPersona();
             int recCount = _db.PersonaOFIM.Count(e => e.PersonaOFIMId == id);
             PersonaOFIM _personaOFIM = (from p in _db.PersonaOFIM
                                         where p.PersonaOFIMId == id
@@ -231,6 +258,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     cargarNacionalidad();
                     cargarNivelAcademico();
                     cargarSeguro();
+                    cargarIngresoPersona();
+                    cargarPersona();
                     return View(personaOFIM);
                 }
                 else
@@ -253,42 +282,35 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             cargarNacionalidad();
             cargarNivelAcademico();
             cargarSeguro();
+            cargarIngresoPersona();
+            cargarPersona();
             PersonaOFIM personaOFIM = _db.PersonaOFIM
                        .Where(e => e.PersonaOFIMId == id).First();
             return View(personaOFIM);
         }
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
 
-            }
-            var personaOFIM = await _db.PersonaOFIM.FindAsync(id);
-            if (personaOFIM == null)
-            {
-                return NotFound();
 
-            }
-            return View(personaOFIM);
-        }
-        //POST - DELETE    //si se realiza una operacion es un POST
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        //DELETE
+        [HttpPost]
+        public IActionResult Delete(int? PersonaOFIMId)
         {
-            var personaOFIM = await _db.PersonaOFIM.FindAsync(id);
-            if (personaOFIM == null)
+            var Error = "";
+            try
             {
-                return View();
+                PersonaOFIM oPersonaOFIM = _db.PersonaOFIM
+                             .Where(e => e.PersonaOFIMId == PersonaOFIMId).First();
+                _db.PersonaOFIM.Remove(oPersonaOFIM);
+                _db.SaveChanges();
             }
-            _db.PersonaOFIM.Remove(personaOFIM);
-            await _db.SaveChangesAsync();
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
             return RedirectToAction(nameof(Index));
         }
+    }
+}
        
 
 
 
-    }
-}

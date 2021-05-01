@@ -1,14 +1,11 @@
-﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Empresa
+﻿
+@model SYGESTMunicipalSync.Areas.OFIM.Models.Empresa
 
-@{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+@{ ViewData["Title"] = "Edit";
+                Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
 
-    List<SelectListItem> Lista = ViewBag.ListaPersona;
-    List<SelectListItem> Lista1 = ViewBag.ListaCatProductoServicio;
-
-
-}
+                List<SelectListItem> Lista = ViewBag.ListaPersona;
+                List<SelectListItem> Lista1 = ViewBag.ListaCatProductoServicio; }
 
 <main id="main">
 
@@ -25,7 +22,7 @@
 
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="Empresa" asp-action="Index">Editar Empresa</a></li>
+                <li><a asp-area="OFGA" asp-controller="Empresa" asp-action="Edit">Editar Empresa</a></li>
                 <li>Empresa</li>
             </ol>
         </div>
@@ -43,7 +40,7 @@
         <div class="row backgroundWhiteBorder">
             @*<div class="col-md-4 border align-self-baseline">
                     @{
-                        var base64 = Convert.ToBase64String(Model.Empresa.Logo);
+                        var base64 = Convert.ToBase64String(Model.Logo);
                         var imgsrc = string.Format("data:image/jpg;base64, {0}", base64);
                     }
                     <img src="@imgsrc" style="height: 100%; width:110%" />
@@ -136,17 +133,17 @@
                 </div>
 
                 <div class="form-group row">
-            <div class="col-md-3 text-right">
-                <h5><label asp-for="Logo" class="custom-label"></label></h5>
-            </div>
-            <div class="col-md-7">
-                <input type="file" id="projectImage" name="files"
-                       multiple class="form-control" />
-            </div>
-        </div>
+                    <div class="col-md-3 text-right">
+                        <h5><label asp-for="Logo" class="custom-label"></label></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="file" id="projectImage" name="files"
+                               multiple class="form-control" />
+                    </div>
+                </div>
 
                 <div class=" form-group row">
-                    <div class=" col-md-3">
+                    <div class=" col-md-3 text-right">
                         <h5><label asp-for="Persona" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
@@ -157,7 +154,7 @@
                 </div>
 
                 <div class=" form-group row">
-                    <div class=" col-md-3">
+                    <div class=" col-md-3 text-right">
                         <h5><label asp-for="CatProductoServicioId" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
@@ -182,7 +179,7 @@
 
                     <div class="col-md-5 text-md-right">
                         <input type="button" value="Editar" id="btnEditar"
-                               class="btn btn-info" 
+                               class="btn btn-info"
                                onclick="abrirModal()" />
                     </div>
 
