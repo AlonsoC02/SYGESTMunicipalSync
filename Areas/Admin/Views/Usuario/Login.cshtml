@@ -1,0 +1,51 @@
+﻿@model SYGESTMunicipalSync.Areas.Admin.Models.ViewModel.RegistroExternoVM
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div class="page-header header-filter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+                <div class="card card-login">
+                    <br />
+                    <form class="form" id="account" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">Login</h4>
+                        </div>
+                        <p class="description text-center">¡Primero debes Registrarte!</p>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">mail</i>
+                                    </span>
+                                </div>
+                                <input asp-for="NombreUsuario" class="form-control" placeholder="Email..." />
+                                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                </div>
+                                <input asp-for="Password" class="form-control" placeholder="Contraseña...">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="footer text-center">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

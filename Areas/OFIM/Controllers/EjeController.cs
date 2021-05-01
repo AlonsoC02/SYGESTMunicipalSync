@@ -166,13 +166,6 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return View(modelVM);
         }
 
-        //GET - DELETE
-
-
-
-
-
-
         //GET - DETAILS
         public async Task<IActionResult> Details(int? Id)
         {
@@ -194,34 +187,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return View(model);
         }
 
-
-        public IActionResult Delete(int Id)
-        {
-            if (ModelState.IsValid)
-            {
-                var EjeExist = _db.Actividad.Include(s => s.Eje).Where(s => s.EjeId == Id
-                                  && s.EjeId == Id);
-
-
-                if (EjeExist.Count() > 0)
-                {
-                    StatusMessage = "Error: Este Eje está siendo usado por la actividad " + EjeExist.First().Id +
-                            " Primero debe editar o eliminar la actividad para poder eliminar este eje";
-                }
-                else
-                {
-                    Eje oEje = _db.Eje.Where(e => e.Id == Id).First();
-                    _db.Eje.Remove(oEje);
-                    _db.SaveChanges();
-                    StatusMessage = StatusMessage;
-                }
-            }
-
-            return RedirectToAction(nameof(Index));
-        }
-
-
-        [ActionName("GetEjes")]
+           [ActionName("GetEjes")]
         public async Task<IActionResult> GetEjes(int id)
         {
             List<Eje> ejes = new List<Eje>();
@@ -231,15 +197,23 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return Json(new SelectList(ejes, "Id", "Nombre"));
         }
 
-        //public FileResult exportar()
-        //{
-        //    Utilitarios util = new Utilitarios();
-        //    string[] cabeceras = { "Id Eje", "Nombre", "Category" };
-        //    string[] nombrePropiedades = { "Id", "Name", "Category" };
-        //    string titulo = "Reporte de Ejes";
-        //    byte[] buffer = util.ExportarPDFDatos(nombrePropiedades, lista, titulo);
-        //    return File(buffer, "application/pdf");
-        //}
-
+        //DELETE
+        [HttpPost]
+        public IActionResult Delete(int? Id)
+        {
+            var Error = "";
+            try
+            {
+                Eje oEje = _db.Eje
+                             .Where(e => e.Id == Id).First();
+                _db.Eje.Remove(oEje);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

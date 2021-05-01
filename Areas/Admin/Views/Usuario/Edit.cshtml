@@ -1,67 +1,80 @@
-﻿@model SYGESTMunicipalSync.Areas.Admin.Models.ViewModel.RegistroExternoVM
+﻿@using SYGESTMunicipalSync.Areas.Admin.Models
+@model Usuario
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaRol;
+}
 
-@{ ViewData["Title"] = "Create";
-                Layout = "~/Views/Shared/_Layout.cshtml"; }
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <h3 class="text-light" style="text-align:center; background-color:darkslategray;width:100%;">
-            Agregar Usuario
+        <h3 class="text-light" style="text-align:center;
+           background-color:darkslategray;width:100%;">
+            Recuperar Usuario
         </h3>
     </div>
 </div>
 <br />
 
-<form asp-controller="Usuario" asp-action="Created" id="viewAgregar">
+<form asp-controller="Usuario" asp-action="Edit" id="viewEditar">
     <div class="container-fluid">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group row">
-                <div class=" col-md-2 text-right">
-                    <label>Número de cédula de la persona a buscar: <span class="required">*</span></label>
-                </div>
-                <div class="col-md-6">
-                    <input asp-for="PersonaId" 
-                           class="form-control"  />
-                </div>
-                <div class="col-md-4">
-                    <a class="fas fa-search btn btn-info" aria-hidden="true" style="width:60%; margin-left:5%;"
-                       asp-area="Admin" asp-controller="Usuario" asp-route-Id="PersonaId" asp-action="ListarPersona"></a>
-                </div>
+            <div class=" col-md-2 text-right">
+                <label>Número Usuario Asignado: </label>
             </div>
-
-        
-
-        <div class="col-md-4">
-            @if (ViewBag.Error != "")
-            {
-<p class="text-danger">@ViewBag.Error</p>}
+            <div class="col-md-6">
+                <input asp-for="UsuarioId" readonly="readonly" class="form-control" />
+            </div>
+            <span asp-validation-for="UsuarioId" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
             <div class=" col-md-2 text-right">
-                <label>Nombre Persona </label>
+                <label>Nombre Usuario: </label>
             </div>
             <div class="col-md-6">
-                <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
-                       readonly="readonly" class="form-control" />
-            </div>
-
-        </div>
-
-        <div class="form-group row">
-            <div class=" col-md-2 text-right">
-                <label>Nombre Usuario: <span class="required">*</span></label>
-            </div>
-            <div class="col-md-6">
-                <input asp-for="NombreUsuario" class="form-control" placeholder="Digite el nombre" required>
+                <input asp-for="NombreUsuario" class="form-control" required>
             </div>
             <span asp-validation-for="NombreUsuario" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Cédula o Pasaporte: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="PersonaId" class="form-control" readonly="readonly" />
+            </div>
+
+        </div>
+
+        @*<div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Nombre Persona: </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="Persona" readonly="readonly" class="form-control" />
+            </div>
+        </div>*@
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Rol: <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <select asp-for="RolId" class="form-control"  id="Lista"
+                        asp-items="@Lista"></select>
+            </div>
+            <span asp-validation-for="RolId" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group row">
 
             <div class=" col-md-2 text-right">
-                <label asp-for="Password">Password:<span class="required">*</span></label>
+                <label asp-for="Password">Password:</label>
 
             </div>
             <div class="col-md-6">
@@ -73,7 +86,7 @@
         <div class="form-group row">
 
             <div class=" col-md-2 text-right">
-                <label for="confirm2">Confirm Password:<span class="required">*</span></label>
+                <label for="confirm2">Confirm Password:</label>
             </div>
             <div class="col-md-6">
                 <input type="password" name="confirm" id="confirm2" onkeyup="checkPass();">
@@ -82,48 +95,41 @@
         </div>
 
 
-
-        <div class="form-group row">
-            <div class=" col-md-2 text-right">
-                <label>Rol: <span class="required">*</span></label>
-            </div>
-            <div class="col-md-6">
-                <select asp-for="RolId" class="form-control"
-                        asp-items="@ViewBag.ListaRol"></select>
-            </div>
-            <span asp-validation-for="RolId" class="text-danger"></span>
-        </div>
-
         <div class="form-group row">
 
             <div class="col-md-3 text-md-right">
-                <a asp-action="Index" type="button" style="color:white"
+                <a asp-action="Index" type="button"
                    class="btn btn-success fa fa fa-arrow-circle-left inicio">
                     Regresar
                 </a>
             </div>
+
             <div class="col-md-1 text-md-center">
-                <input type="button" value="Agregar" id="btnAgregar"
+                <input type="button" value="Modificar" id="btnAgregar"
                        class="btn btn-info"
                        onclick="abrirModal()" />
             </div>
+
         </div>
     </div>
 </form>
 
+<form asp-action="Edit" asp-controller="Usuario" method="post" id="viewEditar">
+    <input type="hidden" id="txtUsuarioId" name="CitaId" />
+</form>
 
 <script src="~/js/sweetalert2.js"></script>
 <script src="~/js/Utilitarios.js"></script>
 <script>
     function abrirModal() {
-        verModal('Agregar Usuario', '¿Realmente Desea Agregar estos datos?').then((result) => {
+        verModal('Modificar Usuario', '¿Realmente Desea modificar estos datos?').then((result) => {
             if (result.value) {
-                /* alert("Si la confirmación de Contraseña es incorrecta, este usuario no se podrá guardar")*/
+               /* alert("Si la confirmación de Contraseña es incorrecta, este usuario no se podrá guardar")*/
 
-                var viewAgregar = document.getElementById("viewAgregar");
+                var viewAgregar = document.getElementById("viewEditar");
                 viewAgregar.submit();
                 Swal.fire(
-                    'El usuario fue agregado!',
+                    'El usuario fue modificado!',
                     'exitosamente!.',
                     'success'
                 )
@@ -131,7 +137,7 @@
             else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal.fire(
                     'Cancelado',
-                    'El usuario no ha sido agregado!!!:)',
+                    'El usuario no ha sido modificado!!!:)',
                     'error'
                 )
             }

@@ -13,9 +13,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
         [Display(Name = "Usuario Id:")]
         public int UsuarioId { get; set; }
 
-        [Required(ErrorMessage = "Debe digitar el ID de la Persona")]
         [Display(Name = "Cédula o Pasaporte:")]
-        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string PersonaId { get; set; }
         
         [Display(Name = "Nombre Persona:")]
@@ -32,13 +30,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
 
         [Required(ErrorMessage = "Debe digitar la contraseña del usuario")]
         [Display(Name = "Contraseña:")]
-        [StringLength(12, ErrorMessage = "La clave debe contener almenos 6 caracteres.", MinimumLength = 6)]
+        //[StringLength(12, ErrorMessage = "La clave debe contener almenos 6 caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-
-
-        public int SelectedOption { get; set; }
-        public IEnumerable<SelectListItem> Lista { get; set; }
+        //public int SelectedOption { get; set; }
+        //public IEnumerable<SelectListItem> Lista { get; set; }
     }
 }

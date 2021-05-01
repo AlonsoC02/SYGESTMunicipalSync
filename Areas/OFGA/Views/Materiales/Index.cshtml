@@ -12,28 +12,30 @@
         </h3>
     </div>
 </div>
-
+<br />
+<br />
 <div class="container">
     <main class="pb-3" role="main">
-        <div class="<border backgroundWhite">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 col-lg-12">
                     <h2 class="text-dark">Lista Materiales</h2>
                 </div>
             </div>
+            <br />
             <form asp-controller="Materiales" asp-action="Index" method="post" id="frmFilter">
                 <div class="col-md-12" style="color:black;"><hr /></div>
             </form>
             <div class="row contenedorBotones">
-                <div class="col-md-6 text-md-left">
-                    <a asp-controller="" asp-action="Index" class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                <div class="col-md-6 text-md-left"> 
+                    <a asp-controller="" asp-action="Index" class="btn btn-success fa fa-arrow-circle-left text-white">
                         Regresar al menú
                     </a>
                 </div>
+
                 <div class="col-md-6 text-md-right">
-                    <a asp-action="Create" class="btn btn-info">
-                        <i class="fas fa-plus"></i>
-                        &nbsp; Crear Nuevo
+                    <a asp-action="Create" class="btn btn-info fa fa-plus-circle">
+                       Crear Nuevo
                     </a>
                 </div>
             </div>
@@ -45,13 +47,15 @@
                     <table class="table table-hover border .table-responsive" id="TbMateriales">
                         <thead class="thead-dark">
                             <tr class="table-secondary" style="text-align:center;">
-                                <th>@Html.DisplayNameFor(m => m.MaterialId)</th>
-                                <th>@Html.DisplayNameFor(m => m.Nombre)</th>
-                                <th>@Html.DisplayNameFor(m => m.Clasificacion)</th>
-                                @*<th>@Html.DisplayNameFor(m => m.Direccion)</th>
-                            <th>@Html.DisplayNameFor(m => m.TelefonoFijo)</th>
-                            <th>@Html.DisplayNameFor(m => m.TelefonoCelular)</th>
-                            <th>@Html.DisplayNameFor(m => m.Especialidad)</th>*@
+                                <th>
+                                @Html.DisplayNameFor(m => m.MaterialId)
+                                </th>
+                                <th>
+                                @Html.DisplayNameFor(m => m.Nombre)
+                                </th>
+                                <th>
+                                @Html.DisplayNameFor(m => m.Clasificacion)
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -59,13 +63,15 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@Html.DisplayFor(m => item.MaterialId)</td>
-                                    <td>@Html.DisplayFor(m => item.Nombre)</td>
-                                    <td>@Html.DisplayFor(m => item.Clasificacion)</td>
-                                    @*<td>@Html.DisplayFor(m => item.Direccion)</td>
-                                <td>@Html.DisplayFor(m => item.TelefonoFijo)</td>
-                                <td>@Html.DisplayFor(m => item.TelefonoCelular)</td>
-                                <td>@Html.DisplayFor(m => item.Especialidad)</td>*@
+                                    <td>
+                                         @Html.DisplayFor(m => item.MaterialId)
+                                    </td>
+                                    <td>
+                                         @Html.DisplayFor(m => item.Nombre)
+                                    </td>
+                                    <td>
+                                         @Html.DisplayFor(m => item.Clasificacion)
+                                    </td>
 
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
@@ -102,12 +108,12 @@
                 <h3 style="color:red;">No existen Materiales registrados!...</h3>
             }
         </div>
-        <form asp-action="Delete" asp-controller="Materiales" method="post" id="viewEliminar">
-            <input type="hidden" id="txtMaterialId" name="MaterialId" />
-        </form>
-        <form asp-action="Edit" asp-controller="Materiales" method="post" id="viewEditar">
-            <input type="hidden" id="txtMaterialId" name="MaterialId" />
-        </form>
+            <form asp-action="Delete" asp-controller="Materiales" method="post" id="viewEliminar">
+                <input type="hidden" id="txtMaterialId" name="MaterialId" />
+            </form>
+            <form asp-action="Edit" asp-controller="Materiales" method="post" id="viewEditar">
+                <input type="hidden" id="txtMaterialId" name="MaterialId" />
+            </form>
     </main>
 </div>
 
