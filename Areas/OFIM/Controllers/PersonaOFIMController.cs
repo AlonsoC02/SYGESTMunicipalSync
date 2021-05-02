@@ -290,17 +290,28 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         }
 
 
-        //DELETE
-        [HttpPost]
-        public IActionResult Delete(int? PersonaOFIMId)
+        public IActionResult Delete(int Id)
         {
-            var Error = "";
+            cargarPersona();
+
+
+            PersonaOFIM oPersonaOFIM = _db.PersonaOFIM
+                 .Where(m => m.PersonaOFIMId == Id).First();
+            return View(oPersonaOFIM);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult Deleted(int PersonaOFIMId)
+        {
+            string Error = "";
             try
             {
                 PersonaOFIM oPersonaOFIM = _db.PersonaOFIM
-                             .Where(e => e.PersonaOFIMId == PersonaOFIMId).First();
-                _db.PersonaOFIM.Remove(oPersonaOFIM);
-                _db.SaveChanges();
+                     .Where(c => c.PersonaOFIMId == PersonaOFIMId).First();
+                if (oPersonaOFIM != null)
+                {
+                    _db.PersonaOFIM.Remove(oPersonaOFIM);
+                    _db.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
