@@ -1,0 +1,297 @@
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Consulta
+@using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaPersona;
+    List<SelectListItem> Lista1 = ViewBag.ListaTipoConsulta;
+    List<SelectListItem> Lista2 = ViewBag.ListaNacionalidad;
+    List<SelectListItem> Lista3 = ViewBag.ListaIngresoPersona;
+    List<SelectListItem> Lista4 = ViewBag.ListaSeguro;
+    List<SelectListItem> Lista5 = ViewBag.ListaEstadoCivil;
+    List<SelectListItem> Lista6 = ViewBag.ListaNivelAcademico;
+    List<SelectListItem> Lista7 = ViewBag.ListaOcupacion;
+    ;
+
+
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Registrar Consulta
+        </h3>
+    </div>
+</div>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <h2 class="text-info">Nuevo Registro</h2>
+            <br>
+            <form method="post" asp-action="Create" id="viewAgregar">
+                <div class="backgroundWhite">
+                    <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="PersonaId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="PersonaId" class="form-control" required
+                                    asp-items="@Lista"></select>
+                        </div>
+                        <span asp-validation-for="PersonaId" class=" text-danger"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Motivo" class="col-form-label"></label>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.Motivo, new { rows = "3", cols = "56", @class = "text-area" })
+                        </div>
+                        <span asp-validation-for="Motivo" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Fecha" class="col-form-label"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="date" asp-for="Fecha" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label>Hora Atención:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p id="timepicker">
+                                <input asp-for="HoraInicio" type="text" class="time start" /> a
+                                <input asp-for="HoraFin" type="text" class="time end" />
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Descripcion" class="col-form-label"></label>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.Descripcion, new { rows = "3", cols = "56", @class = "text-area" })
+                        </div>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Respuesta" class="col-form-label"></label>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.Respuesta, new { rows = "3", cols = "56", @class = "text-area" })
+                        </div>
+                        <span asp-validation-for="Respuesta" class="text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="TipoConsultaId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="TipoConsultaId" class="form-control" required
+                                    asp-items="@Lista1"></select>
+                        </div>
+                        <span asp-validation-for="TipoConsultaId" class=" text-danger"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Remitir" class="col-form-label"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" asp-for="Remitir" class="form-control" />
+                        </div>
+                    </div>
+
+
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="OcupacionId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="OcupacionId" class="form-control" required
+                                    asp-items="@Lista7"></select>
+                        </div>
+                        <span asp-validation-for="OcupacionId" class=" text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="NacionalidadId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="NacionalidadId" class="form-control" required
+                                    asp-items="@Lista2"></select>
+                        </div>
+                        <span asp-validation-for="NacionalidadId" class=" text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="IngresoPersonaId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="IngresoPersonaId" class="form-control" required
+                                    asp-items="@Lista3"></select>
+                        </div>
+                        <span asp-validation-for="IngresoPersonaId" class=" text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="SeguroId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="SeguroId" class="form-control" required
+                                    asp-items="@Lista4"></select>
+                        </div>
+                        <span asp-validation-for="SeguroId" class=" text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="EstadoCivilId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="EstadoCivilId" class="form-control" required
+                                    asp-items="@Lista5"></select>
+                        </div>
+                        <span asp-validation-for="EstadoCivilId" class=" text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="NivelAcademicoId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="NivelAcademicoId" class="form-control" required
+                                    asp-items="@Lista6"></select>
+                        </div>
+                        <span asp-validation-for="NivelAcademicoId" class=" text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Discapacidad" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-9">
+                            <input asp-for="Discapacidad" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Discapacidad" class=" text-danger"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <h5><label asp-for="Padecimiento" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea asp-for="Padecimiento" rows="4" cols="50" class="form-control"> </textarea>
+                        </div>
+                        <span asp-validation-for="Padecimiento" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="form-group row">
+
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button" style="color:white"
+                               class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                                Regresar
+                            </a>
+                        </div>
+                        <div class="col-md-1 text-md-center">
+                            <input type="button" value="Agregar" id="btnAgregar"
+                                   class="btn btn-info"
+                                   onclick="abrirModal()" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.js"></script>
+    <script src="https://www.jonthornton.com/jquery-timepicker/jquery.timepicker.css"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="~/js/Datepair.js"></script>
+    <script src="~/js/datepair.min.js"></script>
+    <script src="~/js/jquery.datepair.js"></script>
+    <script src="~/js/jquery.datepair.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/jquery.timepicker.js"></script>
+    <script src="~/js/jquery.timepicker.min.js"></script>
+
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+
+    <script>
+
+        $(function () {
+            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+            $("#datepicker").datepicker({ minDate: 0, maxDate: "+1W" });
+            //$("#timepicker").timepicker({ minTime: '11:00 AM', maxTime: '9:00 PM', step: '30' })
+            $('#timepicker .time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'g:ia'
+            });
+            $('#timepicker .time').timepicker({
+                'minTime': '7:30 AM',
+                'maxTime': '5:00 PM',
+                'step': '30'
+            });
+
+            var timepickerEl = document.getElementById('timepicker');
+            var timeOnlyDatepair = new Datepair(timepickerEl);
+
+        });
+    </script>
+
+</div>
+
+
+
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Agregar consulta', '¿Realmente desea agregar este registro de consulta?').then((result) => {
+            if (result.value) {
+                var viewAgregar = document.getElementById("viewAgregar");
+                viewAgregar.submit();
+                Swal.fire(
+                    'El registro de consulta fue agregado!',
+                    'exitosamente!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'El registro de consulta no ha sido agregado!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>

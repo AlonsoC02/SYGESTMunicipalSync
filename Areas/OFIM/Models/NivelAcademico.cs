@@ -17,10 +17,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public string Nombre { get; set; }
 
 
-        public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
+        public virtual ICollection<Consulta> Consulta { get; set; }
         public NivelAcademico()
         {
-            PersonaOFIM = new HashSet<PersonaOFIM>();
+            Consulta = new HashSet<Consulta>();
         }
     }
 }
