@@ -13,9 +13,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult Prueba()
-        {
-            return View();
-        }
+        
     }
 }
