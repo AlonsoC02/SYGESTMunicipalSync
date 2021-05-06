@@ -73,5 +73,15 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         {
             return View();
         }
+
+        public IActionResult Capacitacion()
+        {
+            return View();
+        }
+
+        public IActionResult AseoVias()
+        {
+            return View();
+        }
     }
 }
