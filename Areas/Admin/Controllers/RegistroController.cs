@@ -66,49 +66,27 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             cargarRol();
             if (PersonaId != null)
             {
-                BuscarPersona(PersonaId);
+                Buscar(PersonaId);
             }
             ViewBag.Controlador = "Usuario";
             ViewBag.Accion = "Create";
             return View();
         }
-
-        [HttpPost]
-        private void BuscarPersona(string PersonaId)
+        
+        private void Buscar(string PersonaId)
         {
             Persona oPersona = _db.Persona
-           .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
                 ViewBag.PersonaID = oPersona.CedulaPersona;
                 ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1;
-
             }
             else
             {
                 ViewBag.Error = "Persona no registrada, intente de nuevo!";
             }
         }
-
-
-        public IActionResult ListarPersona(string PersonaId)
-        {
-            List<Persona> listaPersona = new List<Persona>();
-            listaPersona = (from persona in _db.Persona where persona. CedulaPersona ==PersonaId
-                            select new Persona
-                            {
-                                CedulaPersona = persona.CedulaPersona,
-                                Nombre = persona.Nombre,
-                                Ape1 = persona.Ape1,
-                                Ape2 = persona.Ape2,
-                                Email = persona.Email,
-                                FechaNac = persona.FechaNac,
-                                TelMovil = persona.TelMovil
-                            }).ToList();
-            return View(listaPersona);
-        }
-
-
         public async Task<IActionResult> Created(Usuario usuario)
         {
             string Error = "";
@@ -122,6 +100,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                 {
                     string password = Utilitarios.CifrarDatos(usuario.Password);
                     Usuario _usuario = new Usuario();
+                    
                     _usuario.NombreUsuario = usuario.NombreUsuario;
                     _usuario.Password = password;
                     _usuario.PersonaId = usuario.PersonaId;
@@ -134,8 +113,31 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             {
                 Error = ex.Message;
             }
+            return RedirectToAction(nameof(Create));
+        }
+
+
+
+
+
+        [HttpPost]
+        public IActionResult Delete(int UsuarioId)
+        {
+            var Error = "";
+            try
+            {
+                Usuario oUsuario = _db.Usuario
+                             .Where(e => e.UsuarioId == UsuarioId).First();
+                _db.Usuario.Remove(oUsuario);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
             return RedirectToAction(nameof(Index));
         }
+
 
     }
 }

@@ -33,6 +33,7 @@ namespace SYGESTMunicipalSync.Controllers
         {
             return View();
         }
+       
 
         public IActionResult PreguntasFrecuentes()
         {
