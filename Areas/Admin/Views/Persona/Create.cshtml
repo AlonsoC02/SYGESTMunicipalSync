@@ -1,148 +1,179 @@
-﻿@model SYGESTMunicipalSync.Areas.Admin.Models.Persona
+﻿@model SYGESTMunicipalSync.Areas.Admin.Models.ViewModel.PersonaViewModel
 @using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
+@using SYGESTMunicipalSync.Extensions
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<SelectListItem> Lista = ViewBag.ListaDistrito;
-    List<SelectListItem> Lista1 = ViewBag.ListaCanton;
-    List<SelectListItem> Lista2 = ViewBag.ListaProvincia;
+
 
 }
-   <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <h3 class="text-light" style="text-align:center; background-color:#263182;width:100%;">
-                Registrar Persona
-            </h3>
-        </div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light" style="text-align:center; background-color:#263182;width:100%;">
+            Registrar Persona
+        </h3>
     </div>
-    <br />
+</div>
+<br />
 
-    <form asp-controller="Persona" asp-action="Create" method="post" id="viewAgregar">
-        <div class="container-fluid">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-controller="Persona" asp-action="Create" method="post" id="viewAgregar" enctype="multipart/form-data">
+    <div class="container-fluid">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
-                    <label>Cédula o Pasaporte: <span class="required">*</span></label>
-                </div>
-                <div class="col-md-6">
-                    <input asp-for="CedulaPersona" class="form-control" placeholder="Digite la cédula o pasaporte aquí" required>
-                </div>
-                <span asp-validation-for="CedulaPersona" class="text-danger"></span>
-                @if (Model != null && ViewBag.Error != "")
-                {
-                    <p class="text-danger">@ViewBag.Error</p>
-                }
+        <div class="form-group row">
+            <div class=" col-md-6 text-right">
+                <label>Cédula/Pasaporte: <span class="required">*</span></label>
             </div>
-            <div class="col-md-6">
-                @if (ViewBag.Error != "")
-                {
-                    <p class="text-danger">@ViewBag.Error</p>
-                }
+            <div class="row-cols-md-6">
+                <input asp-for="Persona.CedulaPersona" class="form-control" placeholder="Digite la cédula o pasaporte aquí" required>
             </div>
+            <span asp-validation-for="Persona.CedulaPersona" class="text-danger"></span>
+            @if (Model != null && ViewBag.Error != "")
+            {
+                <p class="text-danger">@ViewBag.Error</p>
+            }
+        </div>
+        <div class="col-md-6">
+            @if (ViewBag.Error != "")
+            {
+                <p class="text-danger">@ViewBag.Error</p>
+            }
+        </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+        <div class="form-group row col-md-12">
+            <div class="form-group row col-md-5">
+                <div class=" col-md-4 text-right">
                     <label>Nombre: <span class="required">*</span></label>
                 </div>
-                <div class="col-md-6">
-                    <input asp-for="Nombre" class="form-control" placeholder="Digite el nombre" required>
+                <div class="col-md-8">
+                    <input asp-for="Persona.Nombre" class="form-control" placeholder="Digite el nombre" required>
                 </div>
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+                <span asp-validation-for="Persona.Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+            <div class="form-group row col-md-5">
+                <div class=" col-md-4 text-right">
                     <label>Primer Apellido: <span class="required">*</span></label>
                 </div>
-                <div class="col-md-6">
-                    <input asp-for="Ape1" class="form-control" placeholder="Digite el primer apellido" required>
+                <div class="col-md-8">
+                    <input asp-for="Persona.Ape1" class="form-control" placeholder="Digite el primer apellido" required>
                 </div>
-                <span asp-validation-for="Ape1" class="text-danger"></span>
+                <span asp-validation-for="Persona.Ape1" class="text-danger"></span>
             </div>
+        </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+        <div class="form-group row col-md-12">
+            <div class="form-group row col-md-5">
+                <div class=" col-md-4 text-right">
                     <label>Segundo Apellido: <span class="required">*</span></label>
                 </div>
-                <div class="col-md-6">
-                    <input asp-for="Ape2" class="form-control" placeholder="Digite el segundo apellido" required>
+                <div class="col-md-8">
+                    <input asp-for="Persona.Ape2" class="form-control" placeholder="Digite el segundo apellido" required>
                 </div>
-                <span asp-validation-for="Ape2" class="text-danger"></span>
+                <span asp-validation-for="Persona.Ape2" class="text-danger"></span>
             </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+            <div class="form-group row col-md-5">
+                <div class=" col-md-4 text-right">
                     <label>Fecha Nacimiento: <span class="required">*</span></label>
                 </div>
-                <div class="col-md-6">
-                    <input type="date" asp-for="FechaNac" class="form-control" placeholder="Seleccione la fecha de Nacimiento" required>
+                <div class="col-md-8">
+                    <input type="date" asp-for="Persona.FechaNac" class="form-control" placeholder="Seleccione la fecha de Nacimiento" required>
                 </div>
-                <span asp-validation-for="FechaNac" class="text-danger"></span>
+                <span asp-validation-for="Persona.FechaNac" class="text-danger"></span>
             </div>
+        </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+        <div class="form-group row col-md-12">
+            <div class="form-group row col-md-5">
+                <div class=" col-md-4 text-right">
                     <label>Correo Electrónico:</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="Email" class="form-control" placeholder="Digite el correo electrónico">
+                    <input asp-for="Persona.Email" class="form-control" placeholder="Digite el correo electrónico">
                 </div>
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <span asp-validation-for="Persona.Email" class="text-danger"></span>
             </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+            <div class="form-group row col-md-5">
+                <div class=" col-md-4 text-right">
                     <label>Sexo: <span class="required">*</span></label>
                 </div>
-                <div class="col-md-6">
-                    <select id="Sexo" asp-for="Sexo" class="form-control" placeholder="Seleccione su sexo" required>
+                <div class="col-md-8">
+                    <select id="Sexo" asp-for="Persona.Sexo" class="form-control" placeholder="Seleccione su sexo" required>
                         <option>H</option>
                         <option>M</option>
                     </select>
                 </div>
-                <span asp-validation-for="Sexo" class="text-danger"></span>
+                <span asp-validation-for="Persona.Sexo" class="text-danger"></span>
             </div>
+        </div>
 
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+        <div class="form-group row col-md-12">
+            <div class="form-group row row-cols-md-5">
+                <div class=" col-md-6 text-right">
                     <label>Teléfono Móvil:</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="TelMovil" class="form-control" placeholder="Digite un número de celular válido" required>
+                    <input asp-for="Persona.TelMovil" class="form-control" placeholder="Digite un número de celular válido" required>
                 </div>
-                <span asp-validation-for="TelMovil" class="text-danger"></span>
+                <span asp-validation-for="Persona.TelMovil" class="text-danger"></span>
             </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+            <div class="form-group row row-cols-md-5">
+                <div class=" col-md-6 text-right">
                     <label>Teléfono Fijo: </label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="TelFijo" class="form-control" placeholder="Digite un número de casa válido">
+                    <input asp-for="Persona.TelFijo" class="form-control" placeholder="Digite un número de casa válido">
                 </div>
-                <span asp-validation-for="TelFijo" class="text-danger"></span>
+                <span asp-validation-for="Persona.TelFijo" class="text-danger"></span>
             </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
+            <div class="form-group row row-cols-md-5">
+                <div class=" col-md-6 text-right">
                     <label>Fax:</label>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="Fax" class="form-control" placeholder="Digite un número de fax válido">
+                    <input asp-for="Persona.Fax" class="form-control" placeholder="Digite un número de fax válido">
                 </div>
-                <span asp-validation-for="Fax" class="text-danger"></span>
+                <span asp-validation-for="Persona.Fax" class="text-danger"></span>
             </div>
+        </div>
 
+        <div class="form-group row row-cols-md-4">
+            <div class=" col-md-4 text-right">
+                <label>Dirección: <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <textarea asp-for="Persona.Direccion" rows="4" cols="50"
+                          class="form-control" placeholder="Digite la dirección exacta aquí" required> </textarea>
+            </div>
+            <span asp-validation-for="Persona.Direccion" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
             <div class="form-group row">
                 <div class=" col-md-2 text-right">
-                    <label>Dirección: <span class="required">*</span></label>
+                    <label>Provincia: <span class="required">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <textarea asp-for="Direccion" rows="4" cols="50"
-                              class="form-control" placeholder="Digite la dirección exacta aquí" required> </textarea>
+                    <select asp-for="@Model.Persona.ProvinciaId" id="ProvinciaId"
+                            asp-items="Model.Provincia.ToSelectListItem(Model.Persona.ProvinciaId)"
+                            class="form-control"></select>
+
                 </div>
-                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class=" col-md-2 text-right">
+                    <label>Canton: <span class="required">*</span></label>
+                </div>
+                <div class="col-md-6">
+                    <select asp-for="@Model.Persona.CantonId" name="CantonId" id="CantonId"
+                            asp-items="@(new SelectList(string.Empty,"Id","Nombre"))"
+                            class="form-control"></select>
+                </div>
+
             </div>
 
             <div class="form-group row">
@@ -150,53 +181,31 @@
                     <label>Distrito: <span class="required">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <select asp-for="DistritoId" placeholder="Seleccione el Domicilio donde vive" required
-                            asp-items="@Lista"></select>
+                    <select asp-for="@Model.Persona.DistritoId" name="DistritoId" id="DistritoId"
+                            asp-items="@(new SelectList(string.Empty,"Id","Nombre"))"
+                            class="form-control"></select>
                 </div>
-                <span asp-validation-for="DistritoId" class="text-danger"></span>
-            </div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
-                    <label>Cantón: <span class="required">*</span></label>
-                </div>
-                <div class="col-md-6">
-                    <select asp-for="CantonId" placeholder="Seleccione el cantón donde vive" required
-                        asp-items="@Lista1">
-                    </select>
-                </div>
-                <span asp-validation-for="CantonId" class="text-danger"></span>
-            </div>
-
-
-
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
-                    <label>Provincia: <span class="required">*</span></label>
-                </div>
-                <div class="col-md-6">
-                    <select asp-for="ProvinciaId" placeholder="Seleccione la provincia donde vive" required
-                            asp-items="@Lista2"></select>
-                </div>
-                <span asp-validation-for="ProvinciaId" class="text-danger"></span>
-            </div>
-            <div class="form-group row">
-
-                <div class="col-md-3 text-md-right">
-                    <a asp-action="Index" type="button" style="color:white"
-                       class="btn btn-success fa fa fa-arrow-circle-left inicio">
-                        Regresar
-                    </a>
-                </div>
-                <div class="col-md-1 text-md-center">
-                    <input type="button" value="Agregar" id="btnAgregar"
-                           class="btn btn-info"
-                           onclick="abrirModal()" />
-                </div>
             </div>
         </div>
-    </form>
-}
+
+        <div class="form-group row">
+
+            <div class="col-md-3 text-md-right">
+                <a asp-action="Index" type="button" style="color:white"
+                   class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                    Regresar
+                </a>
+            </div>
+            <div class="col-md-1 text-md-center">
+                <input type="button" value="Agregar" id="btnAgregar"
+                       class="btn btn-info"
+                       onclick="abrirModal()" />
+            </div>
+        </div>
+    </div>
+
+</form>
 
 <script src="~/js/sweetalert2.js"></script>
 <script src="~/js/Utilitarios.js"></script>
@@ -220,5 +229,55 @@
                 )
             }
         })
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+     $(document).ready(function () {
+         GetCantones();
+
+         $('#ProvinciaId').change(function () {
+             GetCantones();
+
+         });
+     });
+    function GetCantones() {
+        var url = '@Url.Content("~/")' + "Admin/Persona/GetCantones/";
+         var ddlsource = '#ProvinciaId';
+         $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+             var items = '';
+             $('#CantonId').empty();
+             $.each(data, function (i, canton) {
+                 items += "<option value='" + canton.value + "'>" + canton.text +
+                     "</option>";
+             });
+             $('#CantonId').html(items);
+         })
+    }
+</script>
+<script type="text/javascript">
+     $(document).ready(function () {
+         GetDistritos();
+
+         $('#CantonId').change(function () {
+             GetDistritos();
+
+         });
+     });
+    function GetDistritos() {
+        var url = '@Url.Content("~/")' + "Admin/Persona/GetDistritos/";
+         var ddlsource = '#CantonId';
+         $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+             var items = '';
+             $('#DistritoId').empty();
+             $.each(data, function (i, distrito) {
+                 items += "<option value='" + distrito.value + "'>" + distrito.text +
+                     "</option>";
+             });
+             $('#DistritoId').html(items);
+         })
     }
 </script>

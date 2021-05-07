@@ -132,7 +132,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
 
         //GET - EDIT
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -191,7 +191,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         }
 
         //GET - DETAILS
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {

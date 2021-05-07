@@ -376,7 +376,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Provincia>(entity =>
             {
-                entity.HasKey(e => e.ProvinciaId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -386,7 +386,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Canton>(entity =>
             {
-                entity.HasKey(e => e.CantonId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -407,7 +407,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Distrito>(entity =>
             {
-                entity.HasKey(e => e.DistritoId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
