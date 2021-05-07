@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<div class="col-md-6 m-auto" style="position:relative;top:50%;transform:translateY(-50%)">
+    <div class="backgroundWhiteBorder10Padding">
+        <div class="form-group row" style="padding: 5px;">
+           
+        </div>
+
+
+        <div>
+            <h2 style="text-align:center;color:darkmagenta;">Acceso al sistema</h2>
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" id="txtUser" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" id="txtPassword" value="" class="form-control" />
+            </div>
+            <div class="form-group row">
+               
+                <div class="col-md-1 text-md-center">
+                    <input type="button" value="Ingresar" 
+                           class="btn btn-info"
+                           onclick="Enviar()" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script  type="text/javascript">
+    function Enviar() {
+        var user = document.getElementById("txtUser").value;
+        var pass = document.getElementById("txtPassword").value;
+        $.get("Admin/Login/_Login/?user=" + user + "&pass=" + pass, function (data) {
+            if (data == "") {
+                error("Usuario o contaseña incorrecto!");
+            } else {
+                correcto("Bienvenido!");
+                document.location.href = "/Home/Home/Index";
+            }
+        });
+    }
+</script>
