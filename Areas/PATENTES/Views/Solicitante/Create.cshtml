@@ -1,0 +1,147 @@
+﻿@model SYGESTMunicipalSync.Areas.PATENTES.Models.ViewModel.SolicitanteViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaTContacto;
+    List<SelectListItem> Lista1 = ViewBag.ListaTRepresentante;
+
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light" style="text-align:center; background-color:#263182;width:100%;">
+            Solicitante
+        </h3>
+    </div>
+</div>
+<br />
+
+
+<form asp-controller="Solicitante" asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-6">
+        Número de cédula de la persona a buscar: <input type="text" name="PersonaId" />
+        <input type="submit" value="Buscar"
+               class="btn btn-success form-control" style="width:130px;" />
+    </div>
+</form>
+
+<form asp-controller="Solicitante" asp-action="Created" id="viewAgregar">
+    <div class="container-fluid">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group row">
+
+            <div class="col-md-2 text-right">
+                <label>Cédula o Pasaporte <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="PersonaId" value="@ViewBag.PersonaId"
+                       class="form-control" readonly="readonly" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @if (ViewBag.Error != "")
+            {
+                <p class="text-danger">@ViewBag.Error</p>}
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Nombre Persona </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
+                       readonly="readonly" class="form-control" />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Cedula Juridica: <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="CedulaJuridica" class="form-control" placeholder="Digite la cedula juridica" required>
+            </div>
+            <span asp-validation-for="CedulaJuridica" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Cedula Juridica: <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="NombreRazonSocial" class="form-control" placeholder="Digite la cedula juridica" required>
+            </div>
+            <span asp-validation-for="CedulaJuridica" class="text-danger"></span>
+        </div>
+
+        @*Contacto*@
+        <div class="form-group row">
+            <div class="col-md-2">
+                <h5><label asp-for="ContactoId" class="col-form-label"></label></h5>
+            </div>
+            <div class="col-md-8">
+                <select asp-for="ContactoId" class="form-control"
+                        asp-items="@Lista"></select>
+            </div>
+            <span asp-validation-for="ContactoId" class="text-danger"></span>
+        </div>
+
+        @*Tipo*@
+        <div class="form-group row">
+            <div class="col-md-2">
+                <h5><label asp-for="TipoRepresentanteId" class="col-form-label"></label></h5>
+            </div>
+            <div class="col-md-8">
+                <select asp-for="TipoRepresentanteId" class="form-control"
+                        asp-items="@Lista1"></select>
+            </div>
+            <span asp-validation-for="TipoRepresentanteId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+
+            <div class="col-md-3 text-md-right">
+                <a asp-action="Index" type="button" style="color:white"
+                   class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                    Regresar
+                </a>
+            </div>
+            <div class="col-md-1 text-md-center">
+                <input type="button" value="Agregar" id="btnAgregar"
+                       class="btn btn-info"
+                       onclick="abrirModal()" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Agregar Usuario', '¿Realmente Desea Agregar estos datos?').then((result) => {
+            if (result.value) {
+                /* alert("Si la confirmación de Contraseña es incorrecta, este usuario no se podrá guardar")*/
+
+                var viewAgregar = document.getElementById("viewAgregar");
+                viewAgregar.submit();
+                Swal.fire(
+                    'El usuario fue agregado!',
+                    'exitosamente!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'El usuario no ha sido agregado!!!:)',
+                    'error'
+                )
+            }
+        })
+    }</script>
