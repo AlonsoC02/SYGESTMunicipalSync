@@ -52,7 +52,7 @@
                         <thead class="thead-dark">
                             <tr class="table-secondary" style="text-align:center;">
 
-                                <th>@Html.DisplayNameFor(m => m.CedulaPersona)</th>
+                                <th>@Html.DisplayNameFor(m => m.Id)</th>
                                 <th>@Html.DisplayNameFor(m => m.Nombre)</th>
                                 <th>@Html.DisplayNameFor(m => m.FechaNac)</th>
                                 <th>@Html.DisplayNameFor(m => m.Email)</th>
@@ -68,7 +68,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@Html.DisplayFor(m => item.CedulaPersona)</td>
+                                    <td>@Html.DisplayFor(m => item.Id)</td>
                                     <td>@Html.DisplayFor(m => item.Nombre)</td>
                                     <td>@Html.DisplayFor(m => item.FechaNac, "{0:dd/MM/yyyy h:mm tt}")</td>
                                     <td>@Html.DisplayFor(m => item.Email)</td>
@@ -81,17 +81,17 @@
                                         <div class="btn-group" role="group">
                                             <a class="btn btn-warning text-white"
                                                asp-controller="Persona"
-                                               asp-action="Edit" asp-route-id="@item.CedulaPersona">
+                                               asp-action="Edit" asp-route-id="@item.Id">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a class="btn btn-primary"
                                                asp-controller="Persona"
-                                               asp-action="Details" asp-route-id="@item.CedulaPersona">
+                                               asp-action="Details" asp-route-id="@item.Id">
                                                 <i class="fas fa-list-alt"></i>
                                             </a>
 
                                             <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
-                                               onclick="EliminarPersona(@item.CedulaPersona)"></i>
+                                               onclick="EliminarPersona(@item.Id)"></i>
 
                                         </div>
                                     </td>

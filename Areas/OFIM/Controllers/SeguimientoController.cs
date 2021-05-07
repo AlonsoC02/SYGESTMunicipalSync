@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,9 +28,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             listaSeguimiento = (from seguimiento in _db.Seguimiento
                              join persona in _db.Persona
                            on seguimiento.PersonaId equals
-                           persona.CedulaPersona
+                           persona.Id
 
-                             join consulta in _db.Consulta
+                                join consulta in _db.Consulta
                          on seguimiento.ConsultaId equals
                          consulta.ConsultaId
 
@@ -39,7 +41,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                              {
                                  SeguimientoId = seguimiento.SeguimientoId,                               
                                  ConsultaId = consulta.ConsultaId,                                
-                                 PersonaId = persona.CedulaPersona,
+                                 PersonaId = persona.Id,
                                  Persona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
 
 
@@ -56,7 +58,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             select new SelectListItem
                             {
                                 Text = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
-                                Value = persona.CedulaPersona.ToString()
+                                Value = persona.Id.ToString()
                             }
                                 ).ToList();
             ViewBag.ListaPersona = listaPersona;
@@ -66,55 +68,85 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         {
             List<SelectListItem> listaConsulta = new List<SelectListItem>();
             listaConsulta = (from consulta in _db.Consulta
-                                 orderby consulta.Motivo
-                                 select new SelectListItem
-                                 {
-                                     Text = consulta.Motivo,
-                                     Value = consulta.ConsultaId.ToString()
-                                 }
-                                ).ToList();
+                            orderby consulta.Motivo
+                            join tipoConsulta in _db.TipoConsulta
+                            on consulta.TipoConsultaId equals tipoConsulta.TipoConsultaId
+                            select new SelectListItem
+                            {
+                                Text = consulta.Motivo + " - " + tipoConsulta.Nombre,
+                                Value = consulta.ConsultaId.ToString()
+                            }
+                                   ).ToList();
             ViewBag.ListaConsulta = listaConsulta;
         }
 
-
-        public IActionResult Create()
+        private void Buscar(string PersonaId)
         {
-            cargarPersona();
-            cargarConsulta();
+            Persona oPersona = _db.Persona
+          .Where(p => p.Id == PersonaId).FirstOrDefault();
+            if (oPersona != null)
+            {
+                ViewBag.PersonaID = oPersona.Id;
+                ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1 + " " + oPersona.Ape2;
+            }
+            else
+            {
+                ViewBag.Error = "Persona no registrada, intente de nuevo!";
+            }
+        }
+
+
+        [ActionName("GetConsulta")]
+        public async Task<IActionResult> GetConsulta(string id)
+        {
+            List<Consulta> persona = new List<Consulta>();
+            persona = await (from Consulta in _db.Consulta
+                              where Consulta.PersonaId == id
+                              select Consulta).ToListAsync();
+            return Json(new SelectList(persona, "Id", "Nombre"));
+        }
+
+        public IActionResult Create(string PersonaId)
+        {
+            //cargarPersona();
+            //cargarConsulta();
+
+            if (PersonaId != null)
+            {
+                Buscar(PersonaId);
+            }
+            ViewBag.Controlador = "Seguimiento";
+            ViewBag.Accion = "Create";
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Create(Seguimiento seguimiento)
+        public async Task<IActionResult> Created(Seguimiento seguimiento)
         {
-            int nVeces = 0;
-
+            string Error = "";
             try
             {
-                nVeces = _db.Seguimiento.Where(m => m.SeguimientoId == seguimiento.SeguimientoId).Count();
-                if (!ModelState.IsValid || nVeces >= 1)
+                if (!ModelState.IsValid)
                 {
-                    if (nVeces >= 1) ViewBag.Error = "Este Id ya existe!";
-                    cargarPersona();
-                    cargarConsulta();
+                    return View(seguimiento);
                 }
                 else
                 {
+
                     Seguimiento _seguimiento = new Seguimiento();
-                    _seguimiento.ConsultaId = seguimiento.ConsultaId;
-                    _seguimiento.Descripcion = seguimiento.Descripcion;
-                    _seguimiento.PersonaId = seguimiento.PersonaId;
-                    _seguimiento.ConsultaId = seguimiento.ConsultaId;
+
                    
-
-
+                    _seguimiento.SeguimientoId = seguimiento.SeguimientoId;
+                    _seguimiento.Descripcion = seguimiento.Descripcion;
+                    _seguimiento.ConsultaId = seguimiento.ConsultaId;
+                    _seguimiento.PersonaId = seguimiento.PersonaId;
+                   
                     _db.Seguimiento.Add(_seguimiento);
-                    _db.SaveChanges();
+                    await _db.SaveChangesAsync();
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                Error = ex.Message;
             }
             return RedirectToAction(nameof(Index));
         }

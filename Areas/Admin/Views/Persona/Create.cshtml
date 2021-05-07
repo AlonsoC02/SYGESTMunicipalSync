@@ -25,9 +25,9 @@
                 <label>Cédula/Pasaporte: <span class="required">*</span></label>
             </div>
             <div class="row-cols-md-6">
-                <input asp-for="Persona.CedulaPersona" class="form-control" placeholder="Digite la cédula o pasaporte aquí" required>
+                <input asp-for="Persona.Id" class="form-control" placeholder="Digite la cédula o pasaporte aquí" required>
             </div>
-            <span asp-validation-for="Persona.CedulaPersona" class="text-danger"></span>
+            <span asp-validation-for="Persona.Id" class="text-danger"></span>
             @if (Model != null && ViewBag.Error != "")
             {
                 <p class="text-danger">@ViewBag.Error</p>

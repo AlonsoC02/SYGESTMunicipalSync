@@ -31,7 +31,7 @@
                         <table class="table table-hover .table-responsive" id="TbPersonas" name="TbPersonas">
                             <thead class="thead-dark">
                                 <tr class="table-secondary" style="text-align:left;">
-                                    <th>@Html.DisplayNameFor(m => m.CedulaPersona)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Id)</th>
                                     <th>@Html.DisplayNameFor(m => m.Nombre)</th>
                                     <th>@Html.DisplayNameFor(m => m.Ape1)</th>
                                     <th>@Html.DisplayNameFor(m => m.Ape2)</th>
@@ -42,13 +42,13 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@Html.DisplayFor(m => item.CedulaPersona)</td>
+                                        <td>@Html.DisplayFor(m => item.Id)</td>
                                         <td>@Html.DisplayFor(m => item.Nombre)</td>
                                         <td>@Html.DisplayFor(m => item.Ape1)</td>
                                         <td>@Html.DisplayFor(m => item.Ape2)</td>
                                         <td style="width:300px">
                                             <i class="fa fa-fast-backward btn btn-info" aria-hidden="true"
-                                               onclick="DatosPersona(@item.CedulaPersona)"></i>
+                                               onclick="DatosPersona(@item.Id)"></i>
                                         </td>
                                     </tr>
                                 }
