@@ -1,7 +1,6 @@
-﻿@model IEnumerable<PersonaViewModel>
-@using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel
+﻿@model IEnumerable<SYGESTMunicipalSync.Areas.Admin.Models.Persona>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "AsynIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
@@ -15,7 +14,7 @@
 
             </div>
 
-            <form asp-controller="Persona" asp-action="Index" method="post">
+            <form asp-controller="Persona" asp-action="AsynIndex" method="post">
                 <div class="row">
                     <div class="col-md-3">
                         <label>Personas registradas:</label>
@@ -74,9 +73,9 @@
                                     <td>@Html.DisplayFor(m => item.FechaNac, "{0:dd/MM/yyyy h:mm tt}")</td>
                                     <td>@Html.DisplayFor(m => item.Email)</td>
                                     <td>@Html.DisplayFor(m => item.TelMovil)</td>
-                                    <td>@Html.DisplayFor(m => item.Distrito)</td>
-                                    <td>@Html.DisplayFor(m => item.Canton)</td>
-                                    <td>@Html.DisplayFor(m => item.Provincia)</td>
+                                    <td>@Html.DisplayFor(m => item.Distrito.Nombre)</td>
+                                    <td>@Html.DisplayFor(m => item.Canton.Nombre)</td>
+                                    <td>@Html.DisplayFor(m => item.Provincia.Nombre)</td>
 
                                     <td style="width:300px">
                                         <div class="btn-group" role="group">
@@ -85,14 +84,14 @@
                                                asp-action="Edit" asp-route-id="@item.CedulaPersona">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-primary" 
+                                            <a class="btn btn-primary"
                                                asp-controller="Persona"
                                                asp-action="Details" asp-route-id="@item.CedulaPersona">
                                                 <i class="fas fa-list-alt"></i>
                                             </a>
 
                                             <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
-                                               onclick="EliminarRol(@item.CedulaPersona)"></i>
+                                               onclick="EliminarPersona(@item.CedulaPersona)"></i>
 
                                         </div>
                                     </td>
@@ -141,7 +140,7 @@
 </script>
 
 <script>
-    function EliminarRol(CedulaPersona) {
+    function EliminarPersona(CedulaPersona) {
         document.getElementById("txtCedulaPersona").value = CedulaPersona;
         verModal('Eliminar Persona',
             '¿Desea eliminar la persona '

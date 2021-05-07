@@ -1,22 +1,24 @@
-﻿using SYGESTMunicipalSync.Areas.Admin.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SYGESTMunicipalSync.Areas.OFIM.Models
+namespace SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
 {
-    public partial class Consulta
+    public class ConsultaViewModel
     {
 
-        [Display(Name = "Consulta:")]
+        [Required(ErrorMessage = "Debe digitar el Id")]
+        [Display(Name = "Id:")]
         public int ConsultaId { get; set; }
 
-        [Display(Name = "Persona:")]
-        [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
+
+        [Display(Name = "Cedula:")]
         public string PersonaId { get; set; }
-        public virtual Persona Persona { get; set; }
+        [Display(Name = "Persona:")]
+        public string Persona { get; set; }
+
 
         [Required(ErrorMessage = "Debe digitar el motivo de la consulta")]
         [Display(Name = "Motivo:")]
@@ -27,6 +29,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Fecha { get; set; }
+
         [DataType(DataType.DateTime)]
         [Display(Name = "Hora Inicio")]
         [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
@@ -50,9 +53,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Remitir ")]
         public bool Remitir { get; set; }
 
-        [Display(Name = "Tipo Consulta:")]
+        [Display(Name = "Tipo de Consulta Id:")]
         public int TipoConsultaId { get; set; }
-        public virtual TipoConsulta TipoConsulta { get; set; }
+        [Display(Name = "Tipo de Consulta:")]
+        public string TipoConsulta { get; set; }
 
 
         [Display(Name = "Padecimiento:")]
@@ -63,38 +67,39 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
         public string Discapacidad { get; set; }
 
-        
+
 
         [Display(Name = "Ocupacion:")]
         public int OcupacionId { get; set; }
-        public virtual Ocupacion Ocupacion { get; set; }
+
+        public string Ocupacion { get; set; }
 
         [Display(Name = "Seguro:")]
         public int SeguroId { get; set; }
-        public virtual Seguro Seguro { get; set; }
+        public string Seguro { get; set; }
 
         [Display(Name = "Nacionalidad:")]
         public int NacionalidadId { get; set; }
-        public virtual Nacionalidad Nacionalidad { get; set; }
+        public string Nacionalidad { get; set; }
 
         [Display(Name = "Nivel Academico:")]
         public int NivelAcademicoId { get; set; }
-        public virtual NivelAcademico NivelAcademico { get; set; }
+        public string NivelAcademico { get; set; }
 
         [Display(Name = "Estado Civil:")]
         public int EstadoCivilId { get; set; }
-        public virtual EstadoCivil EstadoCivil { get; set; }
+        public string EstadoCivil { get; set; }
 
 
         [Display(Name = "Ingreso Persona:")]
         public int IngresoPersonaId { get; set; }
-        public virtual IngresoPersona IngresoPersona { get; set; }
+        public double IngresoPersona { get; set; }
 
-        public virtual ICollection<Seguimiento> Seguimiento { get; set; }
-        public Consulta()
+        public string msgError { get; set; }
+
+        public static implicit operator List<object>(ConsultaViewModel v)
         {
-            
-            Seguimiento = new HashSet<Seguimiento>();
+            throw new NotImplementedException();
         }
     }
 }

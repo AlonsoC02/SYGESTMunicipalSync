@@ -16,10 +16,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
 
-        public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
+        public virtual ICollection<Consulta> Consulta { get; set; }
         public Nacionalidad()
         {
-            PersonaOFIM = new HashSet<PersonaOFIM>();
+            Consulta = new HashSet<Consulta>();
         }
 
     }
