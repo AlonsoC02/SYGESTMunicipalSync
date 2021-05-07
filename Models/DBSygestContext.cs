@@ -292,8 +292,8 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Persona>(entity =>
             {
-                entity.HasKey(e => e.CedulaPersona);
-                entity.Property(e => e.CedulaPersona)
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id)
                .IsRequired()
                 .HasMaxLength(100)
               .IsUnicode(false);

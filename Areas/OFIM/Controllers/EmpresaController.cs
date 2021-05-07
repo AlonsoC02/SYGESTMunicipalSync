@@ -70,7 +70,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             select new SelectListItem
                             {
                                 Text = persona.Nombre,
-                                Value = persona.CedulaPersona.ToString()
+                                Value = persona.Id.ToString()
                             }
                                 ).ToList();
             ViewBag.ListaPersona = listaPersona;

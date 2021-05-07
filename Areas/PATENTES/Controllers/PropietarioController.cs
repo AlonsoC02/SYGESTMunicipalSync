@@ -23,7 +23,7 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Controllers
             listaPropietario = (from propietario in _db.Propietario
                                 join persona in _db.Persona
                                on propietario.PersonaId equals
-                               persona.CedulaPersona
+                               persona.Id
 
                                 join contacto in _db.Contacto
                                 on propietario.ContactoId equals

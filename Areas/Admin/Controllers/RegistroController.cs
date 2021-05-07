@@ -27,7 +27,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             listaUsuario = (from _usuario in _db.Usuario
                             join _rol in _db.Rol on _usuario.RolId equals _rol.RolId
 
-                            join _persona in _db.Persona on _usuario.PersonaId equals _persona.CedulaPersona
+                            join _persona in _db.Persona on _usuario.PersonaId equals _persona.Id
                             where _usuario.UsuarioId == Id
                             select new RegistroExternoVM
                             {
@@ -76,10 +76,10 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         private void Buscar(string PersonaId)
         {
             Persona oPersona = _db.Persona
-          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+          .Where(p => p.Id == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
-                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.PersonaID = oPersona.Id;
                 ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1;
             }
             else

@@ -1,5 +1,6 @@
 ﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel.SeguimientoViewModel
 @using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
+@using SYGESTMunicipalSync.Extensions
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
@@ -47,7 +48,7 @@
                             <label>Cédula o Pasaporte <span class="required">*</span></label>
                         </div>
                         <div class="col-md-6">
-                            <input asp-for="PersonaId" value="@ViewBag.PersonaId" class="form-control" readonly="readonly" />
+                            <input asp-for="PersonaId" value="@ViewBag.PersonaId" class="form-control"  name="PersonaId" id="PersonaId" readonly="readonly" />
                         </div>
                     </div>
 
@@ -74,8 +75,9 @@
                             <h5><label asp-for="ConsultaId" class="col-form-label"></label></h5>
                         </div>
                         <div class="col-md-8">
-                            <select asp-for="ConsultaId" class="form-control" required
-                                    asp-items="@Lista1"></select>
+                            <select asp-for="@Model.Seguimiento.ConsultaId" name="ConsultaId" id="ConsultaId"
+                                    asp-items="@(new SelectList(string.Empty,"Id","Nombre"))"
+                                    class="form-control"></select>
                         </div>
                         <span asp-validation-for="ConsultaId" class=" text-danger"></span>
                     </div>
@@ -141,5 +143,30 @@
                 )
             }
         })
+    }
+</script>
+
+
+<script type="text/javascript">
+     $(document).ready(function () {
+         GetConsulta();
+
+         $('#PersonaId').change(function () {
+             GetConsulta();
+
+         });
+     });
+    function GetConsulta() {
+        var url = '@Url.Content("~/")' + "OFIM/Seguimiento/GetConsulta/";
+        var ddlsource = '#PersonaId';
+         $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+             var items = '';
+             $('#ConsultaId').empty();
+             $.each(data, function (i, consulta) {
+                 items += "<option value='" + consulta.value + "'>" + consulta.text +
+                     "</option>";
+             });
+             $('#ConsultaId').html(items);
+         })
     }
 </script>

@@ -6,6 +6,7 @@ using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,9 +28,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             listaSeguimiento = (from seguimiento in _db.Seguimiento
                              join persona in _db.Persona
                            on seguimiento.PersonaId equals
-                           persona.CedulaPersona
+                           persona.Id
 
-                             join consulta in _db.Consulta
+                                join consulta in _db.Consulta
                          on seguimiento.ConsultaId equals
                          consulta.ConsultaId
 
@@ -40,7 +41,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                              {
                                  SeguimientoId = seguimiento.SeguimientoId,                               
                                  ConsultaId = consulta.ConsultaId,                                
-                                 PersonaId = persona.CedulaPersona,
+                                 PersonaId = persona.Id,
                                  Persona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
 
 
@@ -57,7 +58,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             select new SelectListItem
                             {
                                 Text = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
-                                Value = persona.CedulaPersona.ToString()
+                                Value = persona.Id.ToString()
                             }
                                 ).ToList();
             ViewBag.ListaPersona = listaPersona;
@@ -82,10 +83,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         private void Buscar(string PersonaId)
         {
             Persona oPersona = _db.Persona
-          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+          .Where(p => p.Id == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
-                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.PersonaID = oPersona.Id;
                 ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1 + " " + oPersona.Ape2;
             }
             else
@@ -94,10 +95,21 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             }
         }
 
+
+        [ActionName("GetConsulta")]
+        public async Task<IActionResult> GetConsulta(string id)
+        {
+            List<Consulta> persona = new List<Consulta>();
+            persona = await (from Consulta in _db.Consulta
+                              where Consulta.PersonaId == id
+                              select Consulta).ToListAsync();
+            return Json(new SelectList(persona, "Id", "Nombre"));
+        }
+
         public IActionResult Create(string PersonaId)
         {
-            cargarPersona();
-            cargarConsulta();
+            //cargarPersona();
+            //cargarConsulta();
 
             if (PersonaId != null)
             {
