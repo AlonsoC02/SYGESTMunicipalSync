@@ -13,6 +13,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Id:")]
         public int PersonaOFIMId { get; set; }
 
+        [Display(Name = "Padecimiento:")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
+        public string Padecimiento { get; set; }
+
+        [Display(Name = "Discapacidad:")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
+        public string Discapacidad { get; set; }
+
         [Display(Name = "Persona:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
         public string PersonaId { get; set; }
@@ -38,14 +46,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         public int EstadoCivilId { get; set; }
         public virtual EstadoCivil EstadoCivil { get; set; }
 
-        [Display(Name = "Padecimiento:")]
-        public int PadecimientoId { get; set; }
-        public virtual Padecimientos Padecimiento { get; set; }
-
-        [Display(Name = "Discapacidad:")]
-        public int DiscapacidadId { get; set; }
-        public virtual Discapacidades Discapacidad { get; set; }
-
+   
         [Display(Name = "Ingreso Persona:")]
         public int IngresoPersonaId { get; set; }
         public virtual IngresoPersona IngresoPersona { get; set; }

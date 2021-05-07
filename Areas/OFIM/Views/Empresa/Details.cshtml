@@ -1,13 +1,11 @@
-﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Empresa
+﻿
+@model SYGESTMunicipalSync.Areas.OFIM.Models.Empresa
 
-@{
-    ViewData["Title"] = "Details";
+@{ ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
 
     List<SelectListItem> Lista = ViewBag.ListaPersona;
-    List<SelectListItem> Lista1 = ViewBag.ListaCatProductoServicio;
-
-}
+    List<SelectListItem> Lista1 = ViewBag.ListaCatProductoServicio; }
 
 <main id="main">
 
@@ -16,7 +14,7 @@
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Mostrar Empresa</h2>
+                    <h2>Detalles de Empresa</h2>
 
                 </div>
             </div>
@@ -24,7 +22,7 @@
 
         <div class="container">
             <ol>
-                <li><a asp-area="OFGA" asp-controller="Empresa" asp-action="Index">Lista de Empresa</a></li>
+                <li><a asp-area="OFGA" asp-controller="Empresa" asp-action="Details">Detalles de Empresa</a></li>
                 <li>Empresa</li>
             </ol>
         </div>
@@ -38,8 +36,15 @@
         </div>
     </div>
     <br />
-    <form asp-action="Details" method="post" enctype="multipart/form-data" id="viewEditar">
+    <form asp-action="Details" method="post" enctype="multipart/form-data" id="viewDetalles">
         <div class="row backgroundWhiteBorder">
+            <div class="col-md-4 border align-self-baseline">
+                    @{
+                        var base64 = Convert.ToBase64String(Model.Logo);
+                        var imgsrc = string.Format("data:image/jpg;base64, {0}", base64);
+                    }
+                    <img src="@imgsrc" style="height: 100%; width:110%" />
+                </div>
             <div class="col-md-6 pt-3 pt-lg-0 content">
                 <div class="container">
                     <br />
@@ -111,7 +116,7 @@
                         <h5><label asp-for="PaginaWeb" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="PaginaWeb" class="form-control" readonly />
+                        <input asp-for="PaginaWeb" class="form-control" readonly/>
                     </div>
                     <span asp-validation-for="PaginaWeb" class="text-danger"></span>
                 </div>
@@ -122,27 +127,29 @@
                         <h5><label asp-for="Telefono" class="form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <input asp-for="Telefono" class="form-control" readonly />
+                        <input asp-for="Telefono" class="form-control" readonly/>
                     </div>
                     <span asp-validation-for="Telefono" class="text-danger"></span>
                 </div>
+
+                
                 <div class=" form-group row">
-                    <div class=" col-md-3">
+                    <div class=" col-md-3 text-right">
                         <h5><label asp-for="Persona" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <select asp-for="PersonaId" class="form-control" required
+                        <select asp-for="PersonaId" class="form-control" readonly
                                 asp-items="@Lista"></select>
                     </div>
                     <span asp-validation-for="PersonaId" class=" text-danger"></span>
                 </div>
 
                 <div class=" form-group row">
-                    <div class=" col-md-3">
+                    <div class=" col-md-3 text-right">
                         <h5><label asp-for="CatProductoServicioId" class="col-form-label"></label></h5>
                     </div>
                     <div class="col-md-7">
-                        <select asp-for="CatProductoServicioId" class="form-control" required
+                        <select asp-for="CatProductoServicioId" class="form-control" readonly
                                 asp-items="@Lista1"></select>
                     </div>
                     <span asp-validation-for="CatProductoServicioId" class=" text-danger"></span>
@@ -161,6 +168,7 @@
 
                     </div>
 
+                    
 
                 </div>
             </div>
@@ -172,4 +180,29 @@
 
 
 
+
+
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>function abrirModal() {
+        verModal('Modificar', '¿Realmente Desea modificar?').then((result) => {
+            if (result.value) {
+                var viewEditar = document.getElementById("viewEditar");
+                viewEditar.submit();
+                Swal.fire(
+                    'Modificado!',
+                    'Operación con éxito!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'Operación Fracasada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }</script>
 

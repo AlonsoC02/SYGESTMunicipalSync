@@ -754,7 +754,7 @@ section {
     overflow: hidden;
     border-radius: 10px;
     margin: 0 10px 40px 10px;
-    background: #95C93D;
+    background: #fff;
     box-shadow: 0 2px 29px 0 #263182;
     transition: all 0.3s ease-in-out;
 }
@@ -821,7 +821,7 @@ section {
     .work-process .content ul i {
         font-size: 20px;
         padding-right: 4px;
-        color: #94c045;
+        color: #263182;
     }
 
 .work-process .content p:last-child {

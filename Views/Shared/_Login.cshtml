@@ -1,5 +1,4 @@
-﻿@*@using SYGESTMunicipal.Utility*@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +8,7 @@
     <link rel="icon" type="image/png" href="~/login/assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Login
+        Inicio de Sesión
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -17,9 +16,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="~/login/assets/css/material-kit.css" rel="stylesheet" />
-
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="~/login/assets/demo/demo.css" rel="stylesheet" />
+
 </head>
 <body class="login-page sidebar-collapse">
     <header>
@@ -42,7 +41,7 @@
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" asp-area="Identity" asp-page="/Account/Login" target="_blank" data-original-title="Iniciar Sesión" rel="nofollow">
+                            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" asp-area="Admin"  target="_blank" data-original-title="Iniciar Sesión" rel="nofollow">
                                 <i class="fa fa-sign-in"></i>
                             </a>
 
@@ -57,9 +56,7 @@
 
                             <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="mailto:%69%6efo%40muniho%6aan%63%68a.%63om" target="_blank" data-original-title="Contáctanos" rel="nofollow">
                                 <i class="fa fa-envelope-open-o"></i>
-                                
                             </a>
-
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/MUNICIPALIDAD-DE-HOJANCHA-218380324851885/" target="_blank" data-original-title="Síguenos en Facebook" rel="nofollow">
@@ -77,30 +74,31 @@
                                 <i class="fa fa-location-arrow"></i>
                             </a>
                         </li>
-                        @*@if (User.IsInRole(SD.ManagerUser) || (User.IsInRole(SD.Guest) || (User.IsInRole(SD.AdminOFGA) || (User.IsInRole(SD.AdminOFIM) || (User.IsInRole(SD.AdminOFPA) || (User.IsInRole(SD.CollManager) || (User.IsInRole(SD.FrontDeskUser))))))))
-                        {*@
+                       
                             <li class="nav-item">
-                                <a class="nav-link" rel="tooltip" id="profile" asp-page="./Index" style="color:white;text-shadow: 2px 2px 5px #000" data-placement="bottom" asp-area="Identity"   data-original-title="Mi Perfil">
+                                <a class="nav-link" rel="tooltip" id="profile" style="color:white;text-shadow: 2px 2px 5px #000" data-placement="bottom" asp-area="Admin" data-original-title="Mi Perfil">
                                     <i class="fa fa-user-circle "></i>
                                 </a>
                             </li>
 
+                            @*<li class="nav-item">
+                                    <a class="nav-link" rel="tooltip"  id="email" asp-page="./Email" style="color:white;text-shadow: 2px 2px 5px #000" data-placement="bottom" asp-area="Identity"   data-original-title="Cambiar Email">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </a>
+                                </li>*@
+
                             <li class="nav-item">
-                                <a class="nav-link" rel="tooltip" id="change-password" asp-page="./ChangePassword" style="color:white;text-shadow: 2px 2px 5px #000" data-placement="bottom" asp-area="Identity"  data-original-title="Cambiar Contraseña">
+                                <a class="nav-link" rel="tooltip" id="change-password" style="color:white;text-shadow: 2px 2px 5px #000" data-placement="bottom" asp-area="Admin" data-original-title="Cambiar Contraseña">
                                     <i class="fa fa-lock"></i>
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" rel="tooltip"  id="personal-data" asp-page="./PersonalData" data-placement="bottom" asp-area="Identity" data-original-title="Datos Personales" >
+                                <a class="nav-link" rel="tooltip" id="personal-data"  data-placement="bottom" asp-area="Admin" data-original-title="Datos Personales">
                                     <i class="fa fa-download"></i>
                                 </a>
                             </li>
 
-                           
-                               
-
-                        @*}*@
                     </ul>
                 </div>
 

@@ -94,17 +94,22 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
 
         //GET - CREATE
+
         public IActionResult Create()
+
         {
             cargarCatProductoServicio();
             cargarPersona();
-            return View(EmpresaVM);
+            return View();
         }
-        [HttpPost, ActionName("Create")]
+        ////POST - CREATE
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePOST()
+
+        public async Task<IActionResult> Create(Empresa empresa)
         {
-        
+         
+            var empresaFromDb = await _db.Empresa.FindAsync(empresa.Id);
 
             if (ModelState.IsValid)
             {
@@ -120,74 +125,82 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             p1 = ms1.ToArray();
                         }
                     }
-                    EmpresaVM.Empresa.Logo = p1;
+                    empresaFromDb.Logo = p1;
                 }
-                _db.Empresa.Add(EmpresaVM.Empresa);
+
+                _db.Empresa.Add(empresa);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(EmpresaVM.Empresa);
+            return View(empresa);
+           
+        
+
         }
 
 
 
-        //GET - EDIT
-        public IActionResult Edit(int? id)
+
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+
             cargarPersona();
             cargarCatProductoServicio();
-            if (EmpresaVM.Empresa == null)
-            {
-                return NotFound();
-            }
-            return View(EmpresaVM);
-        }
 
-        //POST - EDIT
-        [HttpPost, ActionName("Edit")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPOST(int? id)
-        {
             if (id == null)
             {
                 return NotFound();
             }
-            
-            if (!ModelState.IsValid)
+
+            var empresa = await _db.Empresa.FindAsync(id);
+            if (empresa == null)
             {
-              
-                return View(EmpresaVM);
+                return NotFound();
             }
-            //work in the image saving
-            var files = HttpContext.Request.Form.Files;
-            var empresaFromDb = await _db.Empresa.FindAsync(EmpresaVM.Empresa.Id);
-            if (files.Count > 0)
+            return View(empresa);
+        }
+
+        //Postt-Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Empresa empresa)
+        {
+            if (empresa.Id == 0)
             {
-                byte[] p1 = null;
-                using (var fs1 = files[0].OpenReadStream())
+                return NotFound();
+            }
+
+            var empresaFromDb = await _db.Empresa.FindAsync(empresa.Id);
+
+            if (ModelState.IsValid)
+            {
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count > 0)
                 {
-                    using (var ms1 = new MemoryStream())
+                    byte[] p1 = null;
+                    using (var fs1 = files[0].OpenReadStream())
                     {
-                        fs1.CopyTo(ms1);
-                        p1 = ms1.ToArray();
+                        using (var ms1 = new MemoryStream())
+                        {
+                            fs1.CopyTo(ms1);
+                            p1 = ms1.ToArray();
+                        }
                     }
+                    empresaFromDb.Logo = p1;
                 }
-                empresaFromDb.Logo = p1;
+                empresaFromDb.Nombre = empresa.Nombre;
+                empresaFromDb.Descripcion = empresa.Descripcion;
+                empresaFromDb.Ubicacion = empresa.Ubicacion;
+                empresaFromDb.Email = empresa.Email;
+                empresaFromDb.PaginaWeb = empresa.PaginaWeb;
+                empresaFromDb.Telefono = empresa.Telefono;
+                empresaFromDb.PersonaId = empresa.PersonaId;
+                empresaFromDb.CatProductoServicioId = empresa.CatProductoServicioId;
+
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            empresaFromDb.Nombre = EmpresaVM.Empresa.Nombre;
-            empresaFromDb.Descripcion = EmpresaVM.Empresa.Descripcion;
-            empresaFromDb.Ubicacion = EmpresaVM.Empresa.Ubicacion;
-            empresaFromDb.Email = EmpresaVM.Empresa.Email;
-            empresaFromDb.PaginaWeb = EmpresaVM.Empresa.PaginaWeb;
-            empresaFromDb.Telefono = EmpresaVM.Empresa.Telefono;
-            empresaFromDb.PersonaId = EmpresaVM.Empresa.PersonaId;
-            empresaFromDb.CatProductoServicioId = EmpresaVM.Empresa.CatProductoServicioId;
-            await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View(empresa);
         }
 
         //GET - DETAILS
@@ -197,12 +210,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             {
                 return NotFound();
             }
-          
 
+           
             if (EmpresaVM.Empresa == null)
             {
                 return NotFound();
             }
+            cargarPersona();
+            cargarCatProductoServicio();
             return View(EmpresaVM);
         }
 

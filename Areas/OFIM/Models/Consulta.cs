@@ -27,15 +27,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? Fecha { get; set; }
-
-        [Display(Name = "Hora inicio:")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Hora Inicio")]
+        [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime? HoraInicio { get; set; }
 
-        [Display(Name = "Hora Fin:")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Hora Fin")]
+        [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime? HoraFin { get; set; }
 
         [Display(Name = "Descripcion:")]
@@ -54,6 +53,42 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
         [Display(Name = "Tipo Consulta:")]
         public int TipoConsultaId { get; set; }
         public virtual TipoConsulta TipoConsulta { get; set; }
+
+
+        [Display(Name = "Padecimiento:")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
+        public string Padecimiento { get; set; }
+
+        [Display(Name = "Discapacidad:")]
+        [StringLength(200, ErrorMessage = "Ha excedido los 200 caracteres")]
+        public string Discapacidad { get; set; }
+
+        
+
+        [Display(Name = "Ocupacion:")]
+        public int OcupacionId { get; set; }
+        public virtual Ocupacion Ocupacion { get; set; }
+
+        [Display(Name = "Seguro:")]
+        public int SeguroId { get; set; }
+        public virtual Seguro Seguro { get; set; }
+
+        [Display(Name = "Nacionalidad:")]
+        public int NacionalidadId { get; set; }
+        public virtual Nacionalidad Nacionalidad { get; set; }
+
+        [Display(Name = "Nivel Academico:")]
+        public int NivelAcademicoId { get; set; }
+        public virtual NivelAcademico NivelAcademico { get; set; }
+
+        [Display(Name = "Estado Civil:")]
+        public int EstadoCivilId { get; set; }
+        public virtual EstadoCivil EstadoCivil { get; set; }
+
+
+        [Display(Name = "Ingreso Persona:")]
+        public int IngresoPersonaId { get; set; }
+        public virtual IngresoPersona IngresoPersona { get; set; }
 
         public virtual ICollection<Seguimiento> Seguimiento { get; set; }
         public Consulta()

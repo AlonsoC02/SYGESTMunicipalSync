@@ -13,13 +13,13 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 
         [Required(ErrorMessage = "Debe digitar el ingreso de persona")]
         [Display(Name = "Ingreso mensual:")]
-        public double IngresoMensual { get; set; }
+        public string IngresoMensual { get; set; }
 
-        public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
+        public virtual ICollection<Consulta> Consulta { get; set; }
 
         public IngresoPersona()
         {
-            PersonaOFIM = new HashSet<PersonaOFIM>();
+            Consulta = new HashSet<Consulta>();
         }
 
     }

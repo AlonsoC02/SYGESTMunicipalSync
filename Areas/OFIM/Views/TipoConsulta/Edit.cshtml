@@ -1,0 +1,89 @@
+﻿
+@model SYGESTMunicipalSync.Areas.OFIM.Models.TipoConsulta
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+
+
+   
+
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Editar Registro
+        </h3>
+    </div>
+</div>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <form method="post" asp-action="Edit" id="viewEditar">
+                <div class="backgroundWhite">
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="TipoConsultaId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-9">
+                            <input asp-for="TipoConsultaId" class="form-control" readonly />
+                        </div>
+                        <span asp-validation-for="TipoConsultaId" class=" text-danger"></span>
+                    </div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="Nombre" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-9">
+                            <input asp-for="Nombre" class="form-control" />
+                        </div>
+                        <span asp-validation-for="Nombre" class=" text-danger"></span>
+                    </div>
+
+                
+
+               
+
+                    <div class="form-group row">
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button"
+                               class="btn btn-success fa fa fa-arrow-circle-left inicio"> Regresar</a>
+                        </div>
+                        <div class="col-md-1 text-md-center">
+                            <input type="button" value="Editar" id="btnEditar"
+                                   class="btn btn-info"
+                                   onclick="abrirModal()" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Modificar', '¿Realmente desea modificar el registro de tipo de consulta?').then((result) => {
+            if (result.value) {
+                var viewEditar = document.getElementById("viewEditar");
+                viewEditar.submit();
+                Swal.fire(
+                    'Modificado!',
+                    'Operación con éxito!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'Operación Fracasada!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>

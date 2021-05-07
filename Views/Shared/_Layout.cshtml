@@ -116,6 +116,10 @@
                                 <a class="dropdown-item" asp-action="Index"
                                    asp-controller="Pagina" asp-area="Admin">Páginas</a>
                             </li>
+                            <li class="nav-item active">
+                                <a class="dropdown-item" asp-action="Prueba"
+                                   asp-controller="Home" asp-area="Home">Prueba</a>
+                            </li>
                             @*}*@
 
                             @* CRUD ROLES DE LOS USUARIOS EN PAGINAS *@
@@ -151,7 +155,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Patentes"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="Home" asp-area="PATENTES">Oficina de Patentes</a>
@@ -159,14 +163,14 @@
                                 @*}*@
 
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de Gestión Ambiental"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="Home" asp-area="OFGA">Oficina de Gestión Ambiental</a>
                                 </li>
                                 @*}*@
                                 @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Oficina de la Mujer"))
-                                    {*@
+                    {*@
                                 <li class="nav-item active">
                                     <a class="dropdown-item" asp-action="Index"
                                        asp-controller="Home" asp-area="OFIM">Oficina de la Mujer</a>
@@ -228,6 +232,8 @@
                         <a class="nav-link" asp-area="Home"
                            asp-controller="Home" asp-action="Privacy">Privacidad</a>
                     </li>
+
+                    
 
                 </ul>
             </div>
