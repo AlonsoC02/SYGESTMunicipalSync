@@ -4,18 +4,49 @@
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
 
-<!-- ======= Our Clients Section ======= -->
-<section id="main" class="main">
-    <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Limpieza de Ríos y Quebradas</h2>
-            <p></p>
-        </div>
-        <div class="owl-carousel clients-carousel" data-aos="fade-up">
-            <img src="https://i.pinimg.com/originals/3f/56/3a/3f563a565100336c8a67461a53d6280d.png" alt="">
-            @*<img src="https://i.pinimg.com/originals/af/38/7c/af387ca76a386cc5ade50e970e697a84.png" alt="">
-            <img src="https://i.pinimg.com/originals/69/e6/02/69e602a396033967e34afd5399d09968.jpg" alt="">
-            <img src="https://i.pinimg.com/originals/1b/6d/38/1b6d38f0deb7ce2ea51f699e2864fe50.png" alt="">*@
+<br />
+<br />
+<br />
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="breadcrumb-hero">
+        <div class="container">
+            <div class="breadcrumb-hero">
+                <h2>Aseo y Vías</h2>
+                <h5>
+                   Mantener nuestra comunidad limpia  
+                </h5>
+            </div>
         </div>
     </div>
-</section><!-- End Our Clients Section -->
+    <div class="container">
+        <ol>
+            <li><a asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a></li>
+            <li>Aseo y Vías</li>
+        </ol>
+    </div>
+</section><!-- End Breadcrumbs -->
+<!-- ======= Portfolio Details Section ======= -->
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container text-center">
+
+        <div class="container" style="text-align: center; width: 80%;">
+
+            <div class="owl-carousel portfolio-details-carousel">
+                <img src="https://i.pinimg.com/originals/f3/54/82/f354829164dbc26d5be750123944f528.jpg" class="img-fluid" alt="">
+                <img src="https://i.pinimg.com/originals/0b/6c/7e/0b6c7e85f43f178f8b42b81f183bf731.jpg" class="img-fluid" alt="">
+            </div>
+        </div>
+
+        <div class="portfolio-description text-left">
+            <h2>Trabajos Realizados</h2>
+            <h5>Limpieza y mantenimiento de vías y sitios públicos .</h5><br />
+            <h2>Limpieza y mantenimiento de vías y sitios públicos</h2>
+            <h5>De lunes a jueves desde las 6:00 am a las 4:00 pm y los días viernes de 6:00 am a 2:30 pm.</h5><br />
+            <h2>Ubicación del Centro de Acopio</h2>
+            <h5>Puede hacer llegar los residuos valorizables al centro de recuperación ubicado a:</h5>
+            <div class="dbox w-100 text-center">
+             </div>
+        </div>
+    </div>
+</section><!-- End Portfolio Details Section -->

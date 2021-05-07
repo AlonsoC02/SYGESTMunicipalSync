@@ -1,0 +1,130 @@
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Seguimiento
+@using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
+    List<SelectListItem> Lista = ViewBag.ListaPersona;
+    List<SelectListItem> Lista1 = ViewBag.ListaConsulta;
+
+    ;
+
+
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Editar Seguimiento
+        </h3>
+    </div>
+</div>
+<!-- ======= About Section ======= -->
+<div class="row no-gutters">
+    <div class="col-md-7">
+        <div class="contact-wrap w-100 p-md-5 p-4">
+            <h2 class="text-info">Editar Registro</h2>
+            <br>
+            <form method="post" asp-action="Edit" id="viewEditar">
+                <div class="backgroundWhite">
+                    <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="SeguimientoId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-9">
+                            <input asp-for="SeguimientoId" class="form-control" readonly />
+                        </div>
+                        <span asp-validation-for="SeguimientoId" class=" text-danger"></span>
+                    </div>
+
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="PersonaId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="PersonaId" class="form-control" required
+                                    asp-items="@Lista"></select>
+                        </div>
+                        <span asp-validation-for="PersonaId" class=" text-danger"></span>
+                    </div>
+
+
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
+                            <h5><label asp-for="ConsultaId" class="col-form-label"></label></h5>
+                        </div>
+                        <div class="col-md-8">
+                            <select asp-for="ConsultaId" class="form-control" required
+                                    asp-items="@Lista1"></select>
+                        </div>
+                        <span asp-validation-for="ConsultaId" class=" text-danger"></span>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label asp-for="Descripcion" class="col-form-label"></label>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(m => m.Descripcion, new { rows = "3", cols = "56", @class = "text-area" })
+                        </div>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+
+
+
+
+
+                    <div class="form-group row">
+
+                        <div class="col-md-4 text-md-right">
+                            <a asp-action="Index" type="button" style="color:white"
+                               class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                                Regresar
+                            </a>
+                        </div>
+                        <div class="col-md-4 text-md-right">
+                            <input type="button" value="Editar" id="btnEditar"
+                                   class="btn btn-info"
+                                   onclick="abrirModal()" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+<script>
+    function abrirModal() {
+        verModal('Editar seguimiento', '¿Realmente desea editar este registro de seguimiento?').then((result) => {
+            if (result.value) {
+                var viewAgregar = document.getElementById("viewEditar");
+                viewAgregar.submit();
+                Swal.fire(
+                    'El registro de seguimiento fue editado!',
+                    'exitosamente!.',
+                    'success'
+                )
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'El registro de seguimiento no ha sido editado!!!:)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
+

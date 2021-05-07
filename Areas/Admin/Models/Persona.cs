@@ -88,6 +88,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
             Solicitante = new HashSet<Solicitante>();
             Propietario = new HashSet<Propietario>();
             Usuario = new HashSet<Usuario>();
+            Seguimiento = new HashSet<Seguimiento>();
         }
     }
 }

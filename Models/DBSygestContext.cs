@@ -376,7 +376,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Provincia>(entity =>
             {
-                entity.HasKey(e => e.ProvinciaId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -386,7 +386,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Canton>(entity =>
             {
-                entity.HasKey(e => e.CantonId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -407,7 +407,7 @@ namespace SYGESTMunicipalSync.Models
 
             modelBuilder.Entity<Distrito>(entity =>
             {
-                entity.HasKey(e => e.DistritoId);
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -450,93 +450,93 @@ namespace SYGESTMunicipalSync.Models
             // **************************** PERSONA OFIM ************************************************
 
 
-            modelBuilder.Entity<PersonaOFIM>(entity =>
-            {
-                entity.HasKey(e => e.PersonaOFIMId);
+           // modelBuilder.Entity<PersonaOFIM>(entity =>
+           // {
+           //     entity.HasKey(e => e.PersonaOFIMId);
 
-                entity.Property(e => e.Discapacidad)
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
+           //     entity.Property(e => e.Discapacidad)
+           //         .HasMaxLength(200)
+           //         .IsUnicode(false);
 
-                entity.Property(e => e.Padecimiento)
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
+           //     entity.Property(e => e.Padecimiento)
+           //         .HasMaxLength(200)
+           //         .IsUnicode(false);
 
-                entity.Property(e => e.PersonaId)
-             .HasColumnName("PersonaId");
+           //     entity.Property(e => e.PersonaId)
+           //  .HasColumnName("PersonaId");
 
-                entity.HasOne(d => d.Persona)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.PersonaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_Persona");
+           //     entity.HasOne(d => d.Persona)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.PersonaId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_Persona");
 
-                entity.Property(e => e.PersonaId)
-           .HasColumnName("PersonaId");
+           //     entity.Property(e => e.PersonaId)
+           //.HasColumnName("PersonaId");
 
-                entity.HasOne(d => d.Persona)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.PersonaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_Persona");
+           //     entity.HasOne(d => d.Persona)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.PersonaId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_Persona");
 
-                entity.Property(e => e.OcupacionId)
-           .HasColumnName("OcupacionId");
+           //     entity.Property(e => e.OcupacionId)
+           //.HasColumnName("OcupacionId");
 
-                entity.HasOne(d => d.Ocupacion)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.OcupacionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_Ocupacion");
+           //     entity.HasOne(d => d.Ocupacion)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.OcupacionId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_Ocupacion");
 
-                entity.Property(e => e.SeguroId)
-           .HasColumnName("SeguroId");
+           //     entity.Property(e => e.SeguroId)
+           //.HasColumnName("SeguroId");
 
-                entity.HasOne(d => d.Seguro)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.SeguroId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_Seguro");
+           //     entity.HasOne(d => d.Seguro)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.SeguroId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_Seguro");
 
-                entity.Property(e => e.NacionalidadId)
-           .HasColumnName("NacionalidadId");
+           //     entity.Property(e => e.NacionalidadId)
+           //.HasColumnName("NacionalidadId");
 
-                entity.HasOne(d => d.Nacionalidad)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.NacionalidadId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_Nacionalidad");
+           //     entity.HasOne(d => d.Nacionalidad)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.NacionalidadId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_Nacionalidad");
 
-                entity.Property(e => e.NivelAcademicoId)
-           .HasColumnName("NivelAcademicoId");
+           //     entity.Property(e => e.NivelAcademicoId)
+           //.HasColumnName("NivelAcademicoId");
 
-                entity.HasOne(d => d.NivelAcademico)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.NivelAcademicoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_NivelAcademico");
+           //     entity.HasOne(d => d.NivelAcademico)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.NivelAcademicoId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_NivelAcademico");
 
-                entity.Property(e => e.EstadoCivilId)
-           .HasColumnName("EstadoCivilId");
+           //     entity.Property(e => e.EstadoCivilId)
+           //.HasColumnName("EstadoCivilId");
 
-                entity.HasOne(d => d.EstadoCivil)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.EstadoCivilId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_EstadoCivil");
+           //     entity.HasOne(d => d.EstadoCivil)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.EstadoCivilId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_EstadoCivil");
 
               
 
-                entity.Property(e => e.IngresoPersonaId)
-           .HasColumnName("IngresoPersonaId");
+           //     entity.Property(e => e.IngresoPersonaId)
+           //.HasColumnName("IngresoPersonaId");
 
-                entity.HasOne(d => d.IngresoPersona)
-                    .WithMany(p => p.PersonaOFIM)
-                    .HasForeignKey(d => d.IngresoPersonaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PersonaOFIM_IngresoPersona");
+           //     entity.HasOne(d => d.IngresoPersona)
+           //         .WithMany(p => p.PersonaOFIM)
+           //         .HasForeignKey(d => d.IngresoPersonaId)
+           //         .OnDelete(DeleteBehavior.ClientSetNull)
+           //         .HasConstraintName("FK_PersonaOFIM_IngresoPersona");
 
-            });
+           // });
 
           
 
@@ -777,14 +777,7 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PersonaId)
-                .HasColumnName("PersonaId");
-
-                entity.HasOne(d => d.Persona)
-                    .WithMany(p => p.TipoConsulta)
-                    .HasForeignKey(d => d.PersonaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TipoConsulta_Persona");
+              
 
             });
 
@@ -807,12 +800,12 @@ namespace SYGESTMunicipalSync.Models
                 entity.Property(e => e.HoraInicio)
                    .IsRequired()
                    .HasColumnName("HoraInicio")
-                   .HasColumnType("date");
+                   .HasColumnType("datetime");
 
                 entity.Property(e => e.HoraFin)
                     .IsRequired()
                    .HasColumnName("HoraFin")
-                   .HasColumnType("date");
+                   .HasColumnType("datetime");
 
                 entity.Property(e => e.Descripcion)
                    .HasMaxLength(300)
@@ -844,6 +837,82 @@ namespace SYGESTMunicipalSync.Models
                     .HasForeignKey(d => d.TipoConsultaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Consulta_TipoConsulta");
+
+
+                entity.Property(e => e.Discapacidad)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Padecimiento)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+               
+
+                entity.Property(e => e.PersonaId)
+           .HasColumnName("PersonaId");
+
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_Persona");
+
+                entity.Property(e => e.OcupacionId)
+           .HasColumnName("OcupacionId");
+
+                entity.HasOne(d => d.Ocupacion)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.OcupacionId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_Ocupacion");
+
+                entity.Property(e => e.SeguroId)
+           .HasColumnName("SeguroId");
+
+                entity.HasOne(d => d.Seguro)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.SeguroId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_Seguro");
+
+                entity.Property(e => e.NacionalidadId)
+           .HasColumnName("NacionalidadId");
+
+                entity.HasOne(d => d.Nacionalidad)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.NacionalidadId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_Nacionalidad");
+
+                entity.Property(e => e.NivelAcademicoId)
+           .HasColumnName("NivelAcademicoId");
+
+                entity.HasOne(d => d.NivelAcademico)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.NivelAcademicoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_NivelAcademico");
+
+                entity.Property(e => e.EstadoCivilId)
+           .HasColumnName("EstadoCivilId");
+
+                entity.HasOne(d => d.EstadoCivil)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.EstadoCivilId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_EstadoCivil");
+
+
+
+                entity.Property(e => e.IngresoPersonaId)
+           .HasColumnName("IngresoPersonaId");
+
+                entity.HasOne(d => d.IngresoPersona)
+                    .WithMany(p => p.Consulta)
+                    .HasForeignKey(d => d.IngresoPersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Consulta_IngresoPersona");
 
             });
 

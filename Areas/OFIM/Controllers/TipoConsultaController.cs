@@ -25,40 +25,25 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         public IActionResult Index()
         {
             listaTipoConsulta = (from tipoConsulta in _db.TipoConsulta
-                          join persona in _db.Persona
-                        on tipoConsulta.PersonaId equals
-                        persona.CedulaPersona
 
-                       
-                          select new TipoConsultaViewModel
-                          {
-                              TipoConsultaId = tipoConsulta.TipoConsultaId,
-                              Nombre = tipoConsulta.Nombre,
-                              PersonaId = persona.CedulaPersona,
-                              Persona= persona.Nombre + " "+ persona.Ape1 + " " +persona.Ape2
 
-                          }).ToList();
-            ViewBag.Controlador = "TipoConsulta";
-            ViewBag.Accion = "Index";
+                                        select new TipoConsultaViewModel
+                                        {
+                                            TipoConsultaId = tipoConsulta.TipoConsultaId,
+                                            Nombre = tipoConsulta.Nombre,
+                                      
+
+
+                                        }).ToList();
+            lista = listaTipoConsulta;
             return View(listaTipoConsulta);
+
         }
-        private void cargarPersona()
-        {
-            List<SelectListItem> listaPersona = new List<SelectListItem>();
-            listaPersona = (from persona in _db.Persona
-                            orderby persona.Nombre
-                            select new SelectListItem
-                            {
-                                Text = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
-                                Value = persona.CedulaPersona.ToString()
-                            }
-                                ).ToList();
-            ViewBag.ListaPersona = listaPersona;
-        }
+
 
         public IActionResult Create()
         {
-            cargarPersona();
+      
 
 
             return View();
@@ -75,7 +60,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                 if (!ModelState.IsValid || nVeces >= 1)
                 {
                     if (nVeces >= 1) ViewBag.Error = "Este Id ya existe!";
-                    cargarPersona();
+                   
 
                 }
                 else
@@ -83,7 +68,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     TipoConsulta _tipoConsulta = new TipoConsulta();
                     _tipoConsulta.TipoConsultaId = tipoConsulta.TipoConsultaId;
                     _tipoConsulta.Nombre = tipoConsulta.Nombre;
-                    _tipoConsulta.PersonaId = tipoConsulta.PersonaId;
+                   
                     
                     _db.TipoConsulta.Add(_tipoConsulta);
                     _db.SaveChanges();
@@ -99,7 +84,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         [HttpGet]
         public IActionResult Edit(int Id)
         {
-            cargarPersona();
+           
             TipoConsulta oTipoConsulta = _db.TipoConsulta
                 .Where(e => e.TipoConsultaId == Id).FirstOrDefault();
             return View(oTipoConsulta);
@@ -131,7 +116,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
         public IActionResult Details(int id)
         {
-            cargarPersona();
+           
             
             TipoConsulta tipoConsulta = _db.TipoConsulta
                        .Where(e => e.TipoConsultaId == id).First();
@@ -139,7 +124,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         }
         public IActionResult Delete(int Id)
         {
-            cargarPersona();
+          
            
 
             TipoConsulta oTipoConsulta = _db.TipoConsulta
