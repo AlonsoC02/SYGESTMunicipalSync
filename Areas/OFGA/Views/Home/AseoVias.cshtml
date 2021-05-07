@@ -4,18 +4,86 @@
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
 
-<!-- ======= Our Clients Section ======= -->
-<section id="main" class="main">
-    <div class="container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Limpieza de Ríos y Quebradas</h2>
-            <p></p>
-        </div>
-        <div class="owl-carousel clients-carousel" data-aos="fade-up">
-            <img src="https://i.pinimg.com/originals/3f/56/3a/3f563a565100336c8a67461a53d6280d.png" alt="">
-            @*<img src="https://i.pinimg.com/originals/af/38/7c/af387ca76a386cc5ade50e970e697a84.png" alt="">
-            <img src="https://i.pinimg.com/originals/69/e6/02/69e602a396033967e34afd5399d09968.jpg" alt="">
-            <img src="https://i.pinimg.com/originals/1b/6d/38/1b6d38f0deb7ce2ea51f699e2864fe50.png" alt="">*@
+<br />
+<br />
+<br />
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="breadcrumb-hero">
+        <div class="container">
+            <div class="breadcrumb-hero">
+                <h2>Aseo y Vías</h2>
+                <h5>
+                    Mantener nuestra comunidad limpia y ordenada es uno de nuestros compromisos con este cantón y sus habitantes.
+                </h5>
+            </div>
         </div>
     </div>
-</section><!-- End Our Clients Section -->
+    <div class="container">
+        <ol>
+            <li><a asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a></li>
+            <li>Aseo y Vías</li>
+        </ol>
+    </div>
+</section><!-- End Breadcrumbs -->
+<!-- ======= Portfolio Details Section ======= -->
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container text-center">
+
+        <div class="container" style="text-align: center; width: 80%;">
+
+            <div class="owl-carousel portfolio-details-carousel">
+                <img src="https://i.pinimg.com/originals/f3/54/82/f354829164dbc26d5be750123944f528.jpg" class="img-fluid" alt="">
+                <img src="https://i.pinimg.com/originals/f4/94/5c/f4945c1f2ba80c5547dfde5cc6d6470e.png" class="img-fluid" alt="">
+                <img src="https://i.pinimg.com/originals/0b/6c/7e/0b6c7e85f43f178f8b42b81f183bf731.jpg" class="img-fluid" alt="">
+            </div>
+        </div>
+
+        <div class="portfolio-description text-left">
+            <h2>Trabajos que se realizan</h2>
+            <h5>Limpieza y mantenimiento de vías y sitios públicos como por ejemplo: Chapia de las orillas de las vías para mejorar la visibilidad a los conductores y a su vez, ofrecer un paisaje más agradable y limpieza de cunetas.</h5><br />
+            <h2>Limpieza del parque y mantenimiento</h2>
+            <h5>Mantenerlo libre de basura, regar las zonas verdes, podar, entre otras.</h5><br />
+        </div>
+    </div>
+</section><!-- End Portfolio Details Section -->
+<!-- ======= About Section ======= -->
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-6 video-box align-self-baseline">
+                <br />
+                <br />
+                <br />
+                <img src="https://i.pinimg.com/originals/1c/87/a0/1c87a0ff9551ce2c9039f3b6e436ae56.jpg" class="img-fluid" alt="">
+                <br />
+                <br />
+                <br />
+                <br />
+                <a href="https://www.youtube.com/watch?v=wyOxaCcVdl0" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+            </div>
+
+            <div class="col-lg-6 pt-3 pt-lg-0 content text-white">
+                <br />
+                <br />
+                <br />
+                <h3>La Importancia de Nuestro Trabajo y del Compromiso de la Comunidad</h3>
+                <p class="font-italic">
+                    El trabajo aportado por la Municipalidad de Hojancha en conjunto con el compromiso y la responsabilidad de este departamento de Gestión Ambiental, es solo un eslabón de la cadena que permiten que este cantón lusca agradable, debido a que el compromiso de sus habitantes con su entorno, es uno de los más importantes, el aporte al mantener y cuidar el trabajo realizado en parques, vías y sitios públicos, solo muestra la calidad de educación ambiental de la comunidad, como también su compromiso a colaborar a través de las buenas prácticas.
+                </p>
+                <h3>Buenas Prácticas</h3>
+                <ul>
+                    <li><i class="bx bx-check-double text-white"></i> No tirar la basura en el suelo, ya sea mientras vas en algún medio de transporte mientras camines o disfrutes de algún sitio público.</li>
+
+                    <li><i class="bx bx-check-double text-white"></i> Usar correctamente los basureros, cuyo proposito es mantener limpia nuestra cominidad, la cual es nuestra casa.</li>
+
+                    <li>
+                        <i class="bx bx-check-double text-white"></i>Si te encuentras en un lugar en donde no tengas acceso a un basurero, guarda la basura hasta encontrarte uno o hasta llegar a tu casa, en donde podrás desecharla de forma adecuada.
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End About Section -->

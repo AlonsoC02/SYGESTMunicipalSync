@@ -11,7 +11,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
     public partial class Distrito
     {
         [Display(Name = "Id:")]
-        public int DistritoId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el distrito")]
         [Display(Name = "Nombre:")]

@@ -1,170 +1,176 @@
 ﻿@model SYGESTMunicipalSync.Areas.Admin.Models.ViewModel.RegistroExternoVM
 
 @{ ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Login.cshtml";
     
     }
+<div class="page-header header-filter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-6 ml-auto mr-auto">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <h3 class="text-light" style="text-align:center; background-color:#263182;width:100%;">
+                            Registrarse
+                        </h3>
+                    </div>
+                </div>
+                <br />
 
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <h3 class="text-light" style="text-align:center; background-color:#263182;width:100%;">
-            Registrarse 
-        </h3>
-    </div>
-</div>
-<br />
+
+                <form asp-controller="Registro" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-md-6">
+                        Número de cédula de la persona a buscar: <input type="text" name="PersonaId" />
+                        <input type="submit" value="Buscar"
+                               class="btn btn-success form-control" style="width:130px;" />
+                    </div>
+                </form>
+                <div class="card card-login" style="color:black">
+                    <form asp-controller="Registro" asp-action="Created" id="viewAgregar">
+                        <div class="container-fluid">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-group row">
+
+                                <div class="col-md-2 text-right">
+                                    <label style="color:black">Cédula o Pasaporte <span class="required">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input asp-for="PersonaId" value="@ViewBag.PersonaId"
+                                           class="form-control" readonly="readonly" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                @if (ViewBag.Error != "")
+                                {
+                                    <p class="text-danger">@ViewBag.Error</p>}
+                            </div>
+
+                            <div class="form-group row">
+                                <div class=" col-md-2 text-right">
+                                    <label style="color:black">Nombre Persona </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
+                                           readonly="readonly" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class=" col-md-2 text-right">
+                                    <label style="color:black">Nombre Usuario: <span class="required">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input asp-for="NombreUsuario" class="form-control" placeholder="Digite el nombre" required>
+                                </div>
+                                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group row">
+
+                                <div class=" col-md-2 text-right">
+                                    <label asp-for="Password" style="color:black">Password:<span class="required">*</span></label>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" name="password" id="Password" onkeyup="checkPass();">
+                                </div>
+                                <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
+                            </div>
+
+                            <div class="form-group row">
+
+                                <div class=" col-md-2 text-right">
+                                    <label for="confirm2" style="color:black">Confirm Password:<span class="required">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="password" name="confirm" id="confirm2" onkeyup="checkPass();">
+                                </div>
+                                <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
+                            </div>
 
 
-<form asp-controller="Registro" asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="col-md-6">
-        Número de cédula de la persona a buscar: <input type="text" name="PersonaId" />
-        <input type="submit" value="Buscar"
-               class="btn btn-success form-control" style="width:130px;" />
-    </div>
-</form>
-   
-<form asp-controller="Registro" asp-action="Created" id="viewAgregar">
-    <div class="container-fluid">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="form-group row">
+                            <div class="form-group row">
+                                <div class=" col-md-2 text-right">
+                                    <label style="color:black">Rol: <span class="required">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select asp-for="RolId" class="form-control"
+                                            asp-items="@ViewBag.ListaRol" style="color:black"></select>
+                                </div>
+                                <span asp-validation-for="RolId" class="text-danger"></span>
+                            </div>
 
-            <div class="col-md-2 text-right">
-                <label>Cédula o Pasaporte <span class="required">*</span></label>
+                            <div class="form-group row">
+
+                                <div class="col-md-3 text-md-right">
+                                    <a asp-action="Index" type="button" style="color:white"
+                                       class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                                        Regresar
+                                    </a>
+                                </div>
+                                <div class="col-md-1 text-md-center">
+                                    <input type="button" value="Agregar" id="btnAgregar"
+                                           class="btn btn-info"
+                                           onclick="abrirModal()" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-md-6">
-                <input asp-for="PersonaId" value="@ViewBag.PersonaId"
-                       class="form-control" readonly="readonly" />
             </div>
-        </div>
-
-        <div class="col-md-4">
-            @if (ViewBag.Error != "")
-            {
-                <p class="text-danger">@ViewBag.Error</p>}
-        </div>
-
-        <div class="form-group row">
-            <div class=" col-md-2 text-right">
-                <label>Nombre Persona </label>
-            </div>
-            <div class="col-md-6">
-                <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
-                       readonly="readonly" class="form-control" />
             </div>
 
-        </div>
-
-        <div class="form-group row">
-            <div class=" col-md-2 text-right">
-                <label>Nombre Usuario: <span class="required">*</span></label>
-            </div>
-            <div class="col-md-6">
-                <input asp-for="NombreUsuario" class="form-control" placeholder="Digite el nombre" required>
-            </div>
-            <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-        </div>
-
-        <div class="form-group row">
-
-            <div class=" col-md-2 text-right">
-                <label asp-for="Password">Password:<span class="required">*</span></label>
-
-            </div>
-            <div class="col-md-6">
-                <input type="password" name="password" id="Password" onkeyup="checkPass();">
-            </div>
-            <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
-        </div>
-
-        <div class="form-group row">
-
-            <div class=" col-md-2 text-right">
-                <label for="confirm2">Confirm Password:<span class="required">*</span></label>
-            </div>
-            <div class="col-md-6">
-                <input type="password" name="confirm" id="confirm2" onkeyup="checkPass();">
-            </div>
-            <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
-        </div>
+            <script src="~/js/sweetalert2.js"></script>
+            <script src="~/js/Utilitarios.js"></script>
+            <script>
+                function abrirModal() {
+                    verModal('Agregar Usuario', '¿Realmente Desea Agregar estos datos?').then((result) => {
+                        if (result.value) {
 
 
+                            var viewAgregar = document.getElementById("viewAgregar");
+                            viewAgregar.submit();
+                            Swal.fire(
+                                'El usuario fue agregado!',
+                                'exitosamente!.',
+                                'success'
+                            )
+                        }
+                        else if (result.dismiss === Swal.DismissReason.cancel) {
+                            Swal.fire(
+                                'Cancelado',
+                                'El usuario no ha sido agregado!!!:)',
+                                'error'
+                            )
+                        }
+                    })
+                }</script>
+            <script type="text/javascript">
+                function checkPass() {
 
-        <div class="form-group row">
-            <div class=" col-md-2 text-right">
-                <label>Rol: <span class="required">*</span></label>
-            </div>
-            <div class="col-md-6">
-                <select asp-for="RolId" class="form-control"
-                        asp-items="@ViewBag.ListaRol"></select>
-            </div>
-            <span asp-validation-for="RolId" class="text-danger"></span>
-        </div>
+                    var password = document.getElementById('Password');
+                    var confirm = document.getElementById('confirm2');
 
-        <div class="form-group row">
+                    var message = document.getElementById('confirm-message2');
 
-            <div class="col-md-3 text-md-right">
-                <a asp-action="Index" type="button" style="color:white"
-                   class="btn btn-success fa fa fa-arrow-circle-left inicio">
-                    Regresar
-                </a>
-            </div>
-            <div class="col-md-1 text-md-center">
-                <input type="button" value="Agregar" id="btnAgregar"
-                       class="btn btn-info"
-                       onclick="abrirModal()" />
-            </div>
-        </div>
-    </div>
-</form>
+                    var good_color = "#66cc66";
+                    var bad_color = "#ff6666";
 
+                    if (password.value == confirm.value) {
 
-<script src="~/js/sweetalert2.js"></script>
-<script src="~/js/Utilitarios.js"></script>
-<script>
-    function abrirModal() {
-        verModal('Agregar Usuario', '¿Realmente Desea Agregar estos datos?').then((result) => {
-            if (result.value) {
-                /* alert("Si la confirmación de Contraseña es incorrecta, este usuario no se podrá guardar")*/
-
-                var viewAgregar = document.getElementById("viewAgregar");
-                viewAgregar.submit();
-                Swal.fire(
-                    'El usuario fue agregado!',
-                    'exitosamente!.',
-                    'success'
-                )
-            }
-            else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire(
-                    'Cancelado',
-                    'El usuario no ha sido agregado!!!:)',
-                    'error'
-                )
-            }
-        })
-    }</script>
-<script type="text/javascript">
-    function checkPass() {
-
-        var password = document.getElementById('Password');
-        var confirm = document.getElementById('confirm2');
-
-        var message = document.getElementById('confirm-message2');
-
-        var good_color = "#66cc66";
-        var bad_color = "#ff6666";
-
-        if (password.value == confirm.value) {
-
-            confirm.style.backgroundColor = good_color;
-            message.style.color = good_color;
-            message.innerHTML = '<img src="/images/check.png" alt="Las Contraseñas Coinciden!">';
-        } else {
-            confirm.style.backgroundColor = bad_color;
-            message.style.color = bad_color;
-            message.innerHTML = '<img src="/images/boton-x.png" alt="Las Contraseñas No Coinciden!">';
-        }
-    }</script>
+                        confirm.style.backgroundColor = good_color;
+                        message.style.color = good_color;
+                        message.innerHTML = '<img src="/images/check.png" alt="Las Contraseñas Coinciden!">';
+                    } else {
+                        confirm.style.backgroundColor = bad_color;
+                        message.style.color = bad_color;
+                        message.innerHTML = '<img src="/images/boton-x.png" alt="Las Contraseñas No Coinciden!">';
+                    }
+                }</script>
 
