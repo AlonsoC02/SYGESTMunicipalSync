@@ -37,25 +37,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             await _db.Persona.Include(m => m.Provincia).Include(m => m.Canton).Include(m => m.Distrito).ToListAsync();
             return View(Persona);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(string dato)
-        {
-            if (dato == null)
-            {
-                var Persona =
-                 await _db.Persona.Include(m => m.Provincia).Include(m => m.Canton).Include(m => m.Distrito).ToListAsync();
-                return View(Persona);
-            }
-            else
-            {
-                var actItem =
-                      await _db.Persona.Where(p => p.Provincia.Nombre == dato)
-                     .Include(c => c.Distrito).Include(m => m.Canton).Include(m => m.Provincia).ToListAsync();
-
-                return View(actItem);
-            }
-        }
+        
         public IActionResult Create()
         {
             return View(PersonaVM);
