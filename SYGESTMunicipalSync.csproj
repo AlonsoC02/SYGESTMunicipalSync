@@ -30,7 +30,6 @@
     <Folder Include="Areas\OFGA\Data\" />
     <Folder Include="Areas\OFIM\Data\" />
     <Folder Include="Areas\PATENTES\Data\" />
-    <Folder Include="Areas\PATENTES\Models\ViewModel\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 

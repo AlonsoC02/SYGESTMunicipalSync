@@ -86,25 +86,35 @@
                                     Mantenimiento
                                 </a>
                                 @* CRUD DE TIPOS CLASIFICACIÓN *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Materiales"))
-                    {*@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-area="PATENTES"
-                                           asp-controller="Establecimiento" asp-action="Create"> Establecimiento</a>
-                                    </li>
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Clasificación Materiales"))
+        {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="PATENTES"
+                                       asp-controller="Establecimiento" asp-action="Create"> Establecimiento</a>
+                                </li>
 
-                                    @*}*@
-                                    @* CRUD DE MATERIALES ADMITIDOS *@
-                                    @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Materiales Admitidos"))
-                    {*@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-area="PATENTES" asp-controller="Home" asp-action="Index">Solicitud de Patentes</a>
-                                    </li>
-                                    @*}*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="PATENTES"
+                                       asp-controller="Solicitante" asp-action="Index"> Solicitante</a>
+                                </li>
+
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="PATENTES"
+                                       asp-controller="Propietario" asp-action="Index"> Propietario</a>
+                                </li>
+
+                                @*}*@
+                                @* CRUD DE MATERIALES ADMITIDOS *@
+                                @*@if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Materiales Admitidos"))
+        {*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="PATENTES" asp-controller="Home" asp-action="Index">Solicitud de Patentes</a>
+                                </li>
+                                @*}*@
 
 
-                                </ul>
+                            </ul>
                             </li>
                         }
                         <li class="nav-item dropdown text-white-50">
