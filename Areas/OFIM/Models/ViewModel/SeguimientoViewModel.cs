@@ -25,6 +25,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
         [Display(Name = "Persona:")]
         public string Persona { get; set; }
 
+        [Display(Name = "Nombre Persona:")]
+        public string NombrePersona { get; set; }
+
         [Display(Name = "Consulta:")]
         public int ConsultaId { get; set; }
         public virtual Consulta Consulta { get; set; }
