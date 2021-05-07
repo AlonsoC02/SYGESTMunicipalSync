@@ -14,43 +14,47 @@
 </div>
 <br />
 
-<form asp-controller="Registro" asp-action="Create" id="viewAgregar">
-    <div class="form-group row">
-        <div class=" col-md-2 text-right">
-            <label>Número de cédula de la persona a buscar: <span class="required">*</span></label>
-        </div>
-        <div class="col-md-6">
-            <input asp-for="PersonaId"
-                   class="form-control" id="PersonaId" />
-        </div>
-        <div class="col-md-4">
-            <a class="fas fa-search btn btn-info" aria-hidden="true"
-               style="width:60%; margin-left:5%;" onclick="DatosPersona(PersonaId)"> </a>
-        </div>
-    </div>
 
-    <div class="col-md-4">
-        @if (ViewBag.Error != "")
-        {
-<p class="text-danger">@ViewBag.Error</p>}
-    </div>
-
-    <div class="form-group row">
-        <div class=" col-md-2 text-right">
-            <label>Nombre Persona </label>
-        </div>
-        <div class="col-md-6">
-            <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
-                   readonly="readonly" class="form-control" />
-        </div>
-
+<form asp-controller="Registro" asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-6">
+        Número de cédula de la persona a buscar: <input type="text" name="PersonaId" />
+        <input type="submit" value="Buscar"
+               class="btn btn-success form-control" style="width:130px;" />
     </div>
 </form>
+   
 <form asp-controller="Registro" asp-action="Created" id="viewAgregar">
     <div class="container-fluid">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    
+        <div class="form-group row">
+
+            <div class="col-md-2 text-right">
+                <label>Cédula o Pasaporte <span class="required">*</span></label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="PersonaId" value="@ViewBag.PersonaId"
+                       class="form-control" readonly="readonly" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @if (ViewBag.Error != "")
+            {
+                <p class="text-danger">@ViewBag.Error</p>}
+        </div>
+
+        <div class="form-group row">
+            <div class=" col-md-2 text-right">
+                <label>Nombre Persona </label>
+            </div>
+            <div class="col-md-6">
+                <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
+                       readonly="readonly" class="form-control" />
+            </div>
+
+        </div>
 
         <div class="form-group row">
             <div class=" col-md-2 text-right">
@@ -115,9 +119,6 @@
     </div>
 </form>
 
-<form asp-action="Create" asp-controller="Registro" method="post" id="viewPasar">
-    <input type="hidden" id="txtPersonaId"  />
-</form>
 
 <script src="~/js/sweetalert2.js"></script>
 <script src="~/js/Utilitarios.js"></script>
@@ -167,10 +168,3 @@
         }
     }</script>
 
-<script>
-    function DatosPersona(PersonaId) {
-        document.getElementById("txtPersonaId").value = PersonaId;
-        var viewPasar = document.getElementById("viewPasar");
-        viewPasar.submit();
-    }
-</script>
