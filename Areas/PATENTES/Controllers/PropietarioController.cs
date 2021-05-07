@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using SYGESTMunicipalSync.Areas.Admin.Models;
+using SYGESTMunicipalSync.Areas.PATENTES.Models;
 using SYGESTMunicipalSync.Areas.PATENTES.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
@@ -40,6 +43,76 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Controllers
                                 }).ToList();
             lista = listaPropietario;
             return View(listaPropietario);
+        }
+
+        private void cargarContacto()
+        {
+            List<SelectListItem> listaContacto = new List<SelectListItem>();
+            listaContacto = (from contacto in _db.Contacto
+                             orderby contacto.MedioNotificacion
+                             select new SelectListItem
+                             {
+                                 Text = contacto.MedioNotificacion,
+                                 Value = contacto.ContactoId.ToString()
+                             }
+                                   ).ToList();
+            ViewBag.ListaTContacto = listaContacto;
+        }
+
+        
+        private void Buscar(string PersonaId)
+        {
+            Persona oPersona = _db.Persona
+          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+            if (oPersona != null)
+            {
+                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1;
+            }
+            else
+            {
+                ViewBag.Error = "Persona no registrada, intente de nuevo!";
+            }
+        }
+        public IActionResult Create(string PersonaId)
+        {
+            cargarContacto();
+            
+            if (PersonaId != null)
+            {
+                Buscar(PersonaId);
+            }
+            ViewBag.Controlador = "Solicitante";
+            ViewBag.Accion = "Create";
+            return View();
+        }
+        public async Task<IActionResult> Created(Propietario propietario)
+        {
+            string Error = "";
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(propietario);
+                }
+                else
+                {
+                    //string password = Utilitarios.CifrarDatos(usuario.Password);
+                    Propietario _propietario = new Propietario();
+
+                    _propietario.PropietarioId = propietario.PropietarioId;
+                    _propietario.PersonaId = propietario.PersonaId;
+                    _propietario.ContactoId = propietario.ContactoId;
+                    _db.Propietario.Add(_propietario);
+                    await _db.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Error = ex.Message;
+            }
+            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(Areas.PATENTES.Controllers.SolicitanteController(Index));
         }
     }
 }
