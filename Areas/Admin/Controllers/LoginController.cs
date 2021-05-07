@@ -61,14 +61,14 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                                                && pgtb.BotonHabilitado == true
                                                && tup.BotonHabilitado == true
                                                select new Pagina
-                                               {
+                                               {        
                                                    PaginaId = (int)tup.PaginaId,
                                                    Controlador = pag.Controlador
                                                }).ToList();
                     Utilitarios.listaBotonesPagina = ListaBoton;
 
-                    Utilitarios.MenuADMIN = "";
-                    Utilitarios.MenuDep = "";
+                    //Utilitarios.MenuADMIN = "";
+                    //Utilitarios.MenuDep = "";
                    
                     Utilitarios.ListaMenu.Clear();
                     Utilitarios.ListaController.Clear();
@@ -87,7 +87,6 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                              _Pagina.Controlador == "Pagina"||
                             _Pagina.Controlador == "RolUsuarioPag" ||
                             _Pagina.Controlador == "RolUsuarioPagBoton"
-                           
                             )
 
                         {
