@@ -1,4 +1,4 @@
-﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Seguimiento
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel.SeguimientoViewModel
 @using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
 @{
     ViewData["Title"] = "Create";
@@ -25,21 +25,47 @@
         <div class="contact-wrap w-100 p-md-5 p-4">
             <h2 class="text-info">Nuevo Registro</h2>
             <br>
-            <form method="post" asp-action="Create" id="viewAgregar">
+
+
+            <form asp-controller="Seguimiento" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-6">
+                    Número de cédula de la persona a buscar: <input type="text" name="PersonaId" />
+                    <input type="submit" value="Buscar"
+                           class="btn btn-success form-control" style="width:130px;" />
+                </div>
+            </form>
+
+
+            <form asp-controller="Seguimiento" method="post" asp-action="Created" id="viewAgregar">
                 <div class="backgroundWhite">
-                    <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                    <div class="form-group row">
 
-
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="PersonaId" class="col-form-label"></label></h5>
+                        <div class="col-md-2 text-right">
+                            <label>Cédula o Pasaporte <span class="required">*</span></label>
                         </div>
-                        <div class="col-md-8">
-                            <select asp-for="PersonaId" class="form-control" required
-                                    asp-items="@Lista"></select>
+                        <div class="col-md-6">
+                            <input asp-for="PersonaId" value="@ViewBag.PersonaId" class="form-control" readonly="readonly" />
                         </div>
-                        <span asp-validation-for="PersonaId" class=" text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        @if (ViewBag.Error != "")
+                        {
+                            <p class="text-danger">@ViewBag.Error</p>}
+                    </div>
+
+                    <div class="form-group row">
+                        <div class=" col-md-2 text-right">
+                            <label>Nombre Persona </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
+                                   readonly="readonly" class="form-control" />
+                        </div>
+
                     </div>
 
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
@@ -66,55 +67,74 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         {
             List<SelectListItem> listaConsulta = new List<SelectListItem>();
             listaConsulta = (from consulta in _db.Consulta
-                                 orderby consulta.Motivo
-                                 select new SelectListItem
-                                 {
-                                     Text = consulta.Motivo,
-                                     Value = consulta.ConsultaId.ToString()
-                                 }
-                                ).ToList();
+                            orderby consulta.Motivo
+                            join tipoConsulta in _db.TipoConsulta
+                            on consulta.TipoConsultaId equals tipoConsulta.TipoConsultaId
+                            select new SelectListItem
+                            {
+                                Text = consulta.Motivo + " - " + tipoConsulta.Nombre,
+                                Value = consulta.ConsultaId.ToString()
+                            }
+                                   ).ToList();
             ViewBag.ListaConsulta = listaConsulta;
         }
 
+        private void Buscar(string PersonaId)
+        {
+            Persona oPersona = _db.Persona
+          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+            if (oPersona != null)
+            {
+                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1 + " " + oPersona.Ape2;
+            }
+            else
+            {
+                ViewBag.Error = "Persona no registrada, intente de nuevo!";
+            }
+        }
 
-        public IActionResult Create()
+        public IActionResult Create(string PersonaId)
         {
             cargarPersona();
             cargarConsulta();
+
+            if (PersonaId != null)
+            {
+                Buscar(PersonaId);
+            }
+            ViewBag.Controlador = "Seguimiento";
+            ViewBag.Accion = "Create";
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Create(Seguimiento seguimiento)
+        public async Task<IActionResult> Created(Seguimiento seguimiento)
         {
-            int nVeces = 0;
-
+            string Error = "";
             try
             {
-                nVeces = _db.Seguimiento.Where(m => m.SeguimientoId == seguimiento.SeguimientoId).Count();
-                if (!ModelState.IsValid || nVeces >= 1)
+                if (!ModelState.IsValid)
                 {
-                    if (nVeces >= 1) ViewBag.Error = "Este Id ya existe!";
-                    cargarPersona();
-                    cargarConsulta();
+                    return View(seguimiento);
                 }
                 else
                 {
+
                     Seguimiento _seguimiento = new Seguimiento();
-                    _seguimiento.ConsultaId = seguimiento.ConsultaId;
-                    _seguimiento.Descripcion = seguimiento.Descripcion;
-                    _seguimiento.PersonaId = seguimiento.PersonaId;
-                    _seguimiento.ConsultaId = seguimiento.ConsultaId;
+
                    
-
-
+                    _seguimiento.SeguimientoId = seguimiento.SeguimientoId;
+                    _seguimiento.Descripcion = seguimiento.Descripcion;
+                    _seguimiento.ConsultaId = seguimiento.ConsultaId;
+                    _seguimiento.PersonaId = seguimiento.PersonaId;
+                   
                     _db.Seguimiento.Add(_seguimiento);
-                    _db.SaveChanges();
+                    await _db.SaveChangesAsync();
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                Error = ex.Message;
             }
             return RedirectToAction(nameof(Index));
         }

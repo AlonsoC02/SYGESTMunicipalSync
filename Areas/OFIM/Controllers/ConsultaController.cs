@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
@@ -73,7 +74,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                                  TipoConsultaId = tipoConsulta.TipoConsultaId,
                                  TipoConsulta = tipoConsulta.Nombre,
                                  PersonaId = persona.CedulaPersona,
-                                 Persona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
+                                 NombrePersona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
 
                                  }).ToList();
             ViewBag.Controlador = "Consulta";
@@ -196,7 +197,22 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ViewBag.ListaIngresoPersona = listaIngresoPersona;
         }
 
-        public IActionResult Create()
+        private void Buscar(string PersonaId)
+        {
+            Persona oPersona = _db.Persona
+          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+            if (oPersona != null)
+            {
+                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1 + " " + oPersona.Ape2;
+            }
+            else
+            {
+                ViewBag.Error = "Persona no registrada, intente de nuevo!";
+            }
+        }
+
+        public IActionResult Create(string PersonaId)
         {
             cargarPersona();
             cargarTipoConsulta();
@@ -206,36 +222,35 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             cargarNivelAcademico();
             cargarSeguro();
             cargarIngresoPersona();
+
+            if (PersonaId != null)
+            {
+                Buscar(PersonaId);
+            }
+            ViewBag.Controlador = "Consulta";
+            ViewBag.Accion = "Create";
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Create(Consulta consulta)
-        {
-            int nVeces = 0;
 
+
+        public async Task<IActionResult> Created(Consulta consulta)
+        {
+            string Error = "";
             try
             {
-                nVeces = _db.Consulta.Where(m => m.ConsultaId == consulta.ConsultaId).Count();
-                if (!ModelState.IsValid || nVeces >= 1)
+                if (!ModelState.IsValid)
                 {
-                    if (nVeces >= 1) ViewBag.Error = "Este Id ya existe!";
-                    cargarPersona();
-                    cargarTipoConsulta();
-                    cargarEstadoCivil();
-                    cargarOcupacion();
-                    cargarNacionalidad();
-                    cargarNivelAcademico();
-                    cargarSeguro();
-                    cargarIngresoPersona();
+                    return View(consulta);
                 }
                 else
                 {
+
                     Consulta _consulta = new Consulta();
+
                     _consulta.ConsultaId = consulta.ConsultaId;
                     _consulta.Motivo = consulta.Motivo;
-                    _consulta.PersonaId = consulta.PersonaId;
-                    _consulta.PersonaId = consulta.PersonaId;
+                    _consulta.PersonaId = consulta.PersonaId;              
                     _consulta.Fecha = consulta.Fecha;
                     _consulta.HoraInicio = consulta.HoraInicio;
                     _consulta.HoraFin = consulta.HoraFin;
@@ -243,8 +258,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     _consulta.Respuesta = consulta.Respuesta;
                     _consulta.Remitir = consulta.Remitir;
                     _consulta.Discapacidad = consulta.Discapacidad;
-                    _consulta.Padecimiento = consulta.Padecimiento;
-                    _consulta.PersonaId = consulta.PersonaId;
+                    _consulta.Padecimiento = consulta.Padecimiento;              
                     _consulta.TipoConsultaId = consulta.TipoConsultaId;
                     _consulta.NacionalidadId = consulta.NacionalidadId;
                     _consulta.SeguroId = consulta.SeguroId;
@@ -252,18 +266,20 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     _consulta.OcupacionId = consulta.OcupacionId;
                     _consulta.NivelAcademicoId = consulta.NivelAcademicoId;
                     _consulta.IngresoPersonaId = consulta.IngresoPersonaId;
-
-
                     _db.Consulta.Add(_consulta);
-                    _db.SaveChanges();
+                    await _db.SaveChangesAsync();
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                Error = ex.Message;
             }
             return RedirectToAction(nameof(Index));
         }
+
+
+
+
 
         [HttpGet]
         public IActionResult Edit(int Id)
