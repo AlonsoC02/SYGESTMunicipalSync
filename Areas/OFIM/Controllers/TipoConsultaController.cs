@@ -39,13 +39,24 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return View(listaTipoConsulta);
 
         }
+        private void cargarUltimoRegistro()
+        {
+            var ultimoRegistro = _db.Set<TipoConsulta>().OrderByDescending(
+                e => e.TipoConsultaId).FirstOrDefault();
+            if (ultimoRegistro == null)
+            {
+                ViewBag.ID = 1;
 
-
+            }
+            else
+            {
+                ViewBag.ID = ultimoRegistro.TipoConsultaId + 1;
+            }
+        }
+       
         public IActionResult Create()
         {
-      
-
-
+            cargarUltimoRegistro();
             return View();
         }
 
@@ -53,24 +64,20 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         public IActionResult Create(TipoConsulta tipoConsulta)
         {
             int nVeces = 0;
-
+            
             try
             {
-                nVeces = _db.TipoConsulta.Where(m => m.TipoConsultaId == tipoConsulta.TipoConsultaId).Count();
+                nVeces = _db.TipoConsulta.Where(m => 
+                m.Nombre == tipoConsulta.Nombre).Count();
                 if (!ModelState.IsValid || nVeces >= 1)
                 {
                     if (nVeces >= 1) ViewBag.Error = "Este Id ya existe!";
-                   
 
+                    return View(tipoConsulta);
                 }
                 else
                 {
-                    TipoConsulta _tipoConsulta = new TipoConsulta();
-                    _tipoConsulta.TipoConsultaId = tipoConsulta.TipoConsultaId;
-                    _tipoConsulta.Nombre = tipoConsulta.Nombre;
-                   
-                    
-                    _db.TipoConsulta.Add(_tipoConsulta);
+                    _db.TipoConsulta.Add(tipoConsulta);
                     _db.SaveChanges();
                 }
             }

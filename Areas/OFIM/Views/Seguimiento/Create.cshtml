@@ -4,12 +4,7 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutOFIM.cshtml";
-    List<SelectListItem> Lista = ViewBag.ListaPersona;
-    List<SelectListItem> Lista1 = ViewBag.ListaConsulta;
-
-    ;
-
-
+    
 }
 
 <div class="row">
@@ -48,7 +43,8 @@
                             <label>Cédula o Pasaporte <span class="required">*</span></label>
                         </div>
                         <div class="col-md-6">
-                            <input asp-for="PersonaId" value="@ViewBag.PersonaId" class="form-control"  name="PersonaId" id="PersonaId" readonly="readonly" />
+                            <input asp-for="PersonaId" value="@ViewBag.PersonaId" 
+                                   class="form-control"  name="PersonaId" id="PersonaId" readonly="readonly" />
                         </div>
                     </div>
 

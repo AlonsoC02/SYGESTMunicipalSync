@@ -88,12 +88,16 @@
                                 Administrador
                             </a>
                             @* CRUD DE PERSONAS *@
+
                         <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+
+                       @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.ListaController.Contains("Persona"))
+                        {
                             <li class="nav-item active">
                                 <a class="dropdown-item" asp-action="Index"
                                    asp-controller="Persona" asp-area="Admin">Persona</a>
                             </li>
-
+                        }
                             @* CRUD USUARIOS *@
 
                             <li class="nav-item active">
@@ -101,9 +105,9 @@
                                    asp-controller="Usuario" asp-area="Admin">Usuarios</a>
                             </li>
                             @*<li class="nav-item active">
-                                <a class="dropdown-item" asp-action="Create"
-                                   asp-controller="Registro" asp-area="Admin">Registrarse</a>
-                            </li>*@
+            <a class="dropdown-item" asp-action="Create"
+               asp-controller="Registro" asp-area="Admin">Registrarse</a>
+        </li>*@
 
                             @* CRUD ROLES DE LOS USUARIOS *@
                             <li class="nav-item active">

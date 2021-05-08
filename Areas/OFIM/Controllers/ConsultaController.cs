@@ -26,14 +26,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         public IActionResult Index()
         {
             listaConsulta = (from consulta in _db.Consulta
-                                 join persona in _db.Persona
-                               on consulta.PersonaId equals
-                               persona.Id
+                               
+                             join persona in _db.Persona
+                             on consulta.PersonaId equals
+                             persona.Id
 
                              join tipoConsulta in _db.TipoConsulta
-                         on consulta.TipoConsultaId equals
-                         tipoConsulta.TipoConsultaId
-
+                             on consulta.TipoConsultaId equals
+                             tipoConsulta.TipoConsultaId
 
                              join estadoCivil in _db.EstadoCivil
                              on consulta.EstadoCivilId equals
@@ -55,10 +55,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                              on consulta.SeguroId equals
                              seguro.SeguroId
 
-
-                             join ingreso in _db.IngresoPersona
-                             on consulta.IngresoPersonaId equals
-                             ingreso.IngresoPersonaId
+                             //join ingreso in _db.IngresoPersona
+                             //on consulta.IngresoPersonaId equals
+                             //ingreso.IngresoPersonaId
 
 
                              select new ConsultaViewModel
@@ -74,6 +73,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                                  TipoConsultaId = tipoConsulta.TipoConsultaId,
                                  TipoConsulta = tipoConsulta.Nombre,
                                  PersonaId = persona.Id,
+                                 
                                  NombrePersona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
 
                                  }).ToList();
@@ -180,17 +180,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ViewBag.ListaSeguro = listaSeguro;
         }
 
-      
-        
-
         private void cargarIngresoPersona()
         {
             List<SelectListItem> listaIngresoPersona = new List<SelectListItem>();
             listaIngresoPersona = (from ingresoPersona in _db.IngresoPersona
-                                   orderby ingresoPersona.IngresoMensual
+                                   orderby ingresoPersona.MontoMensual
                                    select new SelectListItem
                                    {
-                                       Text = ingresoPersona.IngresoMensual.ToString(),
+                                       Text = ingresoPersona.MontoMensual.ToString(),
                                        Value = ingresoPersona.IngresoPersonaId.ToString()
                                    }
                                 ).ToList();
@@ -277,10 +274,6 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
-
-
         [HttpGet]
         public IActionResult Edit(int Id)
         {
@@ -296,6 +289,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                 .Where(e => e.ConsultaId == Id).FirstOrDefault();
             return View(oConsulta);
         }
+
         [HttpPost]
         public IActionResult Edit(Consulta consulta)
         {

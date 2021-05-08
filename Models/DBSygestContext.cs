@@ -68,7 +68,6 @@ namespace SYGESTMunicipalSync.Models
         public virtual DbSet<Ocupacion> Ocupacion { get; set; }
        
         public virtual DbSet<Parentesco> Parentesco { get; set; }
-        public virtual DbSet<PersonaOFIM> PersonaOFIM { get; set; }
         public virtual DbSet<ProductoServicio> ProductoServicio { get; set; }
         public virtual DbSet<Seguimiento> Seguimiento { get; set; }
         public virtual DbSet<Seguro> Seguro { get; set; }
@@ -556,7 +555,7 @@ namespace SYGESTMunicipalSync.Models
             {
                 entity.HasKey(e => e.IngresoPersonaId);
 
-                entity.Property(e => e.IngresoMensual)
+                entity.Property(e => e.MontoMensual)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -847,18 +846,7 @@ namespace SYGESTMunicipalSync.Models
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-               
-
-                entity.Property(e => e.PersonaId)
-           .HasColumnName("PersonaId");
-
-                entity.HasOne(d => d.Persona)
-                    .WithMany(p => p.Consulta)
-                    .HasForeignKey(d => d.PersonaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Consulta_Persona");
-
-                entity.Property(e => e.OcupacionId)
+               entity.Property(e => e.OcupacionId)
            .HasColumnName("OcupacionId");
 
                 entity.HasOne(d => d.Ocupacion)

@@ -24,13 +24,17 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
         public string PersonaId { get; set; }
         [Display(Name = "Persona:")]
         public string Persona { get; set; }
-        public Seguimiento Seguimiento { get; set; }
+
 
         [Display(Name = "Nombre Persona:")]
         public string NombrePersona { get; set; }
 
         [Display(Name = "Consulta:")]
         public int ConsultaId { get; set; }
-        public virtual Consulta Consulta { get; set; }
+
+
+
+        public Seguimiento Seguimiento { get; set; }  //objeto de ProductItem (CRUD)
+        public IEnumerable<Consulta> Consulta { get; set; }   //combo categoria
     }
 }

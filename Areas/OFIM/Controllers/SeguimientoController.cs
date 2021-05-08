@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models;
@@ -6,7 +7,7 @@ using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,11 +17,21 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
     public class SeguimientoController : Controller
     {
         private readonly DBSygestContext _db;
+        private readonly IWebHostEnvironment _hostEnvironment;
+
         List<SeguimientoViewModel> listaSeguimiento = new List<SeguimientoViewModel>();
-        static List<SeguimientoViewModel> lista = new List<SeguimientoViewModel>();
-        public SeguimientoController(DBSygestContext db)
+        public SeguimientoViewModel SegumientoVM { get; set; }
+
+        public SeguimientoController(DBSygestContext db,
+            IWebHostEnvironment hostEnvironment)
         {
             _db = db;
+            _hostEnvironment = hostEnvironment;
+            SegumientoVM = new SeguimientoViewModel()
+            {
+                Consulta = _db.Consulta,
+                Seguimiento = new Models.Seguimiento()
+            };
         }
 
         public IActionResult Index()
@@ -33,9 +44,6 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                                 join consulta in _db.Consulta
                          on seguimiento.ConsultaId equals
                          consulta.ConsultaId
-
-
-
 
                              select new SeguimientoViewModel
                              {
@@ -50,35 +58,23 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ViewBag.Accion = "Index";
             return View(listaSeguimiento);
         }
-        private void cargarPersona()
-        {
-            List<SelectListItem> listaPersona = new List<SelectListItem>();
-            listaPersona = (from persona in _db.Persona
-                            orderby persona.Nombre
-                            select new SelectListItem
-                            {
-                                Text = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
-                                Value = persona.Id.ToString()
-                            }
-                                ).ToList();
-            ViewBag.ListaPersona = listaPersona;
-        }
+        
 
-        private void cargarConsulta()
-        {
-            List<SelectListItem> listaConsulta = new List<SelectListItem>();
-            listaConsulta = (from consulta in _db.Consulta
-                            orderby consulta.Motivo
-                            join tipoConsulta in _db.TipoConsulta
-                            on consulta.TipoConsultaId equals tipoConsulta.TipoConsultaId
-                            select new SelectListItem
-                            {
-                                Text = consulta.Motivo + " - " + tipoConsulta.Nombre,
-                                Value = consulta.ConsultaId.ToString()
-                            }
-                                   ).ToList();
-            ViewBag.ListaConsulta = listaConsulta;
-        }
+        //private void cargarConsulta()
+        //{
+        //    List<SelectListItem> listaConsulta = new List<SelectListItem>();
+        //    listaConsulta = (from consulta in _db.Consulta
+        //                    orderby consulta.Motivo
+        //                    join tipoConsulta in _db.TipoConsulta
+        //                    on consulta.TipoConsultaId equals tipoConsulta.TipoConsultaId
+        //                    select new SelectListItem
+        //                    {
+        //                        Text = consulta.Motivo + " - " + tipoConsulta.Nombre,
+        //                        Value = consulta.ConsultaId.ToString()
+        //                    }
+        //                           ).ToList();
+        //    ViewBag.ListaConsulta = listaConsulta;
+        //}
 
         private void Buscar(string PersonaId)
         {
@@ -134,7 +130,6 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
                     Seguimiento _seguimiento = new Seguimiento();
 
-                   
                     _seguimiento.SeguimientoId = seguimiento.SeguimientoId;
                     _seguimiento.Descripcion = seguimiento.Descripcion;
                     _seguimiento.ConsultaId = seguimiento.ConsultaId;
@@ -154,8 +149,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         [HttpGet]
         public IActionResult Edit(int Id)
         {
-            cargarPersona();
-            cargarConsulta(); 
+            //cargarPersona();
+            //cargarConsulta(); 
 
             Seguimiento oSeguimiento = _db.Seguimiento
                 .Where(e => e.SeguimientoId == Id).FirstOrDefault();
@@ -188,8 +183,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
 
         public IActionResult Details(int id)
         {
-            cargarPersona();
-            cargarConsulta();
+            //cargarPersona();
+            //cargarConsulta();
 
             Seguimiento seguimiento = _db.Seguimiento
                        .Where(e => e.SeguimientoId == id).First();
@@ -197,8 +192,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         }
         public IActionResult Delete(int Id)
         {
-            cargarPersona();
-            cargarConsulta();
+            //cargarPersona();
+            //cargarConsulta();
 
             Seguimiento oSeguimiento = _db.Seguimiento
                  .Where(m => m.SeguimientoId == Id).First();
