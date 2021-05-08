@@ -48,8 +48,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         {
             int nVeces = 0;
           
-                nVeces = _db.Persona.Where(m => m.CedulaPersona == PersonaVM.Persona.CedulaPersona).Count();
-                PersonaVM.Persona.CedulaPersona =Request.Form["CedulaPersona"].ToString();
+                nVeces = _db.Persona.Where(m => m.Id == PersonaVM.Persona.Id).Count();
+                PersonaVM.Persona.Id = Request.Form["CedulaPersona"].ToString();
             if (!ModelState.IsValid || nVeces >= 1)
             {
                     if (nVeces >= 1) ViewBag.Error = "Esta Persona ya se encuentra registrada!";
@@ -70,10 +70,10 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         private void BuscarPersona(string PersonaId)
         {
             Persona oPersona = _db.Persona
-           .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+           .Where(p => p.Id == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
-                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.PersonaID = oPersona.Id;
                 ViewBag.Nombre = oPersona.Nombre + " " + oPersona.Ape1;
                 
             }
@@ -114,7 +114,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             try
             {
                 Persona oPersona = _db.Persona
-                             .Where(e => e.CedulaPersona == CedulaPersona).First();
+                             .Where(e => e.Id == CedulaPersona).First();
                 _db.Persona.Remove(oPersona);
                 _db.SaveChanges();
             }

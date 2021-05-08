@@ -13,7 +13,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Required(ErrorMessage = "Debe digitar el ID de la Persona")]
         [Display(Name = "Cédula o Pasaporte:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
-        public string CedulaPersona { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Persona")]
         [Display(Name = "Nombre:")]

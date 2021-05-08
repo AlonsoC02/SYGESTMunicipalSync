@@ -27,7 +27,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             listaPersonas = (from personaOFIM in _db.PersonaOFIM
                              join persona in _db.Persona
                             on personaOFIM.PersonaId equals
-                            persona.CedulaPersona
+                            persona.Id
 
                              join estadoCivil in _db.EstadoCivil
                              on personaOFIM.EstadoCivilId equals
@@ -59,7 +59,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                                  PersonaOFIMId = personaOFIM.PersonaOFIMId,
                                  Padecimiento = personaOFIM.Discapacidad,
                                  Discapacidad = personaOFIM.Padecimiento,
-                                 PersonaId = persona.CedulaPersona,
+                                 PersonaId = persona.Id,
                                  Persona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
                                  Ocupacion = ocupacion.Nombre,
                                  Seguro = seguro.Nombre,
@@ -151,7 +151,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             select new SelectListItem
                             {
                                 Text = persona.Nombre + " " + persona.Ape1 + " " +persona.Ape2,
-                                Value = persona.CedulaPersona.ToString()
+                                Value = persona.Id.ToString()
                             }
                                 ).ToList();
             ViewBag.ListaPersona = listaPersona;

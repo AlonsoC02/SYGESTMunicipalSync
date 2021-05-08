@@ -28,7 +28,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             listaConsulta = (from consulta in _db.Consulta
                                  join persona in _db.Persona
                                on consulta.PersonaId equals
-                               persona.CedulaPersona
+                               persona.Id
 
                              join tipoConsulta in _db.TipoConsulta
                          on consulta.TipoConsultaId equals
@@ -73,7 +73,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                                  Remitir = consulta.Remitir,
                                  TipoConsultaId = tipoConsulta.TipoConsultaId,
                                  TipoConsulta = tipoConsulta.Nombre,
-                                 PersonaId = persona.CedulaPersona,
+                                 PersonaId = persona.Id,
                                  NombrePersona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
 
                                  }).ToList();
@@ -89,7 +89,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             select new SelectListItem
                             {
                                 Text = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
-                                Value = persona.CedulaPersona.ToString()
+                                Value = persona.Id.ToString()
                             }
                                 ).ToList();
             ViewBag.ListaPersona = listaPersona;
@@ -200,10 +200,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         private void Buscar(string PersonaId)
         {
             Persona oPersona = _db.Persona
-          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+          .Where(p => p.Id == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
-                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.PersonaID = oPersona.Id;
                 ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1 + " " + oPersona.Ape2;
             }
             else

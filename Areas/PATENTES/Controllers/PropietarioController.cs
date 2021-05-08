@@ -26,7 +26,7 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Controllers
             listaPropietario = (from propietario in _db.Propietario
                                 join persona in _db.Persona
                                on propietario.PersonaId equals
-                               persona.CedulaPersona
+                               persona.Id
 
                                 join contacto in _db.Contacto
                                 on propietario.ContactoId equals
@@ -63,10 +63,10 @@ namespace SYGESTMunicipalSync.Areas.PATENTES.Controllers
         private void Buscar(string PersonaId)
         {
             Persona oPersona = _db.Persona
-          .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
+          .Where(p => p.Id == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
-                ViewBag.PersonaID = oPersona.CedulaPersona;
+                ViewBag.PersonaID = oPersona.Id;
                 ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1;
             }
             else
