@@ -1,4 +1,5 @@
-﻿using SYGESTMunicipalSync.Areas.OFIM.Models;
+﻿using SYGESTMunicipalSync.Areas.OFGA.Models;
+using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.PATENTES.Models;
 using System;
 using System.Collections.Generic;
@@ -80,6 +81,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         
         public virtual ICollection<Empresa> Empresa { get; set; }
         public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<Denuncia> Denuncia { get; set; }
         public Persona()
         {
             //Familia = new HashSet<Familia>();
@@ -89,6 +91,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
             Propietario = new HashSet<Propietario>();
             Usuario = new HashSet<Usuario>();
             Seguimiento = new HashSet<Seguimiento>();
+            Denuncia = new HashSet<Denuncia>();
+
         }
     }
 }

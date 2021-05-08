@@ -1394,6 +1394,16 @@ namespace SYGESTMunicipalSync.Models
                 //    .OnDelete(DeleteBehavior.ClientSetNull)
                 //    .HasConstraintName("FK_Denuncia_Login");
 
+
+                entity.Property(e => e.PersonaId)
+              .HasColumnName("PersonaId");
+
+                entity.HasOne(d => d.Persona)
+                    .WithMany(p => p.Denuncia)
+                    .HasForeignKey(d => d.PersonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Denuncia_Persona");
+
                 entity.Property(e => e.TipoDenunciaId)
                 .HasColumnName("TipoDenunciaId");
 

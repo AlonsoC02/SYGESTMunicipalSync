@@ -59,9 +59,9 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Models
         [Display(Name = "Imagen")]
         public byte[] Imagen { get; set; }
 
-        //[Display(Name = "Usuario:")]
-        //public int LoginId { get; set; }
-        //public virtual Login Login { get; set; }
+        [Display(Name = "Persona:")]
+        public string PersonaId { get; set; }
+        public virtual Persona Persona { get; set; }
 
         [Display(Name = "Tipo Denuncia:")]
         public int TipoDenunciaId { get; set; }
