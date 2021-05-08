@@ -59,7 +59,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
             try
             {
                 nVeces = _db.Clasificacion.Where(e =>
-                                       e.Nombre == materialType.Nombre).Count();
+                      e.Nombre == materialType.Nombre).Count();
 
                 if (!ModelState.IsValid || nVeces >= 1)
                 {
