@@ -11,7 +11,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
     public partial class Canton
     {
         [Display(Name = "Id:")]
-        public int Id { get; set; }
+        public int CantonId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre del Canton")]
         [Display(Name = "Nombre:")]

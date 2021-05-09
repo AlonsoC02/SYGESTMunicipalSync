@@ -204,7 +204,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         }
 
         //GET - DETAILS
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

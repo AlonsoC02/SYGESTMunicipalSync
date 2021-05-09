@@ -64,7 +64,7 @@
 
             </div>
             <div class="col-md-6">
-                <input type="password" class="form-control" name="password" id="Password" onkeyup="checkPass();">
+                <input type="password" name="password" id="Password" onkeyup="checkPass();">
             </div>
             <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
         </div>
@@ -75,7 +75,7 @@
                 <label for="confirm2">Confirm Password:<span class="required">*</span></label>
             </div>
             <div class="col-md-6">
-                <input type="password" class="form-control" name="confirm" id="confirm2" onkeyup="checkPass();">
+                <input type="password" name="confirm" id="confirm2" onkeyup="checkPass();">
             </div>
             <span asp-validation-for="Password" id="confirm-message2" class="confirm-message"></span>
         </div>

@@ -11,7 +11,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
     public partial class Provincia
     {
         [Display(Name = "Id:")]
-        public int Id { get; set; }
+        public int ProvinciaId { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Provincia")]
         [Display(Name = "Nombre:")]

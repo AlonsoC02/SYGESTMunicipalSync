@@ -28,7 +28,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                           on puntoRecMaterial.ClasificacionId equals clasificacion.ClasificacionId
 
                           join distrito in _db.Distrito
-                          on puntoRecMaterial.DistritoId equals distrito.Id
+                          on puntoRecMaterial.DistritoId equals distrito.DistritoId
 
                           join material in _db.Materiales
                           on puntoRecMaterial.MaterialId equals material.MaterialId
@@ -68,7 +68,7 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
                                   select new SelectListItem
                                   {
                                       Text = distrito.Nombre,
-                                      Value = distrito.Id.ToString()
+                                      Value = distrito.DistritoId.ToString()
                                   }
                                    ).ToList();
             ViewBag.ListaTDistrito = listaDistrito;
