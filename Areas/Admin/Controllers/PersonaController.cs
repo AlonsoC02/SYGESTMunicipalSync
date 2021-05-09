@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.Admin.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
@@ -13,107 +15,59 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
     [Area("Admin")]
     public class PersonaController : Controller
     {
-        List<PersonaViewModel> listaPersonas = new List<PersonaViewModel>();
-        static List<PersonaViewModel> lista = new List<PersonaViewModel>();
-
         private readonly DBSygestContext _db;
-        public PersonaController(DBSygestContext db)
+        private readonly IWebHostEnvironment _hostEnvironment;
+
+        public PersonaViewModel PersonaVM { get; set; }
+        
+        public PersonaController(DBSygestContext db,
+            IWebHostEnvironment hostEnvironment)
         {
             _db = db;
+            _hostEnvironment = hostEnvironment;
+            PersonaVM = new PersonaViewModel()
+            {
+                Provincia = _db.Provincia,
+                Persona = new Models.Persona()
+            };
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            listaPersonas = (from persona in _db.Persona
-                             join distrito in _db.Distrito
-                             on persona.DistritoId equals
-                             distrito.DistritoId
-
-                             join canton in _db.Canton
-                             on persona.CantonId equals
-                             canton.CantonId
-
-                             join provincia in _db.Provincia
-                             on persona.ProvinciaId equals
-                             provincia.ProvinciaId
-
-                             select new PersonaViewModel
-                             {
-                                 CedulaPersona = persona.CedulaPersona,
-                                 Nombre = persona.Nombre + " " +
-                                 persona.Ape1 + " " +
-                                 persona.Ape2,
-                                 Email = persona.Email,
-                                 FechaNac = persona.FechaNac,
-                                 TelMovil= persona.TelMovil,
-                                 Distrito = distrito.Nombre,
-                                 Canton = canton.Nombre,
-                                 Provincia = provincia.Nombre
-                             }).ToList();
-            ViewBag.Controlador = "Persona";
-            ViewBag.Accion = "Index";
-            return View(listaPersonas);
+            var Persona =
+            await _db.Persona.Include(m => m.Provincia).Include(m => m.Canton).Include(m => m.Distrito).ToListAsync();
+            return View(Persona);
         }
-        private void cargarDistrito()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string dato)
         {
-            List<SelectListItem> listaDistrito= new List<SelectListItem>();
-            listaDistrito = (from distrito in _db.Distrito
-                             orderby distrito.Nombre
-                             
+            if (dato == null)
+            {
+                var Persona =
+                 await _db.Persona.Include(m => m.Provincia).Include(m => m.Canton).Include(m => m.Distrito).ToListAsync();
+                return View(Persona);
+            }
+            else
+            {
+                var actItem =
+                      await _db.Persona.Where(p => p.Provincia.Nombre == dato)
+                     .Include(c => c.Distrito).Include(m => m.Canton).Include(m => m.Provincia).ToListAsync();
 
-                             select new SelectListItem
-                             {
-                                 Text = distrito.Nombre,
-
-                                 Value = distrito.DistritoId.ToString()
-                             }
-                                ).ToList();
-            ViewBag.ListaDistrito = listaDistrito;
+                return View(actItem);
+            }
         }
-
-
-        private void ListarCanton()
-        {
-            List<SelectListItem> listaCanton = new List<SelectListItem>();
-            listaCanton = (from canton in _db.Canton
-                              orderby canton.Nombre
-                              select new SelectListItem
-                              {
-                                  Text = canton.Nombre,
-                                  Value = canton.CantonId.ToString()
-                              }
-                                ).ToList();
-            ViewBag.ListaCanton = listaCanton;
-        }
-
-        private void ListarProvincia()
-        {
-            List<SelectListItem> listaProvincia = new List<SelectListItem>();
-            listaProvincia = (from provincia in _db.Provincia
-                                 orderby provincia.Nombre
-                                 select new SelectListItem
-                                 {
-                                     Text = provincia.Nombre,
-                                     Value = provincia.ProvinciaId.ToString()
-                                 }
-                                ).ToList();
-            ViewBag.ListaProvincia = listaProvincia;
-        }
-        
         public IActionResult Create()
         {
-            cargarDistrito();
-            ListarCanton();
-            ListarProvincia();
-            return View();
+            return View(PersonaVM);
         }
-
-        [HttpPost]
-        public IActionResult Create(Persona persona)
+        [HttpPost, ActionName("Create")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePOST()
         {
             int nVeces = 0;
           
-                nVeces = _db.Persona.Where(m => m.Id == PersonaVM.Persona.Id).Count();
-                PersonaVM.Persona.Id = Request.Form["CedulaPersona"].ToString();
+                nVeces = _db.Persona.Where(m => m.CedulaPersona == PersonaVM.Persona.CedulaPersona).Count();
+                PersonaVM.Persona.CedulaPersona =Request.Form["CedulaPersona"].ToString();
             if (!ModelState.IsValid || nVeces >= 1)
             {
                     if (nVeces >= 1) ViewBag.Error = "Esta Persona ya se encuentra registrada!";
@@ -121,31 +75,11 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             }
                 else
                 {
-                    Persona _persona = new Persona();
-                    _persona.CedulaPersona = persona.CedulaPersona;
-                    _persona.Nombre = persona.Nombre;
-                    _persona.Ape1 = persona.Ape1;
-                    _persona.Ape2 = persona.Ape2;
-                    _persona.FechaNac = persona.FechaNac;
-                    _persona.Email = persona.Email;
-                    _persona.Sexo = persona.Sexo; 
-                    _persona.TelMovil = persona.TelMovil;
-                    _persona.TelFijo = persona.TelFijo;
-                    _persona.Fax = persona.Fax;
-                    _persona.Direccion = persona.Direccion;
-                
-                    _persona.CantonId = persona.CantonId;
-                    _persona.DistritoId = persona.DistritoId;
-                    _persona.ProvinciaId = persona.ProvinciaId;
-
-                    _db.Persona.Add(_persona);
-                    _db.SaveChanges();
+                    _db.Persona.Add(PersonaVM.Persona);
+            await _db.SaveChangesAsync();
+           
                 }
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex.Message;
-            }
+            
             return RedirectToAction(nameof(Index));
         }
 
@@ -154,10 +88,10 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         private void BuscarPersona(string PersonaId)
         {
             Persona oPersona = _db.Persona
-           .Where(p => p.Id == PersonaId).FirstOrDefault();
+           .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
-                ViewBag.PersonaID = oPersona.Id;
+                ViewBag.PersonaID = oPersona.CedulaPersona;
                 ViewBag.Nombre = oPersona.Nombre + " " + oPersona.Ape1;
                 
             }
@@ -178,15 +112,19 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             return Json(new SelectList(cantones, "Id", "Nombre"));
         }
 
-        public IActionResult Details(string id)
+        [ActionName("GetDistritos")]
+        public async Task<IActionResult> GetDistritos(int id)
         {
-            cargarDistrito();
-            ListarCanton();
-            ListarProvincia();
-            Persona persona = _db.Persona
-                       .Where(e => e.CedulaPersona == id).First();
-            return View(persona);
+            List<Distrito> cantones = new List<Distrito>();
+            cantones = await (from Distrito in _db.Distrito
+                              where Distrito.CantonId == id
+                              select Distrito).ToListAsync();
+            return Json(new SelectList(cantones, "Id", "Nombre"));
         }
+
+        
+
+
         [HttpPost]
         public IActionResult Delete(string CedulaPersona)
         {
