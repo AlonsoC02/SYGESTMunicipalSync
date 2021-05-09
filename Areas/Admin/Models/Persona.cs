@@ -1,4 +1,5 @@
-﻿using SYGESTMunicipalSync.Areas.OFIM.Models;
+﻿using SYGESTMunicipalSync.Areas.OFGA.Models;
+using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.PATENTES.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         [Required(ErrorMessage = "Debe digitar el ID de la Persona")]
         [Display(Name = "Cédula o Pasaporte:")]
         [StringLength(100, ErrorMessage = "Ha excedido los 100 caracteres")]
-        public string CedulaPersona { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el Nombre de la Persona")]
         [Display(Name = "Nombre:")]
@@ -71,8 +72,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
 
 
         //public virtual ICollection<Familia> Familia { get; set; }
-        public virtual ICollection<PersonaOFIM> PersonaOFIM { get; set; }
-        public virtual ICollection<TipoConsulta> TipoConsulta { get; set; }
+        
+
         public virtual ICollection<Consulta> Consulta { get; set; }
         public virtual ICollection<Seguimiento> Seguimiento { get; set; }
         public virtual ICollection<Solicitante> Solicitante { get; set; }
@@ -80,15 +81,18 @@ namespace SYGESTMunicipalSync.Areas.Admin.Models
         
         public virtual ICollection<Empresa> Empresa { get; set; }
         public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<Denuncia> Denuncia { get; set; }
         public Persona()
         {
             //Familia = new HashSet<Familia>();
-            PersonaOFIM = new HashSet<PersonaOFIM>();
-            TipoConsulta = new HashSet<TipoConsulta>();
+          
+           
             Solicitante = new HashSet<Solicitante>();
             Propietario = new HashSet<Propietario>();
             Usuario = new HashSet<Usuario>();
             Seguimiento = new HashSet<Seguimiento>();
+            Denuncia = new HashSet<Denuncia>();
+
         }
     }
 }

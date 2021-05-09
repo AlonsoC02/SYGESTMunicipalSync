@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SYGESTMunicipalSync.Areas.Admin.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models;
 using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel;
 using SYGESTMunicipalSync.Models;
@@ -25,14 +26,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
         public IActionResult Index()
         {
             listaConsulta = (from consulta in _db.Consulta
-                                 join persona in _db.Persona
-                               on consulta.PersonaId equals
-                               persona.CedulaPersona
+                               
+                             join persona in _db.Persona
+                             on consulta.PersonaId equals
+                             persona.Id
 
                              join tipoConsulta in _db.TipoConsulta
-                         on consulta.TipoConsultaId equals
-                         tipoConsulta.TipoConsultaId
-
+                             on consulta.TipoConsultaId equals
+                             tipoConsulta.TipoConsultaId
 
                              join estadoCivil in _db.EstadoCivil
                              on consulta.EstadoCivilId equals
@@ -54,10 +55,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                              on consulta.SeguroId equals
                              seguro.SeguroId
 
-
-                             join ingreso in _db.IngresoPersona
-                             on consulta.IngresoPersonaId equals
-                             ingreso.IngresoPersonaId
+                             //join ingreso in _db.IngresoPersona
+                             //on consulta.IngresoPersonaId equals
+                             //ingreso.IngresoPersonaId
 
 
                              select new ConsultaViewModel
@@ -72,8 +72,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                                  Remitir = consulta.Remitir,
                                  TipoConsultaId = tipoConsulta.TipoConsultaId,
                                  TipoConsulta = tipoConsulta.Nombre,
-                                 PersonaId = persona.CedulaPersona,
-                                 Persona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
+                                 PersonaId = persona.Id,
+                                 
+                                 NombrePersona = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2
 
                                  }).ToList();
             ViewBag.Controlador = "Consulta";
@@ -88,7 +89,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                             select new SelectListItem
                             {
                                 Text = persona.Nombre + " " + persona.Ape1 + " " + persona.Ape2,
-                                Value = persona.CedulaPersona.ToString()
+                                Value = persona.Id.ToString()
                             }
                                 ).ToList();
             ViewBag.ListaPersona = listaPersona;
@@ -179,24 +180,36 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             ViewBag.ListaSeguro = listaSeguro;
         }
 
-      
-        
-
         private void cargarIngresoPersona()
         {
             List<SelectListItem> listaIngresoPersona = new List<SelectListItem>();
             listaIngresoPersona = (from ingresoPersona in _db.IngresoPersona
-                                   orderby ingresoPersona.IngresoMensual
+                                   orderby ingresoPersona.MontoMensual
                                    select new SelectListItem
                                    {
-                                       Text = ingresoPersona.IngresoMensual.ToString(),
+                                       Text = ingresoPersona.MontoMensual.ToString(),
                                        Value = ingresoPersona.IngresoPersonaId.ToString()
                                    }
                                 ).ToList();
             ViewBag.ListaIngresoPersona = listaIngresoPersona;
         }
 
-        public IActionResult Create()
+        private void Buscar(string PersonaId)
+        {
+            Persona oPersona = _db.Persona
+          .Where(p => p.Id == PersonaId).FirstOrDefault();
+            if (oPersona != null)
+            {
+                ViewBag.PersonaID = oPersona.Id;
+                ViewBag.NombrePersona = oPersona.Nombre + " " + oPersona.Ape1 + " " + oPersona.Ape2;
+            }
+            else
+            {
+                ViewBag.Error = "Persona no registrada, intente de nuevo!";
+            }
+        }
+
+        public IActionResult Create(string PersonaId)
         {
             cargarPersona();
             cargarTipoConsulta();
@@ -206,36 +219,35 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             cargarNivelAcademico();
             cargarSeguro();
             cargarIngresoPersona();
+
+            if (PersonaId != null)
+            {
+                Buscar(PersonaId);
+            }
+            ViewBag.Controlador = "Consulta";
+            ViewBag.Accion = "Create";
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Create(Consulta consulta)
-        {
-            int nVeces = 0;
 
+
+        public async Task<IActionResult> Created(Consulta consulta)
+        {
+            string Error = "";
             try
             {
-                nVeces = _db.Consulta.Where(m => m.ConsultaId == consulta.ConsultaId).Count();
-                if (!ModelState.IsValid || nVeces >= 1)
+                if (!ModelState.IsValid)
                 {
-                    if (nVeces >= 1) ViewBag.Error = "Este Id ya existe!";
-                    cargarPersona();
-                    cargarTipoConsulta();
-                    cargarEstadoCivil();
-                    cargarOcupacion();
-                    cargarNacionalidad();
-                    cargarNivelAcademico();
-                    cargarSeguro();
-                    cargarIngresoPersona();
+                    return View(consulta);
                 }
                 else
                 {
+
                     Consulta _consulta = new Consulta();
+
                     _consulta.ConsultaId = consulta.ConsultaId;
                     _consulta.Motivo = consulta.Motivo;
-                    _consulta.PersonaId = consulta.PersonaId;
-                    _consulta.PersonaId = consulta.PersonaId;
+                    _consulta.PersonaId = consulta.PersonaId;              
                     _consulta.Fecha = consulta.Fecha;
                     _consulta.HoraInicio = consulta.HoraInicio;
                     _consulta.HoraFin = consulta.HoraFin;
@@ -243,8 +255,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     _consulta.Respuesta = consulta.Respuesta;
                     _consulta.Remitir = consulta.Remitir;
                     _consulta.Discapacidad = consulta.Discapacidad;
-                    _consulta.Padecimiento = consulta.Padecimiento;
-                    _consulta.PersonaId = consulta.PersonaId;
+                    _consulta.Padecimiento = consulta.Padecimiento;              
                     _consulta.TipoConsultaId = consulta.TipoConsultaId;
                     _consulta.NacionalidadId = consulta.NacionalidadId;
                     _consulta.SeguroId = consulta.SeguroId;
@@ -252,15 +263,13 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                     _consulta.OcupacionId = consulta.OcupacionId;
                     _consulta.NivelAcademicoId = consulta.NivelAcademicoId;
                     _consulta.IngresoPersonaId = consulta.IngresoPersonaId;
-
-
                     _db.Consulta.Add(_consulta);
-                    _db.SaveChanges();
+                    await _db.SaveChangesAsync();
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                Error = ex.Message;
             }
             return RedirectToAction(nameof(Index));
         }
@@ -280,6 +289,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                 .Where(e => e.ConsultaId == Id).FirstOrDefault();
             return View(oConsulta);
         }
+
         [HttpPost]
         public IActionResult Edit(Consulta consulta)
         {

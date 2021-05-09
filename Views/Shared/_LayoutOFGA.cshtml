@@ -87,38 +87,70 @@
                                asp-controller="Home" asp-action="Index">OFGA</a>
                         </li>
 
-                        @* MENU DE MANTENIMIENTO PARA ADMINISTRADOR OFGA *@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuMantOFGA != "")
+                        @* MENU DE PROCESOS FORMATIVOS PARA USUARIOS EXTERNOS *@
+                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuProcForm != "")
                         {
                             <li class="nav-item dropdown text-white-50">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
                                    role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
-                                    Mantenimiento
+                                    Procesos Formativos
                                 </a>
-                                @* CRUD DE TIPOS CLASIFICACIÓN *@
+                                @* PROCESOS FORMATIVOS *@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
                                     <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Index"
-                                           asp-controller="Clasificacion" asp-area="OFGA">Clasificación Materiales</a>
+                                        <a class="nav-link" asp-action="IndexTalks"
+                                           asp-controller="Charlas" asp-area="OFGA">Charlas</a>
                                     </li>
 
-                                    @* CRUD DE MATERIALES ADMITIDOS *@
+                                    @* FECHAS CONMEMORATIVAS *@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
-                                           asp-controller="Materiales" asp-area="OFGA">Materiales Admitidos</a>
+                                           asp-controller="Home" asp-area="OFGA">Fechas Conmemorativas</a>
                                     </li>
 
-                                    @* CRUD DE TIPOS DE DENUNCIA *@
+                                    @* EDUQUEMONOS *@
                                     <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Index"
-                                           asp-controller="TipoDenuncia" asp-area="OFGA">Tipos Denuncia</a>
+                                        <a class="nav-link" asp-action="IndexEduquemonos"
+                                           asp-controller="Home" asp-area="OFGA">Eduquemonos</a>
+                                    </li>
+
+                                    @* RUTAS DE RECOLECCIÓN *@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="RecoleccionBasura"
+                                           asp-controller="Home" asp-area="OFGA">Rutas de Recolección</a>
                                     </li>
 
                                 </ul>
                             </li>
                         }
-                        @* MENU CEMTRO ACOPIO*@
+
+                         @* MENU DENUNCIAS AMBIENTALES PARA USUARIOS EXTERNOS*@
+                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuDenun != "")
+                        {
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
+                                   role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Denuncias Ambientales
+                                </a>
+                                @* CREATE DE DENUNCIAS PARA USUARIOS EXTERNOS*@
+                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+                                   
+
+                                    @*CREATE DE DENUNCIAS*@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Create"
+                                           asp-controller="Denuncia" asp-area="OFGA">Registrar Denuncia</a>
+                                    </li>
+                                
+
+                                </ul>
+                            </li>
+                        }
+
+
+                        @* MENU CENTRO ACOPIO*@
                         @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuAcopio != "")
                         {
                             <li class="nav-item dropdown text-white-50">
@@ -127,11 +159,24 @@
                                    aria-expanded="false">
                                     Centro Acopio
                                 </a>
-                                @* CRUD DE PACAS *@
+                                @* CRUD DE MATERIALES *@
                                 <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
+
+                                    @* CRUD DE CLASIFICACIÓN MATERIALES *@
                                     <li class="nav-item active">
                                         <a class="nav-link" asp-action="Index"
-                                           asp-controller="Pacas" asp-area="OFGA">Pacas</a>
+                                           asp-controller="Clasificacion" asp-area="OFGA">Clasif. Materiales</a>
+                                    </li>
+
+                                    @* CRUD DE MATERIALES ADMITIDOS *@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Materiales" asp-area="OFGA">Materiales Admitidos</a>
+                                    </li>
+                                    @* CRUD DE PACAS *@
+                                    <li class="nav-item active">
+                                        <a class="nav-link" asp-action="Index"
+                                           asp-controller="Pacas" asp-area="OFGA">Registro Pacas</a>
                                     </li>
 
                                     @* CRUD DE RECUENTO *@
@@ -151,117 +196,73 @@
                                            asp-controller="IngresoVenta" asp-area="OFGA">Ingreso por Venta</a>
                                 </ul>
                             </li>
-                        } @* MENU RESIDUOS ORDINARIOS*@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuResi != "")
+
+                        }
+
+
+                        @*MENU COORDINACIÓN*@
+                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuMantOFGA != "")
                         {
                             <li class="nav-item dropdown text-white-50">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
                                    role="button" data-toggle="dropdown" aria-haspopup="true"
                                    aria-expanded="false">
-                                    Residuos Ordinarios
+                                    Coordinación
                                 </a>
-                                @* CRUD DE REGISTRO DE ENTREGAS DE BASURA *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Index"
-                                           asp-controller="Basura" asp-area="OFGA">Registro de Entregas</a>
-                                    </li>
+                                @* MENU DE COORDINACIÓN *@
+                            <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
 
-                                    @* CRUD DE RUTA DE RECOLECCIÓN *@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="RecoleccionBasura"
-                                           asp-controller="Home" asp-area="OFGA">Rutas de Recolección</a>
-                                    </li>
+                                @*CRUD DE CHARLAS*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="Charlas" asp-area="OFGA">Registrar Charlas</a>
+                                </li>
 
-                                </ul>
-                            </li>
-                        } @* MENU DENUNCIAS AMBIENTALES*@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuDenun != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Denuncias Ambientales
-                                </a>
-                                @* CREATE DE REGISTRO DE PERSONAS*@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Create"
-                                           asp-controller="Persona" asp-area="Admin">Persona</a>
-                                    </li>
+                                @*CRUD DE IPO DE ACTIVIDAD*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="TipoActividad" asp-area="OFGA">Tipo Actividad</a>
+                                </li>
 
-                                    @*CREATE DE DENUNCIAS*@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Create"
-                                           asp-controller="Denuncia" asp-area="OFGA">Registrar Denuncia</a>
-                                    </li>
-                                    @*}*@
-
-                                </ul>
-                            </li>
-                        } @* MENU DE CONSULTAS*@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuCons != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Consultas
-                                </a>
-                                @* CONSULTA DE DENUNCIAS*@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Consulta"
-                                           asp-controller="Denuncia" asp-area="OFGA">Consulta Denuncia</a>
-                                    </li>
-
-                                    @*}*@
+                                @*CRUD DE TIPO DE DENUNCIA*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="TipoDenuncia" asp-area="OFGA">Tipo Denuncia</a>
+                                </li>
 
 
-                                </ul>
-                            </li>
-                        } @* MENU PROCESOS FORMATIVOS*@
-                        @if (SYGESTMunicipalSync.Areas.Admin.Models.Utilitarios.MenuProcForm != "")
-                        {
-                            <li class="nav-item dropdown text-white-50">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    Procesos Formativos
-                                </a>
-                                @* INFO DE CHARLAS *@
-                                <ul class="dropdown-menu" aria-labelledby="navabarDropDownMenuLink">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="IndexTalks"
-                                           asp-controller="Charlas" asp-area="OFGA">Charlas</a>
-                                    </li>
 
-                                    @* CRUD DE CHARLAS *@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Index"
-                                           asp-controller="Charlas" asp-area="OFGA">Registro Charlas</a>
-                                    </li>
-                                    @* INFO DE FECHAS CONMEMORATIVAS*@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="Index"
-                                           asp-controller="Home" asp-area="OFGA">Fechas Conmemorativas</a>
-                                    </li>
-                                    @*INFO DE EDUQUEMONOS*@
-                                    <li class="nav-item active">
-                                        <a class="nav-link" asp-action="IndexEduquemonos"
-                                           asp-controller="Home" asp-area="OFGA">Eduquémonos</a>
-                                    </li>
-                                </ul>
+
+                                @*CRUD DE DENUNCIAS*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="Denuncia" asp-area="OFGA">Registrar Denuncia</a>
+                                </li>
+
+                                @*CREATE DE PERSONAS*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Create"
+                                       asp-controller="Persona" asp-area="Admin">Registrar Persona</a>
+                                </li>
+
+                                @*CRUD DE RESIDUOS ORDINARIOS*@
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-action="Index"
+                                       asp-controller="Basura" asp-area="Admin">Residuos Ordinarios</a>
+                                </li>
+
+                            </ul>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="OFGA"
-                               asp-controller="Home" asp-action="Contacto">Contáctenos</a>
-                        </li>
+
+                                            
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="OFGA"
+                                   asp-controller="Home" asp-action="Contacto">Contáctenos</a>
+                            </li>
 
 
-                    </ul>
+                        </ul>
                 </div>
             </div>
         </nav>

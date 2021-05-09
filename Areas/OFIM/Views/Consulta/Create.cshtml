@@ -1,4 +1,4 @@
-﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.Consulta
+﻿@model SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel.ConsultaViewModel
 @using SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
 @{
     ViewData["Title"] = "Create";
@@ -30,31 +30,61 @@
         <div class="contact-wrap w-100 p-md-5 p-4">
             <h2 class="text-info">Nuevo Registro</h2>
             <br>
-            <form method="post" asp-action="Create" id="viewAgregar">
+
+            <form asp-controller="Consulta" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-6">
+                    Número de cédula de la persona a buscar: <input type="text" name="PersonaId" />
+                    <input type="submit" value="Buscar"
+                           class="btn btn-success form-control" style="width:130px;" />
+                </div>
+            </form>
+
+            <form  asp-controller="Consulta" method="post" asp-action="Created" id="viewAgregar">
+
+
                 <div class="backgroundWhite">
-                    <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                      <div class="form-group row">
+
+                          <div class="col-md-2 text-right">
+                              <label>Cédula o Pasaporte <span class="required">*</span></label>
+                         </div>
+                         <div class="col-md-6">
+                            <input asp-for="PersonaId" value="@ViewBag.PersonaId" class="form-control" readonly="readonly" />                                         
+                          </div>
+                       </div>
+
+                        <div class="col-md-4">
+                            @if (ViewBag.Error != "")
+                            {
+                                <p class="text-danger">@ViewBag.Error</p>}
+                        </div>
+
+                        <div class="form-group row">
+                            <div class=" col-md-2 text-right">
+                                <label>Nombre Persona </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input asp-for="NombrePersona" value="@ViewBag.NombrePersona"
+                                       readonly="readonly" class="form-control" />
+                            </div>
+
+                        </div>
 
 
                     <div class=" form-group row">
                         <div class=" col-md-2">
-                            <h5><label asp-for="PersonaId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="PersonaId" class="form-control" required
-                                    asp-items="@Lista"></select>
-                        </div>
-                        <span asp-validation-for="PersonaId" class=" text-danger"></span>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-2">
                             <label asp-for="Motivo" class="col-form-label"></label>
                         </div>
-                        <div class="col-md-6">
-                            @Html.TextAreaFor(m => m.Motivo, new { rows = "3", cols = "56", @class = "text-area" })
+                        <div class="col-md-8">
+                            <input asp-for="Motivo" class="form-control" />
                         </div>
-                        <span asp-validation-for="Motivo" class="text-danger"></span>
+                        <span asp-validation-for="Motivo" class=" text-danger"></span>
                     </div>
+
 
 
 
@@ -62,14 +92,14 @@
                         <div class="col-md-2">
                             <label asp-for="Fecha" class="col-form-label"></label>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <input type="date" asp-for="Fecha" class="form-control" />
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-2">
-                            <label>Hora Atención:</label>
+                            <label class="col-form-label">Hora Atención:</label>
                         </div>
                         <div class="col-md-6">
                             <p id="timepicker">
@@ -124,7 +154,7 @@
 
                     <div class=" form-group row">
                         <div class=" col-md-2">
-                            <h5><label asp-for="OcupacionId" class="col-form-label"></label></h5>
+                            <label asp-for="OcupacionId" class="col-form-label"></label>
                         </div>
                         <div class="col-md-8">
                             <select asp-for="OcupacionId" class="form-control" required
@@ -135,7 +165,7 @@
 
                     <div class=" form-group row">
                         <div class=" col-md-2">
-                            <h5><label asp-for="NacionalidadId" class="col-form-label"></label></h5>
+                            <label asp-for="NacionalidadId" class="col-form-label"></label>
                         </div>
                         <div class="col-md-8">
                             <select asp-for="NacionalidadId" class="form-control" required
@@ -188,14 +218,14 @@
                         <span asp-validation-for="NivelAcademicoId" class=" text-danger"></span>
                     </div>
 
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
+                    <div class="form-group row">
+                        <div class="col-md-2">
                             <h5><label asp-for="Discapacidad" class="col-form-label"></label></h5>
                         </div>
                         <div class="col-md-9">
-                            <input asp-for="Discapacidad" class="form-control" />
+                            <textarea asp-for="Discapacidad" rows="4" cols="50" class="form-control"> </textarea>
                         </div>
-                        <span asp-validation-for="Discapacidad" class=" text-danger"></span>
+                        <span asp-validation-for="Discapacidad" class="text-danger"></span>
                     </div>
 
                     <div class="form-group row">
