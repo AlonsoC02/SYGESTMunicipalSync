@@ -14,9 +14,10 @@
     </div>
     <br />
     <div class="container">
-        <div>
-            <h4><a asp-area="OFGA" asp-controller="Home" asp-action="Index">Gestión Ambiental</a></h4>
-        </div>
+        <ol>
+            <li><a asp-area="OFGA" asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <li>Eduquémonos</li>
+        </ol>
     </div>
 </section><!-- End Breadcrumbs -->
 
@@ -113,18 +114,18 @@
 </section><!-- End Color de los Basureros -->
 
 <section id="breadcrumbs" class="breadcrumbs">
-    <div class="breadcrumb-hero">
-        <div class="container">
-            <div class="breadcrumb-hero">
-                <h2>Nuestro Enfoque</h2>
-
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <h3 class="text-light"
+                    style="text-align:center;background-color:#263182;">
+                    Nuestro Enfoque
+                </h3>
             </div>
         </div>
-    </div>
-    <div class="container">
+     <div class="container">
         <ol>
-            <li><a class="btn-buy" asp-area="OFGA" asp-controller="Home" asp-action="IndexEduquemonos">Eduquémonos</a></li>
-            <li>Portafolio</li>
+            <li><a class="btn-buy" asp-area="OFGA" asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <li>Eduquémonos</li>
         </ol>
     </div>
 </section><!-- End Breadcrumbs -->
@@ -164,12 +165,12 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                 <div class="portfolio-wrap">
-                    <img src="~/Ambiental/assets/img/portafolio/Charlas.png" class="img-fluid" alt="">
+                    <img src="https://i.pinimg.com/originals/f2/54/71/f25471abff9f8d7e178ce6a538ab0935.png" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <div class="portfolio-links">
-                            <a href="~/Ambiental/assets/img/portafolio/Charlas.png" data-gall="portfolioGallery" class="venobox" title="CHARLAS"><i class="bx bx-plus"></i></a>
+                            <a href="https://i.pinimg.com/originals/f2/54/71/f25471abff9f8d7e178ce6a538ab0935.png" data-gall="portfolioGallery" class="venobox" title="CHARLAS"><i class="bx bx-plus"></i></a>
                             <div class="btn-wrap">
-                                <a class="btn-buy" asp-area="OFGA" asp-controller="Home" asp-action="Charlas">Detalles</a>
+                                <a class="btn-buy" asp-area="OFGA" asp-controller="Charlas" asp-action="IndexTalks">Detalles</a>
                             </div>
                         </div>
                     </div>
@@ -178,10 +179,10 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter">
                 <div class="portfolio-wrap">
-                    <img src="~/Ambiental/assets/img/portafolio/movimientoguardianes.jpg" class="img-fluid" alt="">
+                    <img src="https://movimientoguardianes.org/wp-content/uploads/elementor/thumbs/Screen-Shot-2019-10-25-at-8.10.49-AM-1024x967-1-oh06pk9z6xuy6ucr6ux42xax4hzdadj8g9nds3jhi0.png" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <div class="portfolio-links">
-                            <a href="~/Ambiental/assets/img/portafolio/movimientoguardianes.jpg" data-gall="portfolioGallery" class="venobox" title="GUARDIANES DE LA NATURALEZA"><i class="bx bx-plus"></i></a>
+                            <a href="https://movimientoguardianes.org/wp-content/uploads/elementor/thumbs/Screen-Shot-2019-10-25-at-8.10.49-AM-1024x967-1-oh06pk9z6xuy6ucr6ux42xax4hzdadj8g9nds3jhi0.png" data-gall="portfolioGallery" class="venobox" title="GUARDIANES DE LA NATURALEZA"><i class="bx bx-plus"></i></a>
                             <div class="btn-wrap">
                                 <a class="btn-buy" asp-area="OFGA" asp-controller="Home" asp-action="GuardianesNaturaleza">Detalles</a>
                             </div>
@@ -193,10 +194,10 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-complaint">
                 <div class="portfolio-wrap">
-                    <img src="https://i.pinimg.com/originals/a1/5b/23/a15b231671e0beb089be8b9e256c2226.png" class="img-fluid" alt="">
+                    <img src="https://i.pinimg.com/originals/2f/63/5c/2f635c847037f528f6d698eadfe67d0d.png" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <div class="portfolio-links">
-                            <a href="https://i.pinimg.com/originals/a1/5b/23/a15b231671e0beb089be8b9e256c2226.png" data-gall="portfolioGallery" class="venobox" title="DENUNCIAS"><i class="bx bx-plus"></i></a>
+                            <a href="https://i.pinimg.com/originals/2f/63/5c/2f635c847037f528f6d698eadfe67d0d.png" data-gall="portfolioGallery" class="venobox" title="DENUNCIAS"><i class="bx bx-plus"></i></a>
                             <div class="btn-wrap">
                                 <a class="btn-buy" asp-area="OFGA" asp-controller="Home" asp-action="Denuncias">Detalles</a>
                             </div>
@@ -224,10 +225,10 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                 <div class="portfolio-wrap">
-                    <img src="~/Ambiental/assets/img/portafolio/ecoins.jpg" class="img-fluid" alt="">
+                    <img src="https://i.pinimg.com/originals/a5/67/cb/a567cba196f08e8a1923f974b9519619.jpg" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <div class="portfolio-links">
-                            <a href="~/Ambiental/assets/img/portafolio/ecoins.jpg" data-gall="portfolioGallery" class="venobox" title="ECOINS"><i class="bx bx-plus"></i></a>
+                            <a href="https://i.pinimg.com/originals/a5/67/cb/a567cba196f08e8a1923f974b9519619.jpg" data-gall="portfolioGallery" class="venobox" title="ECOINS"><i class="bx bx-plus"></i></a>
                             <div class="btn-wrap">
                                 <a class="btn-buy" asp-area="OFGA" asp-controller="Home" asp-action="Ecoins">Detalles</a>
                             </div>

@@ -6,9 +6,6 @@
     ViewData["Title"] = "IndexTalks";
     Layout = "~/Views/Shared/_LayoutOFGA.cshtml";
 }
-<br />
-<br />
-<br />
 @foreach (var item in Model)
 {
     <ul class="ftco-section" style="text-align:center;background-color:darkslategray;">
@@ -99,10 +96,31 @@
             </div>
         </div>
     </ul>
-    <br />
-    <br />
-}
+ }
+<br />
+<!-- ======= Portfolio Details Section ======= -->
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container text-center">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Charlas Ofrecidas</h2>
+            <h4>Tomamos muy en serio la educación ambiental, por lo que nuestro compromiso es ofrecer el conocimiento necesario para que la comunidad sea parte del desarollo sostenible y equilibrado con nuestro medio ambiente.</h4>
+        </div>
+        <div class="container" style="text-align: center; width: 80%;">
 
+            <div class="owl-carousel portfolio-details-carousel">
+                <img src="https://i.pinimg.com/originals/f5/5f/51/f55f5105cc2ebf0c4bb0a78d1bdc7644.jpg" class="img-fluid" alt="">
+                <img src="https://i.pinimg.com/originals/18/15/0f/18150f5f76d50bd6dc037f6e2137a042.jpg" class="img-fluid" alt="">
+            </div>
+        </div>
+        <div class="portfolio-description text-left">
+            <h2>Trabajo</h2>
+            <h5>
+                Impartir charlas y capacitaciones para la educación ambiental, promoveer el reciclaje a través de campañas, vigilar porque el catón tenga un ambiente libre de basura,
+                por medio de la recolección de la misma, esfuerzos conjuntos para mejorar el tratamiento de las aguas residuales, entre otros.
+            </h5>
+        </div>
+    </div>
+</section><!-- End Portfolio Details Section -->
 
 @section Scripts{
     <script src="https://code.jquery.com/jquery-3.5.0.js"
