@@ -15,25 +15,22 @@
 
 
 }
-
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <h3 class="text-light"
-            style="text-align:center;background-color:#263182;">
+            style="text-align:center;background-color:#dc3545;">
             Detalles de Consulta
         </h3>
     </div>
 </div>
+
 <!-- ======= About Section ======= -->
 <div class="row no-gutters">
     <div class="col-md-7">
         <div class="contact-wrap w-100 p-md-5 p-4">
-            <h2 class="text-info">Detalles de Registro</h2>
-            <br>
             <form method="post" asp-action="Details" id="viewDetalles">
                 <div class="backgroundWhite">
                     <div asp-validation.summary="ModelOnly" class="text-danger"></div>
-
 
                     <div class=" form-group row">
                         <div class=" col-md-2">
@@ -44,7 +41,6 @@
                         </div>
                         <span asp-validation-for="ConsultaId" class=" text-danger"></span>
                     </div>
-
 
                     <div class=" form-group row">
                         <div class=" col-md-2">
@@ -57,17 +53,15 @@
                         <span asp-validation-for="PersonaId" class=" text-danger"></span>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
+                    <div class=" form-group row">
+                        <div class=" col-md-2">
                             <h5><label asp-for="Motivo" class="col-form-label"></label></h5>
                         </div>
-                        <div class="col-md-9">
-                            <textarea asp-for="Motivo" rows="4" cols="50" class="form-control" readonly></textarea>
+                        <div class="col-md-8">
+                            <input asp-for="Motivo" class="form-control" readonly />
                         </div>
-                        <span asp-validation-for="Motivo" class="text-danger"></span>
+                        <span asp-validation-for="Motivo" class=" text-danger"></span>
                     </div>
-
-
 
                     <div class="form-group row">
                         <div class="col-md-2">
@@ -89,7 +83,6 @@
                             </p>
                         </div>
                     </div>
-
 
                     <div class="form-group row">
                         <div class="col-md-2">
@@ -130,8 +123,6 @@
                             <input type="checkbox" asp-for="Remitir" class="form-control" disabled />
                         </div>
                     </div>
-
-
 
                     <div class=" form-group row">
                         <div class=" col-md-2">
@@ -199,14 +190,14 @@
                         <span asp-validation-for="NivelAcademicoId" class=" text-danger"></span>
                     </div>
 
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
+                    <div class="form-group row">
+                        <div class="col-md-2">
                             <h5><label asp-for="Discapacidad" class="col-form-label"></label></h5>
                         </div>
                         <div class="col-md-9">
-                            <input asp-for="Discapacidad" class="form-control" readonly />
+                            <textarea asp-for="Discapacidad" rows="4" cols="50" class="form-control" readonly></textarea>
                         </div>
-                        <span asp-validation-for="Discapacidad" class=" text-danger"></span>
+                        <span asp-validation-for="Discapacidad" class="text-danger"></span>
                     </div>
 
                     <div class="form-group row">
@@ -218,18 +209,13 @@
                         </div>
                         <span asp-validation-for="Padecimiento" class="text-danger"></span>
                     </div>
-
-
-
                     <div class="form-group row">
-
                         <div class="col-md-4 text-md-right">
                             <a asp-action="Index" type="button" style="color:white"
                                class="btn btn-success fa fa fa-arrow-circle-left inicio">
                                 Regresar
                             </a>
                         </div>
-
                     </div>
                 </div>
             </form>

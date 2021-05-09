@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SYGESTMunicipalSync.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class LoginController : Controller
     {
         public IActionResult Index()
@@ -25,19 +26,18 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         {
             string rpta = "";
             string claveCifrada = Utilitarios.CifrarDatos(pass);
-            try
-            {
+            int nVeces = _db.Usuario.Where(u => u.NombreUsuario == user
+            && u.Password == claveCifrada).Count();
 
-                int nVeces = _db.Usuario.Where(u => u.NombreUsuario == user
-                && u.Password == claveCifrada).Count();
                 if (nVeces != 0)
                 {
                     rpta = "OK";
                     Usuario User = _db.Usuario.Where(u => u.NombreUsuario == user
                             && u.Password == claveCifrada).First();
-                    HttpContext.Session.SetString("UsuarioId", User.UsuarioId.ToString());
+
+                    HttpContext.Session.SetString("usuarioId", User.UsuarioId.ToString());
                     HttpContext.Session.SetString("nombreUsuario", User.NombreUsuario);
-                    //int idTipo = User.TipoUsuarioId;
+
                     List<Pagina> lista = new List<Pagina>();
                     lista = (from pgt in _db.RolUsuarioPag
                              join pagina in _db.Pagina
@@ -61,60 +61,53 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
                                                && pgtb.BotonHabilitado == true
                                                && tup.BotonHabilitado == true
                                                select new Pagina
-                                               {
+                                               {        
                                                    PaginaId = (int)tup.PaginaId,
                                                    Controlador = pag.Controlador
                                                }).ToList();
                     Utilitarios.listaBotonesPagina = ListaBoton;
 
-                    Utilitarios.MenuMant = "";
-                    Utilitarios.MenuCons = "";
+                    //Utilitarios.MenuADMIN = "";
+                    //Utilitarios.MenuDep = "";
                    
                     Utilitarios.ListaMenu.Clear();
                     Utilitarios.ListaController.Clear();
                     Utilitarios.ListaAccion.Clear();
+
                     ViewBag.User = User.NombreUsuario;
                     foreach (Pagina _Pagina in lista)
                     {
                         Utilitarios.ListaMenu.Add(_Pagina.Menu);
                         Utilitarios.ListaController.Add(_Pagina.Controlador);
                         Utilitarios.ListaAccion.Add(_Pagina.Accion);
-                        if (_Pagina.Controlador == "Especialidad" ||
-                            _Pagina.Controlador == "Medico" ||
-                            _Pagina.Controlador == "Enfermedad" ||
-                            _Pagina.Controlador == "Paciente")
+
+                        if (_Pagina.Controlador == "Persona" ||
+                            _Pagina.Controlador == "Usuario" ||
+                            _Pagina.Controlador == "RolUsuario" ||
+                             _Pagina.Controlador == "Pagina"||
+                            _Pagina.Controlador == "RolUsuarioPag" ||
+                            _Pagina.Controlador == "RolUsuarioPagBoton"
+                            )
 
                         {
-                            Utilitarios.MenuMant = "Mantenimiento";
+                            Utilitarios.MenuADMIN = "Administrador";
                         }
-                        if (_Pagina.Controlador == "ConsultaEspecialidades" ||
-                            _Pagina.Controlador == "ConsultaCitas" ||
-                            _Pagina.Controlador == "ConsultaPacientes" ||
-                            _Pagina.Controlador == "ConsultaTipoUsuario")
+
+                        if (_Pagina.Controlador == "Home" )
                         {
-                            Utilitarios.MenuCons = "Consultas";
+                            Utilitarios.MenuCons = "Departamentos";
                         }
-                        if (_Pagina.Controlador == "TipoUsuarios" ||
-                            _Pagina.Controlador == "Usuario" ||
-                            _Pagina.Controlador == "AsignaRol" ||
-                            _Pagina.Controlador == "DeterminarRol" ||
-                            _Pagina.Controlador == "Pagina")
+                        if (_Pagina.Controlador == "Empresariedad" ||
+                            _Pagina.Controlador == "Denuncia" ||
+                            _Pagina.Controlador == "Home" )
                         {
-                            Utilitarios.MenuEmpre = "Accesibilidad";
+                            Utilitarios.MenuEmpre = "Servicios Digitales";
                         }
-                        if (_Pagina.Controlador == "Citas")
-                        {
-                            Utilitarios.MenuEmpre = "Citas";
-                        }
+                        
 
                     }
                     //https://www.tiracodigo.com/index.php/programacion/mvc/formas-de-almacenar-datos-temporales-en-asp-net-mvc-viewdata-viewbag-tempdata-y-session
-                }
-            }
-            catch (Exception ex)
-            {
-                rpta = ex.Message;
-            }
+                }            
             return rpta;
         }
         public ActionResult CerrarSesion()
@@ -126,19 +119,9 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         public ActionResult MuestraNombre()
         {
             string miNombre;
-            miNombre = HttpContext.Session.GetString("nombreUsuario");
+            miNombre = HttpContext.Session.GetString("NombreUsuario");
             return View(miNombre);
         }
-        //public ActionResult MuestraNombre(ActionExecutingContext context)
-        //{
-        //    string miNombre;
-        //    miNombre = context.HttpContext.Session.GetString("nombreUsuario"); 
-        //    return View(miNombre);
-        //}
-        //public ActionResult Index()
-        //{
-        //    System.Web.HttpContext.Current.Session["User "] = User.Nombre;
-        //    return RedirectToAction("MuestraNombre");
-        //}
+    
     }
 }

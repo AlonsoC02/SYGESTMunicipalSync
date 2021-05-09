@@ -83,5 +83,10 @@ namespace SYGESTMunicipalSync.Areas.OFGA.Controllers
         {
             return View();
         }
+
+        public IActionResult Denuncias()
+        {
+            return View();
+        }
     }
 }

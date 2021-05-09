@@ -1,0 +1,167 @@
+﻿@model IEnumerable<PropietarioViewModel>
+@using SYGESTMunicipalSync.Areas.PATENTES.Models.ViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPATENTES.cshtml";
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3 class="text-light"
+            style="text-align:center;background-color:#263182;">
+            Propietario
+        </h3>
+    </div>
+</div>
+<br />
+<br />
+<div class="container">
+
+
+    <main class="pb-3" role="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-lg-12">
+                    <h2 class="text-dark">Lista de Propietario</h2>
+                </div>
+            </div>
+            <br />
+            <form asp-controller="Propietario" asp-action="Index" method="post" id="frmFilter">
+                <div class="col-md-12" style="color:black;"><hr /></div>
+            </form>
+            <div class="row contenedorBotones">
+                <div class="col-md-6 text-md-left">
+                    <a asp-controller="" asp-action="Index"
+                       class="btn btn-success fa fa-arrow-circle-left text-white">
+                        Regresar al menú
+                    </a>
+                </div>
+
+                <div class="col-md-6 text-md-right">
+                    <a asp-action="Create" class="btn btn-info fa fa-plus-circle">
+                        Crear Nuevo
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-md-12 divisor"><hr></div>
+
+            @if (Model.Count() > 0)
+            {
+                <div class="contenedorTablas table-responsive-md">
+                    <table class="table table-hover border .table-responsive" id="TbClasificacion">
+                        <thead class="thead-dark">
+                            <tr class="table-secondary" style="text-align:center;">
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PropietarioId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PersonaId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ContactoId)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center;">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PropietarioId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PersonaId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ContactoId)
+                                    </td>
+
+                                    <td style="width:300px">
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-warning text-white"
+                                               asp-controller="Clasificacion"
+                                               asp-action="Edit" asp-route-id="@item.PropietarioId">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-primary text-white"
+                                               asp-controller="Clasificacion"
+                                               asp-action="Details" asp-route-id="@item.PropietarioId">
+                                                <i class="fas fa-list-alt"></i>
+                                            </a>
+
+                                            <i class="fa fa-trash-o btn btn-danger" aria-hidden="true"
+                                               onclick="EliminarClasificacion(@item.PropietarioId)"></i>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-15 text-md-right">
+                    <script>
+                        document.write('Ultima modificación: ' + window.document.lastModified)
+
+                    </script>
+                </div>
+
+            }
+            else
+            {
+
+                <h3 style="color:red;">No existen Registros...</h3>
+
+            }
+        </div>
+        <form asp-action="Delete" asp-controller="Propietario" method="post" id="viewEliminar">
+            <input type="hidden" id="txtClasificacionId" name="SolicitanteId" />
+        </form>
+        <form asp-action="Edit" asp-controller="Propietario" method="post" id="viewEditar">
+            <input type="hidden" id="txtClasificacionId" name="ClasificacionId" />
+        </form>
+    </main>
+</div>
+<script src="~/js/sweetalert2.js"></script>
+<script src="~/js/Utilitarios.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#TbClasificacion').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+            });
+    })
+
+    function EliminarClasificacion(SolicitanteId) {
+        document.getElementById("txtClasificacionId").value = SolicitanteId;
+        verModal('Eliminar Clasificacion',
+            '¿Desea eliminar el Clasificacion '
+            + SolicitanteId + ' ?').then((result) => {
+                if (result.value) {
+                    alert("No puede eliminar una Clasificacion si está siendo utilizado por otra actividad")
+                    var viewEliminar = document.getElementById("viewEliminar");
+                    viewEliminar.submit();
+                    Swal.fire(
+
+                        'Eliminación!',
+                        'La clasificación  ' + SolicitanteId + ' fue eliminado!.',
+                        'success',
+
+                    )
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelado',
+                        'La clasificacion no fue eliminada!!!:)',
+                        'error'
+                    )
+                }
+            })
+    }
+
+</script>

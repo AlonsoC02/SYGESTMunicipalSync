@@ -28,215 +28,202 @@
 <div class="row no-gutters">
     <div class="col-md-7">
         <div class="contact-wrap w-100 p-md-5 p-4">
-            <h2 class="text-info">Editar Registro</h2>
-            <br>
-            <form method="post" asp-action="Edit" id="viewEditar">
-                <div class="backgroundWhite">
-                    <div asp-validation.summary="ModelOnly" class="text-danger"></div>
+              <form method="post" asp-action="Edit" id="viewEditar">
+                  <div class="backgroundWhite">
+                      <div asp-validation.summary="ModelOnly" class="text-danger"></div>
 
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="ConsultaId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-9">
+                              <input asp-for="ConsultaId" class="form-control" readonly />
+                          </div>
+                          <span asp-validation-for="ConsultaId" class=" text-danger"></span>
+                      </div>
 
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="ConsultaId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-9">
-                            <input asp-for="ConsultaId" class="form-control" readonly />
-                        </div>
-                        <span asp-validation-for="ConsultaId" class=" text-danger"></span>
-                    </div>
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="PersonaId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="PersonaId" class="form-control"
+                                      asp-items="@Lista"></select>
+                          </div>
+                          <span asp-validation-for="PersonaId" class=" text-danger"></span>
+                      </div>
 
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="Motivo" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <input asp-for="Motivo" class="form-control" />
+                          </div>
+                          <span asp-validation-for="Motivo" class=" text-danger"></span>
+                      </div>
 
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="PersonaId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="PersonaId" class="form-control"
-                                    asp-items="@Lista"></select>
-                        </div>
-                        <span asp-validation-for="PersonaId" class=" text-danger"></span>
-                    </div>
+                      <div class="form-group row">
+                          <div class="col-md-2">
+                              <label asp-for="Fecha" class="col-form-label"></label>
+                          </div>
+                          <div class="col-md-6">
+                              <input type="text" asp-for="Fecha" class="form-control" id="datepicker" />
+                          </div>
+                          <span asp-validation-for="Fecha" class="text-danger"></span>
+                      </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="Motivo" class="col-form-label"></label>
-                        </div>
-                        <div class="col-md-6">
-                            @Html.TextAreaFor(m => m.Motivo, new { rows = "3", cols = "56", @class = "text-area" })
-                        </div>
-                        <span asp-validation-for="Motivo" class="text-danger"></span>
-                    </div>
+                      <div class="form-group row">
+                          <div class="col-md-2">
+                              <label>Hora Atención:</label>
+                          </div>
+                          <div class="col-md-6">
+                              <p id="timepicker">
+                                  <input asp-for="HoraInicio" type="text" class="time start" /> a
+                                  <input asp-for="HoraFin" type="text" class="time end" />
+                              </p>
+                          </div>
+                      </div>
 
+                      <div class="form-group row">
+                          <div class="col-md-2">
+                              <label asp-for="Descripcion" class="col-form-label"></label>
+                          </div>
+                          <div class="col-md-6">
+                              @Html.TextAreaFor(m => m.Descripcion, new { rows = "3", cols = "56", @class = "text-area" })
+                          </div>
+                          <span asp-validation-for="Descripcion" class="text-danger"></span>
+                      </div>
 
+                      <div class="form-group row">
+                          <div class="col-md-2">
+                              <label asp-for="Respuesta" class="col-form-label"></label>
+                          </div>
+                          <div class="col-md-6">
+                              @Html.TextAreaFor(m => m.Respuesta, new { rows = "3", cols = "56", @class = "text-area" })
+                          </div>
+                          <span asp-validation-for="Respuesta" class="text-danger"></span>
+                      </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="Fecha" class="col-form-label"></label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" asp-for="Fecha" class="form-control" id="datepicker" />
-                        </div>
-                        <span asp-validation-for="Fecha" class="text-danger"></span>
-                    </div>
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="TipoConsultaId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="TipoConsultaId" class="form-control" required
+                                      asp-items="@Lista1"></select>
+                          </div>
+                          <span asp-validation-for="TipoConsultaId" class=" text-danger"></span>
+                      </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label>Hora Atención:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p id="timepicker">
-                                <input asp-for="HoraInicio" type="text" class="time start" /> a
-                                <input asp-for="HoraFin" type="text" class="time end" />
-                            </p>
-                        </div>
-                    </div>
+                      <div class="form-group row">
+                          <div class="col-md-2 text-center">
+                              <h5><label asp-for="Remitir" class="custom-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <input type="checkbox" asp-for="Remitir" class="form-control" />
+                          </div>
+                      </div>
 
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="OcupacionId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="OcupacionId" class="form-control" required
+                                      asp-items="@Lista7"></select>
+                          </div>
+                          <span asp-validation-for="OcupacionId" class=" text-danger"></span>
+                      </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="Descripcion" class="col-form-label"></label>
-                        </div>
-                        <div class="col-md-6">
-                            @Html.TextAreaFor(m => m.Descripcion, new { rows = "3", cols = "56", @class = "text-area" })
-                        </div>
-                        <span asp-validation-for="Descripcion" class="text-danger"></span>
-                    </div>
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="NacionalidadId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="NacionalidadId" class="form-control" required
+                                      asp-items="@Lista2"></select>
+                          </div>
+                          <span asp-validation-for="NacionalidadId" class=" text-danger"></span>
+                      </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <label asp-for="Respuesta" class="col-form-label"></label>
-                        </div>
-                        <div class="col-md-6">
-                            @Html.TextAreaFor(m => m.Respuesta, new { rows = "3", cols = "56", @class = "text-area" })
-                        </div>
-                        <span asp-validation-for="Respuesta" class="text-danger"></span>
-                    </div>
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="IngresoPersonaId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="IngresoPersonaId" class="form-control" required
+                                      asp-items="@Lista3"></select>
+                          </div>
+                          <span asp-validation-for="IngresoPersonaId" class=" text-danger"></span>
+                      </div>
 
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="TipoConsultaId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="TipoConsultaId" class="form-control" required
-                                    asp-items="@Lista1"></select>
-                        </div>
-                        <span asp-validation-for="TipoConsultaId" class=" text-danger"></span>
-                    </div>
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="SeguroId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="SeguroId" class="form-control" required
+                                      asp-items="@Lista4"></select>
+                          </div>
+                          <span asp-validation-for="SeguroId" class=" text-danger"></span>
+                      </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-2 text-center">
-                            <h5><label asp-for="Remitir" class="custom-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="checkbox" asp-for="Remitir" class="form-control" />
-                        </div>
-                    </div>
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="EstadoCivilId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="EstadoCivilId" class="form-control" required
+                                      asp-items="@Lista5"></select>
+                          </div>
+                          <span asp-validation-for="EstadoCivilId" class=" text-danger"></span>
+                      </div>
 
+                      <div class=" form-group row">
+                          <div class=" col-md-2">
+                              <h5><label asp-for="NivelAcademicoId" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-8">
+                              <select asp-for="NivelAcademicoId" class="form-control" required
+                                      asp-items="@Lista6"></select>
+                          </div>
+                          <span asp-validation-for="NivelAcademicoId" class=" text-danger"></span>
+                      </div>
 
+                      <div class="form-group row">
+                          <div class="col-md-2">
+                              <h5><label asp-for="Discapacidad" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-9">
+                              <textarea asp-for="Discapacidad" rows="4" cols="50" class="form-control"> </textarea>
+                          </div>
+                          <span asp-validation-for="Discapacidad" class="text-danger"></span>
+                      </div>
 
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="OcupacionId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="OcupacionId" class="form-control" required
-                                    asp-items="@Lista7"></select>
-                        </div>
-                        <span asp-validation-for="OcupacionId" class=" text-danger"></span>
-                    </div>
-
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="NacionalidadId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="NacionalidadId" class="form-control" required
-                                    asp-items="@Lista2"></select>
-                        </div>
-                        <span asp-validation-for="NacionalidadId" class=" text-danger"></span>
-                    </div>
-
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="IngresoPersonaId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="IngresoPersonaId" class="form-control" required
-                                    asp-items="@Lista3"></select>
-                        </div>
-                        <span asp-validation-for="IngresoPersonaId" class=" text-danger"></span>
-                    </div>
-
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="SeguroId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="SeguroId" class="form-control" required
-                                    asp-items="@Lista4"></select>
-                        </div>
-                        <span asp-validation-for="SeguroId" class=" text-danger"></span>
-                    </div>
-
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="EstadoCivilId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="EstadoCivilId" class="form-control" required
-                                    asp-items="@Lista5"></select>
-                        </div>
-                        <span asp-validation-for="EstadoCivilId" class=" text-danger"></span>
-                    </div>
-
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="NivelAcademicoId" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-8">
-                            <select asp-for="NivelAcademicoId" class="form-control" required
-                                    asp-items="@Lista6"></select>
-                        </div>
-                        <span asp-validation-for="NivelAcademicoId" class=" text-danger"></span>
-                    </div>
-
-                    <div class=" form-group row">
-                        <div class=" col-md-2">
-                            <h5><label asp-for="Discapacidad" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-9">
-                            <input asp-for="Discapacidad" class="form-control" />
-                        </div>
-                        <span asp-validation-for="Discapacidad" class=" text-danger"></span>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-2">
-                            <h5><label asp-for="Padecimiento" class="col-form-label"></label></h5>
-                        </div>
-                        <div class="col-md-9">
-                            <textarea asp-for="Padecimiento" rows="4" cols="50" class="form-control"> </textarea>
-                        </div>
-                        <span asp-validation-for="Padecimiento" class="text-danger"></span>
-                    </div>
-
-
-
-                    <div class="form-group row">
-
-                        <div class="col-md-4 text-md-right">
-                            <a asp-action="Index" type="button" style="color:white"
-                               class="btn btn-success fa fa fa-arrow-circle-left inicio">
-                                Regresar
-                            </a>
-                        </div>
-                        <div class="col-md-4 text-md-right">
-                            <input type="button" value="Editar" id="btnEditar"
-                                   class="btn btn-info"
-                                   onclick="abrirModal()" />
-                        </div>
-                    </div>
-                </div>
+                      <div class="form-group row">
+                          <div class="col-md-2">
+                              <h5><label asp-for="Padecimiento" class="col-form-label"></label></h5>
+                          </div>
+                          <div class="col-md-9">
+                              <textarea asp-for="Padecimiento" rows="4" cols="50" class="form-control"> </textarea>
+                          </div>
+                          <span asp-validation-for="Padecimiento" class="text-danger"></span>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-4 text-md-right">
+                              <a asp-action="Index" type="button"
+                                 class="btn btn-success fa fa fa-arrow-circle-left inicio">
+                                  Regresar
+                              </a>
+                          </div>
+                          <div class="col-md-1 text-md-center">
+                              <input type="button" value="Editar" id="btnEditar"
+                                     class="btn btn-info"
+                                     onclick="abrirModal()" />
+                          </div>
+                      </div>
+                  </div>
             </form>
         </div>
     </div>

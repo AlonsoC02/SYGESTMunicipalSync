@@ -15,11 +15,9 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models
 
         [Required(ErrorMessage = "Debe digitar el Nombre del tipo de consulta")]
         [Display(Name = "Nombre:")]
+        
         [StringLength(50, ErrorMessage = "Ha excedido los 50 caracteres")]
         public string Nombre { get; set; }
-
-  
-
 
         public virtual ICollection<Consulta> Consulta { get; set; }
         public TipoConsulta()

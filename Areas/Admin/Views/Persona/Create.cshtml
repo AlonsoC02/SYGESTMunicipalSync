@@ -3,10 +3,6 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<SelectListItem> Lista = ViewBag.ListaDistrito;
-    List<SelectListItem> Lista1 = ViewBag.ListaCanton;
-    List<SelectListItem> Lista2 = ViewBag.ListaProvincia;
-
 }
    <div class="row">
         <div class="col-md-12 col-lg-12">
@@ -21,25 +17,21 @@
         <div class="container-fluid">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group row">
-                <div class=" col-md-2 text-right">
-                    <label>Cédula o Pasaporte: <span class="required">*</span></label>
-                </div>
-                <div class="col-md-6">
-                    <input asp-for="CedulaPersona" class="form-control" placeholder="Digite la cédula o pasaporte aquí" required>
-                </div>
-                <span asp-validation-for="CedulaPersona" class="text-danger"></span>
-                @if (Model != null && ViewBag.Error != "")
-                {
-                    <p class="text-danger">@ViewBag.Error</p>
-                }
+        <div class="form-group row">
+            <div class=" col-md-6 text-right">
+                <label>Cédula/Pasaporte: <span class="required">*</span></label>
             </div>
-            <div class="col-md-6">
-                @if (ViewBag.Error != "")
-                {
-                    <p class="text-danger">@ViewBag.Error</p>
-                }
+            <div class="row-cols-md-6">
+                <input asp-for="Persona.Id" class="form-control" placeholder="Digite la cédula o pasaporte aquí" required>
             </div>
+            <span asp-validation-for="Persona.Id" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            @if (ViewBag.Error != "")
+            {
+                <p class="text-danger">@ViewBag.Error</p>
+            }
+        </div>
 
             <div class="form-group row">
                 <div class=" col-md-2 text-right">
@@ -150,8 +142,9 @@
                     <label>Distrito: <span class="required">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <select asp-for="DistritoId" placeholder="Seleccione el Domicilio donde vive" required
-                            asp-items="@Lista"></select>
+                    <select asp-for="@Model.Persona.ProvinciaId" id="ProvinciaId"
+                            asp-items="Model.Provincia.ToSelectListItem(Model.Persona.ProvinciaId)"
+                            class="form-control"></select>
                 </div>
                 <span asp-validation-for="DistritoId" class="text-danger"></span>
             </div>

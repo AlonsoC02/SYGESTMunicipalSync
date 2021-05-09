@@ -15,8 +15,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
     public class TipoConsultaController : Controller
     {
         private readonly DBSygestContext _db;
-        List<TipoConsultaViewModel> listaTipoConsulta = new List<TipoConsultaViewModel>();
-        static List<TipoConsultaViewModel> lista = new List<TipoConsultaViewModel>();
+        List<TipoConsulta> listaTipoConsulta = new List<TipoConsulta>();
+        static List<TipoConsulta> lista = new List<TipoConsulta>();
         public TipoConsultaController(DBSygestContext db)
         {
             _db = db;
@@ -27,10 +27,10 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             listaTipoConsulta = (from tipoConsulta in _db.TipoConsulta
 
 
-                                        select new TipoConsultaViewModel
+                                        select new TipoConsulta
                                         {
                                             TipoConsultaId = tipoConsulta.TipoConsultaId,
-                                            Nombre = tipoConsulta.Nombre,
+                                            Nombre = tipoConsulta.Nombre
                                       
 
 
@@ -39,16 +39,26 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return View(listaTipoConsulta);
 
         }
+        private void cargarUltimoRegistro()
+        {
+            var ultimoRegistro = _db.Set<TipoConsulta>().OrderByDescending(
+                e => e.TipoConsultaId).FirstOrDefault();
+            if (ultimoRegistro == null)
+            {
+                ViewBag.ID = 1;
 
+            }
+            else
+            {
+                ViewBag.ID = ultimoRegistro.TipoConsultaId + 1;
+            }
+        }
 
         public IActionResult Create()
         {
-      
-
-
+            cargarUltimoRegistro();
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(TipoConsulta tipoConsulta)
         {
@@ -59,18 +69,14 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
                 nVeces = _db.TipoConsulta.Where(m => m.TipoConsultaId == tipoConsulta.TipoConsultaId).Count();
                 if (!ModelState.IsValid || nVeces >= 1)
                 {
-                    if (nVeces >= 1) ViewBag.Error = "Este Id ya existe!";
-                   
+                    if (nVeces >= 1) ViewBag.Error = "Este registro ya existe!";
 
+                    return View(tipoConsulta);
                 }
                 else
                 {
-                    TipoConsulta _tipoConsulta = new TipoConsulta();
-                    _tipoConsulta.TipoConsultaId = tipoConsulta.TipoConsultaId;
-                    _tipoConsulta.Nombre = tipoConsulta.Nombre;
-                   
-                    
-                    _db.TipoConsulta.Add(_tipoConsulta);
+
+                    _db.TipoConsulta.Add(tipoConsulta);
                     _db.SaveChanges();
                 }
             }
@@ -80,6 +86,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+
 
         [HttpGet]
         public IActionResult Edit(int Id)

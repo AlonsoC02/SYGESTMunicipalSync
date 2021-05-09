@@ -19,6 +19,8 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
         [Display(Name = "Persona:")]
         public string Persona { get; set; }
 
+        [Display(Name = "Nombre Persona:")]
+        public string NombrePersona { get; set; }
 
         [Required(ErrorMessage = "Debe digitar el motivo de la consulta")]
         [Display(Name = "Motivo:")]
@@ -93,7 +95,7 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Models.ViewModel
 
         [Display(Name = "Ingreso Persona:")]
         public int IngresoPersonaId { get; set; }
-        public double IngresoPersona { get; set; }
+        public string IngresoPersona { get; set; }
 
         public string msgError { get; set; }
 
