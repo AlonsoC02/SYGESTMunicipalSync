@@ -21,6 +21,11 @@ namespace SYGESTMunicipalSync.Areas.OFIM.Controllers
             return View();
         }
 
+        public IActionResult Charlas()
+        {
+            return View();
+        }
+
         //public async Task<IActionResult> Index()
         //{
         //    IndexViewModel IndexVM = new IndexViewModel()
