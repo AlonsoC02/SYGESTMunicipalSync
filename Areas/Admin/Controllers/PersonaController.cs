@@ -37,7 +37,25 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
             await _db.Persona.Include(m => m.Provincia).Include(m => m.Canton).Include(m => m.Distrito).ToListAsync();
             return View(Persona);
         }
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string dato)
+        {
+            if (dato == null)
+            {
+                var Persona =
+                 await _db.Persona.Include(m => m.Provincia).Include(m => m.Canton).Include(m => m.Distrito).ToListAsync();
+                return View(Persona);
+            }
+            else
+            {
+                var actItem =
+                      await _db.Persona.Where(p => p.Provincia.Nombre == dato)
+                     .Include(c => c.Distrito).Include(m => m.Canton).Include(m => m.Provincia).ToListAsync();
+
+                return View(actItem);
+            }
+        }
         public IActionResult Create()
         {
             return View(PersonaVM);
@@ -48,8 +66,8 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         {
             int nVeces = 0;
           
-                nVeces = _db.Persona.Where(m => m.Id == PersonaVM.Persona.Id).Count();
-                PersonaVM.Persona.Id = Request.Form["CedulaPersona"].ToString();
+                nVeces = _db.Persona.Where(m => m.CedulaPersona == PersonaVM.Persona.CedulaPersona).Count();
+                PersonaVM.Persona.CedulaPersona =Request.Form["CedulaPersona"].ToString();
             if (!ModelState.IsValid || nVeces >= 1)
             {
                     if (nVeces >= 1) ViewBag.Error = "Esta Persona ya se encuentra registrada!";
@@ -70,10 +88,10 @@ namespace SYGESTMunicipalSync.Areas.Admin.Controllers
         private void BuscarPersona(string PersonaId)
         {
             Persona oPersona = _db.Persona
-           .Where(p => p.Id == PersonaId).FirstOrDefault();
+           .Where(p => p.CedulaPersona == PersonaId).FirstOrDefault();
             if (oPersona != null)
             {
-                ViewBag.PersonaID = oPersona.Id;
+                ViewBag.PersonaID = oPersona.CedulaPersona;
                 ViewBag.Nombre = oPersona.Nombre + " " + oPersona.Ape1;
                 
             }
